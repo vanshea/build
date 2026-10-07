@@ -1,7 +1,7 @@
 Complete static copy of the real public-facing site.
 
 Local preview:
-- http://localhost:3000/livesite/
+- http://localhost:3000/build/
 
 Refresh copied assets and case studies:
 - `npm run variants:sync`
