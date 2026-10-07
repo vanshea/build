@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 678" role="img" aria-labelledby="title desc">
+  <title id="title">Meeting Coach app static preview</title>
+  <desc id="desc">A polished phone-style lock screen preview with live meeting coaching.</desc>
+  <defs>
+    <linearGradient id="wallpaper" x1="50" y1="44" x2="309" y2="634" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#252d59"/><stop offset=".46" stop-color="#17182e"/><stop offset="1" stop-color="#0c2528"/>
+    </linearGradient>
+    <radialGradient id="purpleGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(273 131) rotate(132) scale(240 190)">
+      <stop stop-color="#9f32c8" stop-opacity=".52"/><stop offset="1" stop-color="#17182e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="tealGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(175 560) rotate(-82) scale(250 220)">
+      <stop stop-color="#0d7770" stop-opacity=".5"/><stop offset="1" stop-color="#0c2528" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="phoneShadow" x="20" y="20" width="320" height="650" filterUnits="userSpaceOnUse"><feDropShadow dy="20" stdDeviation="22" flood-color="#19121b" flood-opacity=".36"/></filter>
+    <filter id="cardShadow" x="49" y="70" width="262" height="160" filterUnits="userSpaceOnUse"><feDropShadow dy="12" stdDeviation="16" flood-color="#000" flood-opacity=".46"/></filter>
+  </defs>
+  <rect width="360" height="678" rx="36" fill="#f7f1e6"/>
+  <g filter="url(#phoneShadow)">
+    <rect x="43" y="36" width="274" height="606" rx="42" fill="#161621"/>
+    <rect x="51" y="44" width="258" height="590" rx="36" fill="url(#wallpaper)"/>
+    <rect x="51" y="44" width="258" height="590" rx="36" fill="url(#purpleGlow)"/>
+    <rect x="51" y="44" width="258" height="590" rx="36" fill="url(#tealGlow)"/>
+  </g>
+  <rect x="143" y="58" width="74" height="18" rx="9" fill="#070810"/>
+  <g filter="url(#cardShadow)">
+    <rect x="66" y="88" width="228" height="99" rx="22" fill="#13192d" fill-opacity=".92" stroke="#2af070" stroke-width="2"/>
+  </g>
+  <circle cx="86" cy="110" r="9" fill="#16b8a6"/>
+  <path d="M82 107h8v7h-8zM84 105h4v2h-4z" fill="#fff" opacity=".9"/>
+  <text x="102" y="107" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10" font-weight="750">Meeting Coach</text>
+  <text x="102" y="121" fill="#fff" opacity=".5" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="8">Live coaching</text>
+  <rect x="230" y="101" width="48" height="18" rx="9" fill="#f0b04f" fill-opacity=".22"/>
+  <text x="254" y="113" text-anchor="middle" fill="#f0b04f" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="7" font-weight="800">4 EXPERTISE</text>
+  <text x="82" y="145" fill="#fff" opacity=".74" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="8.5">Redesign shipping in Q2</text>
+  <text x="82" y="164" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="9.5" font-weight="750">You: Activation is up 77%</text>
+  <g fill="#fff" opacity=".4"><circle cx="83" cy="175" r="2"/><circle cx="93" cy="175" r="2"/><circle cx="103" cy="175" r="2"/><circle cx="113" cy="175" r="2"/></g>
+  <text x="180" y="272" text-anchor="middle" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="52" font-weight="700">9:41</text>
+  <text x="180" y="299" text-anchor="middle" fill="#fff" opacity=".7" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="600">Tuesday, July 9</text>
+  <g>
+    <rect x="69" y="489" width="222" height="66" rx="21" fill="#fff" opacity=".1"/>
+    <rect x="70" y="490" width="220" height="64" rx="20" stroke="#fff" stroke-opacity=".16"/>
+    <rect x="84" y="504" width="34" height="37" rx="8" fill="#fff" opacity=".94"/>
+    <rect x="88" y="507" width="26" height="9" rx="4" fill="#ef544d"/>
+    <text x="101" y="514" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="6" font-weight="800">TUE</text>
+    <text x="101" y="533" text-anchor="middle" fill="#161621" font-family="sans-serif" font-size="12" font-weight="800">10</text>
+    <text x="130" y="516" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10" font-weight="750">1:1 with Sam</text>
+    <text x="130" y="532" fill="#fff" opacity=".6" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="8">Performance review · Conf Rm B</text>
+    <text x="270" y="516" text-anchor="end" fill="#fff" opacity=".42" font-family="sans-serif" font-size="7">9m ago</text>
+  </g>
+  <circle cx="93" cy="584" r="18" fill="#fff" opacity=".12"/><path d="M89 579h8v7h-8zM91 576h4v3h-4z" fill="#fff" opacity=".8"/>
+  <circle cx="267" cy="584" r="18" fill="#fff" opacity=".12"/><rect x="260" y="579" width="14" height="10" rx="3" fill="none" stroke="#fff" stroke-opacity=".8"/><circle cx="267" cy="584" r="3" fill="#fff" opacity=".8"/>
+  <rect x="153" y="616" width="54" height="4" rx="2" fill="#fff" opacity=".62"/>
+</svg>

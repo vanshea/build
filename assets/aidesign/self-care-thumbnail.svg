@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 678" role="img" aria-labelledby="title desc">
+  <title id="title">Self Care app static preview</title>
+  <desc id="desc">A reduced phone-style preview of the Self Care lock screen widget.</desc>
+  <defs>
+    <linearGradient id="wallpaper" x1="40" y1="16" x2="318" y2="650" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#393264"/>
+      <stop offset=".52" stop-color="#201c3d"/>
+      <stop offset="1" stop-color="#111224"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(104 118) rotate(58) scale(310 220)">
+      <stop offset="0" stop-color="#ff8a4c" stop-opacity=".72"/>
+      <stop offset=".48" stop-color="#7c6fff" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#111224" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="widget" x1="66" y1="238" x2="294" y2="427" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5b5586" stop-opacity=".84"/>
+      <stop offset=".48" stop-color="#302d52" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#da8154" stop-opacity=".62"/>
+    </linearGradient>
+    <filter id="shadow" x="21" y="26" width="318" height="628" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="20" stdDeviation="22" flood-color="#10101a" flood-opacity=".38"/>
+    </filter>
+    <filter id="softShadow" x="42" y="206" width="276" height="268" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#050511" flood-opacity=".38"/>
+    </filter>
+  </defs>
+  <rect width="360" height="678" rx="36" fill="#f7f1e6"/>
+  <g filter="url(#shadow)">
+    <rect x="43" y="36" width="274" height="606" rx="42" fill="#161621"/>
+    <rect x="51" y="44" width="258" height="590" rx="36" fill="url(#wallpaper)"/>
+    <rect x="51" y="44" width="258" height="590" rx="36" fill="url(#glow)"/>
+  </g>
+  <rect x="143" y="59" width="74" height="8" rx="4" fill="#ffffff" opacity=".22"/>
+  <text x="180" y="128" text-anchor="middle" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="52" font-weight="700">9:41</text>
+  <text x="180" y="155" text-anchor="middle" fill="#fff" opacity=".76" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="600">Tuesday, July 9</text>
+  <g filter="url(#softShadow)">
+    <rect x="68" y="241" width="224" height="190" rx="28" fill="url(#widget)" opacity=".98"/>
+    <rect x="82" y="256" width="196" height="162" rx="22" fill="#ffffff" opacity=".08"/>
+    <circle cx="112" cy="294" r="23" fill="#ff8a4c"/>
+    <text x="112" y="302" text-anchor="middle" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="20" font-weight="800">SC</text>
+    <text x="149" y="286" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="17" font-weight="800">Self Care</text>
+    <text x="149" y="308" fill="#fff" opacity=".7" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="600">How are you feeling?</text>
+    <rect x="94" y="336" width="172" height="10" rx="5" fill="#fff" opacity=".2"/>
+    <rect x="94" y="336" width="112" height="10" rx="5" fill="#ffb17e" opacity=".92"/>
+    <circle cx="205" cy="341" r="14" fill="#fff"/>
+    <g opacity=".96">
+      <rect x="94" y="371" width="50" height="25" rx="13" fill="#ff8a4c"/>
+      <rect x="154" y="371" width="50" height="25" rx="13" fill="#fff" opacity=".13"/>
+      <rect x="214" y="371" width="50" height="25" rx="13" fill="#fff" opacity=".13"/>
+    </g>
+  </g>
+  <g opacity=".72">
+    <rect x="92" y="477" width="176" height="12" rx="6" fill="#fff" opacity=".22"/>
+    <rect x="118" y="506" width="124" height="12" rx="6" fill="#fff" opacity=".16"/>
+    <rect x="142" y="535" width="76" height="12" rx="6" fill="#fff" opacity=".12"/>
+  </g>
+  <circle cx="180" cy="592" r="23" fill="#fff" opacity=".13"/>
+  <path d="M174 582l19 10-19 10z" fill="#fff" opacity=".86"/>
+</svg>

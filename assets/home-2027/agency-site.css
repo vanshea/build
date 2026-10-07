@@ -1,0 +1,78 @@
+/* Shared page treatment derived from the current Human Agency Design homepage. */
+html.agency-site { background:var(--bg); color:var(--ink); }
+body.agency-site { background:var(--bg)!important; color:var(--ink)!important; font-family:var(--sans)!important; }
+body.agency-site::before, body.agency-site::after, body.agency-site .bg-shape { display:none!important; }
+.agency-site .eyebrow { display:none!important; }
+.agency-site .hero::before,.agency-site .hero::after { display:none!important; }
+.agency-site .hero { background:transparent!important; box-shadow:none!important; clip-path:none!important; }
+.agency-site .home-header { position:sticky; top:0; z-index:1000; }
+body.agency-site { overflow-x:clip!important; }
+.agency-main { width:calc(100% - 10.55%); max-width:1288px; margin:0 auto; padding:76px 0 100px; }
+.agency-main h1,.agency-main h2,.agency-main h3 { color:var(--ink)!important; font-family:var(--serif)!important; text-shadow:none!important; }
+.agency-main h1 { font-size:clamp(40px,4.5vw,62px)!important; line-height:1.15!important; }
+.agency-main h2 { font-size:clamp(34px,3.6vw,52px)!important; line-height:1.12!important; }
+.agency-main h3 { font-size:clamp(25px,2.8vw,40px)!important; line-height:1.16!important; }
+.agency-site .agency-content main h1,.agency-site .agency-content main h2,.agency-site .agency-content main h3 { color:var(--ink)!important; font-family:var(--serif)!important; font-weight:400!important; text-shadow:none!important; }
+.agency-site .agency-content main h1 { font-size:clamp(40px,4.5vw,62px)!important; line-height:1.12!important; }
+.agency-site .agency-content main h2 { font-size:clamp(32px,3.3vw,48px)!important; line-height:1.15!important; }
+.agency-site .agency-content main h3 { font-size:clamp(24px,2.5vw,36px)!important; line-height:1.2!important; }
+.agency-main p,.agency-main li { color:var(--ink); font-family:var(--sans)!important; }
+.agency-main a { color:var(--ink); text-underline-offset:5px; }
+.agency-main .lead,.agency-main .case-study-subtitle { color:var(--muted)!important; background:transparent!important; border:0!important; }
+.agency-main .card,.agency-main .experience-impact-item { background:var(--panel)!important; border-color:var(--line)!important; box-shadow:none!important; border-radius:0!important; }
+.agency-main .card { transform:none!important; }
+.agency-main .case-study-pill { background:var(--panel)!important; border-color:var(--line)!important; color:var(--ink)!important; border-radius:0!important; }
+.agency-main .reveal { opacity:1; transform:none; }
+.agency-main .theme-switcher { display:none!important; }
+.agency-site .home-footer { --ink:var(--footer-ink); --muted:var(--footer-ink); border-top:0; background:var(--footer-bg)!important; color:var(--footer-ink); }
+.agency-site .ws-demo-intro { max-width:1288px; margin:auto; padding:32px 0 24px; }
+.agency-site .ws-demo-intro h1 { margin-top:8px; }
+.agency-site .ws-demo-frame { display:block; width:100%; min-height:650px; height:calc(100svh - 140px); border:0; background:var(--panel); }
+.sr-only { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
+.agency-site .skip { position:fixed; z-index:1000; }
+.agency-site a:focus-visible,.agency-site button:focus-visible,.agency-site input:focus-visible,.agency-site textarea:focus-visible,.agency-site select:focus-visible,.agency-site summary:focus-visible,
+.agency-home a:focus-visible,.agency-home button:focus-visible,.agency-home input:focus-visible,.agency-home summary:focus-visible { outline:3px solid var(--focus)!important; outline-offset:4px!important; }
+.agency-site .home-nav a,.agency-site .home-brand,.agency-site .footer-links a { display:inline-flex; align-items:center; min-height:44px; }
+.agency-site .agency-main a,.agency-site .agency-main button { min-height:24px; }
+.agency-site .conversation-link,.agency-home .conversation-link { min-height:48px; }
+.agency-site .field-error { color:#9a2424!important; font-size:14px; min-height:1.2em; margin:2px 0 10px; }
+.agency-site [aria-invalid="true"] { border:2px solid #9a2424!important; }
+.agency-site .menu-toggle,.agency-site input:not([type="radio"]),.agency-site textarea,.agency-site select { border-color:var(--ink)!important; }
+.agency-site .recommendation-card { background:var(--panel); border:1px solid var(--line); border-radius:0; box-shadow:none; }
+.agency-site .aide-idea-tab.is-active { background:#172238!important; color:#fff!important; border-color:#172238!important; }
+.agency-site .aide-idea-tab.is-active .aide-idea-index,.agency-site .aide-idea-tab.is-active .aide-idea-name { color:#fff!important; opacity:1!important; }
+.agency-site .aide-idea-tab:not(.is-active) .aide-idea-index { color:var(--ink)!important; opacity:1!important; }
+.agency-site .experience-page .btn,
+.agency-site .experience-next .btn {
+  background:var(--button)!important;
+  border:2px solid var(--button-ink);
+  color:var(--button-ink)!important;
+}
+.agency-site .experience-page .btn:hover,
+.agency-site .experience-next .btn:hover {
+  background:var(--accent)!important;
+  color:var(--ink)!important;
+}
+.agency-site .agency-main p,.agency-site .agency-content main p,
+.agency-site .agency-main li,.agency-site .agency-content main li { font-size:1.0625rem; line-height:1.75; letter-spacing:-.01em; }
+.agency-site .agency-main p,.agency-site .agency-content main p { max-width:68ch; }
+.agency-site .agency-main .lead,.agency-site .agency-content main .lead,
+.agency-site .agency-main .case-study-subtitle,.agency-site .agency-content main .case-study-subtitle { max-width:62ch; }
+.agency-site .agency-content main .aide-lab-intro { max-width:62ch; line-height:1.7; }
+.agency-site .agency-content main > section:nth-of-type(even):not(.hero),
+.agency-site .agency-main > section:nth-of-type(even):not(.hero) {
+  margin-block:clamp(32px,5vw,64px);
+  padding:clamp(28px,4.5vw,56px);
+  background:var(--panel);
+}
+.agency-site .home-nav a { font-size:13px; letter-spacing:.075em; }
+:root[data-theme="theme5"] body.agency-site { background-color:var(--bg)!important; background-image:linear-gradient(90deg,rgba(23,18,34,.07) 1px,transparent 1px),linear-gradient(rgba(23,18,34,.07) 1px,transparent 1px)!important; background-size:42px 42px!important; }
+.agency-site .home-footer { background:var(--footer-bg)!important; }
+@media(prefers-reduced-motion:reduce) {
+  .agency-site *, .agency-home * { animation-duration:0.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; }
+}
+@media(max-width:700px) {
+  .agency-main { width:calc(100% - 40px); padding:52px 0 70px; }
+  .agency-site .agency-content main > section:nth-of-type(even):not(.hero),
+  .agency-site .agency-main > section:nth-of-type(even):not(.hero) { margin-block:32px; padding:24px; }
+}

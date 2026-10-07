@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Self Care — The Problem</title><desc id="desc">LinkedIn preview card for the Self Care prototype.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse"><stop stop-color="#fbf6ec"/><stop offset="1" stop-color="#eee4d4"/></linearGradient>
+    <linearGradient id="app" x1="112" y1="164" x2="382" y2="438" gradientUnits="userSpaceOnUse"><stop stop-color="#5c4f8f"/><stop offset=".55" stop-color="#282447"/><stop offset="1" stop-color="#d77a4f"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#ff8a4c" stop-opacity=".8"/><stop offset="1" stop-color="#ff8a4c" stop-opacity="0"/></radialGradient>
+    <filter id="shadow" x="50" y="100" width="430" height="430"><feDropShadow dy="28" stdDeviation="28" flood-color="#3b2d42" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1074" cy="54" r="220" fill="#7c6fff" opacity=".08"/><circle cx="1110" cy="598" r="280" fill="#ff8a4c" opacity=".08"/>
+  <text x="570" y="116" fill="#7d6c62" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="22" font-weight="750" letter-spacing="3">AI DESIGN LAB</text>
+  <g filter="url(#shadow)"><rect x="94" y="147" width="330" height="330" rx="82" fill="url(#app)"/></g>
+  <circle cx="177" cy="229" r="110" fill="url(#glow)" opacity=".48"/>
+  <circle cx="259" cy="312" r="72" fill="#ff8a4c"/><text x="259" y="335" text-anchor="middle" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="66" font-weight="850">SC</text>
+  <rect x="157" y="406" width="204" height="16" rx="8" fill="#fff" opacity=".18"/><rect x="157" y="406" width="128" height="16" rx="8" fill="#ffb17e"/>
+  <text x="570" y="221" fill="#261f2a" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="65" font-weight="820">Self Care</text>
+  <text x="570" y="278" fill="#bf6843" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="27" font-weight="750">THE PROBLEM</text>
+  <text x="570" y="346" fill="#51464f" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="28" font-weight="520">Lowering the decision cost of caring for</text>
+  <text x="570" y="388" fill="#51464f" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="28" font-weight="520">yourself when willpower is already thin.</text>
+  <text x="570" y="510" fill="#7d6c62" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="22" font-weight="650">vanshea.com/aidesign</text>
+</svg>
