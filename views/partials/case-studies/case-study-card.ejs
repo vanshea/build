@@ -1,0 +1,41 @@
+<article class="card case-study-card reveal">
+  <a class="case-study-card-link" href="<%= caseStudy.routePath %>">
+    <% if (caseStudy.cardImage) { %>
+      <span class="card-image-shell case-study-card-image-shell">
+        <img
+          class="card-image case-study-card-image"
+          src="<%= caseStudy.cardImage.thumbSrc || caseStudy.cardImage.src %>"
+          alt="<%= caseStudy.cardImage.alt || `${caseStudy.title} thumbnail` %>"
+          loading="lazy"
+        />
+      </span>
+    <% } %>
+
+    <div class="case-study-card-topline">
+      <% if (caseStudy.metadata.client) { %>
+        <span><%= caseStudy.metadata.client %></span>
+      <% } %>
+      <% if (caseStudy.metadata.year) { %>
+        <span><%= caseStudy.metadata.year %></span>
+      <% } %>
+    </div>
+
+    <h3><%= caseStudy.title %></h3>
+
+    <% if (caseStudy.subtitle) { %>
+      <p class="case-study-card-subtitle"><%= caseStudy.subtitle %></p>
+    <% } %>
+
+    <% if (caseStudy.summary) { %>
+      <p><%= caseStudy.summary %></p>
+    <% } %>
+
+    <% if (caseStudy.metadata.services.length > 0) { %>
+      <div class="case-study-card-tags" aria-label="Services">
+        <% caseStudy.metadata.services.slice(0, 3).forEach((service) => { %>
+          <span class="case-study-pill"><%= service %></span>
+        <% }) %>
+      </div>
+    <% } %>
+  </a>
+</article>

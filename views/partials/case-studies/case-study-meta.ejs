@@ -1,0 +1,30 @@
+<%
+  const metaEntries = [
+    ["Client", caseStudy.metadata.client],
+    ["Role", caseStudy.metadata.role],
+    ["Year", caseStudy.metadata.year],
+    ["Industry", caseStudy.metadata.industry]
+  ].filter(([, value]) => value);
+%>
+
+<section class="case-study-meta-panel reveal" aria-label="Case study metadata">
+  <div class="case-study-meta-grid">
+    <% metaEntries.forEach(([label, value]) => { %>
+      <article class="case-study-meta-item">
+        <span class="case-study-meta-label"><%= label %></span>
+        <strong class="case-study-meta-value"><%= value %></strong>
+      </article>
+    <% }) %>
+
+    <% if (caseStudy.metadata.services.length > 0) { %>
+      <article class="case-study-meta-item case-study-meta-item-services">
+        <span class="case-study-meta-label">Services</span>
+        <div class="case-study-services">
+          <% caseStudy.metadata.services.forEach((service) => { %>
+            <span class="case-study-pill"><%= service %></span>
+          <% }) %>
+        </div>
+      </article>
+    <% } %>
+  </div>
+</section>

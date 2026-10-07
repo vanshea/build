@@ -1,0 +1,41 @@
+<section class="hero case-study-hero reveal">
+  <div class="case-study-hero-copy">
+    <a class="theme-link case-study-breadcrumb" href="/case-studies">
+      Back to all case studies
+    </a>
+    <p class="eyebrow">Case Study</p>
+    <h1><%= caseStudy.title %></h1>
+
+    <% if (caseStudy.subtitle) { %>
+      <p class="case-study-subtitle"><%= caseStudy.subtitle %></p>
+    <% } %>
+
+    <% if (caseStudy.summary) { %>
+      <p class="lead"><%= caseStudy.summary %></p>
+    <% } %>
+
+    <div class="case-study-hero-meta">
+      <% if (caseStudy.readingTime) { %>
+        <span class="case-study-pill"><%= caseStudy.readingTime %></span>
+      <% } %>
+      <% if (caseStudy.updatedAt) { %>
+        <span class="case-study-pill">Updated <%= caseStudy.updatedAt %></span>
+      <% } %>
+    </div>
+  </div>
+
+  <% if (caseStudy.heroImage) { %>
+    <button
+      class="case-study-hero-media"
+      type="button"
+      data-lightbox-trigger
+      data-lightbox-index="<%= caseStudy.heroImage.lightboxIndex %>"
+      aria-label="Open hero image for <%= caseStudy.title %>"
+    >
+      <img
+        src="<%= caseStudy.heroImage.src %>"
+        alt="<%= caseStudy.heroImage.alt || `${caseStudy.title} hero image` %>"
+      />
+    </button>
+  <% } %>
+</section>

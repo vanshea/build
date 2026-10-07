@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analytics Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
+    <main class="mx-auto flex min-h-screen max-w-md items-center px-6">
+      <section class="w-full rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-2xl">
+        <h1 class="text-xl font-semibold">Internal Analytics</h1>
+        <p class="mt-2 text-sm text-slate-400">Sign in to access first-party analytics.</p>
+
+        <% if (error) { %>
+        <p class="mt-4 rounded-md border border-rose-700 bg-rose-950/60 px-3 py-2 text-sm text-rose-200">
+          <%= error %>
+        </p>
+        <% } %>
+
+        <form class="mt-5 space-y-4" method="post" action="/login">
+          <input type="hidden" name="next" value="<%= nextUrl %>" />
+
+          <label class="block">
+            <span class="mb-1 block text-sm text-slate-300">Username</span>
+            <input
+              class="w-full rounded-md border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100 outline-none ring-offset-2 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500"
+              type="text"
+              name="username"
+              autocomplete="username"
+              required
+            />
+          </label>
+
+          <label class="block">
+            <span class="mb-1 block text-sm text-slate-300">Password</span>
+            <input
+              class="w-full rounded-md border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100 outline-none ring-offset-2 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500"
+              type="password"
+              name="password"
+              autocomplete="current-password"
+              required
+            />
+          </label>
+
+          <button
+            class="w-full rounded-md bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400"
+            type="submit"
+          >
+            Sign In
+          </button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

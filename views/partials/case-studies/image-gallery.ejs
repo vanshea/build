@@ -1,0 +1,29 @@
+<section class="case-study-block reveal" aria-labelledby="imageGalleryHeading">
+  <div class="section-head case-study-block-head">
+    <div>
+      <p class="eyebrow">Gallery</p>
+      <h2 id="imageGalleryHeading">Project Gallery</h2>
+    </div>
+  </div>
+
+  <div class="case-study-gallery-grid">
+    <% images.forEach((image) => { %>
+      <button
+        class="case-study-gallery-item"
+        type="button"
+        data-lightbox-trigger
+        data-lightbox-index="<%= image.lightboxIndex %>"
+        aria-label="Open gallery image"
+      >
+        <img
+          src="<%= image.thumbSrc || image.src %>"
+          alt="<%= image.alt || caseStudy.title %>"
+          loading="lazy"
+        />
+        <% if (image.caption) { %>
+          <span class="case-study-gallery-caption"><%= image.caption %></span>
+        <% } %>
+      </button>
+    <% }) %>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="theme2">
+  <head>
+    <%- include("../partials/public_head", { pageTitle, metaDescription }) %>
+  </head>
+  <body>
+    <div class="bg-shape bg-shape-a"></div>
+    <div class="bg-shape bg-shape-b"></div>
+
+    <%- include("../partials/public_header", { currentPath }) %>
+
+    <main id="top" class="case-study-page">
+      <%- include("../partials/case-studies/case-study-hero", { caseStudy }) %>
+      <%- include("../partials/case-studies/case-study-meta", { caseStudy }) %>
+
+      <% if (caseStudy.featuredImages.length > 0) { %>
+        <%- include("../partials/case-studies/featured-image-viewer", {
+          caseStudy,
+          images: caseStudy.featuredImages
+        }) %>
+      <% } %>
+
+      <section class="case-study-sections">
+        <% caseStudy.sections.forEach((section) => { %>
+          <%- include("../partials/case-studies/case-study-section", { section }) %>
+        <% }) %>
+      </section>
+
+      <% if (caseStudy.galleryImages.length > 0) { %>
+        <%- include("../partials/case-studies/image-gallery", {
+          caseStudy,
+          images: caseStudy.galleryImages
+        }) %>
+      <% } %>
+    </main>
+
+    <%- include("../partials/public_footer") %>
+    <%- include("../partials/consent_banner") %>
+    <%- include("../partials/case-studies/lightbox", {
+      lightboxImages: caseStudy.lightboxImages
+    }) %>
+
+    <script src="/analytics.js"></script>
+    <script src="/script.js"></script>
+    <script src="/assets/case-studies.js"></script>
+  </body>
+</html>

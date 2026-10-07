@@ -1,0 +1,40 @@
+<article class="case-study-section reveal <%= section.image ? "case-study-section-has-image" : "" %>">
+  <div class="case-study-section-copy">
+    <h2><%= section.heading %></h2>
+
+    <% if (section.bodyHtml) { %>
+      <div class="case-study-rich-text"><%- section.bodyHtml %></div>
+    <% } else { %>
+      <% section.body.forEach((paragraph) => { %>
+        <p><%= paragraph %></p>
+      <% }) %>
+    <% } %>
+
+    <% if (section.bullets.length > 0) { %>
+      <ul class="case-study-list">
+        <% section.bullets.forEach((bullet) => { %>
+          <li><%= bullet %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </div>
+
+  <% if (section.image) { %>
+    <button
+      class="case-study-section-media"
+      type="button"
+      data-lightbox-trigger
+      data-lightbox-index="<%= section.image.lightboxIndex %>"
+      aria-label="Open image for <%= section.heading %>"
+    >
+      <img
+        src="<%= section.image.thumbSrc || section.image.src %>"
+        alt="<%= section.image.alt || section.heading %>"
+        loading="lazy"
+      />
+      <% if (section.image.caption) { %>
+        <span class="case-study-media-caption"><%= section.image.caption %></span>
+      <% } %>
+    </button>
+  <% } %>
+</article>

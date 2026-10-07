@@ -1,0 +1,34 @@
+<div class="lightbox case-study-lightbox" id="caseStudyLightbox" aria-hidden="true">
+  <button class="lightbox-close" id="caseStudyLightboxClose" type="button" aria-label="Close lightbox">
+    &times;
+  </button>
+  <button
+    class="lightbox-nav lightbox-prev"
+    id="caseStudyLightboxPrev"
+    type="button"
+    aria-label="Previous image"
+  >
+    &larr;
+  </button>
+  <button
+    class="lightbox-nav lightbox-next"
+    id="caseStudyLightboxNext"
+    type="button"
+    aria-label="Next image"
+  >
+    &rarr;
+  </button>
+
+  <figure class="lightbox-figure">
+    <img id="caseStudyLightboxImage" src="" alt="" />
+    <figcaption>
+      <strong id="caseStudyLightboxTitle"></strong>
+      <span id="caseStudyLightboxCaption"></span>
+      <span class="case-study-lightbox-counter" id="caseStudyLightboxCounter"></span>
+    </figcaption>
+  </figure>
+</div>
+
+<script id="caseStudyLightboxData" type="application/json">
+  <%- JSON.stringify(lightboxImages).replace(/</g, "\\u003c") %>
+</script>

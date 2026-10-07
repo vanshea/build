@@ -1,0 +1,58 @@
+<section class="case-study-block reveal" aria-labelledby="featuredImageViewerHeading">
+  <div class="section-head case-study-block-head">
+    <div>
+      <p class="eyebrow">Featured Viewer</p>
+      <h2 id="featuredImageViewerHeading">Selected Visuals</h2>
+    </div>
+  </div>
+
+  <div class="featured-viewer" data-featured-viewer>
+    <button
+      class="featured-viewer-stage"
+      type="button"
+      data-featured-stage
+      data-lightbox-trigger
+      data-lightbox-index="<%= images[0].lightboxIndex %>"
+      aria-label="Open selected featured image"
+    >
+      <img
+        src="<%= images[0].src %>"
+        alt="<%= images[0].alt || images[0].title || caseStudy.title %>"
+        data-featured-stage-image
+      />
+    </button>
+
+    <div class="featured-viewer-copy">
+      <p class="featured-viewer-title" data-featured-stage-title>
+        <%= images[0].title || "Selected visual" %>
+      </p>
+      <p class="featured-viewer-caption" data-featured-stage-caption>
+        <%= images[0].caption || images[0].alt || "" %>
+      </p>
+    </div>
+
+    <div class="featured-viewer-thumbs" role="tablist" aria-label="Choose featured image">
+      <% images.forEach((image, index) => { %>
+        <button
+          class="featured-viewer-thumb <%= index === 0 ? "is-active" : "" %>"
+          type="button"
+          role="tab"
+          aria-selected="<%= index === 0 ? "true" : "false" %>"
+          data-featured-thumb
+          data-featured-index="<%= index %>"
+          data-lightbox-index="<%= image.lightboxIndex %>"
+          data-src="<%= image.src %>"
+          data-alt="<%= image.alt || image.title || caseStudy.title %>"
+          data-title="<%= image.title || "" %>"
+          data-caption="<%= image.caption || image.alt || "" %>"
+        >
+          <img
+            src="<%= image.thumbSrc || image.src %>"
+            alt="<%= image.alt || image.title || caseStudy.title %>"
+            loading="lazy"
+          />
+        </button>
+      <% }) %>
+    </div>
+  </div>
+</section>
