@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>On-chain SVG NFT Prototype</title>
+    <link rel="stylesheet" href="nft-prototype.css" />
+  </head>
+  <body>
+    <main class="prototype-shell">
+      <section class="prototype-copy">
+        <p class="eyebrow">Dynamic / on-chain SVG prototype</p>
+        <h1>Build the composition</h1>
+        <p>
+          A deterministic renderer inspired by <strong>all 02.svg</strong>. Each token gets a seed;
+          owner interactions reveal authored stages that can later map to contract state.
+        </p>
+
+        <label>
+          Token seed
+          <input id="seedInput" type="number" min="1" value="27" />
+        </label>
+
+        <div class="actions" role="group" aria-label="Artwork interactions">
+          <button data-action="bloom">Bloom</button>
+          <button data-action="name">Name</button>
+          <button data-action="flourish">Flourish</button>
+          <button data-action="reset" class="quiet">Reset</button>
+        </div>
+
+        <dl class="state-readout">
+          <div><dt>Bloom</dt><dd id="bloomState">0</dd></div>
+          <div><dt>Name</dt><dd id="nameState">0</dd></div>
+          <div><dt>Flourish</dt><dd id="flourishState">0</dd></div>
+        </dl>
+      </section>
+
+      <section class="artwork-panel" aria-label="Generated artwork">
+        <div id="artwork"></div>
+      </section>
+    </main>
+
+    <script src="nft-prototype.js"></script>
+  </body>
+</html>

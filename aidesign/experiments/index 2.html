@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="agency-site" lang="en" data-theme="theme4">
+  <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Explore Van Shea Creative experiments comparing AI-generated product concepts, interface design, data visualization, and responsible user experiences.">
+  <link rel="canonical" href="https://vanshea.com/aidesign/experiments/">
+  <meta property="og:title" content="AI Design and Product Experiments | Van Shea Creative">
+  <meta property="og:description" content="Explore Van Shea Creative experiments comparing AI-generated product concepts, interface design, data visualization, and responsible user experiences.">
+  <meta property="og:url" content="https://vanshea.com/aidesign/experiments/">
+  <meta property="og:image" content="https://vanshea.com/assets/home-2027/van-shea-headshot-2027.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Van Shea Creative">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Design and Product Experiments | Van Shea Creative">
+  <meta name="twitter:description" content="Explore Van Shea Creative experiments comparing AI-generated product concepts, interface design, data visualization, and responsible user experiences.">
+  <meta name="twitter:image" content="https://vanshea.com/assets/home-2027/van-shea-headshot-2027.png">
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="/build/assets/icons/favicon.ico" sizes="any" />
+<link rel="icon" href="/build/assets/icons/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/build/assets/icons/favicon-32x32.png" type="image/png" sizes="32x32" />
+<link rel="icon" href="/build/assets/icons/favicon-16x16.png" type="image/png" sizes="16x16" />
+<link rel="apple-touch-icon" href="/build/assets/icons/apple-touch-icon.png" />
+<link rel="manifest" href="/build/assets/icons/site.webmanifest" />
+<meta name="theme-color" content="#020319" />
+<script>
+  (() => {
+    const themes = new Set(["theme1", "theme3", "theme4", "theme5"]);
+    const root = document.documentElement;
+    let theme = themes.has(root.dataset.theme) ? root.dataset.theme : "theme4";
+
+    try {
+      const savedTheme = ["vsc-site-theme-v2", "vsc-site-theme"]
+        .map((key) => window.localStorage.getItem(key))
+        .find((value) => themes.has(value));
+
+      if (savedTheme) {
+        theme = savedTheme;
+        window.localStorage.setItem("vsc-site-theme-v2", savedTheme);
+      }
+    } catch (error) {
+      // Keep the markup default when storage is unavailable.
+    }
+
+    root.dataset.theme = theme;
+    root.style.colorScheme =
+      theme === "theme3" || (theme === "theme1" && window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ? "dark"
+        : "light";
+  })();
+</script>
+<title>AI Design and Product Experiments | Van Shea Creative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;700;800&family=Open+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="/build/styles.css?v=20260928-wave-controls" />
+<link rel="stylesheet" href="/build/assets/case-studies.css?v=20260706-capital-one-logo-1" />
+
+
+<link rel="stylesheet" href="/build/assets/aidesign.css?v=20260901-uniform-h1-1" />
+
+
+  <link rel="stylesheet" href="/build/assets/home-2027/agency-home.css?v=20260928-wave-controls"><link rel="stylesheet" href="/build/assets/home-2027/agency-site.css?v=20260928-wave-controls"><script src="/build/assets/home-2027/agency-home.js?v=20260928-wave-controls" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://vanshea.com/"},{"@type":"ListItem","position":2,"name":"AI Design Lab","item":"https://vanshea.com/aidesign/"},{"@type":"ListItem","position":3,"name":"Experiments","item":"https://vanshea.com/aidesign/experiments/"}]}</script>
+</head>
+  <body class="agency-site"><a class="skip" href="#main">Skip to main content</a>
+    <div class="bg-shape bg-shape-a"></div>
+    <div class="bg-shape bg-shape-b"></div>
+
+    <header class="home-header"><div class="container header-inner">
+  <a class="home-brand" href="/build/" aria-label="Van Shea Creative, Human Agency Design home"><img src="/build/assets/home-2027/large-logo-horizontal.svg" width="215" height="61" alt="Van Shea Creative"></a>
+  <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="home-nav">Menu</button>
+  <nav class="home-nav" id="home-nav" aria-label="Main navigation">
+    <a href="/build/">Home</a><a href="/build/work.html">Work</a><a href="/build/case-studies/">Case Studies</a><a href="/build/aidesign/" aria-current="page">AI Design</a><a href="/build/experience.html">Experience</a><a href="https://vanshea.com/blog/">Blog</a>
+  </nav>
+</div></header>
+
+
+    <div class="agency-content"><main id="main" class="aide-main">
+      <nav class="aide-breadcrumb" aria-label="AI Design Lab breadcrumb">
+        <a href="/build/aidesign/">AI Design Lab</a>
+        <span aria-hidden="true">/</span>
+        <span>Experiments</span>
+      </nav>
+
+      <section class="aide-hero aide-compact-hero reveal">
+        <div class="aide-hero-copy">
+          <p class="eyebrow">Experiment Index</p>
+          <h1>AI application experiments</h1>
+          <p class="lead">
+            Small prototypes comparing how AI platforms interpret prompts, make interface
+            decisions, handle uncertainty, and support human judgment.
+          </p>
+        </div>
+      </section>
+
+      <section class="aide-section reveal" aria-labelledby="experimentListHeading">
+        <div class="section-head aide-section-head">
+          <div>
+            <p class="eyebrow">Current tests</p>
+            <h2 id="experimentListHeading">Published experiments</h2>
+          </div>
+        </div>
+
+        <div class="aide-card-grid">
+
+            <article class="aide-experiment-card">
+              <a class="aide-experiment-card-link" href="/build/aidesign/self_care.html">
+
+                  <span class="aide-card-visual aide-self-care-card-visual" aria-hidden="true">
+                    <span class="aide-self-care-card-phone">
+                      <span class="aide-self-care-card-pill"></span>
+                      <span class="aide-self-care-card-widget">
+                        <span>SC</span>
+                        <i></i>
+                      </span>
+                      <span class="aide-self-care-card-row"></span>
+                      <span class="aide-self-care-card-row aide-self-care-card-row-short"></span>
+                    </span>
+                  </span>
+
+                <span class="aide-card-meta">Claude standalone HTML · Self Care prototype</span>
+                <h3>Self Care (Beta) V1.0</h3>
+                <p>A bundled mobile self-care concept with mood check-ins, daily factor tracking, theme controls, and lock-screen style interactions.</p>
+                <span class="aide-card-action">Launch Standalone Prototype</span>
+              </a>
+            </article>
+
+            <article class="aide-experiment-card">
+              <a class="aide-experiment-card-link" href="/build/aidesign/meeting_coach.html">
+
+                  <span class="aide-card-visual aide-image-card-visual" aria-hidden="true">
+                    <img src="/build/assets/aidesign/meeting-coach-thumbnail.png" alt="" width="924" height="540" loading="lazy" />
+                  </span>
+
+                <span class="aide-card-meta">Claude standalone HTML · Meeting Coach prototype</span>
+                <h3>Meeting Coach</h3>
+                <p>A mobile meeting companion showing that strong delivery and complete talking-point coverage can coexist with a meeting that is still going poorly.</p>
+                <span class="aide-card-action">Launch Standalone Prototype</span>
+              </a>
+            </article>
+
+
+
+            <article class="aide-experiment-card">
+  <a class="aide-experiment-card-link" href="/build/aidesign/experiments/stock-performance-test/">
+    <span class="aide-card-visual" aria-hidden="true">
+      <svg viewBox="0 0 280 132" focusable="false">
+        <path class="aide-card-gridline" d="M0 34H280M0 72H280M0 110H280" />
+        <path
+          class="aide-card-line aide-card-line-muted"
+          d="M2 95 C32 80 48 92 70 70 S112 44 136 54 180 88 206 62 244 30 278 38"
+        />
+        <path
+          class="aide-card-line"
+          d="M2 100 C30 86 52 90 76 72 S118 42 142 50 174 84 204 66 246 34 278 42"
+        />
+        <circle cx="204" cy="66" r="4" />
+        <path class="aide-card-projection" d="M204 66 C226 58 248 48 278 42" />
+      </svg>
+    </span>
+    <span class="aide-card-meta">Financial visualization prototype · Demo prototype</span>
+    <h3>Stock performance projection test</h3>
+    <p>A financial visualization prototype that compares how AI platforms handle market data, charts, projections, uncertainty, and responsible UX language.</p>
+    <span class="aide-card-action">View Experiment</span>
+  </a>
+</article>
+
+
+        </div>
+      </section>
+
+      <section class="aide-section aide-two-column reveal" aria-labelledby="howToReadHeading">
+        <div>
+          <p class="eyebrow">How to read these</p>
+          <h2 id="howToReadHeading">A prototype is only part of the answer.</h2>
+        </div>
+        <div class="aide-section-copy">
+          <p>
+            Each result is reviewed as both design and software: what the tool notices, what it
+            ignores, how it explains uncertainty, and whether the interface supports better
+            decisions.
+          </p>
+          <p>
+            The key question is not only whether the code works, but whether the product thinking
+            deserves trust.
+          </p>
+        </div>
+      </section>
+    </main></div>
+
+    <div class="footer-wave"><svg viewBox="0 -50 1440 250" preserveAspectRatio="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path stroke="#f36070" d="M-80 70 C150 132 330 46 550 82 S925 143 1130 92 S1420 50 1520 88 L1520 250 L-80 250 Z"/><path stroke="#cfbead" d="M-80 84 C165 145 325 56 550 95 S930 153 1130 105 S1410 64 1520 100"/><path stroke="#b6d800" d="M-80 98 C150 157 330 68 550 107 S930 164 1130 117 S1420 75 1520 112"/><path stroke="#55b9d0" d="M-80 112 C160 170 330 81 550 120 S930 175 1130 130 S1420 89 1520 124"/><path stroke="#b5a0db" d="M-80 126 C155 183 325 94 550 133 S930 187 1130 143 S1410 102 1520 138"/></svg><button class="footer-wave-toggle" type="button" aria-label="Pause footer wave animation" aria-pressed="true">Pause wave</button></div>
+  <footer class="home-footer"><div class="container view-controls"><fieldset class="theme-control"><legend>Color theme</legend><label><input type="radio" name="color-theme" value="theme1"><span>Clear</span></label><label><input type="radio" name="color-theme" value="theme3"><span>Contrast</span></label><label><input type="radio" name="color-theme" value="theme4"><span>Bold</span></label><label><input type="radio" name="color-theme" value="theme5"><span>Wild</span></label></fieldset></div><div class="container footer-inner"><p>© 2026 Van Shea Sedita · Van Shea Creative · Human Agency Design</p><nav class="footer-links" aria-label="Footer"><a href="/build/experience.html">Experience</a><a href="/build/work.html">Work</a><a href="https://vanshea.com/blog/">Blog</a><a href="https://www.linkedin.com/in/vanshea/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></nav></div></footer>
+
+    <aside
+  class="consent-banner"
+  id="consentBanner"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Analytics consent"
+  hidden
+>
+  <p class="consent-text">
+    We use privacy-first analytics to measure meaningful actions, not personal identity.
+  </p>
+  <div class="consent-actions">
+    <button class="theme-link consent-btn" id="consentDenyBtn" type="button">
+      Deny
+    </button>
+    <button class="btn consent-btn consent-allow" id="consentAllowBtn" type="button">
+      Allow Analytics
+    </button>
+  </div>
+</aside>
+
+
+    <script src="/build/analytics.js"></script>
+    <script src="/build/script.js"></script>
+  </body>
+</html>
