@@ -1,0 +1,8 @@
+@use "sass:color";
+@use "../_admin.scss" with (
+	$scheme-name: "midnight",
+	$base-color: $base-color,
+	$highlight-color: $highlight-color,
+	$notification-color: $notification-color,
+	$dashboard-accent-2: color.mix($base-color, $notification-color, 90%),
+);

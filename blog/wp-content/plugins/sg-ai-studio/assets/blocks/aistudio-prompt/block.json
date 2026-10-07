@@ -1,0 +1,28 @@
+{
+  "apiVersion": 3,
+  "name": "sg-ai-studio/ai-studio-prompt",
+  "title": "AI Studio",
+  "category": "text",
+  "icon": "editor-paste-text",
+  "description": "Generate content using AI Studio.",
+  "keywords": ["ai", "aistudio", "ai-studio", "studio", "content", "generator"],
+  "version": "1.0.0",
+  "textdomain": "sg-ai-studio",
+  "editorScript": "sg-ai-studio-prompt-editor-script",
+  "editorStyle": "sg-ai-studio-prompt-editor-style",
+  "render": "file:./render.php",
+  "attributes": {
+    "prompt": {
+      "type": "string",
+      "default": ""
+    },
+    "response": {
+      "type": "string",
+      "default": ""
+    },
+    "isGenerating": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

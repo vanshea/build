@@ -1,0 +1,125 @@
+{
+  "special_offers": [],
+  "active_plugins":[
+    {
+      "plugin_name": "woocommerce/woocommerce.php",
+      "title": "Check Orders",
+      "icon": {
+        "file": "/img/woo.png",
+        "width": 74,
+        "height": 40
+      },
+      "link": "edit.php?post_type=shop_order"
+    },
+    {
+      "plugin_name": "woocommerce/woocommerce.php",
+      "title": "Create & Edit Products",
+      "icon": {
+        "file": "/img/woo.png",
+        "width": 74,
+        "height": 40
+      },
+      "link": "edit.php?post_type=product"
+    },
+    {
+      "plugin_name": "the-events-calendar/the-events-calendar.php",
+      "title": "Create & Edit Events",
+      "icon": {
+        "file": "/img/events.png",
+        "width": 40,
+        "height": 40
+      },
+      "link": "edit.php?post_type=tribe_events"
+    },
+    {
+      "plugin_name": "wp-google-maps/wpGoogleMaps.php",
+      "title": "Create Maps",
+      "icon": {
+        "file": "/img/wpmaps.png",
+        "width": 40,
+        "height": 40
+      },
+      "link": "admin.php?page=wp-google-maps-menu&override=1"
+    },
+    {
+      "plugin_name": "foogallery/foogallery.php",
+      "title": "Build Galleries",
+      "icon": {
+        "file": "/img/foo.png",
+        "width": 40,
+        "height": 40
+      },
+      "link": "edit.php?post_type=foogallery&page=foogallery"
+    },
+    {
+      "plugin_name": "google-analytics-for-wordpress/googleanalytics.php",
+      "title": "Configure Google Analytics",
+      "icon": {
+        "file": "/img/monsterinsights.png",
+        "width": 41,
+        "height": 40
+      },
+      "link": "admin.php?page=monsterinsights_settings"
+    },
+    {
+      "plugin_name": "optinmonster/optin-monster-wp-api.php",
+      "title": "Your Subscription List",
+      "icon": {
+        "file": "/img/optinmonster.png",
+        "width": 47,
+        "height": 40
+      },
+      "link": "admin.php?page=optin-monster-api-settings"
+    },
+    {
+      "plugin_name": "wpforms-lite/wpforms.php",
+      "title": "Create & Edit Forms",
+      "icon": {
+        "file": "/img/wpforms.png",
+        "width": 52,
+        "height": 40
+      },
+      "link": "admin.php?page=wpforms-overview"
+    },
+    {
+      "plugin_name": "envira-gallery-lite/envira-gallery-lite.php",
+      "title": "Organize your Photos & Videos",
+      "icon": {
+        "file": "/img/envira.png",
+        "width": 40,
+        "height": 40
+      },
+      "link": "edit.php?post_type=envira"
+    },
+    {
+      "plugin_name": "leadin/leadin.php",
+      "title": "Manage your Contacts",
+      "icon": {
+        "file": "/img/hubspot.png",
+        "width": 40,
+        "height": 40
+      },
+      "link": "admin.php?page=leadin"
+    },
+    {
+      "plugin_name": "translatepress-multilingual/index.php",
+      "title": "Translate Your Website",
+      "icon": {
+        "file": "/img/translatepress.png",
+        "width": 36,
+        "height": 36
+      },
+      "link": "options-general.php?page=translate-press"
+    },
+    {
+      "plugin_name": "all-in-one-seo-pack/all_in_one_seo_pack.php",
+      "title": "Check your SEO",
+      "icon": {
+        "file": "/img/aioseo.png",
+        "width": 47,
+        "height": 40
+      },
+      "link": "admin.php?page=aioseo"
+    }
+  ]
+}

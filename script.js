@@ -486,7 +486,7 @@ function refreshWorkCardState() {
 }
 
 async function readSiteImageConfig() {
-  const sources = ["/api/vscimage/config", "/assets/vscimage/config.json"];
+  const sources = ["/assets/vscimage/config.json"];
 
   for (const source of sources) {
     try {

@@ -1,0 +1,192 @@
+/**
+ * SG AI Studio Prompt Block Styles
+ * Using design system from gutenberg.css
+ *
+ * @package SG_AI_Studio
+ */
+
+/* Block container - clean card-like appearance */
+.wp-block-sg-ai-studio-prompt {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Text section wrapper */
+.sg-ai-studio-text-section {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0 !important;
+  margin-bottom: 16px;
+}
+
+/* Textarea styling */
+.sg-ai-studio-text-input,
+textarea.sg-ai-studio-text-input {
+  width: 100%;
+  padding: 12px;
+  background: #f0f7ff;
+  border: 1px solid var(--color-primary-main, #4343f0);
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 120px;
+  box-sizing: border-box;
+  outline: none;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+}
+
+/* Textarea when generating (readonly state) */
+textarea.sg-ai-studio-text-input:read-only {
+  background: #f9f9f9;
+  border: 2px solid #6164ff !important;
+}
+
+/* Remove focus outline to prevent double borders */
+.sg-ai-studio-text-input:focus,
+.sg-ai-studio-text-input:active,
+textarea.sg-ai-studio-text-input:focus,
+textarea.sg-ai-studio-text-input:active {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: inherit !important;
+}
+
+/* Button container */
+.sg-ai-studio-button-container {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Primary button - SG design system */
+.sg-ai-studio-button-container .components-button.sg-button-base.sg-button-base--color-primary {
+  width: 100%;
+  justify-content: center;
+  background: var(--color-primary-main, #4343f0) !important;
+  color: var(--color-primary-contrast, #ffffff) !important;
+  border: none !important;
+  border-radius: 50px !important;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-size: var(--typography-size-medium, 1.4rem) !important;
+  font-weight: var(--typography-weight-medium, 500) !important;
+  padding: var(--space-x-small, 8px) var(--space-small, 12px) !important;
+  height: auto !important;
+  min-height: 40px !important;
+}
+
+.sg-ai-studio-button-container .components-button.sg-button-base.sg-button-base--color-primary:hover:not(:disabled) {
+  background: var(--color-primary-high, #2835a9) !important;
+  color: var(--color-primary-contrast, #ffffff) !important;
+}
+
+.sg-ai-studio-button-container .components-button.sg-button-base.sg-button-base--color-primary:disabled {
+  background: var(--color-neutral-400, #ddd) !important;
+  color: var(--color-typography-disabled, #a4a4a4) !important;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Info text */
+.sg-ai-studio-info {
+  color: #757575;
+  font-size: 12px;
+  text-align: center;
+  margin: 8px 0 0 0;
+}
+
+/* Error message */
+.sg-ai-studio-error {
+  padding: 12px;
+  background: #f8d7da;
+  border: 1px solid #f5c2c7;
+  border-radius: 4px;
+  color: #842029;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+/* Settings notice */
+.sg-ai-studio-settings-notice {
+  padding: 12px;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sg-ai-studio-settings-notice a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+/* Loading spinner overlay */
+.sg-ai-studio-spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: all;
+  border-radius: 4px;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Legacy styles for backward compatibility */
+.sg-ai-studio-generate-btn {
+  background-color: #2271b1;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.sg-ai-studio-generate-btn:hover {
+  background-color: #135e96;
+}
+
+.sg-ai-studio-generate-btn:disabled {
+  background-color: #9ec2e6;
+  cursor: not-allowed;
+}
+
+.sg-ai-studio-generate-btn .spinner {
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><circle cx="50" cy="50" fill="none" stroke="%23ffffff" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform></circle></svg>');
+  background-size: contain;
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}

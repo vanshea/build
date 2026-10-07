@@ -1,0 +1,47 @@
+{
+  "wpforms": {
+    "2" : "https://wpforms.com/ref/47/",
+    "3" : "https://wpforms.com/ref/48/",
+    "4" : "https://wpforms.com/ref/54/"
+  },
+  "neve": {
+    "2" : "https://www.siteground.com/tracking/wpstarter_themeisle_uk",
+    "3" : "https://www.siteground.com/tracking/wpstarter_themeisle_es",
+    "4" : "https://www.siteground.com/tracking/wpstarter_themeisle"
+  },
+  "google-analytics-for-wordpress": {
+    "2" : "https://www.monsterinsights.com/ref/591/",
+    "3" : "https://www.monsterinsights.com/ref/592/",
+    "4" : "https://www.monsterinsights.com/ref/588/"
+  },
+  "optinmonster": {
+    "2" : "https://www.siteground.com/tracking/wpstarter_optinmonster_uk",
+    "3" : "https://www.siteground.com/tracking/wpstarter_optinmonster_es",
+    "4" : "https://www.siteground.com/tracking/wpstarter_optinmonster"
+  },
+  "envira-gallery-lite": {
+    "2" : "https://enviragallery.com/ref/1525/",
+    "3" : "https://enviragallery.com/ref/1526/",
+    "4" : "https://enviragallery.com/ref/1520/"
+  },
+  "astra" : {
+    "2" : "https://www.siteground.com/tracking/wpstarter_wpastra_uk",
+    "3" : "https://www.siteground.com/tracking/wpstarter_wpastra_es",
+    "4" : "https://www.siteground.com/tracking/wpstarter_wpastra_us"
+  },
+  "translatepress-multilingual": {
+    "2" : "89",
+    "3" : "87",
+    "4" : "88"
+  },
+  "all-in-one-seo-pack": {
+    "2" : "https://aioseo.com/?ref=62",
+    "3" : "https://aioseo.com/?ref=63",
+    "4" : "https://aioseo.com/?ref=61"
+  },
+  "kubio": {
+    "2" : "upgrade/?a_aid=63dcf4f74f5d0",
+    "3" : "upgrade/?a_aid=63dcf5a8db9a2",
+    "4" : "upgrade/?a_aid=63dcf42b40f69 "
+  }
+}

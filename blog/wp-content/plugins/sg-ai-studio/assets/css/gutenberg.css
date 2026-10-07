@@ -1,0 +1,624 @@
+/**
+ * Gutenberg Block Toolbar Button Styles
+ * Using SG AI Studio plugin button classes
+ *
+ * @package SG_AI_Studio
+ */
+
+/*
+ * The button uses these existing SG classes:
+ * - sg-button-base
+ * - sg-button-base--color-primary
+ * - sg-button-base--type-outlined
+ * - sg-button
+ * - sg-button--medium
+ *
+ * These classes inherit all styling from the plugin's design system.
+ * Only minimal overrides are needed for Gutenberg toolbar integration.
+ */
+
+/* Ensure button displays properly in Gutenberg toolbar - pill shape */
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button {
+	height: 32px !important;
+	min-height: 32px !important;
+	border-radius: 50px !important;
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	background: transparent !important;
+	color: #4343f0 !important;
+	border: none !important;
+	padding: 8px 12px !important;
+	font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+	font-size: var(--typography-size-medium, 14px) !important;
+	font-weight: var(--typography-weight-medium, 500) !important;
+}
+
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button:hover {
+	background: rgba(67, 67, 240, 0.08) !important;
+	color: #4343f0 !important;
+}
+
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button:active,
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button.is-pressed {
+	background: #e7e8ff !important;
+	color: #4343f0 !important;
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+/* Icon styling within button */
+.block-editor-block-toolbar .sg-ai-studio-button .dashicon,
+.block-editor-block-toolbar .sg-ai-studio-button svg {
+	fill: currentColor;
+	width: 18px;
+	height: 18px;
+	flex-shrink: 0;
+}
+
+/* Ensure button is visible and properly aligned in toolbar - center vertically with proper horizontal spacing */
+.block-editor-block-toolbar .components-toolbar-group .sg-ai-studio-button {
+	margin: 0 !important;
+	align-self: center !important;
+}
+
+
+/* Remove WordPress default ::before pseudo-element */
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button:active::before,
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button.is-pressed::before {
+	display: none !important;
+	background: none !important;
+	content: none !important;
+}
+
+/* Override any WordPress default text and svg colors in all states */
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button *,
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button svg,
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button path {
+	color: #4343f0 !important;
+	fill: #4343f0 !important;
+}
+
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button:active *,
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button:active svg,
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button:active path,
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button.is-pressed *,
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button.is-pressed svg,
+.block-editor-block-toolbar .components-toolbar-button.sg-ai-studio-button.is-pressed path {
+	color: #4343f0 !important;
+	fill: #4343f0 !important;
+}
+
+/* "More" dropdown button - matches WordPress default styling */
+.block-editor-block-toolbar .components-dropdown-menu__toggle.sg-ai-studio-more-button {
+	min-width: auto !important;
+	width: 48px;
+	height: 48px;
+	padding: 0 !important;
+}
+
+.block-editor-block-toolbar .components-dropdown-menu__toggle.sg-ai-studio-more-button svg {
+	margin: 0;
+}
+
+/* Dropdown menu styling */
+.sg-ai-studio-more-button .components-dropdown-menu__menu {
+	min-width: 220px;
+}
+
+.sg-ai-studio-more-button .components-menu-item__button {
+	padding: 8px 12px;
+}
+
+.sg-ai-studio-more-button .components-menu-item__button .dashicon {
+	margin-right: 8px;
+}
+
+/* Sidebar content wrapper - clean card-like appearance */
+.sg-ai-studio-sidebar-content {
+	background: #fff;
+	border-top: 1px solid #e0e0e0;
+}
+
+/* Sidebar primary button - "AI Studio" */
+.interface-complementary-area .components-button.sg-button-base.sg-button-base--color-primary {
+	width: 100%;
+	justify-content: center;
+	margin-bottom: 16px;
+	background: var(--color-primary-main, #4343f0) !important;
+	color: var(--color-primary-contrast, #ffffff) !important;
+	border: none !important;
+	border-radius: 50px !important;
+	font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+	font-size: var(--typography-size-medium, 14px) !important;
+	font-weight: var(--typography-weight-medium, 500) !important;
+	padding: var(--space-x-small, 8px) var(--space-small, 12px) !important;
+	height: auto !important;
+	min-height: 40px !important;
+}
+
+.interface-complementary-area .components-button.sg-button-base.sg-button-base--color-primary:hover {
+	background: var(--color-primary-high, #2835a9) !important;
+	color: var(--color-primary-contrast, #ffffff) !important;
+}
+
+.interface-complementary-area .components-button.sg-button-base.sg-button-base--color-primary:focus {
+	box-shadow: 0 0 0 2px var(--color-neutral-white, #ffffff),
+	            0 0 0 4px var(--color-primary-main, #4343f0) !important;
+	outline: 2px solid transparent !important;
+	background: var(--color-primary-high, #2835a9) !important;
+}
+
+.interface-complementary-area .components-button.sg-button-base.sg-button-base--color-primary:disabled {
+	background: var(--color-neutral-400, #ddd) !important;
+	color: var(--color-typography-disabled, #a4a4a4) !important;
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* Sidebar action buttons container */
+.sg-ai-studio-actions {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: stretch !important;
+	gap: 10px !important;
+	margin-bottom: 16px !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+}
+
+/* Direct child buttons of actions container (Improve, Fix Grammar) */
+.sg-ai-studio-actions > .components-button,
+.sg-ai-studio-actions > button.components-button {
+	width: 100% !important;
+	max-width: 100% !important;
+	min-width: 100% !important;
+	flex: 0 0 auto !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+/* Button row for Shorter/Longer buttons */
+.sg-ai-studio-button-row {
+	display: flex !important;
+	gap: 8px !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	min-width: 100% !important;
+	box-sizing: border-box !important;
+	flex: 0 0 auto !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+/* Buttons inside the row should flex to split space equally */
+.sg-ai-studio-button-row .components-button,
+.sg-ai-studio-button-row button.components-button {
+	flex: 1 1 calc(50% - 4px) !important;
+	min-width: calc(50% - 4px) !important;
+	max-width: calc(50% - 4px) !important;
+	width: calc(50% - 4px) !important;
+	font-size: 12px !important;
+	padding: 8px 8px !important;
+}
+
+/* Base styles for all contained secondary buttons (small size - 40px) */
+.interface-complementary-area .components-button.sg-button-base.sg-button-base--color-secondary.sg-button-base--type-contained.sg-button--small {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	background: #e7e8ff !important;
+	color: #4343f0 !important;
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+	border-radius: 50px !important;
+	font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+	font-size: var(--typography-size-medium, 14px) !important;
+	font-weight: var(--typography-weight-medium, 500) !important;
+	padding: var(--space-x-small, 8px) var(--space-small, 12px) !important;
+	height: auto !important;
+	min-height: 40px !important;
+	line-height: 1.4 !important;
+	box-sizing: border-box !important;
+	transition: all 0.2s ease !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.5px !important;
+	gap: 8px !important;
+	margin: 0 !important;
+}
+
+.interface-complementary-area .components-button.sg-button-base.sg-button-base--color-secondary.sg-button-base--type-contained.sg-button--small:hover:not(:disabled) {
+	background: #d8d9ff !important;
+	color: #4343f0 !important;
+}
+
+.interface-complementary-area .components-button.sg-button-base.sg-button-base--color-secondary.sg-button-base--type-contained.sg-button--small:focus {
+	box-shadow: 0 0 0 2px var(--color-neutral-white, #ffffff),
+	            0 0 0 4px #4343f0 !important;
+	outline: 2px solid transparent !important;
+	background: #f0f0ff !important;
+}
+
+.interface-complementary-area .components-button.sg-button-base.sg-button-base--color-secondary.sg-button-base--type-contained.sg-button--small:disabled {
+	background: var(--color-neutral-200, #f5f5f5) !important;
+	color: var(--color-typography-disabled, #a4a4a4) !important;
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* Icon styling for contained secondary buttons */
+.interface-complementary-area .components-button.sg-button-base.sg-button-base--color-secondary.sg-button-base--type-contained.sg-button--small .dashicon,
+.interface-complementary-area .components-button.sg-button-base.sg-button-base--color-secondary.sg-button-base--type-contained.sg-button--small svg {
+	width: 24px !important;
+	height: 24px !important;
+	min-width: 24px !important;
+	margin-right: 0 !important;
+	flex-shrink: 0 !important;
+	display: block !important;
+}
+
+/* Legacy action button styles (kept for backward compatibility) */
+.sg-ai-studio-action-button {
+	justify-content: flex-start;
+	width: 100%;
+	padding: 8px 12px;
+	text-align: left;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	background: #fff;
+	transition: all 0.2s ease;
+}
+
+.sg-ai-studio-action-button:hover:not(:disabled) {
+	background: #f0f0f0;
+	border-color: #999;
+}
+
+.sg-ai-studio-action-button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.sg-ai-studio-action-button .dashicon {
+	margin-right: 8px;
+}
+
+/* Image Generation Sidebar */
+.sg-ai-studio-image-loading {
+	margin-bottom: 16px;
+}
+
+.sg-ai-studio-image-placeholder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 200px;
+	background: #f0f0f0;
+	border: 2px dashed #ddd;
+	border-radius: 8px;
+	margin-bottom: 12px;
+}
+
+.sg-ai-studio-image-placeholder .components-spinner {
+	margin: 0;
+}
+
+/* Purple spinner for image generation overlay */
+.sg-ai-studio-spinner-overlay {
+	background: rgba(255, 255, 255, 0.8) !important;
+}
+
+.sg-ai-studio-spinner-overlay:hover {
+	background: rgba(255, 255, 255, 0.8) !important;
+}
+
+.sg-ai-studio-spinner-overlay .components-spinner {
+	color: #6164ff;
+}
+
+.sg-ai-studio-spinner-overlay .components-spinner::before {
+	border-color: #6164ff transparent #6164ff transparent;
+}
+
+/* AI Studio separator in dropdown menus */
+.sg-ai-studio-separator {
+	margin: 0px 0 !important;
+	padding: 0 !important;
+	border: none !important;
+	border-top: 1px solid #ddd !important;
+	height: 0 !important;
+}
+
+/* AI Studio toolbar group - add visual separator */
+.sg-ai-studio-toolbar-group {
+	border-left: 1px solid #000 !important;
+	margin-left: 6px !important;
+	padding-left: 12px !important;
+}
+
+/* Replace pin icon in sidebar header with custom push pin icon */
+/* Remove dark background and hide the default WordPress star icon */
+.edit-post-sidebar .components-button[aria-label*="Unpin"],
+.edit-post-sidebar .components-button[aria-label*="Pin"],
+.interface-complementary-area-header .components-button[aria-label*="Unpin"],
+.interface-complementary-area-header .components-button[aria-label*="Pin"] {
+	background: transparent !important;
+}
+
+.edit-post-sidebar .components-button[aria-label*="Unpin"] svg,
+.edit-post-sidebar .components-button[aria-label*="Pin"] svg,
+.interface-complementary-area-header .components-button[aria-label*="Unpin"] svg,
+.interface-complementary-area-header .components-button[aria-label*="Pin"] svg {
+	display: none !important;
+}
+
+/* Add custom push pin icon - OUTLINE version for unpinned state */
+.edit-post-sidebar .components-button[aria-label*="Pin"]::before,
+.interface-complementary-area-header .components-button[aria-label*="Pin"]::before {
+	content: '' !important;
+	display: inline-block !important;
+	width: 24px !important;
+	height: 24px !important;
+	background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="%234343f0"><path d="m640-480 80 80v80H520v240l-40 40-40-40v-240H240v-80l80-80v-280h-40v-80h400v80h-40v280Zm-286 80h252l-46-46v-314H400v314l-46 46Zm126 0Z"/></svg>') !important;
+	background-size: contain !important;
+	background-repeat: no-repeat !important;
+	background-position: center !important;
+}
+
+/* Add custom push pin icon - FILLED version for pinned state */
+.edit-post-sidebar .components-button[aria-label*="Unpin"]::before,
+.interface-complementary-area-header .components-button[aria-label*="Unpin"]::before {
+	content: '' !important;
+	display: inline-block !important;
+	width: 24px !important;
+	height: 24px !important;
+	background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="%234343f0"><path d="M640-480v-280h40v-80H280v80h40v280l-80 80v80h200v240l40 40 40-40v-240h200v-80l-80-80Z"/></svg>') !important;
+	background-size: contain !important;
+	background-repeat: no-repeat !important;
+	background-position: center !important;
+}
+
+/* Fix textarea double border issue in sidebar */
+.sg-ai-studio-text-section {
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+	padding: 0 !important;
+}
+
+/* Remove all possible double border sources and ensure crisp rendering */
+.interface-complementary-area textarea.sg-ai-studio-text-input,
+.edit-post-sidebar textarea.sg-ai-studio-text-input,
+.sg-ai-studio-text-input,
+textarea.sg-ai-studio-text-input {
+	box-shadow: none !important;
+	outline: none !important;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	outline-offset: 0 !important;
+	outline-width: 0 !important;
+	outline-style: none !important;
+	image-rendering: crisp-edges !important;
+	-webkit-font-smoothing: antialiased !important;
+	-moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Override any focus, active, hover states that might add double borders */
+.interface-complementary-area textarea.sg-ai-studio-text-input:focus,
+.interface-complementary-area textarea.sg-ai-studio-text-input:active,
+.interface-complementary-area textarea.sg-ai-studio-text-input:hover,
+.edit-post-sidebar textarea.sg-ai-studio-text-input:focus,
+.edit-post-sidebar textarea.sg-ai-studio-text-input:active,
+.edit-post-sidebar textarea.sg-ai-studio-text-input:hover,
+.sg-ai-studio-text-input:focus,
+.sg-ai-studio-text-input:active,
+.sg-ai-studio-text-input:hover,
+textarea.sg-ai-studio-text-input:focus,
+textarea.sg-ai-studio-text-input:active,
+textarea.sg-ai-studio-text-input:hover {
+	box-shadow: none !important;
+	outline: none !important;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	outline-offset: 0 !important;
+	outline-width: 0 !important;
+	outline-style: none !important;
+	border-color: inherit !important;
+}
+
+/* Force single solid border when generating - override inline styles */
+textarea.sg-ai-studio-text-input[readonly] {
+	border: 2px solid #6164ff !important;
+}
+
+.sg-ai-studio-loading-message {
+	font-size: 14px;
+	color: #757575;
+	font-style: italic;
+	margin: 0;
+	padding: 12px;
+	background: #f9f9f9;
+	border-radius: 4px;
+	border-left: 3px solid var(--color-primary-main, #4343f0);
+}
+
+/* Image Result State */
+.sg-ai-studio-image-result {
+	margin-bottom: 16px;
+}
+
+.sg-ai-studio-image-preview {
+	margin-bottom: 16px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	overflow: hidden;
+	background: #f0f0f0;
+}
+
+.sg-ai-studio-image-preview img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.sg-ai-studio-result-actions {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+/* Secondary delete button styling */
+.sg-ai-studio-result-actions .components-button.is-destructive {
+	width: 100%;
+	justify-content: center;
+	border-radius: 50px;
+	padding: 8px 12px;
+	font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	height: auto;
+	min-height: 40px;
+}
+
+/* Text Editing Result State */
+.sg-ai-studio-text-result {
+	margin-bottom: 16px;
+}
+
+.sg-ai-studio-text-section {
+	margin-bottom: 16px;
+}
+
+.sg-ai-studio-text-display {
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+.sg-ai-studio-text-loading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 24px;
+	background: #f9f9f9;
+	border-radius: 8px;
+	margin-bottom: 16px;
+}
+
+/* Secondary buttons in text result actions */
+.sg-ai-studio-result-actions .components-button.is-secondary {
+	width: 100%;
+	justify-content: center;
+	border-radius: 50px;
+	padding: 8px 12px;
+	font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	height: auto;
+	min-height: 40px;
+}
+
+/* Generate button in media placeholder - uses WordPress default styles */
+
+/* Loading spinner for block generation placeholder */
+.sg-ai-loading-spinner {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	border: 2px solid rgba(67, 67, 240, 0.3);
+	border-top-color: #4343f0;
+	border-radius: 50%;
+	animation: sg-ai-spin 0.8s linear infinite;
+	vertical-align: middle;
+	margin-right: 6px;
+}
+
+@keyframes sg-ai-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Placeholder block styling */
+.sg-ai-generating-placeholder {
+	opacity: 0.7;
+	pointer-events: none;
+	animation: sg-ai-pulse 1.5s ease-in-out infinite;
+}
+
+/* Highlighted block when AI Studio button is clicked - only show on focus */
+.sg-ai-highlighted-block:focus,
+.sg-ai-highlighted-block:focus-within {
+	border: 3px solid #4343f0 !important;
+	border-radius: 4px !important;
+	outline: none !important;
+	box-sizing: border-box !important;
+}
+
+@keyframes sg-ai-border-pulse {
+	0%, 100% {
+		border-color: #4343f0;
+	}
+	50% {
+		border-color: #4343f0;
+	}
+}
+
+@keyframes sg-ai-pulse {
+	0%, 100% {
+		opacity: 0.7;
+	}
+	50% {
+		opacity: 0.5;
+	}
+}
+
+/* Generate with AI button in toolbar (next to block inserter) */
+/* Only override colors, let WordPress handle all sizing */
+.sg-ai-generate-toolbar-button {
+	background: var(--color-primary-main, #4343f0) !important;
+	color: var(--color-primary-contrast, #ffffff) !important;
+	margin-left: 8px !important;
+}
+
+.sg-ai-generate-toolbar-button svg {
+	width: 20px !important;
+}
+
+.sg-ai-generate-toolbar-button:hover {
+	background: var(--color-primary-high, #2835a9) !important;
+	color: var(--color-primary-contrast, #ffffff) !important;
+}
+
+.sg-ai-generate-toolbar-button:active {
+	background: var(--color-primary-high, #2835a9) !important;
+}
+
+.sg-ai-generate-toolbar-button.is-highlighted {
+	animation: sg-ai-toolbar-pulse 2s ease-in-out infinite;
+	box-shadow: 0 0 0 2px rgba(67, 67, 240, 0.3) !important;
+}
+
+@keyframes sg-ai-toolbar-pulse {
+	0%, 100% {
+		box-shadow: 0 0 0 2px rgba(67, 67, 240, 0.3) !important;
+	}
+	50% {
+		box-shadow: 0 0 0 4px rgba(67, 67, 240, 0.2) !important;
+	}
+}
+
+/* Spinner animation for text processing overlay */
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.sg-ai-studio-custom-prompt-button {
+	text-transform: uppercase;
+}

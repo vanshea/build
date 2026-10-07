@@ -1,10 +1,10 @@
-Complete static build variant for experiments and work-in-progress changes.
+Complete static copy of the real public-facing site.
 
 Local preview:
-- http://localhost:3000/build/
+- http://localhost:3000/livesite/
 
 Refresh copied assets and case studies:
 - `npm run variants:sync`
 
-Root-ready FTP export:
-- `npm run build:bundle`
+FTP export:
+- `npm run livesite:bundle`

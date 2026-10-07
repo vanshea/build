@@ -1,0 +1,998 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress Starter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-04 13:32+0000\n"
+"PO-Revision-Date: 2023-05-17 14:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: Español\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Loco-Version: 2.6.4; wp-6.2.1"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:446
+msgid " Help organize the next one!"
+msgstr "¡Ayuda a organizar el próximo !"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:330
+#, php-format
+msgid ""
+"%s could not be located. Please try another nearby city. For example: Kansas "
+"City; Springfield; Portland."
+msgstr ""
+"No hemos podido localizar %s. Por favor, intenta con otra ciudad cercana. "
+"Por ejemplo: Madrid; Valencia; Zaragoza."
+
+#: core/Rest/Controllers/V1/Rest_Plugins.php:264
+msgid ""
+"<b class=\"sg-with-color sg-with-color--color-warning\">Untested</b> with "
+"your version of WordPress"
+msgstr ""
+"<b class=\"sg-with-color sg-with-color--color-warning\">Sin probar</b> con "
+"tu versión de WordPress"
+
+#: core/Rest/Controllers/V1/Rest_Plugins.php:268
+msgid "<b>Compatible</b> with your version of WordPress"
+msgstr "<b>Compatible</b> con tu versión de WordPress"
+
+#: core/Rest/Controllers/V1/Rest_Plugins.php:266
+msgid "<b>Incompatible</b> with your version of WordPress"
+msgstr "<b>Incompatible</b> con tu versión de WordPress"
+
+#: core/Rest/Controllers/V1/Rest_Install.php:372
+#: core/Rest/Controllers/V1/Rest_Install.php:404
+msgid "Action Required"
+msgstr "Acción requerida"
+
+#: core/Rest/Controllers/V1/Rest_Themes.php:171
+#: core/Rest/Controllers/V1/Rest_Plugins.php:181
+msgid "Activate"
+msgstr "Activar"
+
+#: core/Rest/Controllers/V1/Rest_Plugins.php:185
+msgid "Active"
+msgstr "Activo"
+
+#. src/core/components/plugin-card/plugin-card.tsx:77
+#: react-strings.php:5
+msgid "Add"
+msgstr "Agregar"
+
+#: core/Pages/Custom_Page.php:117 core/Pages/Custom_Page.php:126
+msgid "Add new"
+msgstr "Añade nuevo"
+
+#. src/wp-admin/wordpress-plugins/default-plugin-tab/default-tab.tsx:87
+#: react-strings.php:49
+msgid "Add Plugins"
+msgstr "Añadir plugins"
+
+#. src/wp-admin/wordpress-themes/theme-upload-tab/theme-upload-tab.tsx:108
+#: react-strings.php:58
+msgid "Add Themes"
+msgstr "Añadir temas"
+
+#. src/core/components/plugin-card/plugin-card.tsx:84
+#: react-strings.php:6
+msgid "Added"
+msgstr "Agregado"
+
+#. src/wizard/pages/choose-theme/choose-theme.tsx:115
+#: react-strings.php:32
+msgid "ALL"
+msgstr "TODO"
+
+#: core/Wizard/config/AIWizard.php:27 core/Wizard/config/DefaultWizard.php:28
+msgid "Art & Design"
+msgstr "Arte y diseño"
+
+#. src/wp-admin/dashboard/events-section/events-section.tsx:38
+#: react-strings.php:43
+#| msgid "Attend an upcoming event near "
+msgid "Attend an upcoming event near %(city)s"
+msgstr "Asiste a un próximo evento"
+
+#: core/Rest/Controllers/V1/Rest_Steps.php:291
+msgid "Attention required"
+msgstr "Atención requerida"
+
+#: react-strings.php:71
+msgid "Author"
+msgstr "Autor"
+
+#: react-strings.php:68
+msgid "BROWSE WORDPRESS DIRECTORY"
+msgstr "EXPLORAR EL DIRECTORIO DE WORDPRESS"
+
+#. src/wp-admin/dashboard/events-section/events-section.tsx:84
+#: react-strings.php:46 core/Rest/Controllers/V1/Rest_Install.php:377
+#: core/Rest/Controllers/V1/Rest_Install.php:408
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:164
+msgid "Change Design"
+msgstr "Cambiar Diseño"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:167
+msgid "Change Theme"
+msgstr "Cambiar Tema"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:146
+msgid "Check out how your website looks!"
+msgstr "¡Comprueba cómo se ve tu sitio web!"
+
+#: core/Wizard/config/AIWizard.php:109 core/Wizard/config/AIWizard.php:130
+#: core/Wizard/config/WooWizard.php:72 core/Wizard/config/WooWizard.php:94
+#: core/Wizard/config/DefaultWizard.php:114
+#: core/Wizard/config/DefaultWizard.php:136 core/Wizard/config/EddWizard.php:60
+#: core/Wizard/config/EddWizard.php:82
+msgid "Check your website on it's domain."
+msgstr "Revisa tu sitio web en su dominio."
+
+#: core/Wizard/config/AIWizard.php:64 core/Wizard/config/WooWizard.php:26
+#: core/Wizard/config/DefaultWizard.php:67
+msgid "Choose a fancy design for your website!"
+msgstr "¡Elige un diseño elegante para tu sitio web!"
+
+#: core/Rest/Controllers/V1/Rest_Themes.php:240
+#: core/Rest/Controllers/V1/Rest_Plugins.php:241
+msgid "Choose file"
+msgstr "Elige archivo"
+
+#: core/Wizard/config/AIWizard.php:78 core/Wizard/config/WooWizard.php:42
+#: core/Wizard/config/DefaultWizard.php:82 core/Wizard/config/EddWizard.php:28
+msgid ""
+"Choose plugins for your WordPress site that enable the functionality you "
+"wish to have"
+msgstr ""
+"Elige los complementos para tu sitio WordPress que habiliten la "
+"funcionalidad que deseas tener"
+
+#. src/wp-admin/dashboard/events-section/events-section.tsx:64
+#: react-strings.php:44
+msgid "City"
+msgstr "Ciudad"
+
+#. src/core/components/plugin-card/plugin-card.tsx:95
+#. src/wizard/pages/site-topic/site-topic.tsx:58
+#: react-strings.php:8 react-strings.php:37
+msgid "CLOSE"
+msgstr "CERRAR"
+
+#. src/core/components/success-dialog/success-dialog.tsx:25
+#: react-strings.php:18 core/Wizard/config/AIWizard.php:126
+#: core/Wizard/config/WooWizard.php:90 core/Wizard/config/DefaultWizard.php:132
+#: core/Wizard/config/EddWizard.php:78
+#: core/Rest/Controllers/V1/Rest_Steps.php:294
+msgid "Close"
+msgstr "Cerrar"
+
+#: core/Wizard/config/AIWizard.php:89 core/Wizard/config/WooWizard.php:54
+#: core/Wizard/config/DefaultWizard.php:94 core/Wizard/config/EddWizard.php:40
+msgid "Complete"
+msgstr "Completar"
+
+#. src/core/components/starter-header/starter-header.tsx:49
+#: react-strings.php:17 core/Wizard/config/AIWizard.php:102
+#: core/Wizard/config/WooWizard.php:65 core/Wizard/config/DefaultWizard.php:107
+#: core/Wizard/config/EddWizard.php:53
+msgid "Congrats! Your site is ready!"
+msgstr "¡Enhorabuena! ¡Tu web está lista!"
+
+#: core/Wizard/config/AIWizard.php:62 core/Wizard/config/AIWizard.php:75
+#: core/Wizard/config/WooWizard.php:24 core/Wizard/config/WooWizard.php:39
+#: core/Wizard/config/DefaultWizard.php:65
+#: core/Wizard/config/DefaultWizard.php:79 core/Wizard/config/EddWizard.php:25
+msgid "Continue"
+msgstr "Continuar"
+
+#. src/wp-admin/app.tsx:53
+#: react-strings.php:41
+msgid "Dashboard"
+msgstr "Área de Usuario"
+
+#: core/Rest/Controllers/V1/Rest_Install.php:373
+msgid "Do you want to import the sample data when installing the theme?"
+msgstr "¿Quieres importar los datos de muestra al instalar el tema?"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:155
+msgid "Edit and create new Pages"
+msgstr "Edita y crea nuevas páginas"
+
+#. src/core/store/middleware/error-notifications.ts:27
+#. src/wizard/pages/theme-preview/theme-preview.tsx:80
+#: react-strings.php:28 react-strings.php:39
+msgid "Error"
+msgstr "Error"
+
+#. src/core/components/starter-header/starter-header.tsx:37
+#: react-strings.php:15
+msgid "EXIT"
+msgstr "Salir"
+
+#. src/core/components/starter-header/starter-header.tsx:49
+#: react-strings.php:16
+msgid "EXIT WIZARD"
+msgstr "Salir del asistente"
+
+#: core/Wizard/config/AIWizard.php:32 core/Wizard/config/DefaultWizard.php:33
+msgid "Fashion & Beauty"
+msgstr "Belleza y moda"
+
+#. src/core/components/woo-commerce-required-dialog/woo-commerce-required-dialog.tsx:79
+#: react-strings.php:25
+msgid "Free"
+msgstr "Gratis"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:262
+msgid "Get the Latest Ebook"
+msgstr "Obtén el último Ebook"
+
+#: core/Wizard/config/AIWizard.php:147 core/Wizard/config/WooWizard.php:112
+#: core/Wizard/config/DefaultWizard.php:154
+#: core/Wizard/config/EddWizard.php:100
+msgid "Go To Dashboard"
+msgstr "Ir al Área de Usuario"
+
+#: core/Wizard/config/AIWizard.php:114 core/Wizard/config/AIWizard.php:135
+#: core/Wizard/config/WooWizard.php:77 core/Wizard/config/WooWizard.php:99
+#: core/Wizard/config/DefaultWizard.php:119
+#: core/Wizard/config/DefaultWizard.php:141 core/Wizard/config/EddWizard.php:65
+#: core/Wizard/config/EddWizard.php:87
+msgid "Go to WordPress admin to manage your content and more."
+msgstr "Ve al administrador de WordPress para administrar tu contenido y más."
+
+#: core/Wizard/config/AIWizard.php:92 core/Wizard/config/WooWizard.php:57
+#: core/Wizard/config/DefaultWizard.php:97 core/Wizard/config/EddWizard.php:43
+msgid ""
+"Good thing about WordPress is that you can automate part of your marketing "
+"via plugins."
+msgstr ""
+"Lo bueno de WordPress es que puedes automatizar parte de tu marketing a "
+"través de plugins."
+
+#: core/Wizard/config/AIWizard.php:26 core/Wizard/config/DefaultWizard.php:27
+msgid "Health & Fitness"
+msgstr "Salud y fitness"
+
+#: core/Pages/Dashboard.php:154 core/Pages/Dashboard.php:163
+msgid "Home"
+msgstr "Inicio"
+
+#. URI of the plugin
+msgid "https://siteground.com"
+msgstr "https://www.siteground.es"
+
+#. Author URI of the plugin
+msgid "https://www.siteground.com"
+msgstr "https://www.siteground.es"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:253
+msgid ""
+"If you have a how to question about WordPress it’s quite likely that we "
+"already have the answer for you in our Knowledge Base. It contains more than "
+"1000 helpful articles."
+msgstr ""
+"Si tienes una pregunta sobre WordPress, es muy probable que ya tengamos la "
+"respuesta en nuestra base de conocimientos. Contiene más de 1000 artículos "
+"útiles-"
+
+#: core/Rest/Controllers/V1/Rest_Plugins.php:240
+msgid ""
+"If you have a plugin in a .zip format, you may install it by uploading it "
+"here."
+msgstr "Si tienes un plugin en formato .zip, puedes instalarlo subiéndolo aquí"
+
+#: core/Rest/Controllers/V1/Rest_Themes.php:239
+msgid ""
+"If you have a theme in a .zip format, you may install it by uploading it "
+"here."
+msgstr "Si tienes un tema en formato .zip, puedes instalarlo cargándolo aquí."
+
+#: templates/siteground-dashboard.php:6
+#, php-format
+msgid ""
+"If you wish you can always <a href=\"%1$s\" class=\"switch-dashboard\" data-"
+"admin-url=\"%2$s\">switch to default</a> dashboard."
+msgstr ""
+"Si lo deseas, siempre puedes <a href=\"%1$s\" class=\"switch-dashboard\" "
+"data-admin-url=\"%2$s\"> cambiar al panel predeterminado </a>."
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:111
+msgid "Important Notifications"
+msgstr "Notificaciones importantes"
+
+#: core/Rest/Controllers/V1/Rest_Themes.php:78
+#: core/Rest/Controllers/V1/Rest_Themes.php:180
+#: core/Rest/Controllers/V1/Rest_Plugins.php:175
+msgid "Install"
+msgstr "Instalar"
+
+#: core/Rest/Controllers/V1/Rest_Themes.php:237
+#: core/Rest/Controllers/V1/Rest_Plugins.php:238
+msgid "Install Now"
+msgstr "Instalar ahora"
+
+#. src/core/components/progress-dialog/progress-dialog.tsx:33
+#: react-strings.php:13
+msgid "Installation in progress..."
+msgstr "Instalación en curso..."
+
+#: core/Rest/Controllers/V1/Rest_Themes.php:168
+msgid "Installed"
+msgstr "Instalado"
+
+#. src/core/components/pre-install-dialog/pre-install-dialog.tsx:73
+#: react-strings.php:12
+msgid "Installing, please don't close or refresh this page."
+msgstr "Instalando, por favor no cierres ni actualices esta página."
+
+#: react-strings.php:70
+msgid "Keyword"
+msgstr "Palabra clave"
+
+#. src/wp-admin/dashboard/events-section/events-section.tsx:92
+#: react-strings.php:47
+msgid "Latest news"
+msgstr "Últimas noticias"
+
+#. src/core/components/plugin-description-dialog/plugin-description-dialog.tsx:66
+#: react-strings.php:9
+msgid "LATEST VERSION INSTALLED"
+msgstr "ÚLTIMA VERSIÓN INSTALADA"
+
+#. src/wp-admin/dashboard/events-section/events-section.tsx:152
+#. src/wp-admin/wordpress-plugins/plugin-search-header/plugin-search-header.tsx:92
+#: react-strings.php:48 react-strings.php:54
+#| msgid " Learn more"
+msgid "Learn more"
+msgstr "Aprende más"
+
+#: core/Wizard/config/AIWizard.php:48 core/Wizard/config/DefaultWizard.php:50
+msgid "Let us build your website"
+msgstr "Vamos a construir tu sitio web"
+
+#: core/Wizard/config/AIWizard.php:91 core/Wizard/config/WooWizard.php:56
+#: core/Wizard/config/DefaultWizard.php:96 core/Wizard/config/EddWizard.php:42
+msgid "Let's talk about marketing!"
+msgstr "¡Hablemos de marketing!"
+
+#: core/Rest/Controllers/V1/Rest_Themes.php:175
+msgid "Live Preview"
+msgstr "Vista previa"
+
+#. src/wp-admin/wordpress-plugins/upload-plugin-tab/upload-tab.tsx:95
+#. src/wp-admin/wordpress-themes/wordpress-themes-header/wordpress-themes-header.tsx:118
+#: react-strings.php:56 react-strings.php:63
+msgid "Load More"
+msgstr "Cargar más"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:201
+msgid "Manage"
+msgstr "Gestionar"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:137
+msgid "Manage Design"
+msgstr "Gestionar diseño"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:186
+msgid "Manage Functionality"
+msgstr "Gestionar funcionalidad"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:154
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:156
+msgid "Manage Pages"
+msgstr "Gestionar páginas"
+
+#: core/Wizard/config/AIWizard.php:113 core/Wizard/config/AIWizard.php:134
+#: core/Wizard/config/WooWizard.php:76 core/Wizard/config/WooWizard.php:98
+#: core/Wizard/config/DefaultWizard.php:118
+#: core/Wizard/config/DefaultWizard.php:140 core/Wizard/config/EddWizard.php:64
+#: core/Wizard/config/EddWizard.php:86
+msgid "Manage site"
+msgstr "Administrar sitio"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:519
+msgid "Meetups"
+msgstr "Reuniones"
+
+#: react-strings.php:73
+msgid "MUST HAVE PLUGINS"
+msgstr "PLUGINS ESENCIALES"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:527
+msgid "News"
+msgstr "Noticias"
+
+#: core/Rest/Controllers/V1/Rest_Install.php:376
+#: core/Rest/Controllers/V1/Rest_Install.php:407
+msgid "No"
+msgstr "No"
+
+#: core/Rest/Controllers/V1/Rest_Install.php:374
+msgid "Note, that this will delete your existing content!"
+msgstr "¡Ten en cuenta que esto eliminará tu contenido existente!"
+
+#: core/Wizard/config/AIWizard.php:144 core/Wizard/config/WooWizard.php:109
+#: core/Wizard/config/DefaultWizard.php:151 core/Wizard/config/EddWizard.php:97
+msgid "Oops! Something went wrong!"
+msgstr "¡Ups! Algo salió mal!"
+
+#: core/Wizard/config/AIWizard.php:33 core/Wizard/config/DefaultWizard.php:34
+msgid "Other"
+msgstr "Otro"
+
+#: core/Wizard/config/AIWizard.php:49 core/Wizard/config/DefaultWizard.php:51
+msgid ""
+"Our powerful AI tool builds your site and generates unique content, adapted "
+"to your project."
+msgstr ""
+"Nuestra potente herramienta de IA construye tu sitio y genera contenido "
+"único, adaptado a tu proyecto."
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:268
+msgid ""
+"Our top experts have shared their know how on WooCommerce in а specialized "
+"ebook. Take advantage of their knowledge and make your site faster and safer."
+msgstr ""
+"Nuestros mejores expertos han compartido sus conocimientos sobre WooCommerce "
+"en un Ebook especializado. Aprovecha sus conocimientos y haz que tu sitio "
+"sea más rápido y seguro."
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:261
+msgid ""
+"Our top experts have shared their know how on WordPress in specialized "
+"ebooks on different topics. Take advantage of their knowledge and make your "
+"site faster and safer."
+msgstr ""
+"Nuestros mejores expertos han compartido su conocimiento sobre WordPress en "
+"Ebooks especializados en diferentes temas. Aprovecha sus conocimientos y haz "
+"que tu sitio sea más rápido y seguro."
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:238
+msgid ""
+"Our WooCommerce Starter allows you to choose a fancy design and add plugins "
+"with important functionality for your site. It installs and sets up all the "
+"items you chose."
+msgstr ""
+"Nuestro Starter de WooCommerce te permite elegir un diseño elegante y añadir "
+"plugins con una funcionalidad importante para tu sitio. Instala y configura "
+"todos los elementos que elijas."
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:231
+msgid ""
+"Our WordPress Starter allows you to choose a fancy design and add plugins "
+"with important functionality for your site. It installs and sets up all the "
+"items you chose."
+msgstr ""
+"Nuestro WordPress Starter te permite elegir un diseño elegante y añadir "
+"plugins con funciones importantes para tu sitio. Instala y configura todos "
+"los elementos que elijas."
+
+#: core/Wizard/config/AIWizard.php:28 core/Wizard/config/DefaultWizard.php:29
+msgid "Photography"
+msgstr "Fotografía"
+
+#. src/core/components/woo-commerce-required-dialog/woo-commerce-required-dialog.tsx:86
+#: react-strings.php:26
+msgid "plugin by Automattic"
+msgstr "plugin de Automattic"
+
+#: core/Wizard/config/AIWizard.php:24 core/Wizard/config/AIWizard.php:43
+#: core/Wizard/config/AIWizard.php:63 core/Wizard/config/AIWizard.php:76
+#: core/Wizard/config/AIWizard.php:90 core/Wizard/config/WooWizard.php:25
+#: core/Wizard/config/WooWizard.php:40 core/Wizard/config/WooWizard.php:55
+#: core/Wizard/config/DefaultWizard.php:25
+#: core/Wizard/config/DefaultWizard.php:45
+#: core/Wizard/config/DefaultWizard.php:66
+#: core/Wizard/config/DefaultWizard.php:80
+#: core/Wizard/config/DefaultWizard.php:95 core/Wizard/config/EddWizard.php:26
+#: core/Wizard/config/EddWizard.php:41
+msgid "Previous Step"
+msgstr "Paso anterior"
+
+#: core/Wizard/config/AIWizard.php:23 core/Wizard/config/AIWizard.php:40
+#: core/Wizard/config/DefaultWizard.php:24
+#: core/Wizard/config/DefaultWizard.php:42
+msgid "Proceed"
+msgstr "Proceder"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:267
+msgid "Read our WooCommerce ebooks"
+msgstr "Lee nuestros Ebooks de WooCommerce"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:260
+msgid "Read our WordPress ebooks"
+msgstr "Lee nuestros ebooks de WordPress"
+
+#: react-strings.php:4
+msgid "Recommended"
+msgstr "Recomendado"
+
+#: core/Wizard/config/AIWizard.php:77 core/Wizard/config/WooWizard.php:41
+#: core/Wizard/config/DefaultWizard.php:81 core/Wizard/config/EddWizard.php:27
+msgid "Recommended useful functionality for your site!"
+msgstr "¡Funcionalidad útil recomendada para tu sitio web!"
+
+#: core/Rest/Controllers/V1/Rest_Steps.php:295
+msgid "Remove WooCommerce"
+msgstr "Quitar WooCommerce"
+
+#: core/Wizard/config/AIWizard.php:146 core/Wizard/config/WooWizard.php:111
+#: core/Wizard/config/DefaultWizard.php:153 core/Wizard/config/EddWizard.php:99
+msgid "Restart Installation"
+msgstr "Reiniciar la instalación"
+
+#: core/Wizard/config/AIWizard.php:29 core/Wizard/config/DefaultWizard.php:30
+msgid "Restaurant"
+msgstr "Restaurante"
+
+#. src/wp-admin/wordpress-plugins/plugin-search-header/plugin-search-header.tsx:47
+#. src/wp-admin/wordpress-plugins/plugin-search-header/plugin-search-header.tsx:66
+#. src/wp-admin/wordpress-themes/wordpress-themes-header/wordpress-themes-header.tsx:68
+#. src/wp-admin/wordpress-themes/wordpress-themes-header/wordpress-themes-header.tsx:87
+#: react-strings.php:51 react-strings.php:53 react-strings.php:60
+#: react-strings.php:62
+msgid "Search"
+msgstr "Buscar"
+
+#. src/wp-admin/wordpress-plugins/plugin-search-header/plugin-search-header.tsx:42
+#. src/wp-admin/wordpress-themes/wordpress-themes-header/wordpress-themes-header.tsx:63
+#: react-strings.php:50 react-strings.php:59
+msgid "Search By"
+msgstr "Buscar por"
+
+#. src/wp-admin/wordpress-plugins/plugin-search-header/plugin-search-header.tsx:65
+#: react-strings.php:52
+msgid "Search plugins..."
+msgstr "Buscar plugins..."
+
+#. src/wp-admin/wordpress-themes/wordpress-themes-header/wordpress-themes-header.tsx:86
+#: react-strings.php:61
+msgid "Search themes..."
+msgstr "Buscar temas..."
+
+#: core/Installer/Installer.php:116 core/Installer/Installer.php:147
+#: core/Installer/Installer.php:177
+msgid "Security check"
+msgstr "Control de seguridad"
+
+#. THIS IS THE END OF THE GENERATED FILE
+#: react-strings.php:67
+msgid "SEE RECOMMENDED"
+msgstr "VER RECOMENDADO"
+
+#. src/wizard/pages/theme-preview/theme-preview.tsx:71
+#: react-strings.php:38
+msgid "SELECT"
+msgstr "SELECCIONAR"
+
+#. src/wizard/pages/choose-theme/choose-theme.tsx:67
+#: react-strings.php:31
+msgid "Select"
+msgstr "Seleccionar"
+
+#. src/wizard/pages/select-flow/select-flow.tsx:49
+#. src/wizard/pages/site-topic/site-topic.tsx:58
+#: react-strings.php:34 react-strings.php:36
+msgid "select"
+msgstr "seleccionar"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:90
+msgid ""
+"Select design, functionality and marketing plugins and start working on your "
+"online store right away!"
+msgstr ""
+"Selecciona el diseño, la funcionalidad y los plugins de marketing y empieza "
+"a trabajar en tu tienda online de inmediato."
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:82
+msgid ""
+"Select design, functionality and marketing plugins and start working on your "
+"site right away!"
+msgstr ""
+"Selecciona el diseño, la funcionalidad y los plugins de marketing y empieza "
+"a trabajar en tu sitio de inmediato."
+
+#. src/wizard/pages/choose-theme/utils.ts:10
+#. src/wizard/pages/select-flow/select-flow.tsx:49
+#: react-strings.php:33 react-strings.php:35
+msgid "selected"
+msgstr "seleccionado"
+
+#: templates/dashboard-widget.php:5 core/Pages/Dashboard.php:435
+msgid "Simplified Dashboard"
+msgstr "Panel de control simplificado"
+
+#. Author of the plugin
+msgid "SiteGround"
+msgstr "SiteGround"
+
+#. Name of the plugin
+msgid "SiteGround Central"
+msgstr "SiteGround Central"
+
+#. src/core/components/plugin-description-dialog/plugin-description-dialog.tsx:84
+#. src/core/components/pre-install-dialog/pre-install-dialog.tsx:51
+#. src/core/components/success-dialog/success-dialog.tsx:46
+#. src/core/components/woo-commerce-dialog/woo-commerce-dialog.tsx:46
+#: react-strings.php:10 react-strings.php:11 react-strings.php:21
+#: react-strings.php:22
+msgid "Sorry, could not install theme"
+msgstr "Lo siento, no se pudo instalar el tema"
+
+#. src/core/components/woo-commerce-required-dialog/woo-commerce-required-dialog.tsx:88
+#: react-strings.php:27
+msgid "Sorry, there was an unexpected problem."
+msgstr "Lo siento, hubo un problema inesperado."
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:83
+msgid "START NOW"
+msgstr "Comienza ahora"
+
+#: core/Wizard/config/AIWizard.php:12 core/Wizard/config/WooWizard.php:12
+#: core/Wizard/config/DefaultWizard.php:12 core/Wizard/config/EddWizard.php:12
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:232
+msgid "Start Now"
+msgstr "Empezar ahora"
+
+#. src/wp-admin/dashboard/events-section/events-section.tsx:71
+#: react-strings.php:45
+msgid "Submit"
+msgstr "Enviar"
+
+#. src/wizard/pages/app/app.tsx:37
+#. src/wp-admin/app.tsx:53
+#: react-strings.php:29 react-strings.php:40
+msgid "Success"
+msgstr "Éxito"
+
+#: templates/dashboard-widget.php:8
+msgid "Switch to Simplified Dashboard"
+msgstr "Cambiar a panel simplificado"
+
+#: templates/dashboard-widget.php:6
+msgid ""
+"Switch to the simplified dashboard that is part of the WordPress Starter "
+"plugin you used to setup your site."
+msgstr ""
+"Cambia al panel simplificado que es parte del plugin de WordPress Starter "
+"que usaste para configurar tu sitio."
+
+#: react-strings.php:72
+msgid "Tag"
+msgstr "Etiqueta"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:244
+msgid "Take Advantage of our WordPress tutorials!"
+msgstr "¡Aprovecha nuestros tutoriales de WordPress!"
+
+#: core/Rest/Controllers/V1/Rest_Install.php:405
+msgid ""
+"The design you have chosen comes with sample data that is enabled by "
+"WooCommerce plugin. Do you want to install WooCommerce on your site?"
+msgstr ""
+"El diseño que has elegido viene con datos de muestra habilitados por el "
+"plugin WooCommerce. ¿Quieres instalar WooCommerce en tu sitio?"
+
+#: core/Rest/Controllers/V1/Rest_Steps.php:292
+msgid ""
+"The design you have chosen comes with sample data that is enabled by "
+"WooCommerce. In order to keep the sample data, including all the pages and "
+"overall look and structure of the selected design, you need to install "
+"WooCommerce on your site."
+msgstr ""
+"El diseño que has elegido viene con datos de muestra habilitados por "
+"WooCommerce. Para mantener los datos de muestra, incluidas todas las páginas "
+"y el aspecto general y la estructura del diseño seleccionado, debes instalar "
+"WooCommerce en tu sitio."
+
+#: core/Wizard/config/AIWizard.php:123 core/Wizard/config/WooWizard.php:87
+#: core/Wizard/config/DefaultWizard.php:129 core/Wizard/config/EddWizard.php:75
+msgid "The installation is not completed"
+msgstr "La instalación no está completada"
+
+#: core/Wizard/config/AIWizard.php:145 core/Wizard/config/WooWizard.php:110
+#: core/Wizard/config/DefaultWizard.php:152 core/Wizard/config/EddWizard.php:98
+msgid ""
+"The installation of the selected items could not be completed. Please "
+"restart the wizard or try again later"
+msgstr ""
+"No se pudo completar la instalación de los elementos seleccionados. Reinicia "
+"el asistente o inténtalo de nuevo más tarde."
+
+#: core/Activator/Activator.php:37
+msgid "The WordPress Starter plugin requires PHP version 5.6 or above."
+msgstr "El plugin WordPress Starter requiere la versión de PHP 5.6 o superior."
+
+#. src/wizard/pages/app/app.tsx:37
+#: react-strings.php:30
+msgid "Theme search"
+msgstr "Búsqueda de tema"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:113
+msgid ""
+"There are new updates for your website. Check them out and apply the new "
+"versions to keep your site updated and secure!"
+msgstr ""
+"Hay nuevas actualizaciones para tu sitio web. ¡Échales un vistazo y aplica "
+"las nuevas versiones para mantener tu sitio actualizado y seguro!"
+
+#. 1: The city the user searched for, 2: Meetup organization documentation URL.
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:342
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:434
+#, php-format
+msgid ""
+"There are no events scheduled near %1$s at the moment. Would you like to <a "
+"href=\"%2$s\">organize a WordPress event</a>?"
+msgstr ""
+"En este momento no hay ningún evento programado cerca de %1$s. ¿Te gustaría "
+"<a href=\"%2$s\">organizar un evento WordPress</a>?"
+
+#. Description of the plugin
+msgid ""
+"This plugin is designed to provide you with an easy start of your next "
+"WordPress project!"
+msgstr ""
+"¡Este plugin está diseñado para proporcionarte un comienzo fácil de tu "
+"próximo proyecto WordPress!"
+
+#: core/Wizard/config/AIWizard.php:31 core/Wizard/config/DefaultWizard.php:32
+msgid "Travel"
+msgstr "Viajar"
+
+#: core/Wizard/config/AIWizard.php:125 core/Wizard/config/WooWizard.php:89
+#: core/Wizard/config/DefaultWizard.php:131 core/Wizard/config/EddWizard.php:77
+msgid "Try again"
+msgstr "Inténtalo de nuevo"
+
+#: core/Rest/Controllers/V1/Rest_Themes.php:152
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:114
+#: core/Rest/Controllers/V1/Rest_Plugins.php:170
+msgid "Update"
+msgstr "Actualizar"
+
+#: react-strings.php:74
+msgid "UPLOAD PLUGIN"
+msgstr "SUBIR PLUGIN"
+
+#: react-strings.php:69
+msgid "UPLOAD THEME"
+msgstr "SUBIR TEMA"
+
+#: core/Rest/Controllers/V1/Rest_Plugins.php:239
+msgid "Upload Your Plugin"
+msgstr "Sube tu plugin"
+
+#: core/Rest/Controllers/V1/Rest_Themes.php:238
+msgid "Upload Your Theme"
+msgstr "Sube tu tema"
+
+#: core/Wizard/config/AIWizard.php:53 core/Wizard/config/DefaultWizard.php:55
+msgid "Use a standard WordPress theme"
+msgstr "Usa un tema estándar de WordPress"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:237
+msgid "Use our WooCommerce starter for an easier start!"
+msgstr "¡Usa nuestro iniciador de WooCommerce para un comienzo más fácil!"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:230
+msgid "Use our WordPress starter for an easier start!"
+msgstr "¡Usa nuestro Starter de WordPress para un comienzo más fácil!"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:220
+msgid "Useful Links"
+msgstr "Links útiles"
+
+#. src/core/components/success-dialog/success-dialog.tsx:36
+#: react-strings.php:19 core/Wizard/config/AIWizard.php:108
+#: core/Wizard/config/AIWizard.php:129 core/Wizard/config/WooWizard.php:71
+#: core/Wizard/config/WooWizard.php:93 core/Wizard/config/DefaultWizard.php:113
+#: core/Wizard/config/DefaultWizard.php:135 core/Wizard/config/EddWizard.php:59
+#: core/Wizard/config/EddWizard.php:81
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:145
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:147
+msgid "View Site"
+msgstr "Ver página"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:246
+msgid "View WordPress Tutorial"
+msgstr "Ver tutorial de WordPress"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:254
+msgid "Visit Knowledge Base"
+msgstr "Visitar la base de conocimientos"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:252
+msgid "Visit out WordPress knowledge base!"
+msgstr "Visitar la base de conocimientos de WordPress"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:445
+msgid "Want more events?"
+msgstr "¿Quieres más eventos?"
+
+#: core/Wizard/config/AIWizard.php:124 core/Wizard/config/WooWizard.php:88
+#: core/Wizard/config/DefaultWizard.php:130 core/Wizard/config/EddWizard.php:76
+msgid "We could not complete the installations."
+msgstr "No pudimos completar las instalaciones."
+
+#: core/Wizard/config/AIWizard.php:124 core/Wizard/config/WooWizard.php:88
+#: core/Wizard/config/DefaultWizard.php:130 core/Wizard/config/EddWizard.php:76
+msgid "We could not complete the installations. Try again later."
+msgstr "No pudimos completar las instalaciones. Inténtalo de nuevo más tarde."
+
+#: core/Wizard/config/AIWizard.php:65 core/Wizard/config/WooWizard.php:27
+#: core/Wizard/config/DefaultWizard.php:68
+msgid ""
+"We have gathered some of the best free and paid themes suitable for various "
+"personal and business projects to help your site look professional and "
+"awesome."
+msgstr ""
+"Hemos reunido algunos de los mejores temas gratuitos y de pago adecuados "
+"para varios proyectos personales y de negocios para ayudarte a que tu sitio "
+"se vea profesional e impresionante."
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:245
+msgid ""
+"We have prepared an easy to follow tutorials with everything you need to "
+"know about setting up your WordPress site, creating posts and pages, making "
+"backups and a lot more."
+msgstr ""
+"Hemos preparado tutoriales fáciles de seguir con todo lo que necesitas saber "
+"sobre cómo configurar tu sitio WordPress, crear publicaciones y páginas, "
+"hacer copias de seguridad y mucho más."
+
+#. src/core/components/success-dialog/success-dialog.tsx:39
+#: react-strings.php:20 core/Wizard/config/AIWizard.php:103
+#: core/Wizard/config/WooWizard.php:66 core/Wizard/config/DefaultWizard.php:108
+#: core/Wizard/config/EddWizard.php:54
+msgid ""
+"We have successfully completed the installation of the items you selected. "
+"You may now proceed to your WordPress dashboard and start managing your site."
+msgstr ""
+"Hemos completado con éxito la instalación de los elementos que has "
+"seleccionado. Puedes proceder al panel de control en tu WordPress y empezar "
+"a gestionar tu web."
+
+#: core/Wizard/config/WooWizard.php:14
+#| msgid ""
+#| "We know that learning WordPress and Woocommerce takes time. To give you a "
+#| "jump start, we have prepared a quick customization wizard that will "
+#| "assist you in choosing design and adding functionality to your site in a "
+#| "few easy steps."
+msgid ""
+"We know that learning WordPress and WooCommerce takes time. To give you a "
+"jump start, we have prepared a quick customization wizard that will assist "
+"you in choosing design and adding functionality to your site in a few easy "
+"steps."
+msgstr ""
+"Sabemos que aprender a utilizar WordPress y WooCommerce lleva tiempo. Para "
+"ayudarte, hemos preparado un asistente para elegir el diseño y añadir "
+"funcionalidades a tu web en unos sencillos pasos."
+
+#: core/Wizard/config/EddWizard.php:14
+msgid ""
+"We know that learning WordPress takes time. To give you a jump start, we "
+"have prepared a quick customization wizard that will assist you in adding "
+"functionality to your site in a few easy steps."
+msgstr ""
+"Sabemos que aprender a utilizar WordPress lleva tiempo. Para ayudarte a "
+"crear una web de inmediato, hemos preparado un  asistente rápido y "
+"personalizado que te ayudará a agregar funcionalidades a tu sitio web en "
+"unos rápidos y sencillos pasos."
+
+#: core/Wizard/config/AIWizard.php:14 core/Wizard/config/DefaultWizard.php:14
+msgid ""
+"We know that learning WordPress takes time. To give you a jump start, we "
+"have prepared a quick customization wizard that will assist you in choosing "
+"design and adding functionality to your site in a few easy steps."
+msgstr ""
+"Sabemos que aprender WordPress lleva tiempo. Para ayudarte con un buen "
+"comienzo, hemos preparado un rápido asistente de personalización que te "
+"ayudará a elegir el diseño y agregar funcionalidades a tu sitio web en unos "
+"sencillos pasos."
+
+#: core/Wizard/config/AIWizard.php:30 core/Wizard/config/DefaultWizard.php:31
+msgid "Wedding"
+msgstr "Boda"
+
+#: core/Wizard/config/WooWizard.php:11
+#| msgid "Welcome to Your Woocommerce Site!"
+msgid "Welcome to Your WooCommerce Site!"
+msgstr "¡Bienvenida/o a tu web con WooCommerce!"
+
+#: core/Wizard/config/AIWizard.php:11 core/Wizard/config/DefaultWizard.php:11
+#: core/Wizard/config/EddWizard.php:11
+msgid "Welcome to Your WordPress Site!"
+msgstr "¡Bienvenido a tu sitio WordPress!"
+
+#: core/Wizard/config/AIWizard.php:21 core/Wizard/config/DefaultWizard.php:22
+msgid "What is your website topic?"
+msgstr "¿Cuál es el tema de tu sitio web?"
+
+#. src/core/components/woo-commerce-dialog/woo-commerce-dialog.tsx:64
+#: react-strings.php:23
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#. src/core/components/woo-commerce-required-dialog/woo-commerce-required-dialog.tsx:74
+#: react-strings.php:24
+msgid ""
+"WooCommerce empowers millions of shops and is full of features that allow "
+"you to manage diverse products."
+msgstr ""
+"WooCommerce potencia millones de tiendas y está repleto de funciones que te "
+"permiten administrar diversos productos."
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:89
+msgid "WooCommerce Starter Available!"
+msgstr "¡Starter de WooCommerce disponible!"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:523
+msgid "WordCamps"
+msgstr "WordCamps"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:286
+msgid "WordPress Events and News"
+msgstr "Eventos y noticias de WordPress"
+
+#. src/core/components/progress-dialog/progress-dialog.tsx:34
+#: react-strings.php:14 templates/wizard_template.php:14
+msgid "WordPress Starter"
+msgstr "WordPress Starter"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:81
+msgid "WordPress Starter Available!"
+msgstr "¡Starter de WordPress disponible!"
+
+#: core/Rest/Controllers/V1/Rest_Install.php:375
+#: core/Rest/Controllers/V1/Rest_Install.php:406
+msgid "Yes"
+msgstr "Si"
+
+#. src/wp-admin/dashboard/dashboard.tsx:26
+#: react-strings.php:42
+msgid "you"
+msgstr "usted"
+
+#. src/wp-admin/wordpress-plugins/recommended-plugin-tab/recommended-tab.tsx:77
+#: react-strings.php:55
+msgid ""
+"You are updating a plugin. Be sure to back up your database and files first."
+msgstr ""
+"Estás actualizando un complemento. Asegúrese de hacer una copia de seguridad "
+"de su base de datos y archivos primero."
+
+#. src/wp-admin/wordpress-plugins/wordpress-plugins.tsx:146
+#: react-strings.php:57
+msgid ""
+"You are updating a theme. Be sure to back up your database and files first."
+msgstr ""
+"Estás actualizando un tema. Asegúrese de hacer una copia de seguridad de su "
+"base de datos y archivos primero."
+
+#: core/Wizard/config/AIWizard.php:54 core/Wizard/config/DefaultWizard.php:56
+msgid ""
+"You can choose a WordPress theme from more than 30 professional templates in "
+"our free gallery."
+msgstr ""
+"Puedes elegir un tema de WordPress entre más de 30 plantillas profesionales "
+"en nuestra galería gratuita."
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:165
+msgid "Your current theme is"
+msgstr "Tu tema actual es"
+
+#: core/Rest/Controllers/V1/Rest_Dashboard.php:112
+msgid "Your WordPress needs attention!"
+msgstr "¡Tu WordPress necesita atención!"
+
+#. src/core/components/plugin-card/plugin-card.tsx:85
+#: react-strings.php:7
+msgid "{{free}}Free{{/free}} plugin {{by}}by %(author)s{{/by}}"
+msgstr "Plugin {{free}}gratuito{{/free}} {{by}}de %(author)s{{/by}}"

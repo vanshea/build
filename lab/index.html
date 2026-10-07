@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Codex + Claude Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">VSC Lab</p>
+        <h1>JavaScript and CSS Playground</h1>
+      </div>
+      <div class="header-actions">
+        <button id="runBtn" type="button">Run</button>
+        <button id="resetBtn" type="button" class="secondary">Reset</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="editor-pane" aria-label="Code editors">
+        <div class="tabs" role="tablist" aria-label="Editor tabs">
+          <button class="tab active" type="button" data-editor="html">
+            HTML
+          </button>
+          <button class="tab" type="button" data-editor="css">CSS</button>
+          <button class="tab" type="button" data-editor="js">JavaScript</button>
+          <button class="tab" type="button" data-editor="prompts">
+            Prompts
+          </button>
+        </div>
+
+        <label class="editor active" data-panel="html">
+          <span>HTML</span>
+          <textarea id="htmlInput" spellcheck="false"></textarea>
+        </label>
+
+        <label class="editor" data-panel="css">
+          <span>CSS</span>
+          <textarea id="cssInput" spellcheck="false"></textarea>
+        </label>
+
+        <label class="editor" data-panel="js">
+          <span>JavaScript</span>
+          <textarea id="jsInput" spellcheck="false"></textarea>
+        </label>
+
+        <div class="prompt-grid editor" data-panel="prompts">
+          <label>
+            <span>Codex Prompt</span>
+            <textarea id="codexPrompt" spellcheck="true"></textarea>
+          </label>
+          <label>
+            <span>Claude Prompt</span>
+            <textarea id="claudePrompt" spellcheck="true"></textarea>
+          </label>
+        </div>
+      </section>
+
+      <section class="preview-pane" aria-label="Preview and console">
+        <div class="preview-toolbar">
+          <strong>Preview</strong>
+          <label class="toggle">
+            <input id="autoRun" type="checkbox" checked />
+            <span>Auto run</span>
+          </label>
+        </div>
+        <iframe
+          id="previewFrame"
+          title="Playground preview"
+          sandbox="allow-scripts"
+        ></iframe>
+        <div class="console">
+          <div class="console-header">
+            <strong>Console</strong>
+            <button id="clearConsoleBtn" type="button" class="ghost">
+              Clear
+            </button>
+          </div>
+          <pre id="consoleOutput" aria-live="polite"></pre>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

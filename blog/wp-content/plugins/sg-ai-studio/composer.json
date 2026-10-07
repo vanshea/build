@@ -1,0 +1,24 @@
+{
+	"name": "siteground/sg-ai-studio",
+	"type": "wordpress-plugin",
+	"autoload": {
+		"psr-4": {"SG_AI_Studio\\": "core/"}
+	},
+	"config": {
+		"platform": {
+			"php": "7.4"
+		}
+	}, 
+	"repositories": [
+		{
+			"type": "vcs",
+			"url":  "git@gitlab.siteground.com:wordpress/siteground-i18n.git"
+		}
+	],
+	"require": {
+		"firebase/php-jwt": "^6.0",
+		"charles-rumley/php-po-to-json": "master@dev",
+		"guzzlehttp/guzzle": "^7.0",
+		"siteground/siteground-i18n": "master@dev"
+	}
+}

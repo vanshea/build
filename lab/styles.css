@@ -1,0 +1,262 @@
+:root {
+  --bg: #f4f1ea;
+  --panel: #ffffff;
+  --ink: #1b1d1f;
+  --muted: #6b7077;
+  --line: #d7d2c8;
+  --accent: #0f766e;
+  --accent-dark: #115e59;
+  --console: #101417;
+  --console-ink: #d9f2e6;
+  --radius: 8px;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+textarea,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+}
+
+button:hover {
+  background: var(--accent-dark);
+}
+
+button.secondary,
+button.ghost {
+  background: #eef1f0;
+  color: var(--ink);
+}
+
+button.secondary:hover,
+button.ghost:hover {
+  background: #dde4e2;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem clamp(1rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow {
+  margin: 0 0 0.25rem;
+  color: var(--accent-dark);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.5vw, 2.2rem);
+  line-height: 1.08;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.95fr) minmax(360px, 1.05fr);
+  gap: 1rem;
+  min-height: calc(100vh - 88px);
+  padding: 1rem clamp(1rem, 3vw, 2rem) 2rem;
+}
+
+.editor-pane,
+.preview-pane {
+  min-width: 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+  overflow-x: auto;
+}
+
+.tab {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  padding: 0.55rem 0.8rem;
+  white-space: nowrap;
+}
+
+.tab:hover,
+.tab.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.editor {
+  display: none;
+  min-height: calc(100vh - 175px);
+}
+
+.editor.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.editor span,
+.prompt-grid span {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+textarea {
+  width: 100%;
+  flex: 1;
+  min-height: 420px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--ink);
+  line-height: 1.5;
+  padding: 1rem;
+  tab-size: 2;
+}
+
+#htmlInput,
+#cssInput,
+#jsInput {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.92rem;
+}
+
+.prompt-grid {
+  gap: 1rem;
+}
+
+.prompt-grid label {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+}
+
+.preview-pane {
+  display: grid;
+  grid-template-rows: auto minmax(360px, 1fr) minmax(150px, 0.32fr);
+  gap: 0.75rem;
+}
+
+.preview-toolbar,
+.console-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+#previewFrame {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.console {
+  display: flex;
+  min-height: 150px;
+  flex-direction: column;
+  border-radius: var(--radius);
+}
+
+.console-header {
+  padding-bottom: 0.45rem;
+}
+
+.console pre {
+  flex: 1;
+  min-height: 120px;
+  margin: 0;
+  overflow: auto;
+  border-radius: var(--radius);
+  background: var(--console);
+  color: var(--console-ink);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  padding: 0.85rem;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 880px) {
+  .app-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .editor {
+    min-height: auto;
+  }
+
+  textarea {
+    min-height: 320px;
+  }
+
+  .preview-pane {
+    grid-template-rows: auto 420px minmax(150px, auto);
+  }
+}
+
+@media (max-width: 520px) {
+  .header-actions {
+    width: 100%;
+  }
+
+  .header-actions button {
+    flex: 1;
+  }
+}
