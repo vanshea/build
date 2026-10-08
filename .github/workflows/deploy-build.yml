@@ -1,0 +1,64 @@
+name: Deploy Build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-build
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: Siteground Build
+      url: https://build.vanshea.com
+
+    steps:
+      - name: Get website files
+        uses: actions/checkout@v6
+
+      - name: Check website and destination
+        env:
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+        run: |
+          test -f index.html || {
+            echo "index.html must be at the repository's top level."
+            exit 1
+          }
+          test -n "$DEPLOY_PATH" || {
+            echo "Set DEPLOY_PATH in the Siteground Build environment."
+            exit 1
+          }
+
+      - name: Upload to Build
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./
+          server-dir: ${{ vars.DEPLOY_PATH }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.env*
+            **/node_modules/**
+            **/wp-config.php
+            **/*.sql
+            **/*.pem
+            **/*.key
+            **/.DS_Store
+            **/_notes/**
+            **/README.md
+            build/**
+            livesite/**
+            blog/**
