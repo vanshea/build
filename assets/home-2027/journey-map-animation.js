@@ -201,7 +201,7 @@
         svg{display:block;width:100%;height:100%;aspect-ratio:16/9}
         .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
         @media(max-width:1000px){.frame svg{position:absolute;left:-12.5%;top:-12.5%;width:125%;height:125%;max-width:none}}
-        @media(max-width:640px){svg [data-viewbox-background],svg [data-explanation-caption]{display:none!important}}
+        @media(max-width:640px){svg [data-viewbox-background]{display:none!important}}
       </style><div class="frame"><div class="sr-only" aria-live="polite" aria-atomic="true" data-live></div><div role="img" data-image><svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"></svg></div></div>`;
       const image = this.shadowRoot.querySelector('[data-image]');
       this._image = image;
