@@ -63,7 +63,7 @@ return new Wizard(
 				array(
 					'title'    => __( 'Manage site', 'siteground-wizard' ),
 					'subtitle' => __( 'Go to WordPress admin to manage your content and more.', 'siteground-wizard' ),
-					'url'      => \get_admin_url(),
+					'url'      => \admin_url( 'admin.php?page=siteground-dashboard' ),
 				),
 			),
 			'completed'        => false,
@@ -85,7 +85,7 @@ return new Wizard(
 				array(
 					'title'    => __( 'Manage site', 'siteground-wizard' ),
 					'subtitle' => __( 'Go to WordPress admin to manage your content and more.', 'siteground-wizard' ),
-					'url'      => \get_admin_url(),
+					'url'      => \admin_url( 'admin.php?page=siteground-dashboard' ),
 				),
 			),
 			'completed'        => false,

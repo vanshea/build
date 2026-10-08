@@ -333,7 +333,7 @@ class Rest_Helper_Activity extends Rest_Helper {
 				'ts'           => get_date_from_gmt( gmdate( 'Y-m-d H:i', $entry['ts'] ), 'Y-m-d H:i' ),
 				'ip'           => $entry['ip'],
 				'page_visited' => $entry['description'],
-				'type'         => $entry['visitor_type'],
+				'type'         => __( $entry['visitor_type'], 'sg-security' ),
 				'hostname'     => $entry['hostname'],
 				'response'     => $entry['code'],
 				'visitor_id'   => $entry['visitor_id'],

@@ -51,6 +51,7 @@ class Gutenberg {
 				'restUrl'       => esc_url_raw( rest_url() ),
 				'is_connected'  => get_option( 'sg_ai_studio_connected', false ),
 				'settingsUrl'   => admin_url( 'admin.php?page=sg-ai-studio' ),
+				'locale'        => \SG_AI_Studio\Admin\Admin::get_i18n_data_json(),
 			)
 		);
 	}

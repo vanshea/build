@@ -53,11 +53,17 @@ syncFooterAnimationMeta();
 window.addEventListener("load", placeFooterAnimationMeta);
 
 const rootEl = document.documentElement;
-const themeButtons = document.querySelectorAll(".theme-link");
+const themeButtons = Array.from(document.querySelectorAll(".theme-link[data-theme]"));
+const themeSwitchers = Array.from(document.querySelectorAll(".theme-switcher"));
+const themeSliders = [];
 const themeStorageKey = "vsc-site-theme-v2";
-const availableThemes = new Set(["theme1", "theme2", "theme3", "theme4"]);
+const availableThemes = new Set(["theme1", "theme3", "theme4", "theme5"]);
 const brandLogoLightImage = document.getElementById("brandLogoLightImage");
 const brandLogoDarkSource = document.getElementById("brandLogoDarkSource");
+const darkBrowserMedia =
+  typeof window.matchMedia === "function"
+    ? window.matchMedia("(prefers-color-scheme: dark)")
+    : null;
 
 if (brandLogoLightImage) {
   brandLogoLightImage.dataset.logoLight =
@@ -68,9 +74,20 @@ if (brandLogoLightImage) {
   }
 }
 
+function isClearThemeOnDarkBrowser(theme) {
+  return theme === "theme1" && Boolean(darkBrowserMedia?.matches);
+}
+
 function isDarkBackgroundTheme(theme) {
-  if (theme === "theme4") return false;
-  return theme === "theme3" || window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return theme === "theme3" || isClearThemeOnDarkBrowser(theme);
+}
+
+function normalizeLogoPath(path) {
+  try {
+    return new URL(path, window.location.href).href;
+  } catch (error) {
+    return path;
+  }
 }
 
 function updateBrandLogoForTheme(theme) {
@@ -81,7 +98,14 @@ function updateBrandLogoForTheme(theme) {
     brandLogoLightImage.dataset.logoDark ||
     brandLogoDarkSource?.getAttribute("srcset") ||
     lightLogo;
-  brandLogoLightImage.src = isDarkBackgroundTheme(theme) ? darkLogo : lightLogo;
+  const shouldUseDarkBackgroundLogo = isDarkBackgroundTheme(theme);
+  const hasAlternateDarkLogo = normalizeLogoPath(darkLogo) !== normalizeLogoPath(lightLogo);
+
+  brandLogoLightImage.src = shouldUseDarkBackgroundLogo ? darkLogo : lightLogo;
+  brandLogoLightImage.classList.toggle(
+    "uses-dark-browser-logo",
+    isClearThemeOnDarkBrowser(theme) && hasAlternateDarkLogo
+  );
 }
 
 function setBrandLogoAssets(lightLogo, darkLogo) {
@@ -102,9 +126,47 @@ function setBrandLogoAssets(lightLogo, darkLogo) {
   updateBrandLogoForTheme(rootEl.dataset.theme);
 }
 
+function getThemeLabel(button) {
+  return button?.getAttribute("aria-label") || button?.textContent?.trim() || "Theme";
+}
+
+function syncThemeSliders(theme) {
+  themeSliders.forEach(({ buttons, input }) => {
+    const activeIndex = buttons.findIndex((button) => button.dataset.theme === theme);
+    if (activeIndex < 0) return;
+
+    input.value = String(activeIndex);
+    input.setAttribute("aria-valuetext", getThemeLabel(buttons[activeIndex]));
+    input.style.setProperty("--theme-slider-index", String(activeIndex));
+    input.style.setProperty("--theme-slider-steps", String(Math.max(1, buttons.length - 1)));
+    input.parentElement?.style.setProperty("--theme-slider-index", String(activeIndex));
+    input.parentElement?.style.setProperty("--theme-slider-steps", String(Math.max(1, buttons.length - 1)));
+  });
+}
+
+function setResolvedColorScheme(theme) {
+  const isDark = isDarkBackgroundTheme(theme);
+  rootEl.style.colorScheme = isDark ? "dark" : "light";
+  document.querySelectorAll("[data-theme-favicon]").forEach((link) => {
+    link.media = link.dataset.themeFavicon === (isDark ? "dark" : "light") ? "all" : "not all";
+  });
+}
+
+function runWithoutThemeTransitions(changeTheme) {
+  rootEl.classList.add("is-theme-changing");
+  changeTheme();
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      rootEl.classList.remove("is-theme-changing");
+    });
+  });
+}
+
 function applyTheme(theme) {
-  const resolvedTheme = availableThemes.has(theme) ? theme : "theme2";
+  const resolvedTheme = availableThemes.has(theme) ? theme : "theme4";
   rootEl.dataset.theme = resolvedTheme;
+  setResolvedColorScheme(resolvedTheme);
 
   themeButtons.forEach((button) => {
     const isActive = button.dataset.theme === resolvedTheme;
@@ -113,32 +175,127 @@ function applyTheme(theme) {
   });
 
   updateBrandLogoForTheme(resolvedTheme);
+  syncThemeSliders(resolvedTheme);
 }
 
-let initialTheme = "theme4";
+function saveTheme(theme) {
+  try {
+    localStorage.setItem(themeStorageKey, theme);
+  } catch (error) {
+    // Ignore storage write errors in restricted browsing contexts.
+  }
+}
+
+function preserveThemeAnchor(anchor, changeTheme) {
+  const anchorTop = anchor?.getBoundingClientRect().top;
+  const shouldPreserve =
+    typeof anchorTop === "number" && anchorTop >= 0 && anchorTop <= window.innerHeight;
+
+  changeTheme();
+
+  if (!shouldPreserve) return;
+
+  let frameCount = 0;
+  const keepAnchorStable = () => {
+    const nextTop = anchor.getBoundingClientRect().top;
+    const delta = nextTop - anchorTop;
+    if (Math.abs(delta) > 0.5) {
+      window.scrollBy(0, delta);
+    }
+
+    frameCount += 1;
+    if (frameCount < 5) {
+      window.requestAnimationFrame(keepAnchorStable);
+    }
+  };
+
+  window.requestAnimationFrame(keepAnchorStable);
+}
+
+function selectTheme(theme, anchor) {
+  if (!availableThemes.has(theme)) return;
+
+  preserveThemeAnchor(anchor, () => {
+    runWithoutThemeTransitions(() => applyTheme(theme));
+    saveTheme(theme);
+  });
+}
+
+function enhanceThemeSwitchers() {
+  themeSwitchers.forEach((switcher, switcherIndex) => {
+    const buttons = Array.from(switcher.querySelectorAll(".theme-link[data-theme]")).filter((button) =>
+      availableThemes.has(button.dataset.theme)
+    );
+    if (buttons.length < 2) return;
+
+    const sliderShell = document.createElement("div");
+    const slider = document.createElement("input");
+    const labels = document.createElement("div");
+    const controlId = `themeSlider${switcherIndex + 1}`;
+
+    switcher.classList.add("has-theme-slider");
+    sliderShell.className = "theme-slider-shell";
+    sliderShell.style.setProperty("--theme-slider-count", String(buttons.length));
+    labels.className = "theme-slider-labels";
+
+    slider.id = controlId;
+    slider.className = "theme-slider-control";
+    slider.type = "range";
+    slider.min = "0";
+    slider.max = String(buttons.length - 1);
+    slider.step = "1";
+    slider.value = "0";
+    slider.setAttribute("aria-label", switcher.getAttribute("aria-label") || "Choose site theme");
+
+    slider.addEventListener("input", () => {
+      const nextButton = buttons[Number(slider.value)];
+      selectTheme(nextButton?.dataset.theme, switcher);
+    });
+
+    sliderShell.appendChild(slider);
+    buttons[0].before(sliderShell);
+    buttons.forEach((button) => {
+      button.setAttribute("aria-hidden", "true");
+      button.tabIndex = -1;
+      labels.appendChild(button);
+    });
+    sliderShell.appendChild(labels);
+    themeSliders.push({ buttons, input: slider });
+  });
+}
+
+let initialTheme = "theme1";
 try {
-  const savedTheme = localStorage.getItem(themeStorageKey);
-  if (savedTheme && availableThemes.has(savedTheme)) {
+  const savedThemes = [
+    localStorage.getItem(themeStorageKey),
+    localStorage.getItem("vsc-site-theme")
+  ];
+  const savedTheme = savedThemes.find((theme) => availableThemes.has(theme));
+
+  if (savedTheme) {
     initialTheme = savedTheme;
+    localStorage.setItem(themeStorageKey, savedTheme);
   }
 } catch (error) {
   // Ignore storage access errors and fall back to default theme.
 }
 
+enhanceThemeSwitchers();
 applyTheme(initialTheme);
+
+if (darkBrowserMedia) {
+  const updateForBrowserColorScheme = () => applyTheme(rootEl.dataset.theme);
+
+  if (darkBrowserMedia.addEventListener) {
+    darkBrowserMedia.addEventListener("change", updateForBrowserColorScheme);
+  } else if (darkBrowserMedia.addListener) {
+    darkBrowserMedia.addListener(updateForBrowserColorScheme);
+  }
+}
 
 themeButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    const selectedTheme = button.dataset.theme;
-    if (!availableThemes.has(selectedTheme)) return;
-
-    applyTheme(selectedTheme);
-
-    try {
-      localStorage.setItem(themeStorageKey, selectedTheme);
-    } catch (error) {
-      // Ignore storage write errors in restricted browsing contexts.
-    }
+    selectTheme(button.dataset.theme, button.closest(".theme-switcher"));
   });
 });
 
@@ -292,7 +449,9 @@ if (footerPatternHosts.length) {
 
 const experienceResumeSection = document.getElementById("experienceResumeSection");
 const copyExperienceTextButton = document.getElementById("copyExperienceText");
-const workGrid = document.querySelector("#work .grid");
+const workFilterScope = document.querySelector("[data-filter-scope]");
+const workGrid =
+  workFilterScope?.querySelector("[data-filter-grid]") || document.querySelector("#work .grid");
 const siteHeader = document.querySelector(".site-header");
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".nav");
@@ -501,6 +660,33 @@ async function readSiteImageConfig() {
   return null;
 }
 
+function applyGalleryMetadataFromConfig(galleryEntries) {
+  const rows = Array.isArray(galleryEntries) ? galleryEntries : [];
+
+  rows.forEach((entry) => {
+    const idToken = String(entry?.id || "")
+      .trim()
+      .replace(/"/g, '\\"');
+    if (!idToken) return;
+
+    const link = document.querySelector(
+      `.work-link[data-project-id="generated_${idToken}"]`
+    );
+    const card = link?.closest?.(".card");
+    if (!card) return;
+
+    const category = normalizeWorkCategory(entry?.category);
+    const designation = normalizeWorkDesignation(entry?.designation ?? entry?.workType);
+    if (category) {
+      card.dataset.category = category;
+    }
+    if (designation) {
+      card.dataset.designation = designation;
+      card.dataset.workType = designation;
+    }
+  });
+}
+
 async function loadSiteImageConfig() {
   try {
     const config = await readSiteImageConfig();
@@ -510,10 +696,18 @@ async function loadSiteImageConfig() {
       return;
     }
 
-    setBrandLogoAssets(
-      config.logos?.light ? toSitePath(config.logos.light) : "",
-      config.logos?.dark ? toSitePath(config.logos.dark) : ""
-    );
+    const configuredLightLogo = config.logos?.light ? toSitePath(config.logos.light) : "";
+    const configuredDarkLogo = config.logos?.dark ? toSitePath(config.logos.dark) : "";
+    const currentLightLogo = brandLogoLightImage?.dataset.logoLight || "";
+    const headerUsesConfiguredLogo =
+      configuredLightLogo &&
+      normalizeLogoPath(currentLightLogo) === normalizeLogoPath(configuredLightLogo);
+
+    if (headerUsesConfiguredLogo) {
+      setBrandLogoAssets(configuredLightLogo, configuredDarkLogo);
+    }
+
+    applyGalleryMetadataFromConfig(config.gallery);
 
     Object.entries(config.projects || {}).forEach(([projectId, projectConfig]) => {
       const link = document.querySelector(
@@ -654,6 +848,23 @@ async function submitToGoogleForm(action, fieldMap, values) {
 }
 
 if (projectInquiryForm) {
+  const inquiryFields = {
+    name: projectInquiryForm.querySelector("#inquiryName"),
+    email: projectInquiryForm.querySelector("#inquiryEmail"),
+    brief: projectInquiryForm.querySelector("#inquiryBrief")
+  };
+  function setInquiryError(field, message) {
+    const input = inquiryFields[field];
+    const error = document.getElementById("inquiry" + field.charAt(0).toUpperCase() + field.slice(1) + "Error");
+    if (error) error.textContent = message;
+    if (input) {
+      if (message) input.setAttribute("aria-invalid", "true");
+      else input.removeAttribute("aria-invalid");
+    }
+  }
+  Object.entries(inquiryFields).forEach(([field, input]) => {
+    input?.addEventListener("input", () => setInquiryError(field, ""));
+  });
   const googleFormAction = String(
     projectInquiryForm.dataset.googleFormAction || ""
   ).trim();
@@ -673,21 +884,33 @@ if (projectInquiryForm) {
 
   projectInquiryForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+    const honeypot = projectInquiryForm.querySelector('[name="website"]');
+    if (honeypot?.value.trim()) {
+      projectInquiryForm.reset();
+      setProjectInquiryStatus("Your inquiry has been received.", "success");
+      return;
+    }
     window.siteAnalytics?.trackContactClick?.("form", contactLocation);
 
     const formData = new FormData(projectInquiryForm);
     const name = String(formData.get("name") || "").trim();
     const email = String(formData.get("email") || "").trim();
     const brief = String(formData.get("brief") || "").trim();
+    setInquiryError("name", name ? "" : "Enter your name.");
+    setInquiryError("email", email ? "" : "Enter your email address.");
+    setInquiryError("brief", brief ? "" : "Tell me a little about your project.");
 
     if (!name || !email || !brief) {
       setProjectInquiryStatus("Please complete all required fields.", "error");
+      Object.values(inquiryFields).find(input => input?.getAttribute("aria-invalid") === "true")?.focus();
       window.siteAnalytics?.trackContactFormSubmit?.(false);
       return;
     }
 
     if (!isValidPublicEmail(email)) {
+      setInquiryError("email", "Enter a valid email address.");
       setProjectInquiryStatus("Please enter a valid email address.", "error");
+      inquiryFields.email?.focus();
       window.siteAnalytics?.trackContactFormSubmit?.(false);
       return;
     }
@@ -715,7 +938,7 @@ if (projectInquiryForm) {
         brief
       });
       projectInquiryForm.reset();
-      setProjectInquiryStatus("Thanks. Your inquiry was sent.", "success");
+      setProjectInquiryStatus("Your browser submitted the inquiry. If you do not receive a reply, use the Google Form link below.", "success");
       window.siteAnalytics?.trackContactFormSubmit?.(true);
     } catch (error) {
       setProjectInquiryStatus(
@@ -870,7 +1093,18 @@ function scrollRecommendationsBy(direction) {
 }
 
 if (recommendationsTrack && recommendationsPrevButton && recommendationsNextButton) {
+  const recommendationCards = getRecommendationCards(recommendationsTrack);
+  const recommendationsStatus = document.getElementById("recommendationsStatus");
+  const updateRecommendationAnnouncement = () => {
+    const index = getClosestRecommendationIndex(recommendationsTrack);
+    if (recommendationsStatus) recommendationsStatus.textContent = `Slide ${index + 1} of ${recommendationCards.length}`;
+    recommendationCards.forEach((card, position) => {
+      card.setAttribute("aria-roledescription", "slide");
+      card.setAttribute("aria-label", `Slide ${position + 1} of ${recommendationCards.length}`);
+    });
+  };
   updateRecommendationNavState();
+  updateRecommendationAnnouncement();
   scrollRecommendationsToLeftEdge(recommendationsTrack);
   window.addEventListener(
     "load",
@@ -885,6 +1119,7 @@ if (recommendationsTrack && recommendationsPrevButton && recommendationsNextButt
   recommendationsTrack.addEventListener("scroll", updateRecommendationNavState, {
     passive: true
   });
+  recommendationsTrack.addEventListener("scroll", updateRecommendationAnnouncement, { passive: true });
   window.addEventListener("resize", updateRecommendationNavState);
 
   recommendationsPrevButton.addEventListener("click", () => {
@@ -924,10 +1159,13 @@ if (recommendationsTrack && recommendationsPrevButton && recommendationsNextButt
   });
 }
 
-const filterGroup = document.querySelector("#work .filters");
-const filterButtons = document.querySelectorAll(".filter-btn");
+const workTypeGroup = workFilterScope?.querySelector(".work-type-tabs");
+const workTypeButtons = workFilterScope
+  ? workFilterScope.querySelectorAll(".work-type-tab")
+  : document.querySelectorAll(".work-type-tab");
+const workFilterEmptyState = workFilterScope?.querySelector("[data-filter-empty]");
 const workLoadMoreButton = document.getElementById("workLoadMore");
-const WORK_ROWS_PER_PAGE = 2;
+const WORK_CARDS_PER_PAGE = 15;
 let visibleWorkCards = 0;
 let featuredCardHeightFrame = 0;
 const REGULAR_CARD_IMAGE_ASPECT_RATIO = 4 / 3;
@@ -942,7 +1180,7 @@ function getWorkGridColumnCount() {
 }
 
 function getWorkCardsPerPage() {
-  return getWorkGridColumnCount() * WORK_ROWS_PER_PAGE;
+  return WORK_CARDS_PER_PAGE;
 }
 
 function normalizeWorkCategory(value) {
@@ -952,76 +1190,55 @@ function normalizeWorkCategory(value) {
   return normalized === "web" ? "ux-design" : normalized;
 }
 
-function getAvailableWorkFilters() {
-  const categories = new Set();
-  const cards = getWorkCardElements();
-  const displayCards = cards.some((card) => !card.classList.contains("is-placeholder"))
-    ? cards.filter((card) => !card.classList.contains("is-placeholder"))
-    : cards;
+function normalizeWorkDesignation(value) {
+  const normalized = String(value || "")
+    .trim()
+    .toLowerCase();
+  return ["corporate", "independent"].includes(normalized) ? normalized : "";
+}
 
-  displayCards.forEach((card) => {
-    const category = normalizeWorkCategory(card.dataset.category);
-    if (!category || category === "all") return;
-    categories.add(category);
+function normalizeWorkType(value) {
+  return normalizeWorkDesignation(value);
+}
+
+function getActiveWorkType() {
+  const activeButton = workTypeGroup?.querySelector(".work-type-tab.active");
+  return normalizeWorkDesignation(activeButton?.dataset?.workType) || "all";
+}
+
+function syncWorkTypeTabs() {
+  if (!workTypeButtons.length) return;
+
+  workTypeButtons.forEach((button) => {
+    const isActive = button.classList.contains("active");
+    button.setAttribute("aria-pressed", isActive ? "true" : "false");
   });
+}
 
-  return categories;
+function activateWorkTypeTab(button) {
+  if (!button) return;
+
+  workTypeButtons.forEach((btn) => btn.classList.remove("active"));
+  button.classList.add("active");
+  syncWorkTypeTabs();
+  syncProjectFilters();
+  visibleWorkCards = getWorkCardsPerPage();
+  applyActiveFilter();
 }
 
 function syncProjectFilters() {
-  if (!filterGroup || !filterButtons.length) return;
-
-  const availableFilters = getAvailableWorkFilters();
-  const shouldShowFilters = availableFilters.size > 0;
-
-  filterButtons.forEach((button) => {
-    const filterValue = normalizeWorkCategory(button.dataset.filter);
-    const showButton =
-      shouldShowFilters &&
-      (filterValue === "all" || availableFilters.has(filterValue));
-
-    button.hidden = !showButton;
-    button.setAttribute("aria-hidden", showButton ? "false" : "true");
-
-    if (!showButton) {
-      button.classList.remove("active");
-    }
-  });
-
-  filterGroup.hidden = !shouldShowFilters;
-  filterGroup.setAttribute("aria-hidden", shouldShowFilters ? "false" : "true");
-
-  if (!shouldShowFilters) return;
-
-  const activeVisibleButton = Array.from(filterButtons).find(
-    (button) => !button.hidden && button.classList.contains("active")
-  );
-  if (activeVisibleButton) return;
-
-  const allButton = Array.from(filterButtons).find(
-    (button) => !button.hidden && normalizeWorkCategory(button.dataset.filter) === "all"
-  );
-  const fallbackButton = allButton || Array.from(filterButtons).find((button) => !button.hidden);
-
-  if (!fallbackButton) return;
-
-  filterButtons.forEach((button) => {
-    button.classList.toggle("active", button === fallbackButton);
-  });
+  // Category metadata is kept on cards, but category filter UI is intentionally retired.
 }
 
 function getFilteredCards() {
-  const activeButton = document.querySelector(".filter-btn.active");
-  const target = activeButton?.dataset?.filter || "all";
+  const targetWorkType = getActiveWorkType();
   const cards = getWorkCardElements();
-  const displayCards = cards.some((card) => !card.classList.contains("is-placeholder"))
-    ? cards.filter((card) => !card.classList.contains("is-placeholder"))
-    : cards;
 
-  return displayCards.filter((card) => {
-    const category = normalizeWorkCategory(card.dataset.category);
-    const normalizedTarget = normalizeWorkCategory(target);
-    return normalizedTarget === "all" || category === normalizedTarget;
+  return cards.filter((card) => {
+    const designation = normalizeWorkDesignation(
+      card.dataset.designation || card.dataset.workType
+    );
+    return targetWorkType === "all" || designation === targetWorkType;
   });
 }
 
@@ -1088,27 +1305,59 @@ function applyActiveFilter() {
   });
 
   if (workLoadMoreButton) {
-    const hasMore = filteredCards.length > maxVisible;
+    const hasMore = filteredCards.length > getWorkCardsPerPage() && filteredCards.length > maxVisible;
     workLoadMoreButton.hidden = !hasMore;
     workLoadMoreButton.setAttribute("aria-hidden", hasMore ? "false" : "true");
+  }
+
+  if (workFilterEmptyState) {
+    const hasMatches = filteredCards.length > 0;
+    workFilterEmptyState.hidden = hasMatches;
+    workFilterEmptyState.setAttribute("aria-hidden", hasMatches ? "true" : "false");
+    if (workLoadMoreButton) {
+      workLoadMoreButton.disabled = !hasMatches;
+      workLoadMoreButton.setAttribute("aria-disabled", String(!hasMatches));
+    }
   }
 
   scheduleFeaturedCardHeightUpdate();
 }
 
-filterButtons.forEach((button) => {
+workTypeButtons.forEach((button, index) => {
   button.addEventListener("click", () => {
-    filterButtons.forEach((btn) => btn.classList.remove("active"));
-    button.classList.add("active");
-    visibleWorkCards = getWorkCardsPerPage();
-    applyActiveFilter();
+    activateWorkTypeTab(button);
+  });
+
+  button.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      activateWorkTypeTab(button);
+      return;
+    }
+
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+
+    event.preventDefault();
+    const lastIndex = workTypeButtons.length - 1;
+    let nextIndex = index;
+    if (event.key === "ArrowLeft") nextIndex = index === 0 ? lastIndex : index - 1;
+    if (event.key === "ArrowRight") nextIndex = index === lastIndex ? 0 : index + 1;
+    if (event.key === "Home") nextIndex = 0;
+    if (event.key === "End") nextIndex = lastIndex;
+    workTypeButtons[nextIndex]?.focus();
   });
 });
 
 if (workLoadMoreButton) {
   workLoadMoreButton.addEventListener("click", () => {
+    const before = getFilteredCards().filter(card => !card.classList.contains("hide")).length;
     visibleWorkCards += getWorkCardsPerPage();
     applyActiveFilter();
+    const shown = getFilteredCards().filter(card => !card.classList.contains("hide"));
+    const added = Math.max(0, shown.length - before);
+    const status = document.getElementById("workLoadStatus");
+    if (status) status.textContent = added + " more projects loaded";
+    shown[before]?.querySelector("a,button")?.focus();
   });
 }
 
@@ -1259,6 +1508,7 @@ const lightboxFullscreen = document.getElementById("lightboxFullscreen");
 const lightboxFullscreenIcon = document.getElementById("lightboxFullscreenIcon");
 const lightboxPrev = document.getElementById("lightboxPrev");
 const lightboxNext = document.getElementById("lightboxNext");
+let lightboxReturnFocus = null;
 let activeLightboxIndex = 0;
 let useFullscreenAssets = false;
 
@@ -1371,7 +1621,7 @@ function renderLightboxImage(index) {
 
   activeLightboxIndex = safeIndex;
   lightboxImage.setAttribute("src", source);
-  lightboxImage.setAttribute("alt", `Large FPO image for ${title}`);
+  lightboxImage.setAttribute("alt", link.querySelector("img")?.alt || title);
   renderLightboxCaption(link, title, description, safeIndex, workLinks.length);
 }
 
@@ -1379,14 +1629,17 @@ function openLightbox(index, useFullscreenVersion = false) {
   const workLinks = getWorkLinks();
   if (workLinks.length === 0) return;
   if (!lightbox) return;
+  lightboxReturnFocus = document.activeElement;
   useFullscreenAssets = useFullscreenVersion;
   activeLightboxIndex =
     ((index % workLinks.length) + workLinks.length) % workLinks.length;
   renderLightboxImage(activeLightboxIndex);
   lightbox.classList.add("is-open");
+  lightbox.removeAttribute("inert");
   lightbox.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
   updateLightboxFullscreenButton();
+  lightboxClose?.focus();
 }
 
 function requestElementFullscreen(element) {
@@ -1412,11 +1665,18 @@ function closeLightbox() {
   useFullscreenAssets = false;
   lightbox.classList.remove("is-open");
   lightbox.setAttribute("aria-hidden", "true");
+  lightbox.setAttribute("inert", "");
   document.body.style.overflow = "";
   updateLightboxFullscreenButton();
+  lightboxReturnFocus?.focus();
+  lightboxReturnFocus = null;
 }
 
 if (lightbox && lightboxImage && lightboxCaption) {
+  workGrid?.querySelectorAll(".card-fullscreen").forEach(button => {
+    const title = button.closest(".card")?.querySelector("h3")?.textContent?.trim() || "project";
+    button.setAttribute("aria-label", `Expand ${title} preview`);
+  });
   if (workGrid) {
     workGrid.addEventListener("click", (event) => {
       const fullscreenButton = event.target.closest(".card-fullscreen");
@@ -1517,6 +1777,18 @@ if (lightbox && lightboxImage && lightboxCaption) {
       if (isFullscreenActive()) return;
       closeLightbox();
     }
+    if (event.key === "Tab" && isOpen) {
+      const focusable = Array.from(lightbox.querySelectorAll("button:not([disabled]),a[href]"))
+        .filter(element => element.getClientRects().length);
+      if (focusable.length) {
+        const first = focusable[0], last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault(); last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault(); first.focus();
+        }
+      }
+    }
     if (event.key === "ArrowLeft" && isOpen && workLinks.length > 0) {
       activeLightboxIndex =
         (activeLightboxIndex - 1 + workLinks.length) % workLinks.length;
@@ -1527,6 +1799,17 @@ if (lightbox && lightboxImage && lightboxCaption) {
       renderLightboxImage(activeLightboxIndex);
     }
   });
+  let swipeStartX = null;
+  lightbox.addEventListener("touchstart", event => {
+    swipeStartX = event.changedTouches[0]?.clientX ?? null;
+  }, { passive: true });
+  lightbox.addEventListener("touchend", event => {
+    if (swipeStartX === null || !lightbox.classList.contains("is-open")) return;
+    const distance = (event.changedTouches[0]?.clientX ?? swipeStartX) - swipeStartX;
+    swipeStartX = null;
+    if (Math.abs(distance) < 50) return;
+    (distance > 0 ? lightboxPrev : lightboxNext)?.click();
+  }, { passive: true });
 
   document.addEventListener("fullscreenchange", () => {
     if (!lightbox.classList.contains("is-open")) {
@@ -1553,6 +1836,7 @@ if (lightbox && lightboxImage && lightboxCaption) {
 
 ensureCardImageShells();
 refreshWorkCardState();
+syncWorkTypeTabs();
 visibleWorkCards = getWorkCardsPerPage();
 applyActiveFilter();
 loadSiteImageConfig();

@@ -1256,20 +1256,22 @@ class Orders extends Rest_Controller_Base {
 		/* translators: %d is the order ID. */
 		Activity_Log_Helper::add_log_entry( 'Orders', sprintf( __( 'Order Created (Order ID: %d)', 'sg-ai-studio' ), $order->get_id() ) );
 
-		$response = $this->prepare_order_for_response( $order );
-
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
 			\wp_cache_flush();
 		}
 
+		// Return lean response for write operation.
 		return new WP_REST_Response(
 			array(
-				'success' => true,
-				'data'    => $response,
+				'success'      => true,
+				'id'           => $order->get_id(),
+				'status'       => $order->get_status(),
+				'total'        => $order->get_total(),
+				'date_created' => $order->get_date_created() ? $order->get_date_created()->format( 'c' ) : null,
 			),
 			201
 		);
@@ -1312,20 +1314,22 @@ class Orders extends Rest_Controller_Base {
 		/* translators: %d is the order ID. */
 		Activity_Log_Helper::add_log_entry( 'Orders', sprintf( __( 'Order Updated (Order ID: %d)', 'sg-ai-studio' ), $order->get_id() ) );
 
-		$response = $this->prepare_order_for_response( $order );
-
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
 			\wp_cache_flush();
 		}
 
+		// Return lean response for write operation.
 		return new WP_REST_Response(
 			array(
-				'success' => true,
-				'data'    => $response,
+				'success'       => true,
+				'id'            => $order->get_id(),
+				'status'        => $order->get_status(),
+				'total'         => $order->get_total(),
+				'date_modified' => $order->get_date_modified() ? $order->get_date_modified()->format( 'c' ) : null,
 			),
 			200
 		);
@@ -1362,7 +1366,7 @@ class Orders extends Rest_Controller_Base {
 			);
 		}
 
-		$previous = $this->prepare_order_for_response( $order );
+		$order_id = $order->get_id();
 
 		$result = $order->delete( $force );
 
@@ -1379,39 +1383,29 @@ class Orders extends Rest_Controller_Base {
 		// Log the activity.
 		if ( $force ) {
 			/* translators: %d is the order ID. */
-			Activity_Log_Helper::add_log_entry( 'Orders', sprintf( __( 'Order Permanently Deleted (Order ID: %d)', 'sg-ai-studio' ), $order->get_id() ) );
+			Activity_Log_Helper::add_log_entry( 'Orders', sprintf( __( 'Order Permanently Deleted (Order ID: %d)', 'sg-ai-studio' ), $order_id ) );
 		} else {
 			/* translators: %d is the order ID. */
-			Activity_Log_Helper::add_log_entry( 'Orders', sprintf( __( 'Order Moved to Trash (Order ID: %d)', 'sg-ai-studio' ), $order->get_id() ) );
+			Activity_Log_Helper::add_log_entry( 'Orders', sprintf( __( 'Order Moved to Trash (Order ID: %d)', 'sg-ai-studio' ), $order_id ) );
 		}
 
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
 			\wp_cache_flush();
 		}
 
-		if ( $force ) {
-			return new WP_REST_Response(
-				array(
-					'success' => true,
-					'message' => __( 'The order has been permanently deleted.', 'sg-ai-studio' ),
-					'data'    => $previous,
-				),
-				200
-			);
-		} else {
-			return new WP_REST_Response(
-				array(
-					'success' => true,
-					'message' => __( 'The order has been moved to the trash.', 'sg-ai-studio' ),
-					'data'    => $previous,
-				),
-				200
-			);
-		}
+		// Return lean response for delete operation.
+		return new WP_REST_Response(
+			array(
+				'success' => true,
+				'id'      => $order_id,
+				'status'  => $force ? 'deleted' : 'trashed',
+			),
+			200
+		);
 	}
 
 	/**
@@ -1465,7 +1459,7 @@ class Orders extends Rest_Controller_Base {
 			$args['status'] = $request['status'];
 		}
 
-		if ( isset( $request['customer'] ) && ! empty( $request['customer'] ) ) {
+		if ( isset( $request['customer'] ) ) {
 			$args['customer_id'] = $request['customer'];
 		}
 
@@ -1864,8 +1858,8 @@ class Orders extends Rest_Controller_Base {
 				$errors[ $order_id ] = $response->get_data();
 			} else {
 				$results[ $order_id ] = array(
-					'id'      => $order_id,
-					'message' => $response->get_data()['message'],
+					'id'     => $order_id,
+					'status' => $response->get_data()['status'],
 				);
 			}
 		}
@@ -1893,10 +1887,6 @@ class Orders extends Rest_Controller_Base {
 				412
 			);
 		}
-
-		// OBSERVABILITY: Log request for verification.
-		error_log( 'Batch request - Method: ' . $request->get_method() );
-		error_log( 'Batch request - Body: ' . wp_json_encode( $request->get_json_params() ) );
 
 		$body = $request->get_json_params();
 

@@ -10,9 +10,17 @@
 
 	// Check if wp and required modules are available
 	// Note: wp.editor is preferred (WP 6.6+), wp.editPost is fallback for older versions
-	if (!wp || !wp.compose || !wp.element || !wp.blockEditor || !wp.components || !wp.hooks || !wp.plugins || (!wp.editor && !wp.editPost) || !wp.data) {
+	if (!wp || !wp.compose || !wp.element || !wp.blockEditor || !wp.components || !wp.hooks || !wp.plugins || (!wp.editor && !wp.editPost) || !wp.data || !wp.i18n) {
 		console.error('SG AI Studio: Required WordPress modules not available');
 		return;
+	}
+
+	// Load translations from localized data BEFORE capturing the __ function.
+	if (typeof sgAiStudioGutenberg !== 'undefined' && sgAiStudioGutenberg.locale) {
+		var localeData = typeof sgAiStudioGutenberg.locale === 'string'
+		? JSON.parse(sgAiStudioGutenberg.locale)
+		: sgAiStudioGutenberg.locale;
+		wp.i18n.setLocaleData(localeData, 'sg-ai-studio');
 	}
 
 	var createHigherOrderComponent = wp.compose.createHigherOrderComponent;
@@ -377,7 +385,7 @@
 									var generateBtn = document.createElement('button');
 									generateBtn.type = 'button';
 									generateBtn.className = 'components-button is-next-40px-default-size is-secondary sg-ai-generate-button';
-									generateBtn.textContent = __('Generate With AI Studio', 'sg-ai-studio');
+									generateBtn.textContent = wp.i18n.__('Generate With AI Studio', 'sg-ai-studio');
 									generateBtn.onclick = function(e) {
 										e.preventDefault();
 										e.stopPropagation();
@@ -437,7 +445,7 @@
 			// Use effect to inject menu item into Replace dropdown
 			useEffect(function() {
 				// Check if block has media
-				var menuText = __('Edit with AI Studio', 'sg-ai-studio');
+				var menuText = wp.i18n.__('Edit with AI Studio', 'sg-ai-studio');
 
 				// Wait for the Replace dropdown menu to be available
 				var checkAttempts = 0;
@@ -890,14 +898,14 @@
 
 		// Aspect ratio options
 		var aspectRatioOptions = [
-			{ label: __('Square (1:1)', 'sg-ai-studio'), value: 'square' },
-			{ label: __('Landscape (16:9)', 'sg-ai-studio'), value: 'landscape' },
-			{ label: __('Portrait (9:16)', 'sg-ai-studio'), value: 'portrait' },
-			{ label: __('Wide (21:9)', 'sg-ai-studio'), value: 'wide' }
+			{ label: wp.i18n.__('Square (1:1)', 'sg-ai-studio'), value: 'square' },
+			{ label: wp.i18n.__('Landscape (16:9)', 'sg-ai-studio'), value: 'landscape' },
+			{ label: wp.i18n.__('Portrait (9:16)', 'sg-ai-studio'), value: 'portrait' },
+			{ label: wp.i18n.__('Wide (21:9)', 'sg-ai-studio'), value: 'wide' }
 		];
 
 		// Determine sidebar title and icon based on mode
-		var sidebarTitle = __('AI Studio', 'sg-ai-studio');
+		var sidebarTitle = wp.i18n.__('AI Studio', 'sg-ai-studio');
 		var sidebarIcon = sgAiStudioIcon;
 
 		return createElement(
@@ -922,12 +930,12 @@
 						style: { margin: '16px' }
 					},
 						createElement('p', { style: { margin: 0 } },
-							__('Please configure your AI Studio API key in the plugin settings. ', 'sg-ai-studio'),
+							wp.i18n.__('Please configure your AI Studio API key in the plugin settings. ', 'sg-ai-studio'),
 							createElement('a', {
 								href: sgAiStudioGutenberg.settingsUrl,
 								target: '_blank',
 								style: { textDecoration: 'underline' }
-							}, __('Go to Settings →', 'sg-ai-studio'))
+							}, wp.i18n.__('Go to Settings →', 'sg-ai-studio'))
 						)
 					)
 				:
@@ -975,7 +983,7 @@
 										color: '#757575',
 										fontSize: '14px'
 									}
-								}, __('Selected block is not supported yet.', 'sg-ai-studio'))
+								}, wp.i18n.__('Selected block is not supported yet.', 'sg-ai-studio'))
 							:
 							// Show result state if image is generated
 							generatedImage ? createElement('div', {
@@ -1088,7 +1096,7 @@
 											// Close sidebar (optional)
 											// dispatch('core/edit-post').closeGeneralSidebar();
 										}
-									}, hasExistingImage ? __('Replace', 'sg-ai-studio') : __('Use this image', 'sg-ai-studio'));
+									}, hasExistingImage ? wp.i18n.__('Apply', 'sg-ai-studio') : wp.i18n.__('Use this image', 'sg-ai-studio'));
 								})()
 								),
 								// Try again and Discard buttons in a row
@@ -1117,7 +1125,7 @@
 											// Reset to input state (back to previous menu)
 											setGeneratedImage(null);
 										}
-									}, __('Try again', 'sg-ai-studio')),
+									}, wp.i18n.__('Regenerate', 'sg-ai-studio')),
 									// Discard button
 									createElement(Button, {
 										isDestructive: true,
@@ -1142,7 +1150,7 @@
 											setImageDescription('');
 											setAspectRatio('square');
 										}
-									}, __('Discard', 'sg-ai-studio'))
+									}, wp.i18n.__('Discard', 'sg-ai-studio'))
 								)
 							)
 						) : (
@@ -1156,7 +1164,7 @@
 									createElement('label', {
 										className: 'components-base-control__label',
 										style: { display: 'block', marginBottom: '8px', fontWeight: '600' }
-									}, __('Image Description', 'sg-ai-studio')),
+									}, wp.i18n.__('Image Description', 'sg-ai-studio')),
 									createElement('textarea', {
 										ref: imageDescriptionRef,
 										className: 'sg-ai-studio-text-input',
@@ -1166,7 +1174,7 @@
 										},
 										readOnly: isGenerating,
 										rows: 6,
-										placeholder: __('Describe the image you want to generate in detail...', 'sg-ai-studio'),
+										placeholder: wp.i18n.__('Describe the image you want to generate in detail...', 'sg-ai-studio'),
 										style: {
 											width: '100%',
 											padding: '12px',
@@ -1189,7 +1197,7 @@
 									style: { marginBottom: '16px' }
 								},
 									createElement(SelectControl, {
-										label: __('Aspect Ratio', 'sg-ai-studio'),
+										label: wp.i18n.__('Aspect Ratio', 'sg-ai-studio'),
 										value: aspectRatio,
 										options: aspectRatioOptions,
 										onChange: function(value) {
@@ -1234,7 +1242,7 @@
 											setIsGenerating(false);
 										});
 									}
-								}, isGenerating ? __('Generating image...', 'sg-ai-studio') : __('Generate image', 'sg-ai-studio'))
+								}, isGenerating ? wp.i18n.__('Generating image...', 'sg-ai-studio') : wp.i18n.__('Generate image', 'sg-ai-studio'))
 							)
 						)
 						)
@@ -1281,7 +1289,7 @@
 									color: '#757575',
 									fontSize: '14px'
 								}
-							}, __('No supported block selected.', 'sg-ai-studio'))
+							}, wp.i18n.__('No supported block selected.', 'sg-ai-studio'))
 						:
 						// Show result comparison if AI result exists (predefined actions)
 						aiResult ? createElement('div', {
@@ -1295,7 +1303,7 @@
 								createElement('label', {
 									className: 'components-base-control__label',
 									style: { display: 'block', marginBottom: '8px', fontWeight: '600' }
-								}, __('Original Text', 'sg-ai-studio')),
+								}, wp.i18n.__('Original Text', 'sg-ai-studio')),
 								createElement('div', {
 									className: 'sg-ai-studio-text-display',
 									style: {
@@ -1317,7 +1325,7 @@
 								createElement('label', {
 									className: 'components-base-control__label',
 									style: { display: 'block', marginBottom: '8px', fontWeight: '600' }
-								}, __('AI-Generated Version', 'sg-ai-studio')),
+								}, wp.i18n.__('AI-Generated Version', 'sg-ai-studio')),
 								createElement('div', {
 									className: 'sg-ai-studio-text-display',
 									style: {
@@ -1373,7 +1381,7 @@
 											setPromptText(newText);
 										}
 									}
-								}, __('Replace', 'sg-ai-studio')),
+								}, wp.i18n.__('Apply', 'sg-ai-studio')),
 								// Try again and Discard buttons in a row
 								createElement('div', {
 									className: 'sg-ai-studio-button-row',
@@ -1395,7 +1403,8 @@
 												data: {
 													text: promptText,
 													prompt: currentActionPrompt || customPrompt,
-													action_type: textActionMode === 'predefined' ? window.sgAiStudioActionType : 'custom'
+													action_type: textActionMode === 'predefined' ? window.sgAiStudioActionType : 'custom',
+													nonce: sgAiStudioGutenberg.nonce
 												}
 											}).then(function(response) {
 												if (response.success && response.data) {
@@ -1410,7 +1419,7 @@
 												setIsProcessingText(false);
 											});
 										}
-									}, __('Try again', 'sg-ai-studio')),
+									}, wp.i18n.__('Regenerate', 'sg-ai-studio')),
 									// Discard button
 									createElement(Button, {
 										isDestructive: true,
@@ -1430,7 +1439,7 @@
 												setPromptText(textContent);
 											}
 										}
-									}, __('Discard', 'sg-ai-studio'))
+									}, wp.i18n.__('Discard', 'sg-ai-studio'))
 								)
 							)
 						) : (
@@ -1449,7 +1458,7 @@
 											createElement('label', {
 												className: 'components-base-control__label',
 												style: { display: 'block', marginBottom: '8px', fontWeight: '600' }
-											}, __('Original Text', 'sg-ai-studio')),
+											}, wp.i18n.__('Original Text', 'sg-ai-studio')),
 											createElement('div', {
 												className: 'sg-ai-studio-text-display',
 												style: {
@@ -1464,7 +1473,7 @@
 													maxHeight: '300px',
 													overflowY: 'auto'
 												}
-											}, promptText || __('Click "Ask SG AI Studio" button on any text block to populate this field...', 'sg-ai-studio'))
+											}, promptText || wp.i18n.__('Click "Ask SG AI Studio" button on any text block to populate this field...', 'sg-ai-studio'))
 										) : null,
 										// Predefined action buttons container (only show when text is not empty)
 										(promptText && promptText.trim()) ? createElement('div', {
@@ -1507,7 +1516,7 @@
 												setIsProcessingText(false);
 											});
 										}
-									}, __('Improve', 'sg-ai-studio')),
+									}, wp.i18n.__('Improve', 'sg-ai-studio')),
 									// Fix spelling & grammar button
 									createElement(Button, {
 										icon: createElement('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', width: '24', height: '24', fill: 'currentColor' },
@@ -1544,7 +1553,7 @@
 												setIsProcessingText(false);
 											});
 										}
-									}, __('Fix grammar', 'sg-ai-studio')),
+									}, wp.i18n.__('Fix grammar', 'sg-ai-studio')),
 									// Make shorter button
 									createElement(Button, {
 											icon: createElement('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', width: '24', height: '24', fill: 'currentColor' },
@@ -1581,7 +1590,7 @@
 													setIsProcessingText(false);
 												});
 											}
-										}, __('Make Shorter', 'sg-ai-studio')),
+										}, wp.i18n.__('Make Shorter', 'sg-ai-studio')),
 										// Make longer button
 										createElement(Button, {
 											icon: createElement('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', width: '24', height: '24', fill: 'currentColor' },
@@ -1618,7 +1627,7 @@
 													setIsProcessingText(false);
 												});
 											}
-										}, __('Make Longer', 'sg-ai-studio'))
+										}, wp.i18n.__('Make Longer', 'sg-ai-studio'))
 								) : null,
 										// OR divider (only show when text is not empty)
 										(promptText && promptText.trim()) ? createElement('div', {
@@ -1662,15 +1671,15 @@
 											createElement('label', {
 												className: 'components-base-control__label',
 												style: { display: 'block', marginBottom: '8px', fontWeight: '600' }
-											}, isGenerationMode ? __('What would you like to generate?', 'sg-ai-studio') : __('Describe Your Request', 'sg-ai-studio')),
+											}, isGenerationMode ? wp.i18n.__('What would you like to generate?', 'sg-ai-studio') : wp.i18n.__('Describe Your Request', 'sg-ai-studio')),
 											createElement(TextareaControl, {
 												value: customPrompt,
 												onChange: function(value) {
 													setCustomPrompt(value);
 												},
 												placeholder: isGenerationMode
-													? __('Describe what content you want to generate...', 'sg-ai-studio')
-													: __('Explain in plain words what do you want to change.', 'sg-ai-studio'),
+													? wp.i18n.__('Describe what content you want to generate...', 'sg-ai-studio')
+													: wp.i18n.__('Explain in plain words what do you want to change.', 'sg-ai-studio'),
 												rows: 4,
 												style: {
 													width: '100%',
@@ -1774,7 +1783,7 @@
 													});
 												}
 											}
-										}, isGenerationMode ? __('Generate Block', 'sg-ai-studio') : __('Change With AI', 'sg-ai-studio'))
+										}, isGenerationMode ? wp.i18n.__('Generate Block', 'sg-ai-studio') : wp.i18n.__('Change With AI', 'sg-ai-studio'))
 									);
 								})()
 							)
@@ -1845,7 +1854,7 @@
 					// Clone the inserter button structure to get exact same styling
 					var generateButton = inserterButton.cloneNode(false);
 					generateButton.className = 'components-button block-editor-inserter__toggle is-next-40px-default-size has-icon sg-ai-generate-toolbar-button';
-					generateButton.setAttribute('aria-label', __('Generate with AI', 'sg-ai-studio'));
+					generateButton.setAttribute('aria-label', wp.i18n.__('Generate with AI', 'sg-ai-studio'));
 					generateButton.removeAttribute('aria-haspopup');
 					generateButton.removeAttribute('aria-expanded');
 

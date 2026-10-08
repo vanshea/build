@@ -221,16 +221,14 @@ class Htaccess {
 			return false;
 		}
 
-		$fp = fopen( $this->path, 'w+' );
-
+		$fp = fopen( $this->path, 'w+' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- WP_Filesystem does not provide file locking, while .htaccess writes here require flock()-based locking.
 		if ( flock( $fp, LOCK_EX ) ) {
-			fwrite( $fp, $content );
-			flock( $fp, LOCK_UN );
-			fclose( $fp );
+			fwrite( $fp, $content ); // phpcs:ignore
+			fclose( $fp ); // phpcs:ignore
 			return true;
 		}
 
-		fclose( $fp );
+		fclose( $fp ); // phpcs:ignore
 		return false;
 	}
 

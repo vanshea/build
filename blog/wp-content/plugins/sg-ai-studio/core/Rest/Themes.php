@@ -60,7 +60,7 @@ class Themes extends Rest_Controller_Base {
 		// Register endpoint for retrieving, activating, updating, and deleting a single theme.
 		register_rest_route(
 			$this->namespace,
-			'/' . $this->base . '/(?P<stylesheet>[^/]+)',
+			'/' . $this->base . '/(?P<stylesheet>(?!batch$)[^/]+)',
 			array(
 				array(
 					'methods'             => 'GET',
@@ -129,6 +129,13 @@ class Themes extends Rest_Controller_Base {
 					'permission_callback' => array( $this, 'manage_themes_permissions_check' ),
 					'args'                => $this->get_batch_install_themes_args(),
 					'description'         => 'Installs multiple themes in a single request.',
+				),
+				array(
+					'methods'             => 'PUT',
+					'callback'            => array( $this, 'batch_update_themes' ),
+					'permission_callback' => array( $this, 'manage_themes_permissions_check' ),
+					'args'                => $this->get_batch_update_themes_args(),
+					'description'         => 'Updates multiple themes in a single request.',
 				),
 				array(
 					'methods'             => 'DELETE',
@@ -230,6 +237,24 @@ class Themes extends Rest_Controller_Base {
 							'required'    => false,
 						),
 					),
+				),
+				'required'    => true,
+			),
+		);
+	}
+
+	/**
+	 * Get arguments for batch updating themes.
+	 *
+	 * @return array
+	 */
+	protected function get_batch_update_themes_args() {
+		return array(
+			'themes' => array(
+				'description' => 'List of theme stylesheets to update.',
+				'type'        => 'array',
+				'items'       => array(
+					'type' => 'string',
 				),
 				'required'    => true,
 			),
@@ -1110,6 +1135,211 @@ class Themes extends Rest_Controller_Base {
 				),
 			),
 			$success ? 201 : 207
+		);
+	}
+
+	/**
+	 * Batch update themes.
+	 *
+	 * Runs the whole batch through Theme_Upgrader::bulk_upgrade() rather than looping
+	 * update_theme(). Theme_Upgrader::upgrade() clears the entire update_themes site
+	 * transient on every success, so both looped and parallel single-theme updates leave
+	 * every theme after the first one reporting "already up to date" while a real update
+	 * is still pending. bulk_upgrade() runs each theme with is_multi enabled and refreshes
+	 * the cache once, after the whole batch.
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+	 */
+	public function batch_update_themes( $request ) {
+		$themes = $request['themes'];
+
+		if ( empty( $themes ) ) {
+			return new WP_REST_Response(
+				array(
+					'success' => false,
+					'message' => __( 'Please provide at least one theme stylesheet.', 'sg-ai-studio' ),
+				),
+				400
+			);
+		}
+
+		$results = array();
+		$errors  = array();
+		$valid   = array();
+
+		// Validate the requested stylesheets up front. bulk_upgrade() reports an unknown
+		// stylesheet as "up to date" instead of an error, so unknown themes must never reach it.
+		foreach ( array_unique( array_map( 'sanitize_text_field', $themes ) ) as $stylesheet ) {
+			if ( '' === $stylesheet || ! \wp_get_theme( $stylesheet )->exists() ) {
+				$errors[ $stylesheet ] = array(
+					'success' => false,
+					'message' => __( 'Theme not found.', 'sg-ai-studio' ),
+				);
+				continue;
+			}
+
+			$valid[] = $stylesheet;
+		}
+
+		if ( empty( $valid ) ) {
+			return new WP_REST_Response(
+				array(
+					'success' => false,
+					'data'    => array(
+						'updated' => $results,
+						'errors'  => $errors,
+					),
+				),
+				207
+			);
+		}
+
+		// Include necessary files.
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+		require_once ABSPATH . 'wp-admin/includes/update.php';
+
+		// Force a single refresh of theme update information for the whole batch.
+		\wp_clean_themes_cache();
+		\delete_site_transient( 'update_themes' );
+		\wp_update_themes();
+
+		$update_themes = \get_site_transient( 'update_themes' );
+
+		// Snapshot the state before the upgrade runs.
+		$current_theme     = \wp_get_theme();
+		$active_stylesheet = $current_theme->get_stylesheet();
+		$active_template   = $current_theme->get_template();
+		$versions_before   = array();
+		$had_update        = array();
+
+		foreach ( $valid as $stylesheet ) {
+			$versions_before[ $stylesheet ] = \wp_get_theme( $stylesheet )->get( 'Version' );
+			$had_update[ $stylesheet ]      = ! empty( $update_themes->response ) && isset( $update_themes->response[ $stylesheet ] );
+		}
+
+		// Setup upgrader and run the whole batch in a single pass.
+		$skin     = new \WP_Ajax_Upgrader_Skin();
+		$upgrader = new \Theme_Upgrader( $skin );
+
+		$upgrade_results = $upgrader->bulk_upgrade( $valid );
+
+		// bulk_upgrade() returns false outright when the filesystem is unavailable.
+		if ( ! is_array( $upgrade_results ) ) {
+			$upgrade_results = array();
+		}
+
+		// Themes that are the active theme, or its parent, and were updated in this batch.
+		$active_updated = array();
+
+		foreach ( $valid as $stylesheet ) {
+			// A theme is missing from the results when bulk_upgrade() aborted before reaching
+			// it, which it does as soon as one theme fails to connect.
+			if ( ! array_key_exists( $stylesheet, $upgrade_results ) ) {
+				$errors[ $stylesheet ] = array(
+					'success' => false,
+					'message' => __( 'Theme update failed.', 'sg-ai-studio' ),
+				);
+				continue;
+			}
+
+			$result = $upgrade_results[ $stylesheet ];
+
+			if ( \is_wp_error( $result ) ) {
+				$errors[ $stylesheet ] = array(
+					'success' => false,
+					'message' => $result->get_error_message(),
+				);
+				continue;
+			}
+
+			if ( ! $result ) {
+				$errors[ $stylesheet ] = array(
+					'success' => false,
+					'message' => __( 'Theme update failed.', 'sg-ai-studio' ),
+				);
+				continue;
+			}
+
+			// bulk_upgrade() returns true without upgrading when no update was pending.
+			if ( ! $had_update[ $stylesheet ] ) {
+				$errors[ $stylesheet ] = array(
+					'success' => false,
+					'message' => __( 'Theme is already up to date.', 'sg-ai-studio' ),
+				);
+				continue;
+			}
+
+			$was_active = ( $active_stylesheet === $stylesheet );
+
+			if ( $was_active || $active_template === $stylesheet ) {
+				$active_updated[] = $stylesheet;
+			}
+
+			// Get updated theme data.
+			$theme          = \wp_get_theme( $stylesheet );
+			$version_before = $versions_before[ $stylesheet ];
+			$version_after  = $theme->get( 'Version' );
+			$screenshot     = $theme->get_screenshot();
+			$screenshot_url = $screenshot ? $screenshot : '';
+
+			$results[ $stylesheet ] = array(
+				'name'           => $theme->get( 'Name' ),
+				'stylesheet'     => $stylesheet,
+				'template'       => $theme->get_template(),
+				'version'        => $version_after,
+				'description'    => $theme->get( 'Description' ),
+				'author'         => $theme->get( 'Author' ),
+				'author_uri'     => $theme->get( 'AuthorURI' ),
+				'theme_uri'      => $theme->get( 'ThemeURI' ),
+				'status'         => $was_active ? 'active' : 'inactive',
+				'requires_wp'    => $theme->get( 'RequiresWP' ),
+				'requires_php'   => $theme->get( 'RequiresPHP' ),
+				'is_child_theme' => $theme->parent() !== false,
+				'screenshot'     => $screenshot_url,
+				'old_version'    => $version_before,
+			);
+
+			// Log the activity.
+			/* translators: %1$s is the theme name, %2$s is the old version, %3$s is the new version. */
+			$log_description = sprintf( __( 'Theme Updated: %1$s (from version %2$s to %3$s)', 'sg-ai-studio' ), $theme->get( 'Name' ), $version_before, $version_after );
+			Activity_Log_Helper::add_log_entry( 'Themes', $log_description );
+		}
+
+		// Re-activate the active theme if it, or its parent, was updated by this batch.
+		if ( ! empty( $active_updated ) ) {
+			$activation_result = $this->safe_switch_theme( $active_stylesheet );
+
+			if ( is_wp_error( $activation_result ) ) {
+				foreach ( $active_updated as $stylesheet ) {
+					unset( $results[ $stylesheet ] );
+
+					$errors[ $stylesheet ] = array(
+						'success' => false,
+						'message' => sprintf(
+							/* translators: %s is the error message. */
+							__( 'Theme updated successfully but reactivation failed: %s', 'sg-ai-studio' ),
+							$activation_result->get_error_message()
+						),
+					);
+				}
+			}
+		}
+
+		$success = empty( $errors );
+
+		Helper::purge_caches();
+
+		return new WP_REST_Response(
+			array(
+				'success' => $success,
+				'data'    => array(
+					'updated' => $results,
+					'errors'  => $errors,
+				),
+			),
+			$success ? 200 : 207
 		);
 	}
 

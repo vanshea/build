@@ -6,12 +6,6 @@ use SiteGround_Optimizer\Helper\Helper;
  * SG Abstract_Lazy_load main plugin class.
  */
 abstract class Abstract_Lazy_Load {
-	/**
-	 * Regex for class matching.
-	 *
-	 * @var string
-	 */
-	public $regex_classes = '/class=["\'](.*?)["\']/is';
 
 	/**
 	 * Check if it's feed, the content is empty or there are conflicting plugins.
@@ -53,70 +47,42 @@ abstract class Abstract_Lazy_Load {
 			return $content;
 		}
 
-		 // Check for items.
-		preg_match_all( $this->regexp, $content, $matches );
+		// Bail if the WP_HTML_Tag_Processor is not available.
+		if ( ! class_exists( '\WP_HTML_Tag_Processor' ) ) {
+			return $content;
+		}
 
-		$search  = array();
-		$replace = array();
+		// Initiate the processor on the content.
+		$processor = new \WP_HTML_Tag_Processor( $content );
 
 		// Check for specific asset being excluded.
-		$excluded_assets = apply_filters( $this->exclude_assets_filter, array() );
+		$excluded_assets = apply_filters( $this->exclude_assets_filter, array() ); // phpcs:ignore
 
-		foreach ( $matches[0] as $item ) {
-			// Skip already replaced item.
-			if ( preg_match( $this->regex_replaced, $item ) ) {
+		// Get the list of ignored classes.
+		$ignored_classes = apply_filters(
+			'sgo_lazy_load_exclude_classes', // phpcs:ignore
+			get_option( 'siteground_optimizer_excluded_lazy_load_classes', array() )
+		);
+
+		// Iterate the tags (IMG, VIDEO, IFRAME).
+		while ( $processor->next_tag( $this->get_tag() ) ) {
+			// Check if the tag has to be skipped ( already processed for example or excluded ).
+			if ( $this->should_skip_tag( $processor, $excluded_assets, $ignored_classes ) ) {
 				continue;
 			}
 
-			// Check if we have a filter for excluding specific asset from being lazy loaded.
-			if ( ! empty( $excluded_assets ) ) {
-				// Match the url of the asset.
-				preg_match( '~(?:src=")([^"]*)"~', $item, $src_match );
+			// Process the tag.
+			$this->process_tag( $processor );
 
-				// If we have a match and the array is part of the excluded assets bail from lazy loading.
-				if ( ! empty( $src_match ) && in_array( $src_match[1], $excluded_assets ) ) {
-					continue;
-				}
-			}
-
-			// Do some checking if there are any class matches.
-			preg_match( $this->regex_classes, $item, $class_matches );
-
-			if ( ! empty( $class_matches[1] ) ) {
-				$classes = $class_matches[1];
-
-				// Load the ignored item classes.
-				$ignored_classes = apply_filters(
-					'sgo_lazy_load_exclude_classes',
-					get_option( 'siteground_optimizer_excluded_lazy_load_classes', array() )
-				);
-
-				// Convert all classes to array.
-				$item_classes = explode( ' ', $class_matches[1] );
-
-				// Check if the item has ignored class and bail if has.
-				if ( array_intersect( $item_classes, $ignored_classes ) ) {
-					continue;
-				}
-
-				$orig_item = str_replace( $classes, $classes . ' lazyload', $item );
-			} else {
-				$orig_item = $this->add_lazyload_class( $item );
-
-			}
-
-			// Finally do the search/replace and return modified content.
-			$new_item = preg_replace(
-				$this->patterns,
-				$this->replacements,
-				$orig_item
-			);
-
-			array_push( $search, $item );
-			array_push( $replace, $new_item );
+			// Add the 'lazyload' class.
+			$processor->add_class( 'lazyload' );
 		}
 
-		return str_replace( $search, $replace, $content );
+		// Get the HTML updated by the tag processor.
+		$filtered_html = $processor->get_updated_html();
+
+		// Perform the finalizing edits and return the HTML.
+		return $this->finalize_html( $filtered_html );
 	}
 
 	/**
@@ -128,7 +94,7 @@ abstract class Abstract_Lazy_Load {
 	 */
 	public function is_lazy_url_excluded() {
 		// Get the urls where lazy load is excluded.
-		$excluded_urls = apply_filters( 'sgo_lazy_load_exclude_urls', array() );
+		$excluded_urls = apply_filters( 'sgo_lazy_load_exclude_urls', array() ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Backward-compatible public filter.
 
 		// Bail if no excludes are found or we do not have a match.
 		if ( empty( $excluded_urls ) && ! in_array( Helper::get_current_url(), $excluded_urls ) ) {
@@ -147,7 +113,7 @@ abstract class Abstract_Lazy_Load {
 	 */
 	public function is_lazy_post_type_excluded() {
 		// Get the post_types with excluded lazy load.
-		$excluded_post_types = apply_filters( 'sgo_lazy_load_exclude_post_types', array() );
+		$excluded_post_types = apply_filters( 'sgo_lazy_load_exclude_post_types', array() ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Backward-compatible public filter.
 
 		// Bail if no excludes are found or we do not have a match.
 		if ( empty( $excluded_post_types ) && ! in_array( get_post_type(), $excluded_post_types ) ) {
@@ -156,4 +122,115 @@ abstract class Abstract_Lazy_Load {
 
 		return true;
 	}
+
+	/**
+	 * Determine whether the current tag should be skipped.
+	 *
+	 * @param \WP_HTML_Tag_Processor $processor       HTML tag processor.
+	 * @param array                  $excluded_assets Assets excluded from lazy loading.
+	 * @param array                  $ignored_classes CSS classes excluded from lazy loading.
+	 *
+	 * @return bool True when the tag should be skipped, false otherwise.
+	 */
+	public function should_skip_tag( $processor, $excluded_assets, $ignored_classes ) {
+		// Skip tags which have already been processed.
+		if ( $this->is_tag_processed( $processor ) ) {
+			return true;
+		}
+
+		// Skip explicitly excluded assets.
+		if ( $this->is_asset_excluded( $processor, $excluded_assets ) ) {
+			return true;
+		}
+
+		// Skip tags containing ignored CSS classes.
+		if ( $this->has_ignored_class( $processor, $ignored_classes ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check whether the current asset is excluded.
+	 *
+	 * @param \WP_HTML_Tag_Processor $processor       HTML tag processor.
+	 * @param array                  $excluded_assets Excluded asset URLs.
+	 *
+	 * @return bool                  True if the asset is excluded, false otherwise.
+	 */
+	protected function is_asset_excluded( $processor, $excluded_assets ) {
+		if ( empty( $excluded_assets ) ) {
+			return false;
+		}
+
+		// Get the 'src' attribute.
+		$src = $processor->get_attribute( 'src' );
+
+		if ( ! empty( $src ) ) {
+			return in_array( $src, $excluded_assets, true );
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check whether the current tag has an ignored CSS class.
+	 *
+	 * @param \WP_HTML_Tag_Processor $processor       HTML tag processor.
+	 * @param array                  $ignored_classes Ignored CSS classes.
+	 *
+	 * @return bool                  True if the class is ignored, false otherwise.
+	 */
+	protected function has_ignored_class( $processor, $ignored_classes ) {
+		if ( empty( $ignored_classes ) ) {
+			return false;
+		}
+
+		foreach ( $ignored_classes as $ignored_class ) {
+			if ( $processor->has_class( $ignored_class ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Process the current HTML tag.
+	 *
+	 * @param \WP_HTML_Tag_Processor $processor HTML tag processor.
+	 */
+	public function process_tag( $processor ) {
+		// Get the original source.
+		$src = $processor->get_attribute( 'src' );
+
+		// Bail if the video does not have a source.
+		if ( empty( $src ) ) {
+			return;
+		}
+
+		// Do not replace sources starting with "data".
+		if ( 0 === stripos( $src, 'data' ) ) {
+			return;
+		}
+
+		// Store the original source.
+		$processor->set_attribute( 'data-src', $src );
+
+		// Remove the original source to prevent immediate loading.
+		$processor->remove_attribute( 'src' );
+	}
+
+	/**
+	 * Finalize the processed HTML.
+	 *
+	 * @param string $html Processed HTML.
+	 *
+	 * @return string Processed HTML.
+	 */
+	public function finalize_html( $html ) {
+		return $html;
+	}
 }
+

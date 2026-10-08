@@ -966,10 +966,6 @@ class Coupons extends Rest_Controller_Base {
 			);
 		}
 
-		// OBSERVABILITY: Log request for verification.
-		error_log( 'Batch request - Method: ' . $request->get_method() );
-		error_log( 'Batch request - Body: ' . wp_json_encode( $request->get_json_params() ) );
-
 		$body = $request->get_json_params();
 
 		$create_items = isset( $body['create'] ) ? $body['create'] : array();

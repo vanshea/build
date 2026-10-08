@@ -1,10 +1,10 @@
 === Speed Optimizer - The All-In-One Performance-Boosting Plugin ===
 Contributors: Hristo Sg, siteground, sstoqnov, stoyangeorgiev, elenachavdarova, ignatggeorgiev, asparuhtenev
 Tags: nginx, caching, speed, performance, siteground
-Requires at least: 4.7
+Requires at least: 5.5.1
 Requires PHP: 7.0
-Tested up to: 6.9
-Stable tag: 7.7.10
+Tested up to: 7.1
+Stable tag: 7.8.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,7 +21,7 @@ Install our caching plugin now to dramatically improve your WordPress website pe
 = Essential Speed-boosting Features: =
 
 * **Powerful Caching** for up to 20% faster website.
-* **Frontend Optimizations** to minify JS, HTML and CSS, reducing wait time due to the number of scripts and characters in your code 
+* **Frontend Optimizations** to minify JS, HTML and CSS, reducing wait time due to the number of scripts and characters in your code
 * **Media Optimizations** by up to 85% image size compression without sacrificing quality
 * **WordPress Environment Optimizations** to optimize usage and efficiency of your WordPress site resources
 * **Speed Test** & tips to get on-demand optimization tips to help your site get even faster
@@ -81,7 +81,7 @@ Optimize your website media by reducing image size by up to 85% times while main
 = Image Compression: =
 Effortlessly compress images to resize your existing images and reduce the space they occupy on your server. The dimensions of the images will remain unchanged, allowing for optimized storage. Fine-tune the compression level and choose whether to create backups of the original images. Please note that image compression feature is exclusive to the SiteGround Environment.
 = WebP Images: =
-Leverage the power of WebP, a cutting-edge image format supported by modern browsers, to significantly reduce the size of your images and skyrocket your page speed. If a browser doesn't support WebP, the original images will be loaded. 
+Leverage the power of WebP, a cutting-edge image format supported by modern browsers, to significantly reduce the size of your images and skyrocket your page speed. If a browser doesn't support WebP, the original images will be loaded.
 = Lazy Load Media: =
 Take control of your website's asset loading with the ability to enable or disable Lazy Load for various assets. You can exclude specific assets such as iframes, videos, thumbnails, widgets, and shortcodes from the dropdown menu. Additionally, you have the option to exclude specific images from the Lazy Load by adding their respective class in the dedicated tab.
 = Maximum Image Width: =
@@ -94,7 +94,7 @@ Evaluate the optimization level of your website with Speed Optimizer’s Speed t
 
 In order to work correctly, this plugin requires that your server meets the following criteria:
 
-* WordPress 4.7
+* WordPress 5.5.1
 * PHP 7.0+
 
 Our plugin uses a cookie in order to function properly. It does not store personal data and is used solely for the needs of our caching system.
@@ -117,13 +117,57 @@ Our plugin uses a cookie in order to function properly. It does not store person
 1. Go to Plugins -> Installed Plugins and click the 'Activate' link under the WordPress SiteGround Optimizer listing
 
 == Changelog ==
+= Version 7.8.4 =
+Release Date: Oct 7th, 2026
+
+* JS Combination improvements
+* File Cache URL preheat improvements
+* Security improvements
+* Lazy Loading improvements
+
+
+= Version 7.8.3 =
+Release Date: Sep 23rd, 2026
+
+* File Cache URL preheat improvements
+* Security improvements
+* Lazy Loading improvements
+* Third-Party plugins compatibility improvements
+
+= Version 7.8.2 =
+Release Date: Aug 25th, 2026
+
+* Legacy code removed
+
+= Version 7.8.1 =
+Release Date: Aug 12th, 2026
+
+* Security improvements
+* Lazy Loading improvements
+
+= Version 7.8.0 =
+Release Date: Jun 22th, 2026
+
+* CSS combination and minification improvements
+* JS combination and minification improvements
+* Cache flushing improvements
+* File Caching improvements
+
+= Version 7.7.11 =
+Release Date: May 7th, 2026
+
+* File Caching improvements
+* Lazy Loading improvements
+* CSS minifier improvements
 
 = Version 7.7.10 =
 Release Date: May 5th, 2026
+
 * Email Service improvements
 
 = Version 7.7.9 =
 Release Date: Apr 15th, 2026
+
 * Security improvements
 
 = Version 7.7.8 =

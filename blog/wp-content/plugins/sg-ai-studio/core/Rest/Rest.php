@@ -29,6 +29,12 @@ use SG_AI_Studio\Rest\Activity_Log;
 use SG_AI_Studio\Rest\Core;
 use SG_AI_Studio\Rest\Gutenberg;
 use SG_AI_Studio\Rest\Post_Types;
+use SG_AI_Studio\Rest\Taxonomies;
+use SG_AI_Studio\Rest\Terms;
+use SG_AI_Studio\Rest\Menus;
+use SG_AI_Studio\Rest\Site_Snapshot;
+use SG_AI_Studio\Rest\Entity;
+use SG_AI_Studio\Rest\Template_Parts;
 
 /**
  * Handles custom REST API endpoints.
@@ -183,6 +189,48 @@ class Rest extends Rest_Controller_Base {
 	private $post_types;
 
 	/**
+	 * Taxonomies API instance
+	 *
+	 * @var Taxonomies
+	 */
+	private $taxonomies;
+
+	/**
+	 * Terms API instance
+	 *
+	 * @var Terms
+	 */
+	private $terms;
+
+	/**
+	 * Menus API instance
+	 *
+	 * @var Menus
+	 */
+	private $menus;
+
+	/**
+	 * Site Snapshot API instance
+	 *
+	 * @var Site_Snapshot
+	 */
+	private $site_snapshot;
+
+	/**
+	 * Entity API instance
+	 *
+	 * @var Entity
+	 */
+	private $entity;
+
+	/**
+	 * Template Parts API instance
+	 *
+	 * @var Template_Parts
+	 */
+	private $template_parts;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -201,6 +249,12 @@ class Rest extends Rest_Controller_Base {
 		$this->core          = new Core();
 		$this->gutenberg     = new Gutenberg();
 		$this->post_types    = new Post_Types();
+		$this->taxonomies    = new Taxonomies();
+		$this->terms         = new Terms();
+		$this->menus         = new Menus();
+		$this->site_snapshot = new Site_Snapshot();
+		$this->entity        = new Entity();
+		$this->template_parts = new Template_Parts();
 
 		// Only initialize WooCommerce endpoints if WooCommerce is active.
 		if ( function_exists( 'is_plugin_active' ) && \is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
@@ -264,6 +318,24 @@ class Rest extends Rest_Controller_Base {
 
 		// Register post types endpoints.
 		$this->post_types->register_rest_routes();
+
+		// Register taxonomy discovery endpoints.
+		$this->taxonomies->register_rest_routes();
+
+		// Register term management endpoints for any REST visible taxonomy.
+		$this->terms->register_rest_routes();
+
+		// Register menu management endpoints.
+		$this->menus->register_rest_routes();
+
+		// Register site snapshot endpoint.
+		$this->site_snapshot->register_rest_routes();
+
+		// Register entity endpoint.
+		$this->entity->register_rest_routes();
+
+		// Register template parts endpoint.
+		$this->template_parts->register_rest_routes();
 
 		// Register WooCommerce endpoints if WooCommerce is active.
 		if ( class_exists( 'WooCommerce' ) ) {
@@ -364,6 +436,19 @@ class Rest extends Rest_Controller_Base {
 			)
 		);
 
+		// Connection status for the WP 7.0+ Connectors page.
+		register_rest_route(
+			$this->namespace,
+			'/connection-status',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'get_connection_status' ),
+				'permission_callback' => function () {
+					return current_user_can( 'manage_options' );
+				},
+			)
+		);
+
 		register_rest_route(
 			$this->namespace,
 			'/acl',
@@ -375,7 +460,69 @@ class Rest extends Rest_Controller_Base {
 				},
 			)
 		);
+		register_rest_route(
+			$this->namespace,
+			'/onboarding-shown',
+			array(
+				array(
+					'methods'             => 'GET',
+					'callback'            => array( $this, 'get_onboarding' ),
+					'permission_callback' => function () {
+						return current_user_can( 'manage_options' );
+					},
+				),
+				array(
+					'methods'             => 'POST',
+					'callback'            => array( $this, 'update_onboarding' ),
+					'permission_callback' => function () {
+						return current_user_can( 'manage_options' );
+					},
+				),
+			)
+		);
 
+	}
+
+	/**
+	 * Apply the `_fields` query parameter to responses across our namespace.
+	 *
+	 * Narrows the items carried in each endpoint's { success, data } envelope to the
+	 * requested fields (see Rest_Controller_Base::filter_fields_in_data), then removes
+	 * `_fields` from the request so WordPress core's `rest_filter_response_fields()`
+	 * (hooked on `rest_post_dispatch` at priority 10) skips its own top-level filtering
+	 * — which, against our envelope, would strip the whole body to an empty array.
+	 * Runs at priority 9, before core's filter. Responses that don't use the `data`
+	 * envelope are left untouched (the param is still removed so core can't break them).
+	 *
+	 * @param \WP_REST_Response|\WP_HTTP_Response|\WP_Error|mixed $response The dispatched response.
+	 * @param \WP_REST_Server                                     $server   The REST server instance.
+	 * @param \WP_REST_Request                                    $request  The request being processed.
+	 * @return mixed The (possibly narrowed) response.
+	 */
+	public function apply_fields_filter( $response, $server, $request ) {
+		$route = $request->get_route();
+
+		if ( ! is_string( $route ) || 0 !== strpos( ltrim( $route, '/' ), $this->namespace . '/' ) ) {
+			return $response;
+		}
+
+		$fields = $this->get_requested_fields( $request );
+
+		// Stop core from re-applying its own `_fields` filter to our envelope.
+		unset( $request['_fields'] );
+
+		if ( empty( $fields ) || ! ( $response instanceof \WP_REST_Response ) ) {
+			return $response;
+		}
+
+		$payload = $response->get_data();
+
+		if ( is_array( $payload ) && array_key_exists( 'data', $payload ) ) {
+			$payload['data'] = $this->filter_fields_in_data( $payload['data'], $fields );
+			$response->set_data( $payload );
+		}
+
+		return $response;
 	}
 
 	/**
@@ -394,6 +541,18 @@ class Rest extends Rest_Controller_Base {
 				),
 				403
 			);
+		}
+
+		// Get post_id if provided.
+		$post_id = $request->get_param( 'post_id' );
+		if ( empty( $post_id ) ) {
+			$post_id = 0;
+		}
+
+		// Verify the user can upload files (generated blocks may embed AI images).
+		$auth_check = $this->verify_upload_authorization( $post_id );
+		if ( true !== $auth_check ) {
+			return $auth_check;
 		}
 
 		// Get prompt.
@@ -425,12 +584,6 @@ class Rest extends Rest_Controller_Base {
 				),
 				500
 			);
-		}
-
-		// Get post_id if provided.
-		$post_id = $request->get_param( 'post_id' );
-		if ( empty( $post_id ) ) {
-			$post_id = 0;
 		}
 
 		try {
@@ -616,6 +769,70 @@ class Rest extends Rest_Controller_Base {
 	 * @param \WP_REST_Request $request Full details about the request.
 	 * @return \WP_REST_Response Response object on success.
 	 */
+	/**
+	 * Returns the plugin connection status for the WP 7.0+ Connectors page.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function get_connection_status() {
+		$connected  = (bool) get_option( 'sg_ai_studio_connected', false );
+		$client_id  = get_option( 'sg_ai_studio_client_id', '' );
+		$client_key = get_option( 'sg_ai_studio_client_key', '' );
+
+		return rest_ensure_response(
+			array(
+				'connected' => $connected && ! empty( $client_id ) && ! empty( $client_key ),
+			)
+		);
+	}
+
+	/**
+	 * Get onboarding show status
+	 *
+	 * @param \WP_REST_Request $request Full details about the request.
+	 * @return \WP_REST_Response Response object on success.
+	 */
+	/**
+	 * Returns the plugin connection status for the WP 7.0+ Connectors page.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function get_onboarding() {
+		$onboarding = (bool) get_option( 'sg_ai_studio_onboarding_shown', false );
+
+		return rest_ensure_response(
+			array(
+				'shown' => (bool) $onboarding,
+			)
+		);
+	}
+
+	/**
+	 * Update onboarding show status
+	 *
+	 * @param \WP_REST_Request $request Full details about the request.
+	 * @return \WP_REST_Response|\WP_Error Response object on success, or WP_Error object on failure.
+	 */
+	public function update_onboarding( $request ) {
+		$onboarding = (bool) $request->get_param( 'shown' );
+		// Update the option.
+		update_option( 'sg_ai_studio_onboarding_shown', $onboarding, 'yes' );
+
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
+			\sg_cachepress_purge_cache();
+			\wp_cache_flush();
+		} else {
+			\wp_cache_flush();
+		}
+
+		return new \WP_REST_Response(
+			array(
+				'shown' => (bool) $onboarding,
+			),
+			200
+		);
+	}
+
 	public function get_usage( $request ) {
 		$auth_token = Helper::generate_ai_studio_token();
 

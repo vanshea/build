@@ -1,7 +1,7 @@
-<?php namespace CharlesRumley;
+<?php namespace SG_AI_Studio\Vendor\CharlesRumley;
 
-use Sepia\PoParser;
-use Sepia\StringHandler;
+use SG_AI_Studio\Vendor\Sepia\PoParser;
+use SG_AI_Studio\Vendor\Sepia\StringHandler;
 
 class PoToJson
 {

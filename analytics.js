@@ -652,16 +652,23 @@
     syncCaseStudySignals();
   }
 
+  let consentBannerOpen = false;
+  let consentReturnFocus = null;
+
   function updateConsentUi() {
     const banner = document.getElementById("consentBanner");
     if (!banner) return;
-
-    if (!state.config.collectEnabled || state.dntEnabled) {
-      banner.hidden = true;
-      return;
+    const shouldShow = Boolean(state.config.collectEnabled && !state.dntEnabled && state.consent === "unset");
+    banner.hidden = !shouldShow;
+    if (shouldShow && !consentBannerOpen) {
+      consentBannerOpen = true;
+      consentReturnFocus = document.activeElement;
+      requestAnimationFrame(() => document.getElementById("consentDenyBtn")?.focus());
+    } else if (!shouldShow && consentBannerOpen) {
+      consentBannerOpen = false;
+      if (consentReturnFocus && consentReturnFocus !== document.body && consentReturnFocus.isConnected) consentReturnFocus.focus();
+      consentReturnFocus = null;
     }
-
-    banner.hidden = state.consent !== "unset";
   }
 
   function bindConsentControls() {
@@ -669,6 +676,15 @@
     const denyBtn = document.getElementById("consentDenyBtn");
     const manageBtn = document.getElementById("consentManageBtn");
     const banner = document.getElementById("consentBanner");
+    banner?.addEventListener("keydown", (event) => {
+      if (event.key !== "Tab") return;
+      const controls = [...banner.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])')].filter(el => !el.hidden);
+      if (!controls.length) { event.preventDefault(); return; }
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (event.shiftKey && (document.activeElement === first || !banner.contains(document.activeElement))) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && (document.activeElement === last || !banner.contains(document.activeElement))) { event.preventDefault(); first.focus(); }
+    });
 
     if (allowBtn) {
       allowBtn.addEventListener("click", () => {

@@ -50,6 +50,7 @@ class Rest_Helper_Dashboard extends Rest_Helper {
 			array(
 				array(
 					'icon'        => 'product-ssl-wildcard',
+					'slug'        => 'site_security',
 					'icon_color'  => 'royal',
 					'text'        => __( 'Set up rules to harden your website security and prevent malware, bruteforce and other security issues.', 'sg-security' ),
 					'button_text' => __( 'Manage Security', 'sg-security' ),
@@ -58,6 +59,7 @@ class Rest_Helper_Dashboard extends Rest_Helper {
 				),
 				array(
 					'icon'        => 'product-ssl-encryption',
+					'slug'        => 'login_security',
 					'icon_color'  => 'grassy',
 					'text'        => __( 'Protect your login from unauthorised visitors, bots and other human or automated attacks.', 'sg-security' ),
 					'button_text' => __( 'Manage Login', 'sg-security' ),
@@ -109,6 +111,72 @@ class Rest_Helper_Dashboard extends Rest_Helper {
 			array(
 				'show' => intval( $show ),
 			)
+		);
+	}
+
+	/**
+	 * Send information about the security score.
+	 *
+	 * @since  1.6.0
+	 */
+	public function security_score() {
+		$scores = array();
+
+		// Loop through each security type.
+		foreach ( $this->recommended_optimizations as $type => $keys ) {
+			$total_optimizations  = count( $keys );
+			$active_optimizations = 0;
+
+			// Count the enabled optimizations.
+			foreach ( $keys as $option ) {
+				// Get the option value.
+				$option_value = get_option( 'sg_security_' . $option, 0 );
+
+				// For login_attempts, check if it's enabled (greater than 0).
+				if ( 'login_attempts' === $option ) {
+					if ( 0 !== (int) $option_value ) {
+						$active_optimizations++;
+					}
+				} else {
+					// Add to the count if the optimization is enabled.
+					if ( 1 === intval( $option_value ) ) {
+						$active_optimizations++;
+					}
+				}
+			}
+
+			// Calculate the percentage.
+			// x% = ( 100 * active) / total.
+			$percentage = intval(
+				round(
+					( 100 * $active_optimizations ) /
+					$total_optimizations
+				)
+			);
+
+			// Assign the proper status.
+			$status = 'warning';
+			if ( 20 > $percentage ) {
+				$status = 'error';
+			}
+
+			if ( 80 < $percentage ) {
+				$status = 'success';
+			}
+
+			// Add the score data for this type.
+			$scores[ $type ] = array(
+				'total_optimizations'  => $total_optimizations,
+				'active_optimizations' => $active_optimizations,
+				'percentage'           => $percentage,
+				'status'               => $status,
+			);
+		}
+
+		return self::send_response(
+			'',
+			1,
+			$scores
 		);
 	}
 

@@ -1,6 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /* THIS IS A GENERATED FILE. DO NOT EDIT DIRECTLY. */
-$optimizer_i18n_strings = array(
+$optimizer_i18n_strings = array( // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Generated compatibility variable.
 	__( 'Cancel', 'sg-cachepress' ),
 	__( 'Confirm', 'sg-cachepress' ),
 	__( 'Get the Most of This Plugin', 'sg-cachepress' ),

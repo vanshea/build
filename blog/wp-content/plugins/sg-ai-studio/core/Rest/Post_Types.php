@@ -14,6 +14,8 @@ use WP_REST_Request;
  * Handles REST API endpoints for post type operations.
  */
 class Post_Types extends Rest_Controller_Base {
+	use Taxonomy_Support;
+
 	/**
 	 * REST API base
 	 *
@@ -94,42 +96,42 @@ class Post_Types extends Rest_Controller_Base {
 			'title'      => 'post-type',
 			'type'       => 'object',
 			'properties' => array(
-				'slug'         => array(
+				'slug'             => array(
 					'description' => 'Post type slug.',
 					'type'        => 'string',
 					'readonly'    => true,
 				),
-				'name'         => array(
+				'name'             => array(
 					'description' => 'Post type name.',
 					'type'        => 'string',
 					'readonly'    => true,
 				),
-				'description'  => array(
+				'description'      => array(
 					'description' => 'Post type description.',
 					'type'        => 'string',
 					'readonly'    => true,
 				),
-				'hierarchical' => array(
+				'hierarchical'     => array(
 					'description' => 'Whether the post type is hierarchical.',
 					'type'        => 'boolean',
 					'readonly'    => true,
 				),
-				'rest_base'    => array(
+				'rest_base'        => array(
 					'description' => 'REST API base route for the post type.',
 					'type'        => 'string',
 					'readonly'    => true,
 				),
-				'capabilities' => array(
+				'capabilities'     => array(
 					'description' => 'Capabilities for the post type.',
 					'type'        => 'object',
 					'readonly'    => true,
 				),
-				'labels'       => array(
+				'labels'           => array(
 					'description' => 'Labels for the post type.',
 					'type'        => 'object',
 					'readonly'    => true,
 				),
-				'supports'     => array(
+				'supports'         => array(
 					'description' => 'Features the post type supports.',
 					'type'        => 'array',
 					'items'       => array(
@@ -137,11 +139,41 @@ class Post_Types extends Rest_Controller_Base {
 					),
 					'readonly'    => true,
 				),
-				'taxonomies'   => array(
-					'description' => 'Taxonomies associated with the post type.',
+				'taxonomies'       => array(
+					'description' => 'Taxonomy slugs associated with the post type. A slug on its own is not enough to build a terms route, use taxonomy_details for that.',
 					'type'        => 'array',
 					'items'       => array(
 						'type' => 'string',
+					),
+					'readonly'    => true,
+				),
+				'taxonomy_details' => array(
+					'description' => 'The taxonomies of this post type that are visible over the REST API, each with the endpoint its terms can be read from. A taxonomy listed in taxonomies but missing here is registered without show_in_rest, so its terms cannot be reached.',
+					'type'        => 'array',
+					'items'       => array(
+						'type'       => 'object',
+						'properties' => array(
+							'slug'           => array(
+								'description' => 'Taxonomy slug.',
+								'type'        => 'string',
+							),
+							'name'           => array(
+								'description' => 'Human readable taxonomy label.',
+								'type'        => 'string',
+							),
+							'hierarchical'   => array(
+								'description' => 'Whether the taxonomy supports parent and child terms.',
+								'type'        => 'boolean',
+							),
+							'rest_base'      => array(
+								'description' => 'The REST base of the taxonomy, which frequently differs from its slug.',
+								'type'        => 'string',
+							),
+							'terms_endpoint' => array(
+								'description' => 'Endpoint the terms of this taxonomy are read from and created on.',
+								'type'        => 'string',
+							),
+						),
 					),
 					'readonly'    => true,
 				),
@@ -241,17 +273,48 @@ class Post_Types extends Rest_Controller_Base {
 
 		// Prepare the response data.
 		$data = array(
-			'slug'         => $post_type_object->name,
-			'name'         => $post_type_object->label,
-			'description'  => $post_type_object->description,
-			'hierarchical' => (bool) $post_type_object->hierarchical,
-			'rest_base'    => ! empty( $post_type_object->rest_base ) ? $post_type_object->rest_base : $post_type_object->name,
-			'capabilities' => (object) $post_type_object->cap,
-			'labels'       => (object) $post_type_object->labels,
-			'supports'     => $supports,
-			'taxonomies'   => array_values( $taxonomies ),
+			'slug'             => $post_type_object->name,
+			'name'             => $post_type_object->label,
+			'description'      => $post_type_object->description,
+			'hierarchical'     => (bool) $post_type_object->hierarchical,
+			'rest_base'        => ! empty( $post_type_object->rest_base ) ? $post_type_object->rest_base : $post_type_object->name,
+			'capabilities'     => (object) $post_type_object->cap,
+			'labels'           => (object) $post_type_object->labels,
+			'supports'         => $supports,
+			'taxonomies'       => array_values( $taxonomies ),
+			'taxonomy_details' => $this->prepare_taxonomy_details( $post_type_object->name ),
 		);
 
 		return $data;
+	}
+
+	/**
+	 * Describe the REST visible taxonomies of a post type
+	 *
+	 * The bare slugs in `taxonomies` are not enough to reach a taxonomy's terms,
+	 * because `rest_base` routinely differs from the slug. Carrying the route
+	 * alongside the slug saves a second discovery round trip.
+	 *
+	 * A taxonomy registered without `show_in_rest` is absent here while still
+	 * being listed in `taxonomies`, which is the only honest thing to report:
+	 * its terms genuinely are unreachable over REST.
+	 *
+	 * @param string $post_type Post type slug.
+	 * @return array List of taxonomy descriptors.
+	 */
+	protected function prepare_taxonomy_details( $post_type ) {
+		$details = array();
+
+		foreach ( $this->get_rest_visible_taxonomies( $post_type ) as $taxonomy ) {
+			$details[] = array(
+				'slug'           => $taxonomy->name,
+				'name'           => $taxonomy->label,
+				'hierarchical'   => (bool) $taxonomy->hierarchical,
+				'rest_base'      => $this->get_taxonomy_rest_base( $taxonomy ),
+				'terms_endpoint' => '/' . $this->namespace . '/taxonomies/' . $taxonomy->name . '/terms',
+			);
+		}
+
+		return $details;
 	}
 }

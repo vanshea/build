@@ -140,7 +140,18 @@ class Rest_Helper_Options extends Rest_Helper {
 		// Get the option key.
 		$key        = $this->validate_and_get_option_value( $request, 'option_key' );
 		$is_network = $this->validate_and_get_option_value( $request, 'is_multisite', false );
-		$result     = $this->options->disable_option( $key, $is_network );
+
+		// Bail, if the option key is not part of our options map.
+		if ( false === $this->validate_option_key( $key ) ) {
+			self::send_json_error(
+				__( 'Invalid option key.', 'sg-cachepress' ),
+				array(
+					'option_key' => $key,
+				)
+			);
+		}
+
+		$result = $this->options->disable_option( $key, $is_network );
 
 		// Bail if .htaccess can't be changed.
 		if ( false === $this->maybe_change_htaccess_rules( $key, 0 ) ) {
@@ -497,5 +508,23 @@ class Rest_Helper_Options extends Rest_Helper {
 			array( $this->htaccess_service, $htaccess_options[ $type ][ $value ] ),
 			array( $htaccess_options[ $type ]['rule'] )
 		);
+	}
+
+	/**
+	 * Validate whether an option key exists in the options map.
+	 *
+	 * @param string $key The option key to validate.
+	 *
+	 * @return bool True if the option key exists, false otherwise.
+	 */
+	public function validate_option_key( $key ) {
+		// Check if the option key exist in the options map.
+		foreach ( $this->options_map as $section ) {
+			if ( in_array( $key, $section, true ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

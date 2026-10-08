@@ -22,7 +22,7 @@ class Admin_Bar {
 		$default_capabilities = array_merge(
 			// Adding the capabilities added by the filter.
 			apply_filters(
-				'sgo_purge_button_capabilities',
+				'sgo_purge_button_capabilities', // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Backward-compatible public filter.
 				array()
 			),
 			// Adding administrator as a default capability.
@@ -77,7 +77,7 @@ class Admin_Bar {
 			return;
 		}
 
-		if ( ! wp_verify_nonce( $_GET['_wpnonce'], 'sg-cachepress-purge' ) ) {
+		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'sg-cachepress-purge' ) ) {
 			return;
 		}
 
@@ -90,7 +90,9 @@ class Admin_Bar {
 			File_Cacher::get_instance()->purge_everything();
 		}
 
-		wp_safe_redirect( $_SERVER['HTTP_REFERER'] );
+		$redirect_url = isset( $_SERVER['HTTP_REFERER'] ) ? sanitize_url( wp_unslash( $_SERVER['HTTP_REFERER'] ) ) : admin_url();
+
+		wp_safe_redirect( $redirect_url );
 		exit;
 	}
 }

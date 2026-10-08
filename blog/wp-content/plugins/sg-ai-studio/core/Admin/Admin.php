@@ -9,6 +9,7 @@ namespace SG_AI_Studio\Admin;
 
 use SG_AI_Studio;
 use SG_AI_Studio\Helper\Helper;
+use SG_AI_Studio\Vendor\SiteGround_i18n\i18n_Service;
 
 /**
  * Handle all hooks for our custom admin page.
@@ -16,17 +17,61 @@ use SG_AI_Studio\Helper\Helper;
 class Admin {
 
 	/**
-	 * Get the subpages id.
+	 * Subpages array.
+	 *
+	 * @var array
+	 */
+	public $subpages = array(
+		'settings'     => 'Settings',
+		'activity-log' => 'Activity Log & Usage',
+	);
+
+	/**
+	 * Build the admin page slug of a subpage.
+	 *
+	 * The slugs are prefixed with the plugin slug, so that generic ids such as
+	 * `settings` or `activity-log` do not collide with the pages of another
+	 * plugin. WordPress resolves `admin.php?page=` by slug alone, so a shared
+	 * slug makes one of the two pages unreachable.
 	 *
 	 * @since  1.0.0
 	 *
-	 * @return array The subpages id's array.
+	 * @param  string $id The subpage id.
+	 * @return string The admin page slug.
+	 */
+	public function get_subpage_slug( $id ) {
+		return \SG_AI_Studio\PLUGIN_SLUG . '-' . $id;
+	}
+
+	/**
+	 * Get the slugs of all pages registered by the plugin.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return array The plugin page slugs.
 	 */
 	public function get_plugin_page_ids() {
-		return array(
-			'toplevel_page_sg-ai-studio',
-			'toplevel_page_sg-ai-studio-network',
-		);
+		$page_ids = array( \SG_AI_Studio\PLUGIN_SLUG );
+
+		foreach ( array_keys( $this->subpages ) as $id ) {
+			$page_ids[] = $this->get_subpage_slug( $id );
+		}
+
+		return $page_ids;
+	}
+
+	/**
+	 * Get the slug of the page being requested.
+	 *
+	 * WordPress sets the `plugin_page` global from the `page` query arg on
+	 * every admin.php request, so it is available before the current screen.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return string The requested page slug, empty when there is none.
+	 */
+	public function get_requested_page_slug() {
+		return isset( $GLOBALS['plugin_page'] ) ? (string) $GLOBALS['plugin_page'] : '';
 	}
 
 	/**
@@ -40,8 +85,8 @@ class Admin {
 		if ( is_admin() && current_user_can( 'manage_options' ) ) {
 			if ( false !== $this->is_plugin_page() ) {
 				wp_enqueue_style(
-					'siteground-ai-studio-settings',
-					\SG_AI_Studio\URL . '/assets/css/settings.css',
+					'siteground-ai-studio-admin',
+					\SG_AI_Studio\URL . '/assets/css/admin.css',
 					array(),
 					\SG_AI_Studio\VERSION,
 					'all'
@@ -66,6 +111,16 @@ class Admin {
 				'default'           => '',
 			)
 		);
+
+		register_setting(
+			'sg_ai_studio_settings',
+			'sg_ai_studio_disable_gutenberg_actions',
+			array(
+				'type'              => 'boolean',
+				'sanitize_callback' => 'rest_sanitize_boolean',
+				'default'           => false,
+			)
+		);
 	}
 
 	/**
@@ -75,13 +130,14 @@ class Admin {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
+		global $wp_version;
 
 		// Bail if we are on different page.
 		if ( false !== $this->is_plugin_page() ) {
 			// Enqueue the chat script.
 			wp_enqueue_script(
-				'siteground-ai-studio-settings',
-				\SG_AI_Studio\URL . '/assets/js/settings.js',
+				'siteground-ai-studio-admin',
+				\SG_AI_Studio\URL . '/assets/js/admin.js',
 				array( 'jquery' ),
 				\SG_AI_Studio\VERSION,
 				true
@@ -93,21 +149,28 @@ class Admin {
 			// Get thread_id from request or from user-specific transient.
 			$thread_id = get_transient( 'sg_ai_studio_thread_id_' . $user_id );
 
-			// Localize the script with necessary data for settings page.
+			// Create i18n service instance.
+			$i18n_service = new i18n_Service( 'sg-ai-studio' );
+
+			// Determine current page.
+			$current_page = $this->get_current_page();
+
 			wp_localize_script(
-				'siteground-ai-studio-settings',
-				'WPAIStudioSettingsConfig',
+				'siteground-ai-studio-admin',
+				'WPAIStudioAdminConfig',
 				array(
 					'config'       => array(
-						'home_url'   => get_home_url(),
-						'rest_base'  => rtrim( esc_url_raw( rest_url() ), '/' ),
-						'localeSlug' => join( '-', explode( '_', \get_user_locale() ) ),
-						'locale'     => self::get_i18n_data_json(),
-						'wp_nonce'   => wp_create_nonce( 'wp_rest' ),
-						'assetsPath' => SG_AI_Studio\URL . '/assets/',
+						'home_url'      => get_home_url(),
+						'rest_base'     => rtrim( esc_url_raw( rest_url() ), '/' ),
+						'localeSlug'    => join( '-', explode( '_', \get_user_locale() ) ),
+						'locale'        => $i18n_service->get_i18n_data_json(),
+						'wp_nonce'      => wp_create_nonce( 'wp_rest' ),
+						'assetsPath'    => SG_AI_Studio\URL . '/assets/',
+						'is_siteground' => \SG_AI_Studio\Helper\Helper::is_siteground(),
+						'wp_version'    => $wp_version,
 					),
-					'page'         => 'settings',
-					'domElementId' => 'wp-ai-studio-settings-container',
+					'page'         => $current_page,
+					'domElementId' => 'wp-ai-studio-admin-container',
 				)
 			);
 		}
@@ -163,77 +226,105 @@ class Admin {
 				$is_editor = true;
 			}
 
+			// Create i18n service instance.
+			$i18n_service = new i18n_Service( 'sg-ai-studio' );
+
+			// Derive the current page context (re-derived on every load, never cached).
+			$page_context = Helper::get_page_context();
+
+			// One-shot server flag to force-open the chat bubble on this load, overriding the
+			// client-side localStorage minimized state. Armed on-demand during a fleet rollout.
+			// Skip in the editor, where the bubble is intentionally kept minimized, so the arming
+			// is not consumed on a load that would not open. Cleared once read so it fires exactly
+			// once per arming (see WPAITOOLS-73).
+			$force_open_chat = ! $is_editor && (bool) get_option( 'sg_ai_studio_force_open_chat', false );
+			if ( $force_open_chat ) {
+				delete_option( 'sg_ai_studio_force_open_chat' );
+			}
+
 			// Localize the script with necessary data.
+			$localized_data = array(
+				'config'       => array(
+					'home_url'         => get_home_url(),
+					'rest_base'        => rtrim( esc_url_raw( rest_url() ), '/' ),
+					'threadId'         => $thread_id,
+					'localeSlug'       => join( '-', explode( '_', \get_user_locale() ) ),
+					'locale'           => $i18n_service->get_i18n_data_json(),
+					'wp_nonce'         => wp_create_nonce( 'wp_rest' ),
+					'assetsPath'       => \SG_AI_Studio\URL . '/assets/',
+					'is_staging'       => Helper::is_staging_environment(),
+					'welcome_msg'      => $welcome_message_string,
+					'minimizeOverride' => $is_editor,
+					'forceOpenChat'    => $force_open_chat,
+					'plugin_version'   => \SG_AI_Studio\VERSION,
+					'wp_version'    => $wp_version,
+					'chat_bubble_admin_hidden' => (bool) get_option( 'sg_ai_studio_chat_bubble_admin_hidden', false ),
+					'defaultDisplayMode'      => get_option( 'sg_ai_studio_chat_display_mode_admin', 'popover' ),
+					'chatSource'       => 'wp_admin_chatbox',
+					'quickActions'     => array(
+						'categories'   => array(
+							array(
+								'type'  => 'most-popular',
+								'title' => __( 'Most Popular', 'sg-ai-studio' ),
+								'icon'  => 'star',
+							),
+							array(
+								'type'  => 'create-and-manage-content',
+								'title' => __( 'Create & Manage Content', 'sg-ai-studio' ),
+								'icon'  => 'edit_square',
+							),
+							array(
+								'type'  => 'optimize-and-protect',
+								'title' => __( 'Optimize & Protect', 'sg-ai-studio' ),
+								'icon'  => 'trending_up',
+							),
+							array(
+								'type'  => 'store',
+								'title' => __( 'Store', 'sg-ai-studio' ),
+								'icon'  => 'shopping_cart',
+							),
+						),
+						'actions'      => array(
+							'most-popular'        => array(
+								__( 'Write an SEO-friendly blog post with AI images and headings', 'sg-ai-studio' ),
+								__( 'Run a full SEO audit of my site', 'sg-ai-studio' ),
+								__( 'Speed up my site automatically (with SiteGround Speed Optimizer)', 'sg-ai-studio' ),
+							),
+							'create-and-manage-content' => array(
+								__( 'Create a new page from scratch (with Gutenberg building blocks)', 'sg-ai-studio' ),
+								__( 'Improve an existing post - rewrite for SEO and readability', 'sg-ai-studio' ),
+								__( 'Create 10 blog post title ideas', 'sg-ai-studio' ),
+								__( 'Clean up my site - remove sample pages and spam comments', 'sg-ai-studio' ),
+							),
+							'optimize-and-protect'   => array(
+								__( 'Speed - Optimize site performance (caching, images, CSS via SiteGround Speed Optimizer)', 'sg-ai-studio' ),
+								__( 'Secure my site - Apply recommended security hardening (via Security Optimizer)', 'sg-ai-studio' ),
+								__( 'Update my site, plugins and themes', 'sg-ai-studio' ),
+								__( 'Run a full SEO audit of my site', 'sg-ai-studio' ),
+							),
+							'store'        => array(
+								__( 'Generate sales report for last week including best selling products', 'sg-ai-studio' ),
+								__( 'Show pending orders and help me process them', 'sg-ai-studio' ),
+								__( 'Create a discount coupon', 'sg-ai-studio' ),
+								__( 'Generate product descriptions (for WooCommerce)', 'sg-ai-studio' ),
+							),
+						),
+						'actionsTitle' => __( 'Suggested actions', 'sg-ai-studio' ),
+					),
+				),
+				'page'         => 'chat',
+				'domElementId' => 'wp-ai-studio-container',
+			);
+
+			// Only expose page_context when the current page could be determined.
+			if ( null !== $page_context ) {
+				$localized_data['config']['page_context'] = $page_context;
+			}
+
 			wp_localize_script(
 				'siteground-ai-studio-chat',
 				'WPAIStudioConfig',
-				array(
-					'config'       => array(
-						'home_url'         => get_home_url(),
-						'rest_base'        => rtrim( esc_url_raw( rest_url() ), '/' ),
-						'threadId'         => $thread_id,
-						'localeSlug'       => join( '-', explode( '_', \get_user_locale() ) ),
-						'locale'           => self::get_i18n_data_json(),
-						'wp_nonce'         => wp_create_nonce( 'wp_rest' ),
-						'assetsPath'       => \SG_AI_Studio\URL . '/assets/',
-						'is_staging'       => Helper::is_staging_environment(),
-						'welcome_msg'      => $welcome_message_string,
-						'minimizeOverride' => $is_editor,
-						'plugin_version'   => \SG_AI_Studio\VERSION,
-						'quickActions'     => array(
-							'categories'   => array(
-								array(
-									'type'  => 'most-popular',
-									'title' => __( 'Most Popular', 'sg-ai-studio' ),
-									'icon'  => 'star',
-								),
-								array(
-									'type'  => 'create-and-generate',
-									'title' => __( 'Create & Generate', 'sg-ai-studio' ),
-									'icon'  => 'edit_square',
-								),
-								array(
-									'type'  => 'audit-and-ptimize',
-									'title' => __( 'Audit & Optimize', 'sg-ai-studio' ),
-									'icon'  => 'trending_up',
-								),
-								array(
-									'type'  => 'bulk-actions',
-									'title' => __( 'Bulk Actions', 'sg-ai-studio' ),
-									'icon'  => 'check_box',
-								),
-							),
-							'actions'      => array(
-								'most-popular'        => array(
-									__( 'Write a SEO-friendly blog post with AI images and headings', 'sg-ai-studio' ),
-									__( 'Speed up my site automatically (with SiteGround Speed Optimizer)', 'sg-ai-studio' ),
-									__( 'Generate sales report for last week including best selling products', 'sg-ai-studio' ),
-								),
-								'create-and-generate' => array(
-									__( 'Write a blog post with images and SEO', 'sg-ai-studio' ),
-									__( 'Create a new page from scratch (with Gutenberg building blocks)', 'sg-ai-studio' ),
-									__( 'Generate product descriptions (for WooCommerce)', 'sg-ai-studio' ),
-									__( 'Create 10 blog post title ideas', 'sg-ai-studio' ),
-								),
-								'audit-and-ptimize'   => array(
-									__( 'Speed - Optimize site performance (caching, images, CSS via SiteGround Speed Optimizer)', 'sg-ai-studio' ),
-									__( 'Security - Check site security status (via Security Optimizer)', 'sg-ai-studio' ),
-									__( 'Run full SEO audit of my site', 'sg-ai-studio' ),
-									__( 'Check if my site, plugins and themes are up-to-date', 'sg-ai-studio' ),
-								),
-								'bulk-actions'        => array(
-									__( 'Create 5 blog post drafts at once', 'sg-ai-studio' ),
-									__( 'Apply a 20% discount to all products in category (keeping Regular price unchanged)', 'sg-ai-studio' ),
-									__( 'Delete all spam comments', 'sg-ai-studio' ),
-									__( 'Create 3 new parent post categories with 5 sub-categories for each', 'sg-ai-studio' ),
-								),
-							),
-							'actionsTitle' => __( 'Suggested actions', 'sg-ai-studio' ),
-						),
-					),
-					'page'         => 'chat',
-					'domElementId' => 'wp-ai-studio-container',
-				)
+				$localized_data
 			);
 		}
 		wp_enqueue_media();
@@ -248,13 +339,29 @@ class Admin {
 	 */
 	public function add_plugin_pages() {
 		add_menu_page(
-			esc_html__( 'AI Studio Agent', 'sg-ai-studio' ), // Page title.
-			esc_html__( 'AI Studio Agent', 'sg-ai-studio' ), // Menu item title.
+			esc_html__( 'AI Agent', 'sg-ai-studio' ), // Page title.
+			esc_html__( 'AI Agent', 'sg-ai-studio' ), // Menu item title.
 			'manage_options',
 			\SG_AI_Studio\PLUGIN_SLUG,                   // Page slug.
 			array( $this, 'render' ),
 			\SG_AI_Studio\URL . '/assets/images/icon-20x20.svg'
 		);
+
+		// Show Settings and Activity Log subpages once the site is connected.
+		if ( ! (bool) get_option( 'sg_ai_studio_connected', false ) ) {
+			return;
+		}
+
+		foreach ( $this->subpages as $id => $title ) {
+			add_submenu_page(
+				\SG_AI_Studio\PLUGIN_SLUG,   // Parent slug.
+				__($title, 'sg-ai-studio'),
+				__($title, 'sg-ai-studio'),
+				'manage_options',
+				$this->get_subpage_slug( $id ),
+				array( $this, 'render' )
+			);
+		}
 	}
 
 	/**
@@ -301,12 +408,12 @@ class Admin {
 	public function render() {
 		$api_key = get_option( 'sg_ai_studio_api_key', '' );
 		wp_add_inline_script(
-			'siteground-ai-studio-settings',
-			'jQuery( document ).ready(function() {WPAIStudioSettings.init(WPAIStudioSettingsConfig);});',
+			'siteground-ai-studio-admin',
+			'jQuery( document ).ready(function() {WPAIStudioAdmin.init(WPAIStudioAdminConfig);});',
 			'after'
 		);
 		?>
-		<div id="wp-ai-studio-settings-container" class="sg-ai-settings <?php echo empty( $api_key ) ? 'no-api-key' : ''; ?>"></div>
+		<div id="wp-ai-studio-admin-container" class="sg-ai-admin <?php echo empty( $api_key ) ? 'no-api-key' : ''; ?>"></div>
 		<?php
 	}
 
@@ -322,15 +429,50 @@ class Admin {
 			return false;
 		}
 
-		$current_screen = get_current_screen();
-
-		if ( in_array( $current_screen->id, $this->get_plugin_page_ids(), true ) ) {
-			return true;
-		}
-
-		return false;
+		return in_array( $this->get_requested_page_slug(), $this->get_plugin_page_ids(), true );
 	}
 
+	/**
+	 * Get the current page slug.
+	 *
+	 * @since  1.0.0
+	 * @return string The current page slug.
+	 */
+	public function get_current_page() {
+		$page_slug = $this->get_requested_page_slug();
+
+		// Check if this is a subpage, and map the slug back to its id.
+		foreach ( array_keys( $this->subpages ) as $id ) {
+			if ( $this->get_subpage_slug( $id ) === $page_slug ) {
+				return $id;
+			}
+		}
+
+		// Default to 'dashboard' for the main page.
+		return 'sg-ai-studio';
+	}
+
+	/**
+	 * Reorder the submenu pages.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @param   array $menu_order The WP menu order.
+	 * @return  array The menu order.
+	 */
+	public function reorder_submenu_pages( $menu_order ) {
+		// Load the global submenu.
+		global $submenu;
+		if ( empty( $submenu['sg-ai-studio'] ) ) {
+			return $menu_order;
+		}
+
+		$submenu['sg-ai-studio'][0][0] = __( 'Dashboard', 'sg-ai-studio' );
+		$submenu['sg-ai-studio'][1][0] = __( 'Settings', 'sg-ai-studio' );
+		$submenu['sg-ai-studio'][2][0] = __( 'Activity & Usage', 'sg-ai-studio' );
+
+		return $menu_order;
+	}
 
 	/**
 	 * Get i18n strings as a JSON-encoded string
@@ -351,7 +493,7 @@ class Admin {
 		$locale = \get_user_locale();
 
 		// Build the full path to the file.
-		$i18n_json = \SG_AI_Studio\DIR . '/languages/sg-ai-studio' . '-' . $locale . '.json';
+		$i18n_json = \SG_AI_Studio\DIR . '/languages/json/sg-ai-studio' . '-' . $locale . '.json';
 
 		// Check if the files exists and it's readable.
 		if ( $wp_filesystem->is_file( $i18n_json ) && $wp_filesystem->is_readable( $i18n_json ) ) {
@@ -372,17 +514,4 @@ class Admin {
 			)
 		);
 	}
-
-	/**
-	 * Loads the textdomain for the plugin.
-	 *
-	 * @since 1.0.2
-	 *
-	 * @return void
-	 */
-	public function load_textdomain() {
-		// Get the user locale.
-		$locale = \get_user_locale();
-	}
-
 }

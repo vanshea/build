@@ -7,38 +7,6 @@ namespace SiteGround_Optimizer\Lazy_Load;
 class Lazy_Load_Iframes extends Abstract_Lazy_Load {
 
 	/**
-	 * Regex parts for checking content
-	 *
-	 * @var string
-	 */
-	public $regexp = '/(?:<iframe[^>]*)(?:(?:\/>)|(?:>.*?<\/iframe>))/i';
-
-	/**
-	 * Regex for already replaced items
-	 *
-	 * @var string
-	 */
-	public $regex_replaced = "/class=['\"][\w\s]*(lazyload)+[\w\s]*['\"]/is";
-
-	/**
-	 * Search patterns.
-	 *
-	 * @var array
-	 */
-	public $patterns = array(
-		'/(<iframe.*?)(src)=["|\']((?!data).*?)["|\']/i',
-	);
-
-	/**
-	 * Replace patterns.
-	 *
-	 * @var array
-	 */
-	public $replacements = array(
-		'$1data-$2="$3"',
-	);
-
-	/**
 	 * Filter for excluding specific iframe by source.
 	 *
 	 * @var string
@@ -46,15 +14,22 @@ class Lazy_Load_Iframes extends Abstract_Lazy_Load {
 	public $exclude_assets_filter = 'sgo_lazy_load_exclude_iframes';
 
 	/**
-	 * Add classname to the html element.
+	 * Get the HTML tag for the iframe lazy load implementation.
 	 *
-	 * @since  5.6.0
-	 *
-	 * @param  string $element HTML element.
-	 *
-	 * @return string          HTML element with lazyload class.
+	 * @return string The HTML tag name.
 	 */
-	public function add_lazyload_class( $element ) {
-		return str_replace( '<iframe', '<iframe class="lazyload"', $element );
+	public function get_tag() {
+		return 'IFRAME';
+	}
+
+	/**
+	 * Check whether the current iframe tag has already been processed.
+	 *
+	 * @param \WP_HTML_Tag_Processor $processor HTML tag processor.
+	 *
+	 * @return bool True if the tag has already been processed, false otherwise.
+	 */
+	public function is_tag_processed( $processor ) {
+		return $processor->has_class( 'lazyload' );
 	}
 }

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc293d1e978bd19a1e0aed5fa8f47c860
+class ComposerStaticInit0bdd2490f3df64761a8cfea216f31e5d
 {
     public static $prefixLengthsPsr4 = array (
         'S' =>
@@ -12,7 +12,6 @@ class ComposerStaticInitc293d1e978bd19a1e0aed5fa8f47c860
             'SiteGround_i18n\\' => 16,
             'SiteGround_Helper\\' => 18,
             'SiteGround_Emails\\' => 18,
-            'SiteGround_Data\\' => 16,
             'SG_Security\\' => 12,
         ),
         'P' =>
@@ -40,10 +39,6 @@ class ComposerStaticInitc293d1e978bd19a1e0aed5fa8f47c860
         'SiteGround_Emails\\' =>
         array (
             0 => __DIR__ . '/..' . '/siteground/siteground-emails/src',
-        ),
-        'SiteGround_Data\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/siteground/siteground-data/src',
         ),
         'SG_Security\\' =>
         array (
@@ -89,10 +84,10 @@ class ComposerStaticInitc293d1e978bd19a1e0aed5fa8f47c860
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc293d1e978bd19a1e0aed5fa8f47c860::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc293d1e978bd19a1e0aed5fa8f47c860::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitc293d1e978bd19a1e0aed5fa8f47c860::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitc293d1e978bd19a1e0aed5fa8f47c860::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0bdd2490f3df64761a8cfea216f31e5d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0bdd2490f3df64761a8cfea216f31e5d::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit0bdd2490f3df64761a8cfea216f31e5d::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit0bdd2490f3df64761a8cfea216f31e5d::$classMap;
 
         }, null, ClassLoader::class);
     }

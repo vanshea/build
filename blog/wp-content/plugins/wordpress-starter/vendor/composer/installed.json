@@ -265,15 +265,39 @@
             "install-path": "../sepia/po-parser"
         },
         {
+            "name": "siteground/siteground-dashboard-notifications",
+            "version": "dev-main",
+            "version_normalized": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.siteground.com:wordpress/siteground-dashboard-notifications.git",
+                "reference": "ea6e6600f1f00e248875155e0fbe13f10db6ee17"
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "time": "2026-04-06T09:12:48+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-4": {
+                    "SiteGround_Dashboard\\": "src/"
+                }
+            },
+            "description": "SiteGround Dashboard Notifications - Fetches per-site important notifications from SGAPI via Avalon",
+            "install-path": "../siteground/siteground-dashboard-notifications"
+        },
+        {
             "name": "siteground/siteground-helper",
             "version": "dev-master",
             "version_normalized": "dev-master",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.siteground.com:wordpress/siteground-helper.git",
-                "reference": "5601ba384a643e54359b8249e2be591e90161a7d"
+                "reference": "1766f2fe043a0b4f3ce42bae0dcd3d7e50754b86"
             },
-            "time": "2023-09-07T11:49:29+00:00",
+            "time": "2026-06-02T10:22:53+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "source",

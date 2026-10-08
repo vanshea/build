@@ -57,7 +57,7 @@ class Rest_Wizards extends Rest {
 		! \is_multisite() ? update_option( 'siteground_wizard_activation_redirect', 'no' ) : update_site_option( 'siteground_wizard_activation_redirect', 'no' );
 
 		return self::send_response( array(
-			'exit_url' => ! \is_multisite() ? admin_url( 'admin.php?page=siteground-dashboard.php' ) : admin_url()
+			'exit_url' => ! \is_multisite() ? admin_url( 'admin.php?page=siteground-dashboard' ) : admin_url()
 		) );
 	}
 }

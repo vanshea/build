@@ -35,6 +35,13 @@ jobs:
             echo "Set DEPLOY_PATH in the Siteground Build environment."
             exit 1
           }
+          case "$DEPLOY_PATH" in
+            */) ;;
+            *) echo "DEPLOY_PATH must end with a slash."; exit 1 ;;
+          esac
+
+      - name: Validate links and assets for the Build domain
+        run: python3 .github/scripts/check-static-links.py . --origin https://build.vanshea.com
 
       - name: Upload to Build
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
@@ -59,6 +66,15 @@ jobs:
             **/.DS_Store
             **/_notes/**
             **/README.md
+            **/backups/**
+            **/originals/**
+            **/*.ejs
+            **/*.log
+            **/php_errorlog
+            .well-known/**
+            views/**
+            log42626
+            FileZilla.xml
             build/**
             livesite/**
             blog/**

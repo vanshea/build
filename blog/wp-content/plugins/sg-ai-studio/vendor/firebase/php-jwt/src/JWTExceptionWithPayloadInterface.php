@@ -1,5 +1,5 @@
 <?php
-namespace Firebase\JWT;
+namespace SG_AI_Studio\Vendor\Firebase\JWT;
 
 interface JWTExceptionWithPayloadInterface
 {

@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Sepia' => array($vendorDir . '/sepia/po-parser/src'),
+    'SG_AI_Studio\\Vendor\\Sepia' => array($vendorDir . '/sepia/po-parser/src'),
 );

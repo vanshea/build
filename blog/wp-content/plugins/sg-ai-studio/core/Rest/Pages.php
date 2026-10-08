@@ -18,6 +18,9 @@ use SG_AI_Studio\Helper\Helper;
  * Handles REST API endpoints for page operations.
  */
 class Pages extends Rest_Controller_Base {
+	use Revisions;
+	use Object_Terms;
+
 	/**
 	 * REST API base
 	 *
@@ -64,13 +67,14 @@ class Pages extends Rest_Controller_Base {
 					'callback'            => array( $this, 'get_page' ),
 					'permission_callback' => array( $this, 'get_page_permissions_check' ),
 					'args'                => array(
-						'id' => array(
+						'id'          => array(
 							'description' => 'Unique identifier for the page.',
 							'type'        => 'integer',
 							'required'    => true,
 						),
+						'embed_terms' => $this->get_embed_terms_arg(),
 					),
-					'description'         => 'Retrieves a specific page by ID.',
+					'description'         => 'Retrieves a specific page by ID. Pass embed_terms=true to get the terms assigned to the page as named terms.',
 				),
 				array(
 					'methods'             => 'PUT',
@@ -131,6 +135,12 @@ class Pages extends Rest_Controller_Base {
 				'schema' => array( $this, 'get_batch_schema' ),
 			)
 		);
+
+		// Register revision endpoints (list, read, restore, prune).
+		$this->register_revision_routes( $this->base, 'page' );
+
+		// Register object term endpoints (read assigned terms, assign terms).
+		$this->register_object_terms_routes( $this->base, 'page' );
 	}
 
 	/**
@@ -285,7 +295,8 @@ class Pages extends Rest_Controller_Base {
 	 */
 	protected function get_pages_args() {
 		return array(
-			'page'     => array(
+			'embed_terms' => $this->get_embed_terms_arg(),
+			'page'        => array(
 				'description'       => 'Current page of the collection.',
 				'type'              => 'integer',
 				'default'           => 1,
@@ -293,7 +304,7 @@ class Pages extends Rest_Controller_Base {
 				'minimum'           => 1,
 				'required'          => false,
 			),
-			'per_page' => array(
+			'per_page'    => array(
 				'description'       => 'Maximum number of items to be returned in result set.',
 				'type'              => 'integer',
 				'default'           => 10,
@@ -302,12 +313,12 @@ class Pages extends Rest_Controller_Base {
 				'sanitize_callback' => 'absint',
 				'required'          => false,
 			),
-			'search'   => array(
+			'search'      => array(
 				'description' => 'Limit results to those matching a string.',
 				'type'        => 'string',
 				'required'    => false,
 			),
-			'author'   => array(
+			'author'      => array(
 				'description' => 'Limit result set to pages assigned to specific authors.',
 				'type'        => 'array',
 				'items'       => array(
@@ -315,7 +326,7 @@ class Pages extends Rest_Controller_Base {
 				),
 				'required'    => false,
 			),
-			'status'   => array(
+			'status'      => array(
 				'description' => 'Limit result set to pages with specific statuses.',
 				'type'        => 'array',
 				'items'       => array(
@@ -324,7 +335,7 @@ class Pages extends Rest_Controller_Base {
 				),
 				'required'    => false,
 			),
-			'parent'   => array(
+			'parent'      => array(
 				'description' => 'Limit result set to pages with specific parent IDs.',
 				'type'        => 'array',
 				'items'       => array(
@@ -332,21 +343,21 @@ class Pages extends Rest_Controller_Base {
 				),
 				'required'    => false,
 			),
-			'orderby'  => array(
+			'orderby'     => array(
 				'description' => 'Sort collection by object attribute.',
 				'type'        => 'string',
 				'default'     => 'date',
 				'enum'        => array( 'date', 'title', 'modified', 'author', 'menu_order' ),
 				'required'    => false,
 			),
-			'order'    => array(
+			'order'       => array(
 				'description' => 'Order sort attribute ascending or descending.',
 				'type'        => 'string',
 				'default'     => 'desc',
 				'enum'        => array( 'asc', 'desc' ),
 				'required'    => false,
 			),
-			'include'  => array(
+			'include'     => array(
 				'description' => 'Limit result set to specific IDs.',
 				'type'        => 'array',
 				'items'       => array(
@@ -354,7 +365,7 @@ class Pages extends Rest_Controller_Base {
 				),
 				'required'    => false,
 			),
-			'exclude'  => array( // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
+			'exclude'     => array( // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
 				'description' => 'Ensure result set excludes specific IDs.',
 				'type'        => 'array',
 				'items'       => array(
@@ -564,6 +575,11 @@ class Pages extends Rest_Controller_Base {
 					'description' => 'Meta fields.',
 					'type'        => 'object',
 				),
+				'terms'          => array(
+					'description' => 'Named terms assigned to the page, keyed by taxonomy slug. Present only when embed_terms=true was requested. A taxonomy with nothing assigned is an empty array.',
+					'type'        => 'object',
+					'readonly'    => true,
+				),
 			),
 		);
 	}
@@ -637,25 +653,27 @@ class Pages extends Rest_Controller_Base {
 		// Get the page.
 		$page = get_post( $page_id );
 
-		// Format the response.
-		$response = $this->prepare_page_for_response( $page );
-
 		// Log the activity.
 		/* translators: %1$s is the page title, %2$d is the page ID. */
 		Activity_Log_Helper::add_log_entry( 'Pages', sprintf( __( 'Page Created: %1$s (ID: %2$d)', 'sg-ai-studio' ), $page->post_title, $page_id ) );
 
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
 			\wp_cache_flush();
 		}
 
+		// Return lean response for write operation.
 		return new WP_REST_Response(
 			array(
-				'success' => true,
-				'data'    => $response,
+				'success'  => true,
+				'id'       => $page->ID,
+				'title'    => $page->post_title,
+				'status'   => $page->post_status,
+				'link'     => get_permalink( $page->ID ),
+				'modified' => mysql_to_rfc3339( $page->post_modified ),
 			),
 			201
 		);
@@ -680,6 +698,10 @@ class Pages extends Rest_Controller_Base {
 				404
 			);
 		}
+
+		// Save a pre-edit revision so the edit has a deterministic restore point.
+		// Respects the site's revision config; 0 when disabled/unsupported.
+		$revision_id = Helper::save_pre_edit_revision( $page_id );
 
 		// Prepare page data.
 		$page_data              = $this->prepare_page_for_database( $request );
@@ -719,25 +741,29 @@ class Pages extends Rest_Controller_Base {
 		// Get the updated page.
 		$page = get_post( $page_id );
 
-		// Format the response.
-		$response = $this->prepare_page_for_response( $page );
-
 		// Log the activity.
 		/* translators: %1$s is the page title, %2$d is the page ID. */
 		Activity_Log_Helper::add_log_entry( 'Pages', sprintf( __( 'Page Updated: %1$s (ID: %2$d)', 'sg-ai-studio' ), $page->post_title, $page_id ) );
 
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
 			\wp_cache_flush();
 		}
 
+		// Return lean response for write operation.
 		return new WP_REST_Response(
 			array(
-				'success' => true,
-				'data'    => $response,
+				'success'           => true,
+				'id'                => $page->ID,
+				'title'             => $page->post_title,
+				'status'            => $page->post_status,
+				'link'              => get_permalink( $page->ID ),
+				'modified'          => mysql_to_rfc3339( $page->post_modified ),
+				'revision_id'       => $revision_id ? $revision_id : null,
+				'revisions_enabled' => wp_revisions_enabled( $page ),
 			),
 			200
 		);
@@ -775,9 +801,6 @@ class Pages extends Rest_Controller_Base {
 			);
 		}
 
-		// Get the page before deleting it.
-		$previous = $this->prepare_page_for_response( $page );
-
 		// Delete the page.
 		$result = wp_delete_post( $page_id, $force );
 
@@ -791,33 +814,34 @@ class Pages extends Rest_Controller_Base {
 			);
 		}
 
+		// Log the activity.
+		if ( $force ) {
+			/* translators: %1$s is the page title, %2$d is the page ID. */
+			$log_description = sprintf( __( 'Page Permanently Deleted: %1$s (ID: %2$d)', 'sg-ai-studio' ), $page->post_title, $page_id );
+		} else {
+			/* translators: %1$s is the page title, %2$d is the page ID. */
+			$log_description = sprintf( __( 'Page Moved to Trash: %1$s (ID: %2$d)', 'sg-ai-studio' ), $page->post_title, $page_id );
+		}
+
+		Activity_Log_Helper::add_log_entry( 'Pages', $log_description );
+
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
 			\wp_cache_flush();
 		}
 
-		if ( $force ) {
-			return new WP_REST_Response(
-				array(
-					'success' => true,
-					'message' => __( 'The page has been permanently deleted.', 'sg-ai-studio' ),
-					'data'    => $previous,
-				),
-				200
-			);
-		} else {
-			return new WP_REST_Response(
-				array(
-					'success' => true,
-					'message' => __( 'The page has been moved to the trash.', 'sg-ai-studio' ),
-					'data'    => $previous,
-				),
-				200
-			);
-		}
+		// Return lean response for delete operation.
+		return new WP_REST_Response(
+			array(
+				'success' => true,
+				'id'      => $page_id,
+				'status'  => $force ? 'deleted' : 'trashed',
+			),
+			200
+		);
 	}
 
 	/**
@@ -871,10 +895,17 @@ class Pages extends Rest_Controller_Base {
 		$query = new WP_Query( $args );
 		$pages = $query->posts;
 
+		$embed_terms = (bool) $request['embed_terms'];
+
+		// Prime the object term cache once so embedding terms is a single query, not one per page.
+		if ( $embed_terms && ! empty( $pages ) ) {
+			update_object_term_cache( wp_list_pluck( $pages, 'ID' ), 'page' );
+		}
+
 		// Format the response.
 		$data = array();
 		foreach ( $pages as $page ) {
-			$data[] = $this->prepare_page_for_response( $page );
+			$data[] = $this->prepare_page_for_response( $page, 'list', $embed_terms );
 		}
 
 		// Prepare pagination headers.
@@ -919,7 +950,7 @@ class Pages extends Rest_Controller_Base {
 		}
 
 		// Format the response.
-		$response = $this->prepare_page_for_response( $page );
+		$response = $this->prepare_page_for_response( $page, 'view', (bool) $request['embed_terms'] );
 
 		return new WP_REST_Response(
 			array(
@@ -963,7 +994,7 @@ class Pages extends Rest_Controller_Base {
 		$success = empty( $errors );
 
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
@@ -1023,7 +1054,7 @@ class Pages extends Rest_Controller_Base {
 		$success = empty( $errors );
 
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
@@ -1077,14 +1108,14 @@ class Pages extends Rest_Controller_Base {
 			if ( $response->is_error() || ! $response->get_data()['success'] ) {
 				$errors[ $page_id ] = $response->get_data();
 			} else {
-				$results[ $page_id ] = $response->get_data()['message'];
+				$results[ $page_id ] = $response->get_data()['status'];
 			}
 		}
 
 		$success = empty( $errors );
 
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
@@ -1165,10 +1196,14 @@ class Pages extends Rest_Controller_Base {
 	/**
 	 * Prepare a page for the response
 	 *
-	 * @param WP_Post $page Page object.
+	 * @param \WP_Post $page        Page object.
+	 * @param string   $context     Request context: 'view' for single reads (full fidelity)
+	 *                              or 'list' for collection responses (heavy fields omitted).
+	 * @param bool     $embed_terms Whether to include the named terms of every taxonomy
+	 *                              registered on the page post type.
 	 * @return array Prepared page data.
 	 */
-	protected function prepare_page_for_response( $page ) {
+	protected function prepare_page_for_response( $page, $context = 'view', $embed_terms = false ) {
 		// Get the featured media ID.
 		$featured_media_id = get_post_thumbnail_id( $page->ID );
 
@@ -1179,25 +1214,14 @@ class Pages extends Rest_Controller_Base {
 		$data = array(
 			'id'             => $page->ID,
 			'date'           => mysql_to_rfc3339( $page->post_date ),
-			'date_gmt'       => mysql_to_rfc3339( $page->post_date_gmt ),
 			'modified'       => mysql_to_rfc3339( $page->post_modified ),
-			'modified_gmt'   => mysql_to_rfc3339( $page->post_modified_gmt ),
 			'slug'           => $page->post_name,
 			'status'         => $page->post_status,
 			'type'           => $page->post_type,
 			'link'           => get_permalink( $page->ID ),
-			'title'          => array(
-				'raw'      => $page->post_title,
-				'rendered' => get_the_title( $page->ID ),
-			),
-			'content'        => array(
-				'raw'      => $page->post_content,
-				'rendered' => apply_filters( 'the_content', $page->post_content ), // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
-			),
-			'excerpt'        => array(
-				'raw'      => $page->post_excerpt,
-				'rendered' => apply_filters( 'the_excerpt', $page->post_excerpt ), // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
-			),
+			'title'          => $page->post_title,
+			'content'        => $page->post_content,
+			'excerpt'        => $page->post_excerpt,
 			'author'         => (int) $page->post_author,
 			'featured_media' => (int) $featured_media_id,
 			'parent'         => (int) $page->post_parent,
@@ -1206,6 +1230,18 @@ class Pages extends Rest_Controller_Base {
 			'ping_status'    => $page->ping_status,
 			'template'       => $template ? $template : 'default',
 		);
+
+		// Named terms for every taxonomy on the page, so callers never have to
+		// report a bare term ID.
+		if ( $embed_terms ) {
+			$data['terms'] = $this->get_object_terms_map( $page->ID, $page->post_type );
+		}
+
+		// Omit heavy fields in list context to keep collection responses small.
+		// Single reads (context 'view') retain full content.
+		if ( 'list' === $context ) {
+			unset( $data['content'], $data['excerpt'] );
+		}
 
 		return $data;
 	}

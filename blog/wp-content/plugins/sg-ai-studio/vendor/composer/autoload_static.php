@@ -4,90 +4,51 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0382e0644fae7cd5247775f6ea49cb88
+class ComposerStaticInitc37b2fe88586dc937843695cb4ee869c
 {
-    public static $files = array (
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
-            'SiteGround_i18n\\' => 16,
+            'SG_AI_Studio\\Vendor\\SiteGround_i18n\\' => 36,
+            'SG_AI_Studio\\Vendor\\SiteGround_Helper\\' => 38,
+            'SG_AI_Studio\\Vendor\\Firebase\\JWT\\' => 33,
+            'SG_AI_Studio\\Vendor\\CharlesRumley\\Tests\\' => 40,
+            'SG_AI_Studio\\Vendor\\CharlesRumley\\' => 34,
             'SG_AI_Studio\\' => 13,
-        ),
-        'P' => 
-        array (
-            'Psr\\Http\\Message\\' => 17,
-            'Psr\\Http\\Client\\' => 16,
-        ),
-        'G' => 
-        array (
-            'GuzzleHttp\\Psr7\\' => 16,
-            'GuzzleHttp\\Promise\\' => 19,
-            'GuzzleHttp\\' => 11,
-        ),
-        'F' => 
-        array (
-            'Firebase\\JWT\\' => 13,
-        ),
-        'C' => 
-        array (
-            'CharlesRumley\\Tests\\' => 20,
-            'CharlesRumley\\' => 14,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'SiteGround_i18n\\' => 
+        'SG_AI_Studio\\Vendor\\SiteGround_i18n\\' => 
         array (
             0 => __DIR__ . '/..' . '/siteground/siteground-i18n/src',
+        ),
+        'SG_AI_Studio\\Vendor\\SiteGround_Helper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/siteground/siteground-helper/src',
+        ),
+        'SG_AI_Studio\\Vendor\\Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
+        ),
+        'SG_AI_Studio\\Vendor\\CharlesRumley\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/charles-rumley/php-po-to-json/tests',
+        ),
+        'SG_AI_Studio\\Vendor\\CharlesRumley\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/charles-rumley/php-po-to-json/src',
         ),
         'SG_AI_Studio\\' => 
         array (
             0 => __DIR__ . '/../..' . '/core',
-        ),
-        'Psr\\Http\\Message\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
-        ),
-        'Psr\\Http\\Client\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/http-client/src',
-        ),
-        'GuzzleHttp\\Psr7\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
-        ),
-        'GuzzleHttp\\Promise\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
-        ),
-        'GuzzleHttp\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
-        ),
-        'Firebase\\JWT\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
-        ),
-        'CharlesRumley\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/charles-rumley/php-po-to-json/tests',
-        ),
-        'CharlesRumley\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/charles-rumley/php-po-to-json/src',
         ),
     );
 
     public static $prefixesPsr0 = array (
         'S' => 
         array (
-            'Sepia' => 
+            'SG_AI_Studio\\Vendor\\Sepia' => 
             array (
                 0 => __DIR__ . '/..' . '/sepia/po-parser/src',
             ),
@@ -96,15 +57,97 @@ class ComposerStaticInit0382e0644fae7cd5247775f6ea49cb88
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'SG_AI_Studio\\Activator\\Activator' => __DIR__ . '/../..' . '/core/Activator/Activator.php',
+        'SG_AI_Studio\\Activity_Log\\Activity_Log' => __DIR__ . '/../..' . '/core/Activity_Log/Activity_Log.php',
+        'SG_AI_Studio\\Activity_Log\\Activity_Log_Helper' => __DIR__ . '/../..' . '/core/Activity_Log/Activity_Log_Helper.php',
+        'SG_AI_Studio\\Admin\\Admin' => __DIR__ . '/../..' . '/core/Admin/Admin.php',
+        'SG_AI_Studio\\Ai_Provider\\Ai_Provider_Hooks' => __DIR__ . '/../..' . '/core/Ai_Provider/Ai_Provider_Hooks.php',
+        'SG_AI_Studio\\Ai_Provider\\Ai_Studio_Image_Generation_Model' => __DIR__ . '/../..' . '/core/Ai_Provider/Ai_Studio_Image_Generation_Model.php',
+        'SG_AI_Studio\\Ai_Provider\\Ai_Studio_Model_Metadata_Directory' => __DIR__ . '/../..' . '/core/Ai_Provider/Ai_Studio_Model_Metadata_Directory.php',
+        'SG_AI_Studio\\Ai_Provider\\Ai_Studio_Provider' => __DIR__ . '/../..' . '/core/Ai_Provider/Ai_Studio_Provider.php',
+        'SG_AI_Studio\\Ai_Provider\\Ai_Studio_Provider_Availability' => __DIR__ . '/../..' . '/core/Ai_Provider/Ai_Studio_Provider_Availability.php',
+        'SG_AI_Studio\\Ai_Provider\\Ai_Studio_Text_Generation_Model' => __DIR__ . '/../..' . '/core/Ai_Provider/Ai_Studio_Text_Generation_Model.php',
+        'SG_AI_Studio\\Blocks\\BlocksManager' => __DIR__ . '/../..' . '/core/Blocks/BlocksManager.php',
+        'SG_AI_Studio\\CLI\\AI_Studio_CLI' => __DIR__ . '/../..' . '/core/CLI/AI_Studio_CLI.php',
+        'SG_AI_Studio\\Frontend\\Frontend' => __DIR__ . '/../..' . '/core/Frontend/Frontend.php',
+        'SG_AI_Studio\\Gutenberg\\Gutenberg' => __DIR__ . '/../..' . '/core/Gutenberg/Gutenberg.php',
+        'SG_AI_Studio\\Helper\\Helper' => __DIR__ . '/../..' . '/core/Helper/Helper.php',
+        'SG_AI_Studio\\Install_Service\\Install' => __DIR__ . '/../..' . '/core/Install_Service/Install.php',
+        'SG_AI_Studio\\Install_Service\\Install_1_1_8' => __DIR__ . '/../..' . '/core/Install_Service/Install_1_1_8.php',
+        'SG_AI_Studio\\Install_Service\\Install_1_2_1' => __DIR__ . '/../..' . '/core/Install_Service/Install_1_2_1.php',
+        'SG_AI_Studio\\Install_Service\\Install_Service' => __DIR__ . '/../..' . '/core/Install_Service/Install_Service.php',
+        'SG_AI_Studio\\Loader\\Loader' => __DIR__ . '/../..' . '/core/Loader/Loader.php',
+        'SG_AI_Studio\\Rest\\Activity_Log' => __DIR__ . '/../..' . '/core/Rest/Activity_Log.php',
+        'SG_AI_Studio\\Rest\\Auth' => __DIR__ . '/../..' . '/core/Rest/Auth.php',
+        'SG_AI_Studio\\Rest\\Categories' => __DIR__ . '/../..' . '/core/Rest/Categories.php',
+        'SG_AI_Studio\\Rest\\Comments' => __DIR__ . '/../..' . '/core/Rest/Comments.php',
+        'SG_AI_Studio\\Rest\\Core' => __DIR__ . '/../..' . '/core/Rest/Core.php',
+        'SG_AI_Studio\\Rest\\Coupons' => __DIR__ . '/../..' . '/core/Rest/Coupons.php',
+        'SG_AI_Studio\\Rest\\Entity' => __DIR__ . '/../..' . '/core/Rest/Entity.php',
+        'SG_AI_Studio\\Rest\\Entity_Patch' => __DIR__ . '/../..' . '/core/Rest/Entity_Patch.php',
+        'SG_AI_Studio\\Rest\\Gutenberg' => __DIR__ . '/../..' . '/core/Rest/Gutenberg.php',
+        'SG_AI_Studio\\Rest\\Media' => __DIR__ . '/../..' . '/core/Rest/Media.php',
+        'SG_AI_Studio\\Rest\\Menus' => __DIR__ . '/../..' . '/core/Rest/Menus.php',
+        'SG_AI_Studio\\Rest\\Object_Terms' => __DIR__ . '/../..' . '/core/Rest/Object_Terms.php',
+        'SG_AI_Studio\\Rest\\Orders' => __DIR__ . '/../..' . '/core/Rest/Orders.php',
+        'SG_AI_Studio\\Rest\\Pages' => __DIR__ . '/../..' . '/core/Rest/Pages.php',
+        'SG_AI_Studio\\Rest\\Plugins' => __DIR__ . '/../..' . '/core/Rest/Plugins.php',
+        'SG_AI_Studio\\Rest\\Post_Types' => __DIR__ . '/../..' . '/core/Rest/Post_Types.php',
+        'SG_AI_Studio\\Rest\\Posts' => __DIR__ . '/../..' . '/core/Rest/Posts.php',
+        'SG_AI_Studio\\Rest\\Products' => __DIR__ . '/../..' . '/core/Rest/Products.php',
+        'SG_AI_Studio\\Rest\\Reports' => __DIR__ . '/../..' . '/core/Rest/Reports.php',
+        'SG_AI_Studio\\Rest\\Rest' => __DIR__ . '/../..' . '/core/Rest/Rest.php',
+        'SG_AI_Studio\\Rest\\Rest_Controller_Base' => __DIR__ . '/../..' . '/core/Rest/Rest_Controller_Base.php',
+        'SG_AI_Studio\\Rest\\Revisions' => __DIR__ . '/../..' . '/core/Rest/Revisions.php',
+        'SG_AI_Studio\\Rest\\Settings' => __DIR__ . '/../..' . '/core/Rest/Settings.php',
+        'SG_AI_Studio\\Rest\\Settings_Page' => __DIR__ . '/../..' . '/core/Rest/Settings_Page.php',
+        'SG_AI_Studio\\Rest\\Site_Intelligence' => __DIR__ . '/../..' . '/core/Rest/Site_Intelligence.php',
+        'SG_AI_Studio\\Rest\\Site_Snapshot' => __DIR__ . '/../..' . '/core/Rest/Site_Snapshot.php',
+        'SG_AI_Studio\\Rest\\Tags' => __DIR__ . '/../..' . '/core/Rest/Tags.php',
+        'SG_AI_Studio\\Rest\\Taxonomies' => __DIR__ . '/../..' . '/core/Rest/Taxonomies.php',
+        'SG_AI_Studio\\Rest\\Taxonomy_Support' => __DIR__ . '/../..' . '/core/Rest/Taxonomy_Support.php',
+        'SG_AI_Studio\\Rest\\Terms' => __DIR__ . '/../..' . '/core/Rest/Terms.php',
+        'SG_AI_Studio\\Rest\\Themes' => __DIR__ . '/../..' . '/core/Rest/Themes.php',
+        'SG_AI_Studio\\Rest\\Users' => __DIR__ . '/../..' . '/core/Rest/Users.php',
+        'SG_AI_Studio\\Rest\\WooCommerce_Categories' => __DIR__ . '/../..' . '/core/Rest/WooCommerce_Categories.php',
+        'SG_AI_Studio\\Site_Intelligence\\Collectors\\Content' => __DIR__ . '/../..' . '/core/Site_Intelligence/Collectors/Content.php',
+        'SG_AI_Studio\\Site_Intelligence\\Collectors\\Environment' => __DIR__ . '/../..' . '/core/Site_Intelligence/Collectors/Environment.php',
+        'SG_AI_Studio\\Site_Intelligence\\Collectors\\Gutenberg' => __DIR__ . '/../..' . '/core/Site_Intelligence/Collectors/Gutenberg.php',
+        'SG_AI_Studio\\Site_Intelligence\\Collectors\\Identity' => __DIR__ . '/../..' . '/core/Site_Intelligence/Collectors/Identity.php',
+        'SG_AI_Studio\\Site_Intelligence\\Collectors\\Setup' => __DIR__ . '/../..' . '/core/Site_Intelligence/Collectors/Setup.php',
+        'SG_AI_Studio\\Site_Intelligence\\Collectors\\WooCommerce' => __DIR__ . '/../..' . '/core/Site_Intelligence/Collectors/WooCommerce.php',
+        'SG_AI_Studio\\Site_Intelligence\\Snapshot_Builder' => __DIR__ . '/../..' . '/core/Site_Intelligence/Snapshot_Builder.php',
+        'SG_AI_Studio\\Site_Intelligence\\Snapshot_Store' => __DIR__ . '/../..' . '/core/Site_Intelligence/Snapshot_Store.php',
+        'SG_AI_Studio\\Site_Intelligence\\Support\\Editing_Surface_Classifier' => __DIR__ . '/../..' . '/core/Site_Intelligence/Support/Editing_Surface_Classifier.php',
+        'SG_AI_Studio\\Site_Intelligence\\Support\\Normalizer' => __DIR__ . '/../..' . '/core/Site_Intelligence/Support/Normalizer.php',
+        'SG_AI_Studio\\Site_Intelligence\\Support\\Theme_Context' => __DIR__ . '/../..' . '/core/Site_Intelligence/Support/Theme_Context.php',
+        'SG_AI_Studio\\Site_Tools_Client\\Connect_Agent' => __DIR__ . '/../..' . '/core/Site_Tools_Client/Connect_Agent.php',
+        'SG_AI_Studio\\Site_Tools_Client\\Site_Tools_Client' => __DIR__ . '/../..' . '/core/Site_Tools_Client/Site_Tools_Client.php',
+        'SG_AI_Studio\\Vendor\\CharlesRumley\\PoToJson' => __DIR__ . '/..' . '/charles-rumley/php-po-to-json/src/PoToJson.php',
+        'SG_AI_Studio\\Vendor\\CharlesRumley\\Tests\\PoToJsonTest' => __DIR__ . '/..' . '/charles-rumley/php-po-to-json/tests/PoToJsonTest.php',
+        'SG_AI_Studio\\Vendor\\Firebase\\JWT\\BeforeValidException' => __DIR__ . '/..' . '/firebase/php-jwt/src/BeforeValidException.php',
+        'SG_AI_Studio\\Vendor\\Firebase\\JWT\\CachedKeySet' => __DIR__ . '/..' . '/firebase/php-jwt/src/CachedKeySet.php',
+        'SG_AI_Studio\\Vendor\\Firebase\\JWT\\ExpiredException' => __DIR__ . '/..' . '/firebase/php-jwt/src/ExpiredException.php',
+        'SG_AI_Studio\\Vendor\\Firebase\\JWT\\JWK' => __DIR__ . '/..' . '/firebase/php-jwt/src/JWK.php',
+        'SG_AI_Studio\\Vendor\\Firebase\\JWT\\JWT' => __DIR__ . '/..' . '/firebase/php-jwt/src/JWT.php',
+        'SG_AI_Studio\\Vendor\\Firebase\\JWT\\JWTExceptionWithPayloadInterface' => __DIR__ . '/..' . '/firebase/php-jwt/src/JWTExceptionWithPayloadInterface.php',
+        'SG_AI_Studio\\Vendor\\Firebase\\JWT\\Key' => __DIR__ . '/..' . '/firebase/php-jwt/src/Key.php',
+        'SG_AI_Studio\\Vendor\\Firebase\\JWT\\SignatureInvalidException' => __DIR__ . '/..' . '/firebase/php-jwt/src/SignatureInvalidException.php',
+        'SG_AI_Studio\\Vendor\\Sepia\\FileHandler' => __DIR__ . '/..' . '/sepia/po-parser/src/Sepia/FileHandler.php',
+        'SG_AI_Studio\\Vendor\\Sepia\\InterfaceHandler' => __DIR__ . '/..' . '/sepia/po-parser/src/Sepia/InterfaceHandler.php',
+        'SG_AI_Studio\\Vendor\\Sepia\\PoParser' => __DIR__ . '/..' . '/sepia/po-parser/src/Sepia/PoParser.php',
+        'SG_AI_Studio\\Vendor\\Sepia\\StringHandler' => __DIR__ . '/..' . '/sepia/po-parser/src/Sepia/StringHandler.php',
+        'SG_AI_Studio\\Vendor\\SiteGround_Helper\\Helper_Service' => __DIR__ . '/..' . '/siteground/siteground-helper/src/Helper_Service.php',
+        'SG_AI_Studio\\Vendor\\SiteGround_i18n\\i18n_Service' => __DIR__ . '/..' . '/siteground/siteground-i18n/src/i18n_Service.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0382e0644fae7cd5247775f6ea49cb88::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0382e0644fae7cd5247775f6ea49cb88::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit0382e0644fae7cd5247775f6ea49cb88::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit0382e0644fae7cd5247775f6ea49cb88::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitc37b2fe88586dc937843695cb4ee869c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitc37b2fe88586dc937843695cb4ee869c::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitc37b2fe88586dc937843695cb4ee869c::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitc37b2fe88586dc937843695cb4ee869c::$classMap;
 
         }, null, ClassLoader::class);
     }

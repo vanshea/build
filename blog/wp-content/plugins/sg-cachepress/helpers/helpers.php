@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use SiteGround_Optimizer\Options\Options;
 /**
  * Public function to purge cache.
@@ -10,7 +14,7 @@ use SiteGround_Optimizer\Options\Options;
  *
  * @return bool True if the cache is deleted, false otherwise.
  */
-function sg_cachepress_purge_cache( $url = false ) {
+function sg_cachepress_purge_cache( $url = false ) { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Public plugin API kept for backward compatibility.
 	// Bail if Dynamic cache is disabled.
 	if (
 		! Options::is_enabled( 'siteground_optimizer_enable_cache' ) &&
@@ -43,7 +47,7 @@ function sg_cachepress_purge_cache( $url = false ) {
  *
  * @since  5.7.14
  */
-function sg_cachepress_purge_everything() {
+function sg_cachepress_purge_everything() { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Public plugin API kept for backward compatibility.
 	global $siteground_optimizer_loader;
 
 	// Purge Dynamic cache if enabled.

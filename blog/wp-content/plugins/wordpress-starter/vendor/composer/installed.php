@@ -3,7 +3,7 @@
         'name' => 'siteground/wordpress-starter',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '4d2a4008c091e4db5aef0bc4470b3d214d64cd9f',
+        'reference' => '8fa2a73eabcf78156377d75966c84f8bce33c2b9',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -51,10 +51,21 @@
                 0 => '*',
             ),
         ),
+        'siteground/siteground-dashboard-notifications' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'ea6e6600f1f00e248875155e0fbe13f10db6ee17',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../siteground/siteground-dashboard-notifications',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
+            'dev_requirement' => false,
+        ),
         'siteground/siteground-helper' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '5601ba384a643e54359b8249e2be591e90161a7d',
+            'reference' => '1766f2fe043a0b4f3ce42bae0dcd3d7e50754b86',
             'type' => 'library',
             'install_path' => __DIR__ . '/../siteground/siteground-helper',
             'aliases' => array(
@@ -65,7 +76,7 @@
         'siteground/wordpress-starter' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '4d2a4008c091e4db5aef0bc4470b3d214d64cd9f',
+            'reference' => '8fa2a73eabcf78156377d75966c84f8bce33c2b9',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

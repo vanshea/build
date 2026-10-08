@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-label="VSS logo">
+  <circle cx="160" cy="160" r="140" fill="#000000"/>
+  <path d="M40 95 L145 200 L280 65" fill="none" stroke="#ffffff" stroke-width="24" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M28 122 L145 240 L248 137" fill="none" stroke="#ffffff" stroke-width="24" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>

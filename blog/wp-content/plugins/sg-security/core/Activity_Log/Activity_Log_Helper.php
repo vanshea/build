@@ -65,7 +65,10 @@ class Activity_Log_Helper {
 		}
 
 		// Check for system actions.
-		if ( $ip === get_option( 'sg_security_server_address', '' ) ) {
+		if (
+			$ip === get_option( 'sg_security_server_address', '' ) ||
+			( 0 === $user_id && Helper::is_cron() )
+		) {
 			$args['object_id'] = 'system';
 		}
 

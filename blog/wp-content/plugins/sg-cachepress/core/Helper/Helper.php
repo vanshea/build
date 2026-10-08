@@ -57,7 +57,7 @@ class Helper {
 	public static function check_for_builders() {
 
 		$builder_paramas = apply_filters(
-			'sgo_pb_params',
+			'sgo_pb_params', // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Backward-compatible public filter.
 			array(
 				'fl_builder',
 				'vcv-action',

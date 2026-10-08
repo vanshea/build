@@ -28,6 +28,11 @@ abstract class Abstract_Combinator {
 	public $assets_dir = null;
 
 	/**
+	 * The URL trough which, the assets are loaded.
+	 */
+	public $assets_url = null;
+
+	/**
 	 * The constructor.
 	 *
 	 * @since 5.0.0
@@ -44,6 +49,7 @@ abstract class Abstract_Combinator {
 		}
 
 		$this->assets_dir = Front_End_Optimization::get_instance()->assets_dir;
+		$this->assets_url = Front_End_Optimization::get_instance()->assets_url;
 	}
 
 	/**
@@ -79,7 +85,7 @@ abstract class Abstract_Combinator {
 	public function create_temp_file_and_get_url( $content, $handle, $type = 'css' ) {
 		$style_hash = md5( implode( '', $content ) );
 		$new_file   = $this->assets_dir . 'siteground-optimizer-combined-' . $type . '-' . $style_hash . '.' . $type;
-		$url        = str_replace( ABSPATH, Helper_Service::get_site_url(), $new_file );
+		$url        = $this->assets_url . 'siteground-optimizer-combined-' . $type . '-' . $style_hash . '.' . $type;
 
 		$data = array(
 			'handle' => 'siteground-optimizer-combined-' . $type . '-' . $style_hash,

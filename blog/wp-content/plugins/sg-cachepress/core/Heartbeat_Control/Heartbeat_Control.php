@@ -190,10 +190,11 @@ class Heartbeat_Control {
 	 * @return bool             True if the heartbead should be modified/disabled for the specific location, false otherwise.
 	 */
 	public function check_location( $location ) {
+		$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_url( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 
 		switch ( $location ) {
 			case 'dashboard':
-				return ( is_admin() && false === @strpos( $_SERVER['REQUEST_URI'], '/wp-admin/post.php' ) );
+				return ( is_admin() && false === strpos( $request_uri, '/wp-admin/post.php' ) );
 				break;
 
 			case 'frontend':
@@ -201,7 +202,7 @@ class Heartbeat_Control {
 				break;
 
 			case 'post':
-				return false !== @strpos( $_SERVER['REQUEST_URI'], '/wp-admin/post.php' );
+				return false !== strpos( $request_uri, '/wp-admin/post.php' );
 				break;
 			default:
 				return false;

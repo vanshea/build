@@ -139,8 +139,8 @@ class Images_Optimizer_Webp extends Abstract_Images_Optimizer {
 		// Get image type.
 		$type = exif_imagetype( $filepath );
 
-		$quality      = apply_filters( 'sgo_webp_quality', 80 );
-		$quality_type = intval( apply_filters( 'sgo_webp_quality_type', 0 ) );
+		$quality      = apply_filters( 'sgo_webp_quality', 80 ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Backward-compatible public filter.
+		$quality_type = intval( apply_filters( 'sgo_webp_quality_type', 0 ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Backward-compatible public filter.
 
 		switch ( $type ) {
 			case IMAGETYPE_GIF:

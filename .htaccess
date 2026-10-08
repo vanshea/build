@@ -1,0 +1,14 @@
+DirectoryIndex index.html
+Options -MultiViews
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteRule ^experience/?$ /experience.html [R=302,L]
+RewriteRule ^login/?$ / [R=302,L]
+RewriteRule ^app(?:/.*)?$ / [R=302,L]
+RewriteRule ^analytics(?:/.*)?$ / [R=302,L]
+RewriteRule ^vscimage(?:/.*)?$ / [R=302,L]
+</IfModule>
+
+ErrorDocument 404 /index.html

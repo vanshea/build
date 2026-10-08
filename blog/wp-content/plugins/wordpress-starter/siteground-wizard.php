@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The plugin bootstrap file
  *
@@ -10,7 +11,7 @@
  * Plugin Name:       SiteGround Central
  * Plugin URI:        https://siteground.com
  * Description:       This plugin is designed to provide you with an easy start of your next WordPress project!
- * Version:           3.4.2
+ * Version:           3.4.8
  * Author:            SiteGround
  * Author URI:        https://www.siteground.com
  * License:           GPL-2.0+
@@ -27,61 +28,71 @@ use SiteGround_Central\Activator\Activator;
 
 
 // Define version constant.
-if ( ! defined( __NAMESPACE__ . '\VERSION' ) ) {
-	define( __NAMESPACE__ . '\VERSION', '3.4.2' );
+if (! defined(__NAMESPACE__ . '\VERSION')) {
+	define(__NAMESPACE__ . '\VERSION', '3.4.8');
 }
 
 // Define root directory.
-if ( ! defined( __NAMESPACE__ . '\DIR' ) ) {
-	define( __NAMESPACE__ . '\DIR', __DIR__ );
+if (! defined(__NAMESPACE__ . '\DIR')) {
+	define(__NAMESPACE__ . '\DIR', __DIR__);
 }
 
 // Define root URL.
-if ( ! defined( __NAMESPACE__ . '\URL' ) ) {
-	$url = \trailingslashit( DIR );
+if (! defined(__NAMESPACE__ . '\URL')) {
+	$url = \trailingslashit(DIR);
 
 	// Sanitize directory separator on Windows.
-	$url = str_replace( '\\', '/', $url );
+	$url = str_replace('\\', '/', $url);
 
-	$wp_plugin_dir = str_replace( '\\', '/', WP_PLUGIN_DIR );
-	$url = str_replace( $wp_plugin_dir, \plugins_url(), $url );
+	$wp_plugin_dir = str_replace('\\', '/', WP_PLUGIN_DIR);
+	$url = str_replace($wp_plugin_dir, \plugins_url(), $url);
 
-	define( __NAMESPACE__ . '\URL', \untrailingslashit( $url ) );
+	define(__NAMESPACE__ . '\URL', \untrailingslashit($url));
 }
 
 // Define SGWPAPI URL.
-if ( ! defined( 'SG_WPAPI_URL_LOCAL' ) ) {
-	define( __NAMESPACE__ . '\SG_WPAPI_URL', 'https://wpwizardapi.siteground.com' );
+if (! defined('SG_WPAPI_URL_LOCAL')) {
+	define(__NAMESPACE__ . '\SG_WPAPI_URL', 'https://wpwizardapi.siteground.com');
 } else {
-	define( __NAMESPACE__ . '\SG_WPAPI_URL', SG_WPAPI_URL_LOCAL );
+	define(__NAMESPACE__ . '\SG_WPAPI_URL', SG_WPAPI_URL_LOCAL);
 }
 
-function siteground_wizard_spl_autoload_register( $class ) {
+function siteground_wizard_spl_autoload_register($class)
+{
 	$prefix = 'SiteGround_Central';
-	if ( stripos( $class, $prefix ) === false ) {
+	if (stripos($class, $prefix) === false) {
 		return;
 	}
 
-	$file_path = \SiteGround_Central\DIR . '/core/' . str_ireplace( 'SiteGround_Central\\', '', $class ) . '.php';
+	$file_path = \SiteGround_Central\DIR . '/core/' . str_ireplace('SiteGround_Central\\', '', $class) . '.php';
 
-	$file_path = str_replace( '\\', DIRECTORY_SEPARATOR, $file_path );
+	$file_path = str_replace('\\', DIRECTORY_SEPARATOR, $file_path);
 
-	if ( file_exists( $file_path ) ) {
-		include_once( $file_path );
+	if (file_exists($file_path)) {
+		include_once($file_path);
 	}
-
 }
 
-spl_autoload_register( __NAMESPACE__ . '\siteground_wizard_spl_autoload_register' );
+spl_autoload_register(__NAMESPACE__ . '\siteground_wizard_spl_autoload_register');
 
-require_once( \SiteGround_Central\DIR . '/vendor/autoload.php' );
+require_once(\SiteGround_Central\DIR . '/vendor/autoload.php');
+
+// Initialize SiteGround Dashboard.
+add_action( 'plugins_loaded', function() {
+	\SiteGround_Dashboard\Dashboard::init( array(
+		'plugin_data' => array(
+			'name'    => 'SiteGround Central',
+			'version' => \SiteGround_Central\VERSION,
+		),
+	) );
+} );
 
 // Hook activator functions.
-\register_activation_hook( __FILE__, array( new Activator , 'activate' ) );
+\register_activation_hook(__FILE__, array(new Activator, 'activate'));
 
 // Initialize helper.
 global $siteground_central_loader;
 
-if ( ! isset( $siteground_central_loader ) ) {
+if (! isset($siteground_central_loader)) {
 	$siteground_central_loader = new Loader();
 }

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Meeting Coach — The Problem</title><desc id="desc">LinkedIn preview card for the Meeting Coach prototype.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse"><stop stop-color="#fbf6ec"/><stop offset="1" stop-color="#eee4d4"/></linearGradient>
+    <linearGradient id="app" x1="95" y1="147" x2="424" y2="477" gradientUnits="userSpaceOnUse"><stop stop-color="#283665"/><stop offset=".5" stop-color="#211942"/><stop offset="1" stop-color="#0f5552"/></linearGradient>
+    <filter id="shadow" x="50" y="100" width="430" height="430"><feDropShadow dy="28" stdDeviation="28" flood-color="#243044" flood-opacity=".3"/></filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1080" cy="30" r="230" fill="#843ac7" opacity=".08"/><circle cx="1110" cy="610" r="290" fill="#0b9f8f" opacity=".08"/>
+  <text x="570" y="116" fill="#7d6c62" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="22" font-weight="750" letter-spacing="3">AI DESIGN LAB</text>
+  <g filter="url(#shadow)"><rect x="94" y="147" width="330" height="330" rx="82" fill="url(#app)"/></g>
+  <rect x="125" y="190" width="268" height="92" rx="24" fill="#12172b" stroke="#2af070" stroke-width="5"/>
+  <circle cx="164" cy="226" r="18" fill="#12b7a4"/><path d="M156 218h16v16h-16zM160 213h8v5h-8z" fill="#fff"/>
+  <text x="193" y="224" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="18" font-weight="800">Meeting Coach</text>
+  <text x="193" y="248" fill="#fff" opacity=".56" font-family="sans-serif" font-size="14">Live coaching</text>
+  <path d="M143 335h44l21-44 38 90 30-64 27 38h71" fill="none" stroke="#2af070" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="259" y="433" text-anchor="middle" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="31" font-weight="800">Clarity in motion</text>
+  <text x="570" y="221" fill="#261f2a" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="62" font-weight="820">Meeting Coach</text>
+  <text x="570" y="278" fill="#168674" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="27" font-weight="750">THE PROBLEM</text>
+  <text x="570" y="346" fill="#51464f" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="28" font-weight="520">Walk in prepared and stay oriented to purpose.</text>
+  <text x="570" y="388" fill="#51464f" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="28" font-weight="520">Leave with clarity on what happens next.</text>
+  <text x="570" y="510" fill="#7d6c62" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="22" font-weight="650">vanshea.com/aidesign</text>
+</svg>

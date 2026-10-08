@@ -26,6 +26,7 @@ class Activity_Log_Unknown extends Activity_Log_Helper {
 		'jetmon',
 		'semrushbot',
 		'pinterestbot',
+		'Sogou',
 	);
 
 	/**
@@ -205,7 +206,7 @@ class Activity_Log_Unknown extends Activity_Log_Helper {
 			return $maybe_crawler;
 		}
 
-		return __( 'Human', 'sg-security' );
+		return 'Human';
 	}
 
 	/**

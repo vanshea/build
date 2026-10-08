@@ -1,3 +1,231 @@
+function resolveAiDesignPrototypePath(src) {
+  const value = String(src || "").trim();
+  if (
+    value.startsWith("/") &&
+    window.location.pathname.startsWith("/livesite/") &&
+    !value.startsWith("/livesite/")
+  ) {
+    return `/livesite${value}`;
+  }
+  return value;
+}
+
+(() => {
+  const browser = document.querySelector("[data-aide-idea-browser]");
+  if (!browser) return;
+
+  const tabs = Array.from(browser.querySelectorAll("[data-aide-idea-tab]"));
+  const panels = Array.from(browser.querySelectorAll("[data-aide-idea-panel]"));
+  if (!tabs.length || !panels.length) return;
+
+  function activateIdea(tab, updateHash = true) {
+    const slug = tab.getAttribute("data-aide-idea-tab");
+    const panel = panels.find(
+      (candidate) => candidate.getAttribute("data-aide-idea-panel") === slug
+    );
+    if (!slug || !panel) return;
+
+    tabs.forEach((candidate) => {
+      const active = candidate === tab;
+      candidate.classList.toggle("is-active", active);
+      candidate.setAttribute("aria-selected", String(active));
+      candidate.tabIndex = active ? 0 : -1;
+    });
+
+    panels.forEach((candidate) => {
+      candidate.hidden = candidate !== panel;
+    });
+
+    const frame = panel.querySelector(".aide-sample-frame[data-src]");
+    if (frame && !frame.hasAttribute("src")) {
+      frame.src = resolveAiDesignPrototypePath(frame.getAttribute("data-src"));
+      frame.removeAttribute("data-src");
+    }
+
+    tab.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "nearest", inline: "nearest" });
+
+    if (updateHash && window.history && window.history.replaceState) {
+      window.history.replaceState(null, "", "#" + slug);
+    }
+  }
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => activateIdea(tab));
+    tab.addEventListener("keydown", (event) => {
+      const keyActions = {
+        ArrowRight: index + 1,
+        ArrowDown: index + 1,
+        ArrowLeft: index - 1,
+        ArrowUp: index - 1,
+        Home: 0,
+        End: tabs.length - 1
+      };
+      if (!(event.key in keyActions)) return;
+
+      event.preventDefault();
+      const nextIndex = Math.max(0, Math.min(tabs.length - 1, keyActions[event.key]));
+      tabs[nextIndex].focus();
+      activateIdea(tabs[nextIndex]);
+    });
+  });
+
+  const initialSlug = window.location.hash.replace(/^#/, "");
+  const initialTab = tabs.find(
+    (tab) => tab.getAttribute("data-aide-idea-tab") === initialSlug
+  );
+  if (initialTab) {
+    activateIdea(initialTab, false);
+  }
+})();
+
+(() => {
+  const openers = Array.from(document.querySelectorAll("[data-aide-prototype-open]"));
+  const overlay = document.querySelector("[data-aide-prototype-overlay]");
+  const frame = document.querySelector("[data-aide-prototype-frame]");
+  const closeButton = document.querySelector("[data-aide-prototype-close]");
+  if (!openers.length || !overlay || !frame || !closeButton) return;
+
+  let activeOpener = null;
+  let previousOverflow = "";
+
+  function openPrototype(opener) {
+    const src = opener.getAttribute("data-prototype-src");
+    const title = opener.getAttribute("data-prototype-title");
+    if (!src) return;
+
+    activeOpener = opener;
+    previousOverflow = document.body.style.overflow;
+    frame.src = resolveAiDesignPrototypePath(src);
+    if (title) {
+      frame.title = title;
+      overlay.setAttribute("aria-label", title);
+    }
+    overlay.classList.toggle("is-wide", title === "Partner");
+    overlay.hidden = false;
+    document.body.style.overflow = "hidden";
+    if (opener.hasAttribute("data-aide-request-fullscreen") && overlay.requestFullscreen) {
+      overlay.requestFullscreen().catch(() => {});
+    }
+    closeButton.focus();
+  }
+
+  function closePrototype() {
+    if (overlay.hidden) return;
+
+    overlay.hidden = true;
+    if (document.fullscreenElement === overlay && document.exitFullscreen) {
+      document.exitFullscreen().catch(() => {});
+    }
+    overlay.classList.remove("is-wide");
+    frame.removeAttribute("src");
+    document.body.style.overflow = previousOverflow;
+    if (activeOpener) {
+      activeOpener.focus();
+      activeOpener = null;
+    }
+  }
+
+  openers.forEach((opener) => {
+    opener.addEventListener("click", () => openPrototype(opener));
+  });
+
+  closeButton.addEventListener("click", closePrototype);
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) {
+      closePrototype();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Tab" && !overlay.hidden) {
+      const focusable = Array.from(overlay.querySelectorAll('button:not([disabled]), iframe, a[href]'));
+      if (focusable.length) {
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    }
+    if (event.key === "Escape" && !overlay.hidden) {
+      closePrototype();
+    }
+  });
+})();
+
+(() => {
+  const buttons = Array.from(document.querySelectorAll("[data-aide-linkedin-share]"));
+  if (!buttons.length) return;
+
+  function fallbackCopy(text) {
+    const field = document.createElement("textarea");
+    field.value = text;
+    field.setAttribute("readonly", "");
+    field.style.position = "fixed";
+    field.style.opacity = "0";
+    document.body.appendChild(field);
+    field.select();
+    const copied = document.execCommand("copy");
+    field.remove();
+    return copied;
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const shareUrl = button.getAttribute("data-share-url");
+      const statement = button.closest(".aide-problem-statement");
+      const status = button.parentElement.querySelector(".aide-share-status");
+      if (!shareUrl || !statement) return;
+
+      const problem = Array.from(statement.querySelectorAll("h3, h4, p"))
+        .map((node) => node.textContent.trim())
+        .filter(Boolean)
+        .join("\n\n");
+      const shareText = `${problem}\n\n${shareUrl}`;
+      const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+      const shareWindow = window.open(linkedInUrl, "_blank");
+      if (shareWindow) shareWindow.opener = null;
+
+      const showStatus = (message) => {
+        if (!status) return;
+        status.textContent = message;
+        window.setTimeout(() => {
+          status.textContent = "";
+        }, 7000);
+      };
+
+      const copyFallback = () => {
+        try {
+          showStatus(
+            fallbackCopy(shareText)
+              ? "Problem text copied — paste it into your LinkedIn post."
+              : "LinkedIn opened. Copy this problem statement if you want to add it to the post."
+          );
+        } catch (error) {
+          showStatus("LinkedIn opened. Copy this problem statement if you want to add it to the post.");
+        }
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(shareText).then(
+          () => showStatus("Problem text copied — paste it into your LinkedIn post."),
+          copyFallback
+        );
+      } else {
+        copyFallback();
+      }
+
+      if (!shareWindow) {
+        showStatus("Pop-up blocked. Allow pop-ups, then try sharing again.");
+      }
+    });
+  });
+})();
+
 (() => {
   const prototype = document.querySelector("[data-stock-prototype]");
   if (!prototype) return;

@@ -2,6 +2,7 @@
 namespace SG_AI_Studio\Activator;
 
 use SG_AI_Studio\Activity_Log\Activity_Log;
+use SG_AI_Studio\Install_Service\Install_Service;
 
 /**
  * Class managing plugin activation.
@@ -20,6 +21,8 @@ class Activator {
 	public function activate( $network_active ) {
 		Activity_Log::create_log_tables();
 
+		$install_service = new Install_Service();
+		$install_service->install();
 		// Create the necesary tables in subsites upon activation for multisite.
 		if (
 			\is_multisite() &&

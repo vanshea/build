@@ -450,44 +450,15 @@
             "install-path": "../siteground/googleauthenticator"
         },
         {
-            "name": "siteground/siteground-data",
-            "version": "dev-master",
-            "version_normalized": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@gitlab.siteground.com:wordpress/siteground-data.git",
-                "reference": "9716965f513427cc017f787b43531c437227021d"
-            },
-            "require": {
-                "siteground/siteground-helper": "master@dev"
-            },
-            "time": "2026-02-25T15:08:41+00:00",
-            "default-branch": true,
-            "type": "library",
-            "installation-source": "source",
-            "autoload": {
-                "psr-4": {
-                    "SiteGround_Data\\": "src/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Stanimir Stoyanov",
-                    "email": "stanimir.stoyanov@siteground.com"
-                }
-            ],
-            "install-path": "../siteground/siteground-data"
-        },
-        {
             "name": "siteground/siteground-emails",
             "version": "dev-master",
             "version_normalized": "dev-master",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.siteground.com:wordpress/siteground-emails.git",
-                "reference": "488bda959c356fd330d0ecfb45885fc0f421f5b7"
+                "reference": "2693ee1d64c160ed14380a0a5a6c4f4ef6c9d435"
             },
-            "time": "2022-05-04T06:04:35+00:00",
+            "time": "2026-05-05T12:15:10+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "source",
@@ -505,9 +476,9 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.siteground.com:wordpress/siteground-helper.git",
-                "reference": "5601ba384a643e54359b8249e2be591e90161a7d"
+                "reference": "1766f2fe043a0b4f3ce42bae0dcd3d7e50754b86"
             },
-            "time": "2023-09-07T11:49:29+00:00",
+            "time": "2026-06-02T10:22:53+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "source",

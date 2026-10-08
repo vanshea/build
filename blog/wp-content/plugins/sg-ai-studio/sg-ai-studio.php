@@ -1,16 +1,16 @@
 <?php
 /**
- * SG AI Studio
+ * AI Agent by SiteGround
  *
- * @package           SG AI Studio
+ * @package           AI Agent by SiteGround
  * @author            SiteGround
  * @link              http://www.siteground.com/
  *
  * @wordpress-plugin
- * Plugin Name:       SG AI Studio
+ * Plugin Name:       AI Agent by SiteGround
  * Plugin URI:        https://siteground.com
  * Description:       Manage your WordPress site with AI - create content, install plugins, and perform site management tasks effortlessly.
- * Version:           1.1.6
+ * Version:           1.3.1
  * Author:            SiteGround
  * Author URI:        https://www.siteground.com
  * Text Domain:       sg-ai-studio
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 // Define version constant.
 if ( ! defined( __NAMESPACE__ . '\VERSION' ) ) {
-	define( __NAMESPACE__ . '\VERSION', '1.1.6' );
+	define( __NAMESPACE__ . '\VERSION', '1.3.1' );
 }
 
 // Define slug constant.
@@ -61,7 +61,7 @@ if ( ! defined( __NAMESPACE__ . '\URL' ) ) {
 	unset( $sg_ai_studio_root_url, $sg_ai_studio_plugin_dir );
 }
 
-require_once( \SG_AI_Studio\DIR . '/vendor/autoload.php' );
+require \SG_AI_Studio\DIR . '/vendor/autoload.php';
 
 register_activation_hook( __FILE__, array( new Activator(), 'activate' ) );
 

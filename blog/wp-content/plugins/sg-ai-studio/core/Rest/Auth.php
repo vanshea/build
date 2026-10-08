@@ -191,6 +191,8 @@ class Auth {
 			);
 		} else {
 			update_option( 'sg_ai_studio_connected', true );
+			// Initialize provider connection state when plugin connects.
+			update_option( 'sg_ai_studio_provider_connected', true );
 		}
 
 		// Clear all caches.

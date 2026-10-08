@@ -181,4 +181,5 @@ $security_i18n_strings = array(
 	__( 'This field is required.', 'sg-security' ),
 	__( 'Invalid email address.', 'sg-security' ),
 	__( 'Email %(name)s already exists.', 'sg-security' ),
+	__( 'Human', 'sg-security' ),
 );

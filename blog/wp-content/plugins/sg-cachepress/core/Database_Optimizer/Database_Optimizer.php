@@ -249,7 +249,7 @@ class Database_Optimizer {
 		}
 
 		// Add filter to skip specific tables from being optimized.
-		$excluded_tables = apply_filters( 'sgo_db_optimization_exclude', array() );
+		$excluded_tables = apply_filters( 'sgo_db_optimization_exclude', array() ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Backward-compatible public filter.
 
 		// Add prefixes to all tables.
 		$prefix_tables = preg_filter( '/^/', $this->wpdb->prefix, $excluded_tables );

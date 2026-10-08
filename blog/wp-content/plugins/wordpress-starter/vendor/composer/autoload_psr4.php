@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'SiteGround_Helper\\' => array($vendorDir . '/siteground/siteground-helper/src'),
+    'SiteGround_Dashboard\\' => array($vendorDir . '/siteground/siteground-dashboard-notifications/src'),
     'SiteGround_Central\\' => array($baseDir . '/core'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
     'CharlesRumley\\Tests\\' => array($vendorDir . '/charles-rumley/php-po-to-json/tests'),

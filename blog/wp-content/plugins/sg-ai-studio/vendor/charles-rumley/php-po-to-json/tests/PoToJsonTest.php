@@ -1,6 +1,6 @@
-<?php namespace CharlesRumley\Tests;
+<?php namespace SG_AI_Studio\Vendor\CharlesRumley\Tests;
 
-use CharlesRumley\PoToJson;
+use SG_AI_Studio\Vendor\CharlesRumley\PoToJson;
 use PHPUnit_Framework_TestCase;
 
 class PoToJsonTest extends PHPUnit_Framework_TestCase

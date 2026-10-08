@@ -6,6 +6,7 @@ use SiteGround_Optimizer\Memcache\Memcache;
 use SiteGround_Optimizer\Options\Options;
 use SiteGround_Optimizer\Analysis\Analysis;
 use SiteGround_Optimizer\Install_Service\Install_Service;
+use SiteGround_Optimizer\File_Cacher\File_Cacher;
 
 class Activator {
 	/**
@@ -21,6 +22,11 @@ class Activator {
 
 		$analysis = new Analysis();
 		$analysis->check_for_premigration_test();
+
+		// Maybe reactivate the file cache on plugin activation.
+		if ( Options::is_enabled( 'siteground_optimizer_file_caching' ) ) {
+			File_Cacher::toggle_file_cache( 1 );
+		}
 	}
 
 	/**

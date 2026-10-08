@@ -16,6 +16,20 @@ class File_Cacher_Background extends \WP_Background_Process {
 	protected $action = 'file_cacher_preload';
 
 	/**
+	 * Save queue and reset the data, so the next save doesn't
+	 * duplicate the already saved items (not done in v1.0.2 of the library).
+	 *
+	 * @return $this
+	 */
+	public function save() {
+		parent::save();
+
+		$this->data = array();
+
+		return $this;
+	}
+
+	/**
 	 * Task
 	 *
 	 * @param array $item Array containing the class and the

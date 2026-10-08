@@ -7,6 +7,7 @@ use SiteGround_Optimizer\Options\Options;
 use SiteGround_Helper\Helper_Service;
 use SiteGround_Optimizer\CDN\Cdn;
 use SiteGround_Optimizer\Site_Tools_Client\Site_Tools_Client;
+use SiteGround_Optimizer\Helper\Helper;
 
 /**
  * SG CachePress main plugin class
@@ -88,7 +89,7 @@ class Supercacher {
 	 * @since 5.9.0
 	 */
 	public $purge_hooks = array(
-		'purge_queue'      => array(
+		'schedule_purge_queue' => array(
 			'edit_comment',
 			'delete_comment',
 			'wp_set_comment_status',
@@ -98,7 +99,7 @@ class Supercacher {
 			'wp_trash_post',
 			'edit_term',
 		),
-		'purge_everything' => array(
+		'purge_everything'     => array(
 			'automatic_updates_complete',
 			'_core_updated_successfully',
 			'update_option_permalink_structure',
@@ -323,7 +324,10 @@ class Supercacher {
 		require_once ABSPATH . '/wp-includes/pluggable.php';
 
 		// Bail if we do not have option page and nonce is invalid.
-		if ( false === \wp_verify_nonce( $_POST['_wpnonce'], $_POST['option_page'] . '-options' ) ) {
+		$nonce       = sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) );
+		$option_page = sanitize_key( wp_unslash( $_POST['option_page'] ) );
+
+		if ( false === \wp_verify_nonce( $nonce, $option_page . '-options' ) ) {
 			return;
 		}
 
@@ -464,11 +468,28 @@ class Supercacher {
 	}
 
 	/**
+	 * Sets the purge queue CRON job.
+	 */
+	public function schedule_purge_queue() {
+		// Purge the queue directly, if CRON is disabled.
+		if ( Helper_Service::is_cron_disabled() ) {
+			$this->process_purge_queue();
+			return;
+		}
+
+		// Do not schedule if already scheduled.
+		if ( ! wp_next_scheduled( 'siteground_optimizer_purge_cron_cache' ) ) {
+			wp_schedule_single_event( time(), 'siteground_optimizer_purge_cron_cache' );
+		}
+	}
+
+	/**
 	 * Purge the cache for all elements in the queue.
 	 *
 	 * @since 5.8.3
+	 *
 	 */
-	public function purge_queue() {
+	public function process_purge_queue() {
 		// Get the current purge queue.
 		$queue = get_option( 'siteground_optimizer_smart_cache_purge_queue', array() );
 

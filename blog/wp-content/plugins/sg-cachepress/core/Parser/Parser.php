@@ -146,7 +146,7 @@ class Parser {
 	 */
 	public function is_post_request() {
 		// Return true if is a POST type request.
-		if ( 'POST' === $_SERVER['REQUEST_METHOD'] ) {
+		if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === $_SERVER['REQUEST_METHOD'] ) {
 			return true;
 		}
 

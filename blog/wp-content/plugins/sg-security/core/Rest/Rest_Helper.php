@@ -10,6 +10,27 @@ use SG_Security\Message_Service\Message_Service;
 abstract class Rest_Helper {
 
 	/**
+	 * List of recommended optimizations
+	 *
+	 * @var array
+	 */
+	public $recommended_optimizations = array(
+		'login_security' => array(
+			'sg2fa',
+			'disable_usernames',
+			'login_attempts',
+		),
+		'site_security'  => array(
+			'lock_system_folders',
+			'wp_remove_version',
+			'disable_file_edit',
+			'disable_xml_rpc',
+			'disable_feed',
+			'xss_protection',
+		),
+	);
+
+	/**
 	 * Checks if the `option_key` paramether exists in rest data.
 	 *
 	 * @since  1.0.0

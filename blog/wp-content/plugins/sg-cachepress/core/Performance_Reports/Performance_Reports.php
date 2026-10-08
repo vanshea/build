@@ -392,7 +392,7 @@ class Performance_Reports {
 		// Add the custom interval.
 		$schedules['sg_once_a_month'] = array(
 			'interval' => MONTH_IN_SECONDS,
-			'display'  => esc_html__( 'Once Monthly' ),
+			'display'  => esc_html__( 'Once Monthly', 'sg-cachepress' ),
 		);
 
 		return $schedules;

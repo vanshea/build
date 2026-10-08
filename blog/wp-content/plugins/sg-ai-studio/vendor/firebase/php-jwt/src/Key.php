@@ -1,6 +1,6 @@
 <?php
 
-namespace Firebase\JWT;
+namespace SG_AI_Studio\Vendor\Firebase\JWT;
 
 use InvalidArgumentException;
 use OpenSSLAsymmetricKey;

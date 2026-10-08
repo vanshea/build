@@ -136,12 +136,6 @@
                 <?php
                     include_once( $args['learn_more_path'] );
                 ?>
-                <?php if (
-                    0 === $args['is_siteground'] &&
-                    1 === $args['agreed_email_consent']
-                ) {
-                    include_once( \SG_Security\DIR . '/templates/partials/weekly_report_non_sg.php' );
-                } ?>
                 <tr>
                     <td class="body-text"
                         style="color: #a4a4a4; font-weight: 400; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20px; padding: 0px 0 25px 0">

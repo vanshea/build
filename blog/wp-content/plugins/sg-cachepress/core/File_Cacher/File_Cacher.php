@@ -141,6 +141,13 @@ class File_Cacher extends Supercacher {
 	public $logged_in_cache;
 
 	/**
+	 * Original WordPress Cache-Control value marked for logged-in caching.
+	 *
+	 * @var string
+	 */
+	private static $wordpress_nocache_header = '';
+
+	/**
 	 * Construct of the class.
 	 *
 	 * @since 7.0.0
@@ -152,7 +159,8 @@ class File_Cacher extends Supercacher {
 		$this->supercacher_posts    = new Supercacher_Posts();
 		$this->supercacher_terms    = new Supercacher_Terms();
 
-		$this->logged_in_cache = (int) get_option( 'siteground_optimizer_logged_in_cache' );
+		$this->logged_in_cache     = (int) get_option( 'siteground_optimizer_logged_in_cache' );
+		$this->bypass_query_params = apply_filters( 'sgo_bypass_query_params', $this->bypass_query_params ); // phpcs:ignore
 	}
 
 	/**
@@ -273,6 +281,92 @@ class File_Cacher extends Supercacher {
 	}
 
 	/**
+	 * Get the cache partition key for the authenticated WordPress session.
+	 *
+	 * @since 7.8.3
+	 *
+	 * @return string|false The session cache key, or false for an invalid cookie.
+	 */
+	public function get_user_cache_key() {
+		$logged_in_cookie = 'wordpress_logged_in_' . COOKIEHASH;
+
+		if ( ! array_key_exists( $logged_in_cookie, $_COOKIE ) ) {
+			return false;
+		}
+
+		return $this->get_logged_in_cache_key(
+			$_COOKIE[ $logged_in_cookie ], // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$this->get_secret()
+		);
+	}
+
+	/**
+	 * Mark WordPress's automatic logged-in Cache-Control header.
+	 *
+	 * The marker lets the writer distinguish the unavoidable core header from a
+	 * later explicit nocache_headers() opt-out.
+	 *
+	 * @since 7.8.3
+	 *
+	 * @param array $headers Response headers.
+	 *
+	 * @return array Response headers.
+	 */
+	public function mark_wordpress_nocache_header( $headers ) {
+		if (
+			! is_array( $headers ) ||
+			! is_user_logged_in() ||
+			! Options::is_enabled( 'siteground_optimizer_logged_in_cache' ) ||
+			false === $this->get_user_cache_key()
+		) {
+			return $headers;
+		}
+
+		foreach ( $headers as $name => $value ) {
+			if (
+				! is_string( $name ) ||
+				'cache-control' !== strtolower( $name ) ||
+				! is_string( $value ) ||
+				! $this->is_wordpress_nocache_headers( array( $value ) )
+			) {
+				continue;
+			}
+
+			self::$wordpress_nocache_header  = $value;
+			$headers[ $name ]               = $value . ', sgo-private-cache';
+			break;
+		}
+
+		return $headers;
+	}
+
+	/**
+	 * Restore the original WordPress Cache-Control header before sending it.
+	 *
+	 * @since 7.8.3
+	 */
+	public function restore_wordpress_nocache_header() {
+		if ( '' === self::$wordpress_nocache_header ) {
+			return;
+		}
+
+		$response_headers = $this->get_response_headers();
+
+		if ( false === $response_headers ) {
+			return;
+		}
+
+		$response_headers = $this->normalize_response_headers( $response_headers );
+
+		if (
+			isset( $response_headers['cache-control'] ) &&
+			$this->is_wordpress_nocache_headers( $response_headers['cache-control'], true )
+		) {
+			header( 'Cache-Control: ' . self::$wordpress_nocache_header );
+		}
+	}
+
+	/**
 	 * Get the cache path.
 	 *
 	 * @since  7.0.0
@@ -289,12 +383,15 @@ class File_Cacher extends Supercacher {
 		// Prepare the path.
 		$path = $parsed_url['host'];
 
+		$user_cache_key = $this->get_user_cache_key();
+
 		if (
 			true === $include_user &&
+			false !== $user_cache_key &&
 			is_user_logged_in() &&
 			Options::is_enabled( 'siteground_optimizer_logged_in_cache' )
 		) {
-			$path .= '-' . wp_get_current_user()->user_login;
+			$path .= '-' . $user_cache_key;
 		}
 
 		$path .= '-' . $this->get_secret();
@@ -346,12 +443,30 @@ class File_Cacher extends Supercacher {
 			return false;
 		}
 
+		$is_logged_in_cache_request = is_user_logged_in() && Options::is_enabled( 'siteground_optimizer_logged_in_cache' );
+
+		// Never write authenticated content into the anonymous cache partition.
+		if ( $is_logged_in_cache_request && false === $this->get_user_cache_key() ) {
+			header( 'SG-F-Cache: BYPASS' );
+			return;
+		}
+
+		// Apply custom cookie bypasses to the writer as well as the early reader.
+		$this->bypass_cookies = apply_filters( 'sgo_bypass_cookies', $this->bypass_cookies ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Backward-compatible public filter.
+
+		// Never store a response that is private or varies outside the cache key.
+		$has_nocache_headers = $this->has_nocache_headers( $is_logged_in_cache_request );
+		$this->restore_wordpress_nocache_header();
+		if ( $has_nocache_headers ) {
+			header( 'SG-F-Cache: BYPASS' );
+			return;
+		}
+
 		// Bail if the page is excluded from the cache.
 		if ( ! $this->is_cacheable() ) {
 			header( 'SG-F-Cache: BYPASS' );
 			return;
 		}
-
 
 		$path = $this->get_cache_path();
 
@@ -652,9 +767,17 @@ class File_Cacher extends Supercacher {
 			return $this->hit_url_cache( $url );
 		}
 
+		// Check if the user is provided URL list for preheating.
+		$preheat_urls = apply_filters( 'sgo_file_caching_preheat_url_list', array() );
+
+		if ( ! empty( $preheat_urls ) ) {
+			// Preheat only the URL list.
+			return $this->preheat_url_list( $preheat_urls );
+		}
+
 		$xml = $this->load_xml(
 			apply_filters(
-				'sg_file_caching_preheat_xml',
+				'sg_file_caching_preheat_xml', // phpcs:ignore
 				get_sitemap_url( 'index' ) // The sitemap url.
 			)
 		);
@@ -664,13 +787,7 @@ class File_Cacher extends Supercacher {
 			return false;
 		}
 
-		$regex = $this->get_excluded_urls_regex();
-
-		// Limit the number of sitemap URLs we are preheating.
-		$sitemap_url_limit = apply_filters( 'sg_file_caching_preheat_url_limit', 200 );
-
-		// Sitemap URL counter.
-		$counter = 0;
+		$sitemap_url_list = array();
 
 		// Iterate the sitemap.
 		foreach ( $xml->sitemap as $entry ) {
@@ -682,29 +799,13 @@ class File_Cacher extends Supercacher {
 				continue;
 			}
 
-			// Iterate though all links.
+			// Iterate though all links and add them to the list.
 			foreach ( $inner_xml->url as $url ) {
-				// Check if this is an html request.
-				if ( ! empty( $regex ) && preg_match( $regex, $url->loc ) ) {
-					continue;
-				}
-
-				// Increase the counter.
-				$counter++;
-
-				// Check if we have hit the URL limit.
-				if ( $sitemap_url_limit < $counter ) {
-					// Dispatch and return.
-					return $this->preheat->save()->dispatch();
-				}
-
-				// Push to queue.
-				$this->preheat->push_to_queue( (string) $url->loc );
+				$sitemap_url_list[] = (string) $url->loc;
 			}
 		}
 
-		// Dispatch the process.
-		$this->preheat->save()->dispatch();
+		$this->preheat_url_list( $sitemap_url_list );
 	}
 
 	/**
@@ -787,7 +888,7 @@ class File_Cacher extends Supercacher {
 		// Add the custom interval.
 		$schedules['sg_once_in_two_days'] = array(
 			'interval' => 172800,
-			'display'  => esc_html__( 'Once in two days' ),
+			'display'  => esc_html__( 'Once in two days', 'sg-cachepress' ),
 		);
 
 		return $schedules;
@@ -814,9 +915,9 @@ class File_Cacher extends Supercacher {
 
 		// Prepare the config.
 		$config = array(
-			'ignored_query_params' => apply_filters( 'sgo_ignored_query_params', $this->ignored_query_params ),
-			'bypass_query_params'  => apply_filters( 'sgo_bypass_query_params', $this->bypass_query_params ),
-			'bypass_cookies'       => apply_filters( 'sgo_bypass_cookies', $this->bypass_cookies ),
+			'ignored_query_params' => apply_filters( 'sgo_ignored_query_params', $this->ignored_query_params ), // phpcs:ignore
+			'bypass_query_params'  => $this->bypass_query_params,
+			'bypass_cookies'       => apply_filters( 'sgo_bypass_cookies', $this->bypass_cookies ), // phpcs:ignore
 			'output_dir'           => $this->get_cache_dir(),
 			'logged_in_cache'      => (int) get_option( 'siteground_optimizer_logged_in_cache' ),
 			'cache_secret_key'     => $this->create_secret_if_not_exists(),
@@ -877,8 +978,7 @@ class File_Cacher extends Supercacher {
 	 */
 	public function get_excluded_urls_regex() {
 		// Get excluded urls.
-		$parts = \get_option( 'siteground_optimizer_excluded_urls', array() );
-
+		$parts = apply_filters( 'sgo_exclude_urls_from_cache', \get_option( 'siteground_optimizer_excluded_urls', array() ) ); // phpcs:ignore
 
 		$ecommerce_pages = array();
 
@@ -1010,7 +1110,7 @@ class File_Cacher extends Supercacher {
 	public function is_url_excluded() {
 		// Bail if the request is cronjob, ajax or the wordpress admin request.
 		if (
-			wp_doing_cron() ||
+			( function_exists( 'wp_doing_cron' ) ? wp_doing_cron() : defined( 'DOING_CRON' ) && DOING_CRON ) ||
 			Helper::sg_doing_ajax() ||
 			$GLOBALS['pagenow'] === 'wp-login.php' // phpcs:ignore
 		) {
@@ -1099,7 +1199,7 @@ class File_Cacher extends Supercacher {
 	 * @since  7.0.1
 	 */
 	public function maybe_enable_dynamic() {
-		// Bail fi the dynamic cache is enabled.
+		// Bail if the dynamic cache is enabled.
 		if ( Options::is_enabled( 'siteground_optimizer_enable_cache' ) ) {
 			return;
 		}
@@ -1109,6 +1209,38 @@ class File_Cacher extends Supercacher {
 			Options::is_enabled( 'siteground_optimizer_file_caching' )
 		) {
 			Options::enable_option( 'siteground_optimizer_enable_cache' );
+		}
+	}
+
+	/**
+	 * Preheat URLs provided by the 'sgo_file_caching_preheat_url_list' filter.
+	 *
+	 * @param array List of URLs to preheat.
+	 */
+	public function preheat_url_list( $url_list ) {
+		// The regex with excluded URLs.
+		$regex = $this->get_excluded_urls_regex();
+
+		// The URL preheat limit.
+		$url_preheat_limit = apply_filters( 'sg_file_caching_preheat_url_limit', 200 );
+
+		// Split the URL list into chunks.
+		$url_batches = array_chunk( $url_list, $url_preheat_limit );
+
+		// Iterate through all URL batches.
+		foreach ( $url_batches as $url_batch ) {
+			foreach ( $url_batch as $url ) {
+				// Skip excluded URLs.
+				if ( ! empty( $regex ) && preg_match( $regex, $url ) ) {
+					continue;
+				}
+
+				// Push to queue.
+				$this->preheat->push_to_queue( (string) $url );
+			}
+
+			// Dispatch the current batch.
+			$this->preheat->save()->dispatch();
 		}
 	}
 }

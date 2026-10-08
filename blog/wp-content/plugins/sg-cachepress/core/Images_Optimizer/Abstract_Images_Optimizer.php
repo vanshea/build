@@ -61,7 +61,7 @@ abstract class Abstract_Images_Optimizer {
 		$args = array(
 			'timeout'   => 0.01,
 			'cookies'   => $_COOKIE,
-			'sslverify' => apply_filters( 'https_local_ssl_verify', false ),
+			'sslverify' => apply_filters( 'https_local_ssl_verify', false ), // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core/WordPress ecosystem filter.
 		);
 
 		$args['body'] = array( 'token' => $token );
@@ -136,7 +136,7 @@ abstract class Abstract_Images_Optimizer {
 		 *
 		 * @param int $timeout The timeout in seconds.
 		 */
-		$timeout = apply_filters( $this->process_map['filter'], 120 );
+		$timeout = apply_filters( $this->process_map['filter'], 120 ); // phpcs:ignore
 
 		// Try to lock the process if there is a timeout.
 		if ( false === $this->maybe_lock( $timeout ) ) {

@@ -54,13 +54,13 @@ class Site_Tools_Client {
         $flags = ( false === $json_object ) ? 0 : JSON_FORCE_OBJECT;
 
         // Sent the params to the Unix socket.
-        fwrite( $fp, wp_json_encode( $request, $flags ) . "\n" );
+		fwrite( $fp, wp_json_encode( $request, $flags ) . "\n" ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- WP_Filesystem cannot write to Unix domain sockets.
 
         // Fetch the response.
         $response = fgets( $fp, 32 * 1024 );
 
         // Close the connection.
-        fclose( $fp );
+		fclose( $fp ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- WP_Filesystem cannot close Unix domain sockets.
 
         // Decode the response.
         $result = @json_decode( $response, true );

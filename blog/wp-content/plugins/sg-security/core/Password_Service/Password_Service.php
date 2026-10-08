@@ -75,9 +75,17 @@ class Password_Service {
 	 * @return string       The reset password url.
 	 */
 	public static function get_redirect_url( $user ) {
+
+		$key = get_password_reset_key( $user );
+
+		if ( is_wp_error( $key ) ) {
+			// Redirect to the reset URL, if they key could not be generated.
+			return site_url( 'wp-login.php?action=rp&sgsrp=1' );
+		}
+
 		return sprintf(
 			site_url( 'wp-login.php?action=rp&key=%s&login=%s&sgsrp=1' ),
-			get_password_reset_key( $user ),
+			$key,
 			rawurlencode( $user->user_login )
 		);
 	}

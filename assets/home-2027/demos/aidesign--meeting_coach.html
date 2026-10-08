@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An internal Aidesign Meeting Coach preview from Van Shea Creative, provided for design review and experimentation. This page is not a production service.">
+<link rel="canonical" href="https://build.vanshea.com/assets/home-2027/demos/aidesign--meeting_coach.html">
+<meta property="og:title" content="Meeting Coach Prototype">
+<meta property="og:description" content="An internal Aidesign Meeting Coach preview from Van Shea Creative, provided for design review and experimentation. This page is not a production service.">
+<meta property="og:url" content="https://build.vanshea.com/assets/home-2027/demos/aidesign--meeting_coach.html">
+<meta property="og:image" content="https://build.vanshea.com/assets/home-2027/van-shea-headshot-2027.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Van Shea Creative">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meeting Coach Prototype">
+<meta name="twitter:description" content="An internal Aidesign Meeting Coach preview from Van Shea Creative, provided for design review and experimentation. This page is not a production service.">
+<meta name="twitter:image" content="https://build.vanshea.com/assets/home-2027/van-shea-headshot-2027.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/fav-icon/fav-icon-32X32.png" media="(prefers-color-scheme: light)" data-theme-favicon="light">
+<link rel="icon" type="image/png" sizes="48x48" href="/fav-icon/fav-icon-48X48-white.png" media="(prefers-color-scheme: dark)" data-theme-favicon="dark">
+<link rel="icon" href="/fav-icon/favicon.ico" sizes="any">
+
+
+
+
+  <link id="apple-touch-icon" rel="apple-touch-icon" sizes="180x180" href="/fav-icon/apple-touch-icon.png">
+  <link rel="manifest" href="/fav-icon/site.webmanifest">
+<script>(function(){var i=document.getElementById("apple-touch-icon"),q=window.matchMedia("(prefers-color-scheme: dark)");function s(){i.href=q.matches?"/fav-icon/apple-touch-icon-dk.png":"/fav-icon/apple-touch-icon.png"}s();q.addEventListener?q.addEventListener("change",s):q.addListener(s)})();</script>
+  <meta name="robots" content="noindex,follow"><base href="/aidesign/">
+    <title>Meeting Coach Prototype</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        background: #060810;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #060810;
+      }
+
+      body {
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+      }
+
+      .meeting-coach-stage {
+        width: 450px;
+        height: 938px;
+        flex: 0 0 auto;
+        transform-origin: center center;
+        will-change: transform;
+      }
+
+      .meeting-coach-stage iframe {
+        display: block;
+        width: 450px;
+        height: 938px;
+        border: 0;
+        background: #060810;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .meeting-coach-stage {
+          will-change: auto;
+        }
+      }
+    </style>
+
+
+</head>
+  <body>
+    <div class="meeting-coach-stage" id="meetingCoachStage">
+      <iframe
+        src="./meeting_coach_demo.html"
+        title="Meeting Coach interactive lock-screen prototype"
+        loading="eager"
+      ></iframe>
+    </div>
+
+    <script>
+      (() => {
+        const stage = document.getElementById("meetingCoachStage");
+        const stageWidth = 450;
+        const stageHeight = 938;
+        const inset = 12;
+
+        function fitPrototype() {
+          const availableWidth = Math.max(1, window.innerWidth - inset * 2);
+          const availableHeight = Math.max(1, window.innerHeight - inset * 2);
+          const scale = Math.min(1, availableWidth / stageWidth, availableHeight / stageHeight);
+          stage.style.transform = "scale(" + scale + ")";
+        }
+
+        fitPrototype();
+        window.addEventListener("resize", fitPrototype, { passive: true });
+        window.addEventListener("orientationchange", fitPrototype, { passive: true });
+      })();
+    </script>
+  </body>
+</html>

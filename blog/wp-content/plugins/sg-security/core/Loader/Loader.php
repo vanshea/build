@@ -3,7 +3,6 @@ namespace SG_Security\Loader;
 
 use SG_Security;
 use SG_Security\Options_Service\Options_Service;
-use SiteGround_Data\Settings;
 use SiteGround_Helper\Helper_Service;
 
 /**
@@ -15,8 +14,6 @@ class Loader {
 	 *
 	 * @var mixed
 	 */
-	public $settings_page;
-	public $settings;
 	public $helper_service;
 	public $i18n_service;
 	public $admin;
@@ -70,14 +67,6 @@ class Loader {
 	 * @var array
 	 */
 	public $external_dependencies = array(
-		'Settings_Page' => array(
-			'namespace' => 'Data',
-			'hook'      => 'settings_page',
-		),
-		'Settings'      => array(
-			'namespace' => 'Data',
-			'hook'      => 'settings',
-		),
 		'Helper_Service' => array(
 			'namespace' => 'Helper',
 		),
@@ -95,53 +84,6 @@ class Loader {
 		$this->load_external_dependencies();
 		$this->load_dependencies();
 		$this->add_hooks();
-	}
-
-	/**
-	 * Add our custom settings page hooks.
-	 *
-	 * @since 1.2.1
-	 */
-	public function add_settings_page_hooks() {
-		add_action( 'admin_menu', array( $this->settings_page, 'register_settings_page' ) );
-
-		add_action( 'admin_init', array( $this->settings_page, 'add_setting_fields' ) );
-
-		add_filter( 'allowed_options', array( $this->settings_page, 'change_allowed_options' ) );
-
-		// Register rest route.
-		add_action( 'rest_api_init', array( $this->settings_page, 'register_rest_routes' ) );
-	}
-
-	/**
-	 * Add the data collector hooks.
-	 *
-	 * @since 1.3.0
-	 */
-	public function add_settings_hooks() {
-		// Bail if we do not have users consent.
-		if ( 0 === intval( get_option( 'siteground_data_consent', 0 ) ) ) {
-			return;
-		}
-
-		$settings = ! method_exists( 'Siteground_Data\\Settings', 'get_instance' ) ? new Settings() : Settings::get_instance();
-
-		// Schedule Cron Job for sending the data.
-		$settings->schedule_cron_job();
-
-		add_action( 'admin_init', array( $settings, 'handle_settings_update' ) );
-
-		// Hook on wp login to send data, when the cron is disabled.
-		if ( defined( 'DISABLE_WP_CRON' ) && 1 === intval( DISABLE_WP_CRON ) ) {
-			add_action( 'wp_login', array( $settings, 'send_data_on_login' ) );
-		}
-
-		// Check if there is old data to be sent over.
-		add_action( 'siteground_data_collector_cron', array( $settings, 'check_for_old_data' ), 9 );
-		// Sent the data.
-		add_action( 'siteground_data_collector_cron', array( $settings, 'send_data' ), 10 );
-		// Add the custom cron interval.
-		add_action( 'cron_schedules', array( $settings, 'add_siteground_data_interval' ) );
 	}
 
 	/**
@@ -244,7 +186,6 @@ class Loader {
 		add_action( 'admin_enqueue_scripts', array( $this->admin, 'enqueue_scripts' ) );
 		add_action( 'admin_print_styles', array( $this->admin, 'admin_print_styles' ) );
 		add_action( 'admin_init', array( $this->admin, 'hide_errors_and_notices' ), PHP_INT_MAX );
-		add_filter( 'admin_footer_text', array( $this->admin, 'show_privacy_policy' ) );
 	}
 
 	/**
@@ -398,6 +339,7 @@ class Loader {
 
 		add_action( 'wp_login', array( $this->sg_2fa, 'move_encryption_file' ), 9, 2 );
 		add_action( 'wp_login', array( $this->sg_2fa, 'init_2fa' ), 10, 2 );
+		add_filter( 'authenticate', array( $this->sg_2fa, 'block_xmlrpc_for_2fa_users' ), 99, 1 );
 		add_action( 'login_form_sgs2fa', array( $this->sg_2fa, 'validate_2fa_login' ) );
 		add_action( 'login_form_sgs2fabc', array( $this->sg_2fa, 'validate_2fabc_login' ) );
 		add_action( 'login_form_load_sgs2fabc', array( $this->sg_2fa, 'load_backup_codes_form' ) );

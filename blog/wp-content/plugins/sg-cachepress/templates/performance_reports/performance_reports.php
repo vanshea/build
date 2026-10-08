@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"
 	  xmlns:v="urn:schemas-microsoft-com:vml"
@@ -14,7 +19,8 @@
 	<title>Optimization Status for $sitename.com</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+		<!-- phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet -->
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 	<style>
 		:root {color-scheme: light dark; supported-color-schemes: light dark;}
 		body {margin: 0; padding: 0; width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
@@ -75,9 +81,10 @@
 								<td height="30"
 									style="padding: 20px 0 30px 0;">
 									<a style="border: none" href="https://www.siteground.com/?utm_source=newsletter&utm_medium=email&utm_campaign=logo" target="_blank" rel="noreferrer">
-										<img class="light-img" style="border: none; outline: none;" src="https://www.siteground.com/static/en/img/emails/logo_b.png" width="170" alt="SiteGround"/>
+											<!-- phpcs:ignore PluginCheck.CodeAnalysis.Offloading.OffloadedContent -->
+											<img class="light-img" style="border: none; outline: none;" src="https://www.siteground.com/static/en/img/emails/logo_b.png" width="170" alt="SiteGround"/>
 										<!--[if !mso]><! -->
-										<div class="dark-img" style="display:none; overflow:hidden; float:left; width:0px; max-height:0px; max-width:0px; line-height:0px; visibility:hidden;"><img style="border: none; outline: none;" src="https://www.siteground.com/static/en/img/emails/logo_w.png" width="170" alt="SiteGround"/></div>
+											<div class="dark-img" style="display:none; overflow:hidden; float:left; width:0px; max-height:0px; max-width:0px; line-height:0px; visibility:hidden;"><!-- phpcs:ignore PluginCheck.CodeAnalysis.Offloading.OffloadedContent --><img style="border: none; outline: none;" src="https://www.siteground.com/static/en/img/emails/logo_w.png" width="170" alt="SiteGround"/></div>
 										<!--<![endif]-->
 									</a>
 								</td>

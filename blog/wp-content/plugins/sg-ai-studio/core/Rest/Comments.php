@@ -636,21 +636,21 @@ class Comments extends Rest_Controller_Base {
 		/* translators: %1$s is the post title, %2$d is the comment ID. */
 		Activity_Log_Helper::add_log_entry( 'Comments', sprintf( __( 'Comment Created on: %1$s (Comment ID: %2$d)', 'sg-ai-studio' ), $post_title, $comment_id ) );
 
-		// Format the response.
-		$response = $this->prepare_comment_for_response( $comment );
-
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
 			\wp_cache_flush();
 		}
 
+		// Return lean response for write operation.
 		return new WP_REST_Response(
 			array(
 				'success' => true,
-				'data'    => $response,
+				'id'      => $comment->comment_ID,
+				'status'  => $comment->comment_approved,
+				'post'    => $comment->comment_post_ID,
 			),
 			201
 		);
@@ -709,21 +709,21 @@ class Comments extends Rest_Controller_Base {
 		/* translators: %1$s is the post title, %2$d is the comment ID. */
 		Activity_Log_Helper::add_log_entry( 'Comments', sprintf( __( 'Comment Updated on: %1$s (Comment ID: %2$d)', 'sg-ai-studio' ), $post_title, $comment_id ) );
 
-		// Format the response.
-		$response = $this->prepare_comment_for_response( $comment );
-
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
 			\wp_cache_flush();
 		}
 
+		// Return lean response for write operation.
 		return new WP_REST_Response(
 			array(
 				'success' => true,
-				'data'    => $response,
+				'id'      => $comment->comment_ID,
+				'status'  => $comment->comment_approved,
+				'post'    => $comment->comment_post_ID,
 			),
 			200
 		);
@@ -749,9 +749,6 @@ class Comments extends Rest_Controller_Base {
 				404
 			);
 		}
-
-		// Get the comment before deleting it.
-		$previous = $this->prepare_comment_for_response( $comment );
 
 		// Delete the comment.
 		$result = wp_delete_comment( $comment_id, $force );
@@ -780,32 +777,22 @@ class Comments extends Rest_Controller_Base {
 		}
 
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
 			\wp_cache_flush();
 		}
 
-		if ( $force ) {
-			return new WP_REST_Response(
-				array(
-					'success' => true,
-					'message' => __( 'The comment has been permanently deleted.', 'sg-ai-studio' ),
-					'data'    => $previous,
-				),
-				200
-			);
-		} else {
-			return new WP_REST_Response(
-				array(
-					'success' => true,
-					'message' => __( 'The comment has been moved to the trash.', 'sg-ai-studio' ),
-					'data'    => $previous,
-				),
-				200
-			);
-		}
+		// Return lean response for delete operation.
+		return new WP_REST_Response(
+			array(
+				'success' => true,
+				'id'      => $comment_id,
+				'status'  => $force ? 'deleted' : 'trashed',
+			),
+			200
+		);
 	}
 
 	/**
@@ -875,7 +862,7 @@ class Comments extends Rest_Controller_Base {
 		$response = $this->prepare_comment_for_response( $comment );
 
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
@@ -1059,7 +1046,7 @@ class Comments extends Rest_Controller_Base {
 		Activity_Log_Helper::add_log_entry( 'Comments', sprintf( __( 'Batch Comment Creation: %1$d created, %2$d errors', 'sg-ai-studio' ), $created_count, $error_count ) );
 
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
@@ -1125,7 +1112,7 @@ class Comments extends Rest_Controller_Base {
 		Activity_Log_Helper::add_log_entry( 'Comments', sprintf( __( 'Batch Comment Update: %1$d updated, %2$d errors', 'sg-ai-studio' ), $updated_count, $error_count ) );
 
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
@@ -1168,7 +1155,7 @@ class Comments extends Rest_Controller_Base {
 			if ( $response->is_error() || ! $response->get_data()['success'] ) {
 				$errors[ $comment_id ] = $response->get_data();
 			} else {
-				$results[ $comment_id ] = $response->get_data()['message'];
+				$results[ $comment_id ] = $response->get_data()['status'];
 			}
 		}
 
@@ -1181,7 +1168,7 @@ class Comments extends Rest_Controller_Base {
 		Activity_Log_Helper::add_log_entry( 'Comments', sprintf( __( 'Batch Comment Deletion: %1$d deleted, %2$d errors', 'sg-ai-studio' ), $deleted_count, $error_count ) );
 
 		// Clear all caches.
-		if( \function_exists('\sg_cachepress_purge_cache') ) {
+		if ( \function_exists( '\sg_cachepress_purge_cache' ) ) {
 			\sg_cachepress_purge_cache();
 			\wp_cache_flush();
 		} else {
@@ -1305,11 +1292,7 @@ class Comments extends Rest_Controller_Base {
 			'author_ip'         => $comment->comment_author_IP,
 			'author_user_agent' => $comment->comment_agent,
 			'date'              => mysql_to_rfc3339( $comment->comment_date ),
-			'date_gmt'          => mysql_to_rfc3339( $comment->comment_date_gmt ),
-			'content'           => array(
-				'raw'      => $comment->comment_content,
-				'rendered' => apply_filters( 'comment_text', $comment->comment_content, $comment ), // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
-			),
+			'content'           => $comment->comment_content,
 			'link'              => get_comment_link( $comment ),
 			'status'            => $status,
 			'type'              => $comment->comment_type,

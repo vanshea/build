@@ -23,8 +23,11 @@
 		<input type="hidden" name="redirect_to" value="<?php echo esc_url( $args['redirect_to'] ); ?>" />
 	<?php endif; ?>
 	<input type="hidden" name="rememberme" id="rememberme" value="<?php echo esc_html( $args['rememberme'] ); ?>" />
+
+	<?php if ( $args['sg_security_2fa_do_not_challenge'] ) : ?>
 	<input name="do_not_challenge" type="checkbox" id="do_not_challenge" />
 	<label for="do_not_challenge"><?php esc_html_e( 'Do not challenge me for the next 30 days.', 'sg-security' ); ?></label>
+	<?php endif; ?>
 	<p>
 		<br />
 		<?php submit_button( __( 'Authenticate', 'sg-security' ) ); ?>

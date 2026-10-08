@@ -12,6 +12,7 @@
 
   let lightboxImages = [];
   let activeLightboxIndex = 0;
+  let lightboxReturnFocus = null;
 
   if (lightboxDataNode) {
     try {
@@ -52,13 +53,16 @@
     }
   }
 
-  function openLightbox(index) {
+  function openLightbox(index, trigger) {
     if (!lightbox || !lightboxImages.length) return;
 
+    lightboxReturnFocus = trigger || document.activeElement;
     renderLightbox(index);
     lightbox.classList.add("is-open");
     lightbox.setAttribute("aria-hidden", "false");
+    lightbox.inert = false;
     document.body.classList.add("case-study-lightbox-open");
+    lightboxClose?.focus();
   }
 
   function closeLightbox() {
@@ -66,13 +70,16 @@
 
     lightbox.classList.remove("is-open");
     lightbox.setAttribute("aria-hidden", "true");
+    lightbox.inert = true;
     document.body.classList.remove("case-study-lightbox-open");
+    lightboxReturnFocus?.focus();
+    lightboxReturnFocus = null;
   }
 
   function bindLightboxTriggers() {
     document.querySelectorAll("[data-lightbox-trigger]").forEach((trigger) => {
       trigger.addEventListener("click", () => {
-        openLightbox(trigger.dataset.lightboxIndex || 0);
+        openLightbox(trigger.dataset.lightboxIndex || 0, trigger);
       });
     });
   }
@@ -104,6 +111,19 @@
 
     document.addEventListener("keydown", (event) => {
       if (!lightbox.classList.contains("is-open")) return;
+
+      if (event.key === "Tab") {
+        const controls = [lightboxClose, lightboxPrev, lightboxNext].filter(Boolean);
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
 
       if (event.key === "Escape") {
         closeLightbox();

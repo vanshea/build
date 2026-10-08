@@ -14,6 +14,7 @@ class ComposerStaticInitd343e3744276ea7519a237545961180c
         'S' => 
         array (
             'SiteGround_Helper\\' => 18,
+            'SiteGround_Dashboard\\' => 21,
             'SiteGround_Central\\' => 19,
         ),
         'C' => 
@@ -28,6 +29,10 @@ class ComposerStaticInitd343e3744276ea7519a237545961180c
         'SiteGround_Helper\\' => 
         array (
             0 => __DIR__ . '/..' . '/siteground/siteground-helper/src',
+        ),
+        'SiteGround_Dashboard\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/siteground/siteground-dashboard-notifications/src',
         ),
         'SiteGround_Central\\' => 
         array (

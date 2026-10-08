@@ -10,11 +10,11 @@
  * Plugin Name:       Speed Optimizer
  * Plugin URI:        https://siteground.com
  * Description:       This plugin will link your WordPress application with all the performance optimizations provided by SiteGround
- * Version:           7.7.10
+ * Version:           7.8.4
  * Author:            SiteGround
  * Author URI:        https://www.siteground.com
  * Text Domain:       sg-cachepress
- * Domain Path:       /languages
+ * Domain Path:       /
  * License:           GPLv3
  */
 
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 // Define version constant.
 if ( ! defined( __NAMESPACE__ . '\VERSION' ) ) {
-	define( __NAMESPACE__ . '\VERSION', '7.7.10' );
+	define( __NAMESPACE__ . '\VERSION', '7.8.4' );
 }
 
 // Define slug constant.
@@ -48,17 +48,17 @@ if ( ! defined( __NAMESPACE__ . '\DIR' ) ) {
 
 // Define root URL.
 if ( ! defined( __NAMESPACE__ . '\URL' ) ) {
-	$root_url = \trailingslashit( DIR );
+	$siteground_optimizer_root_url = \trailingslashit( DIR );
 
 	// Sanitize directory separator on Windows.
-	$root_url = str_replace( '\\', '/', $root_url );
+	$siteground_optimizer_root_url = str_replace( '\\', '/', $siteground_optimizer_root_url );
 
-	$wp_plugin_dir = str_replace( '\\', '/', WP_PLUGIN_DIR );
-	$root_url = str_replace( $wp_plugin_dir, \plugins_url(), $root_url );
+	$siteground_optimizer_wp_plugin_dir = str_replace( '\\', '/', WP_PLUGIN_DIR );
+	$siteground_optimizer_root_url      = str_replace( $siteground_optimizer_wp_plugin_dir, \plugins_url(), $siteground_optimizer_root_url );
 
-	define( __NAMESPACE__ . '\URL', \untrailingslashit( $root_url ) );
+	define( __NAMESPACE__ . '\URL', \untrailingslashit( $siteground_optimizer_root_url ) );
 
-	unset( $root_url );
+	unset( $siteground_optimizer_root_url, $siteground_optimizer_wp_plugin_dir );
 }
 
 require_once( \SiteGround_Optimizer\DIR . '/vendor/autoload.php' );

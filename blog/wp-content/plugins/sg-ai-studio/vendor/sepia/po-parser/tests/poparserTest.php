@@ -1,6 +1,6 @@
 <?php
 
-namespace Sepia;
+namespace SG_AI_Studio\Vendor\Sepia;
 
 class PoParserTest extends \PHPUnit_Framework_TestCase
 {

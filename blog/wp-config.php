@@ -1,4 +1,6 @@
 <?php
+define( 'WP_CACHE', true ); // By Speed Optimizer by SiteGround
+
 /**
  * The base configuration for WordPress
  *

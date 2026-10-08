@@ -43,7 +43,6 @@ class Loader {
 	public function load_dependencies() {
 		$this->rest_server = new Rest_Server();
 		$this->admin       = new Admin();
-		$this->dashboard   = new Dashboard();
 		$this->themes      = new Themes();
 		$this->plugins     = new Plugins();
 		$this->third_party = new ThirdParty();
@@ -124,25 +123,6 @@ class Loader {
 		// add_action( 'admin_body_class', array( $this->plugins, 'change_plugin_info_modal' ) );
 
 		// Dashboard filters
-		add_action( 'wp_dashboard_setup', array( $this->dashboard, 'add_dashboard_widget' ), 9999 );
-		add_action( 'wp_ajax_switch_dashboard', array( $this->dashboard, 'switch_dashboard' ) );
-		add_action( 'admin_enqueue_scripts', array( $this->dashboard, 'enqueue_scripts' ), 11 );
-		remove_action( 'wp_print_styles', 'print_emoji_styles' );
-		remove_action( 'wp_head', 'print_emoji_styles' );
-
-		if ( false === $this->dashboard->maybe_show_page() ) {
-			return;
-		}
-
-		add_action( 'admin_menu', array( $this->dashboard, 'admin_menu' ) );
-		add_action( 'submenu_file', array( $this->dashboard, 'highlight_menu_item' ) );
-		add_action( 'admin_init', array( $this->dashboard, 'redirect_to_dashboard' ), 1 );
-		add_action( 'wp_before_admin_bar_render', array( $this->dashboard, 'add_dashboard_admin_bar_menu_item' ) );
-		add_action( 'wp_before_admin_bar_render', array( $this->dashboard, 'reorder_admin_bar' ) );
-		add_action( 'wp_head', array( $this->dashboard, 'additional_admin_bar_css' ) );
-		add_filter( 'admin_url', array( $this->dashboard, 'replace_submenu_button_link' ), 10, 2 );
-		add_filter( 'custom_menu_order', '__return_true' );
-		add_filter( 'menu_order', array( $this->dashboard, 'reorder_submenu_pages' ) );
 	}
 
 	/**

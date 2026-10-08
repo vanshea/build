@@ -8,7 +8,7 @@
 namespace SG_AI_Studio\CLI;
 
 use SG_AI_Studio\Helper\Helper;
-use CharlesRumley\PoToJson;
+use SG_AI_Studio\Vendor\CharlesRumley\PoToJson;
 /**
  * WP-CLI commands for SG AI Studio plugin
  */
@@ -22,9 +22,13 @@ class AI_Studio_CLI {
 	 * <hash>
 	 * : The base64 encoded data containing client_id:link_id
 	 *
+	 * [--ping]
+	 * : Trigger the /ping handshake request after storing credentials
+	 *
 	 * ## EXAMPLES
 	 *
 	 *     wp sg ai-studio auth <base64_encoded_data>
+	 *     wp sg ai-studio auth <base64_encoded_data> --ping
 	 *
 	 * @param array $args Command arguments.
 	 * @param array $assoc_args Command associative arguments.
@@ -63,8 +67,8 @@ class AI_Studio_CLI {
 		}
 
 		// Save client_id and link_id as site options.
-		$client_id_saved = update_option( 'sg_ai_studio_client_id', $client_id );
-		$link_id_saved   = update_option( 'sg_ai_studio_link_id', $link_id );
+		update_option( 'sg_ai_studio_client_id', $client_id );
+		update_option( 'sg_ai_studio_link_id', $link_id );
 
 		// Save the connected URL as base64 encoded value.
 		$site_url         = get_site_url();
@@ -75,12 +79,6 @@ class AI_Studio_CLI {
 		$api_result = Helper::init_client_auth( $client_id, $link_id );
 		// Check if API call failed.
 		if ( ! $api_result['success'] ) {
-			// API call failed - handled below.
-		} else {
-			update_option( 'sg_ai_studio_connected', true );
-		}
-		// Check if API call failed.
-		if ( ! $api_result['success'] ) {
 			\WP_CLI::error(
 				sprintf(
 					'API call failed: %s',
@@ -88,6 +86,60 @@ class AI_Studio_CLI {
 				)
 			);
 			return;
+		}
+
+		// Check if --ping flag is present.
+		if ( isset( $assoc_args['ping'] ) ) {
+			\WP_CLI::log( 'Triggering ping handshake...' );
+
+			// Generate auth token.
+			$auth_token = Helper::generate_ai_studio_token();
+
+			if ( false === $auth_token || empty( $auth_token ) ) {
+				\WP_CLI::error( 'Failed to generate authentication token for ping request.' );
+				return;
+			}
+
+			// Determine API URL based on environment.
+			if ( defined( '\SG_AI_STUDIO_ENV' ) && \SG_AI_STUDIO_ENV === 'staging' ) {
+				$api_url = 'https://api.staging.studio.siteground.ai/api/v1/wp/wp-ping';
+			} else {
+				$api_url = 'https://api.studio.siteground.ai/api/v1/wp/wp-ping';
+			}
+
+			// Call AI Studio Backend API to ping (identical to REST API implementation).
+			$api_response = wp_remote_post(
+				$api_url,
+				array(
+					'method'  => 'POST',
+					'headers' => array(
+						'Content-Type'  => 'application/json',
+						'Authorization' => 'Bearer ' . $auth_token,
+					),
+					'timeout' => 30,
+				)
+			);
+
+			// Check if API call failed (matches REST API behavior).
+			if ( is_wp_error( $api_response ) ) {
+				\WP_CLI::error(
+					sprintf(
+						'Ping handshake failed: %s',
+						$api_response->get_error_message()
+					)
+				);
+				return;
+			} else {
+				update_option( 'sg_ai_studio_connected', true );
+				update_option( 'sg_ai_studio_provider_connected', true );
+			}
+
+			\WP_CLI::success( 'Ping handshake completed successfully.' );
+		} else {
+			// Without --ping flag, maintain backwards compatibility.
+			// Set connected status based on init_client_auth success (current behavior).
+			update_option( 'sg_ai_studio_connected', true );
+			update_option( 'sg_ai_studio_provider_connected', true );
 		}
 
 		\WP_CLI::success(

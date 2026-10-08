@@ -34,6 +34,7 @@ class Admin {
 		'onthego-admin-styles', // Toolset Types
 		'foogra-icons', // Foogra Theme
 		'elegant', // Elegant Icons-set
+		'admin-icons-font', // Yoga-fit Тheme
 	);
 
 	/**
@@ -294,47 +295,9 @@ class Admin {
 	 * @return array The popup settings.
 	 */
 	public function get_popup_settings() {
-		$settings = array();
-
-		$data_consent       = intval( get_option( 'siteground_data_consent', 0 ) );
-		$email_consent      = intval( get_option( 'siteground_email_consent', 0 ) );
-		$settings_security  = intval( get_option( 'siteground_settings_security', 0 ) );
-
-
-		if ( ! empty( $settings_security ) ) {
-			return array(
-				'show_data_field'  => 0,
-				'show_email_field' => 0,
-			);
-		}
-
-		if ( Helper_Service::is_siteground() ) {
-			if ( 1 === $data_consent ) {
-				return array(
-					'show_data_field'  => 0,
-					'show_email_field' => 0,
-				);
-			}
-
-			return array(
-				'show_data_field'  => 1,
-				'show_email_field' => 0,
-			);
-		}
-
-		$settings = array();
-
-		$settings['show_data_field'] = 0 === $data_consent ? 1 : 0;
-		$settings['show_email_field'] = 0 === $email_consent ? 1 : 0;
-
-		return $settings;
+		return array(
+			'show_data_field'  => 0,
+			'show_email_field' => 0,
+		);
 	}
-
-	public function show_privacy_policy ( $text ) {
-		if ( false === $this->is_plugin_page() ) {
-			return $text;
-		}
-		return __( 'By installing and using this plugin you acknowledge that you have read and understood <a href="//siteground.com/viewtos/siteground_plugins_privacy_notice"> SiteGround Plugins Privacy Notice </a>.', 'sg-security' );
-	}
-
 }

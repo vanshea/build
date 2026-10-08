@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 __( 'SuperCacher Settings', 'sg-cachepress' );
 __( 'Environment Optimization', 'sg-cachepress' );
 __( 'Frontend Optimization', 'sg-cachepress' );

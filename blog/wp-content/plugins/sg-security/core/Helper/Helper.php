@@ -150,4 +150,11 @@ class Helper {
 		// Destroy all sessions.
 		WP_Session_Tokens::destroy_all_for_all_users();
 	}
+
+	/**
+	 * Checks if the request is a cron request.
+	 */
+	public static function is_cron() {
+		return defined( 'DOING_CRON' ) && DOING_CRON;
+	}
 }

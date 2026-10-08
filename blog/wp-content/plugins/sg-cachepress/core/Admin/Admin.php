@@ -43,6 +43,11 @@ class Admin {
 		'onthego-admin-styles', // Toolset Types
 		'foogra-icons', // Foogra Theme
 		'elegant', // Elegant Icons-set
+		'admin-icons-font', // Yoga-fit Тheme
+	);
+
+	public $dequeued_scripts = array(
+		'wc-admin-wcsettings-deprecation', // Woocommerce JS error introducing file.
 	);
 
 	/**
@@ -106,9 +111,9 @@ class Admin {
 			remove_all_actions( 'admin_notices' );
 			remove_all_actions( 'all_admin_notices' );
 
-			error_reporting( 0 );
+			error_reporting( 0 ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.prevent_path_disclosure_error_reporting -- Prevents third-party notices from breaking the admin optimization test request.
 		}
-	}
+		}
 
 	/**
 	 * Register the stylesheets for the admin area.
@@ -152,6 +157,11 @@ class Admin {
 		// Bail if we are on different page.
 		if ( false === $this->is_plugin_page() ) {
 			return;
+		}
+
+		// Dequeue conflicting scripts.
+		foreach ( $this->dequeued_scripts as $script ) {
+			wp_dequeue_script( $script );
 		}
 
 		wp_enqueue_media();
@@ -421,45 +431,9 @@ class Admin {
 	 * @return array The popup settings.
 	 */
 	public function get_popup_settings() {
-		$settings = array();
-
-		$data_consent       = intval( get_option( 'siteground_data_consent', 0 ) );
-		$email_consent      = intval( get_option( 'siteground_email_consent', 0 ) );
-		$settings_optimizer = intval( get_option( 'siteground_settings_optimizer', 0 ) );
-
-		if ( ! empty( $settings_optimizer ) ) {
-			return array(
-				'show_data_field'  => 0,
-				'show_email_field' => 0,
-			);
-		}
-
-		if ( Helper_Service::is_siteground() ) {
-			if ( 1 === $data_consent ) {
-				return array(
-					'show_data_field'  => 0,
-					'show_email_field' => 0,
-				);
-			}
-
-			return array(
-				'show_data_field'  => 1,
-				'show_email_field' => 0,
-			);
-		}
-
-		$settings = array();
-
-		$settings['show_data_field'] = 0 === $data_consent ? 1 : 0;
-		$settings['show_email_field'] = 0 === $email_consent ? 1 : 0;
-
-		return $settings;
-	}
-
-	public function show_privacy_policy ( $text ) {
-		if ( false === $this->is_plugin_page() ) {
-			return $text;
-		}
-		return __( 'By installing and using this plugin you acknowledge that you have read and understood <a href="//siteground.com/viewtos/siteground_plugins_privacy_notice"> SiteGround Plugins Privacy Notice </a>.', 'sg-cachepress' );
+		return array(
+			'show_data_field'  => 0,
+			'show_email_field' => 0,
+		);
 	}
 }

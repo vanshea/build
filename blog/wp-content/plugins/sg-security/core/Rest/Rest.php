@@ -266,6 +266,14 @@ class Rest {
 				'permission_callback' => array( $this, 'check_permissions' ),
 			)
 		);
+
+		register_rest_route(
+			self::REST_NAMESPACE, '/security-score/', array(
+				'methods'             => \WP_REST_Server::CREATABLE,
+				'callback'            => array( $this->dashboard_helper, 'security_score' ),
+				'permission_callback' => array( $this, 'check_permissions' ),
+			)
+		);
 	}
 
 	/**

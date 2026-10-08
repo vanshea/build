@@ -85,12 +85,14 @@ class Cache {
 		// Prepare the path.
 		$path = $parsed_url['host'];
 
+		$user_cache_key = $this->get_user_cache_key();
+
 		if (
 			true === $include_user &&
-			$this->is_logged_in() &&
+			false !== $user_cache_key &&
 			$this->logged_in_cache
 		) {
-			$path .= '-' . $this->get_user_login();
+			$path .= '-' . $user_cache_key;
 		}
 
 		$path .= '-' . $this->cache_secret_key;
@@ -108,20 +110,36 @@ class Cache {
 	 * @return boolean True if the user is logged in, false otherwise.
 	 */
 	public function is_logged_in() {
-		return in_array( $this->logged_in_cookie, array_keys( $_COOKIE ) );
+		return false !== $this->get_user_cache_key();
 	}
 
 	/**
-	 * Get the user login from the cookie.
+	 * Check if the configured logged-in cookie is present.
 	 *
-	 * @since  7.0.0
+	 * @since  7.8.3
 	 *
-	 * @return string The user login.
+	 * @return boolean True if the cookie is present, false otherwise.
 	 */
-	public function get_user_login() {
-		$logged_in_cookie_parsed = explode( '|', $_COOKIE[ $this->logged_in_cookie ] ); // phpcs:ignore
+	public function has_logged_in_cookie() {
+		return is_string( $this->logged_in_cookie ) && array_key_exists( $this->logged_in_cookie, $_COOKIE );
+	}
 
-		return $logged_in_cookie_parsed[0];
+	/**
+	 * Get the cache partition key for the current logged-in session.
+	 *
+	 * @since  7.8.3
+	 *
+	 * @return string|false The session cache key, or false for an invalid cookie.
+	 */
+	public function get_user_cache_key() {
+		if ( ! $this->has_logged_in_cookie() ) {
+			return false;
+		}
+
+		return $this->get_logged_in_cache_key(
+			$_COOKIE[ $this->logged_in_cookie ], // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$this->cache_secret_key
+		);
 	}
 
 	/**
@@ -133,6 +151,12 @@ class Cache {
 	 */
 	public function get_cache() {
 		$should_send_miss = true;
+
+		// A malformed login cookie must never fall back to the anonymous partition.
+		if ( $this->logged_in_cache && $this->has_logged_in_cookie() && ! $this->is_logged_in() ) {
+			header( 'SG-F-Cache: BYPASS' );
+			return;
+		}
 
 		if (
 			( @file_exists( '/etc/yum.repos.d/baseos.repo' ) && @file_exists( '/Z' ) ) &&

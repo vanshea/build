@@ -3,10 +3,10 @@
  * SiteGround i18n Service.
  */
 
-namespace SiteGround_i18n;
+namespace SG_AI_Studio\Vendor\SiteGround_i18n;
 
-use CharlesRumley\PoToJson;
-use SiteGround_Helper\Helper_Service;
+use SG_AI_Studio\Vendor\CharlesRumley\PoToJson;
+use SG_AI_Studio\Vendor\SiteGround_Helper\Helper_Service;
 
 /**
  * SiteGround_i18n_Service class.
@@ -128,8 +128,8 @@ class i18n_Service {
 
 		// Possible langugaes paths.
 		$dirs = array(
-			'wp-content/languages/plugins/',
 			'wp-content/plugins/' . $this->folder . '/languages/json/',
+			'wp-content/languages/plugins/',
 		);
 
 		foreach ( $dirs as $dir ) {

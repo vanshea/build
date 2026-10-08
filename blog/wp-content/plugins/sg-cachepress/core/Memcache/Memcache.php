@@ -185,7 +185,7 @@ class Memcache {
 		// Enable the memcache if the file is not readable.
 		if ( false !== $dropin ) {
 			// Delete the file.
-			$is_removed = unlink( $dropin );
+			$is_removed = wp_delete_file( $dropin );
 
 			if ( false === $is_removed ) {
 				// Enable memcache if the dropin cannot be removed.
@@ -297,13 +297,13 @@ class Memcache {
 		$excludes[] = $result[0]->option_name;
 
 		// Open the exclude list file.
-		$handle = fopen( self::EXCLUDES_FILENAME, 'a' );
+		$handle = fopen( self::EXCLUDES_FILENAME, 'a' ); // phpcs:ignore
 
 		// Write the option to the exclude list.
 		fputcsv( $handle, array( $result[0]->option_name ) );
 
 		// Close the file.
-		fclose( $handle );
+		fclose( $handle ); // phpcs:ignore
 	}
 
 	/**

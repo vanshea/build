@@ -20,6 +20,10 @@ class Front_End_Optimization {
 	 */
 	public $assets_dir = null;
 
+	/**
+	 * A placeholder for the URL, on which the assets can be accessed.
+	 */
+	public $assets_url = null;
 
 	/**
 	 * Limit of assets dir in bytes.
@@ -56,6 +60,7 @@ class Front_End_Optimization {
 		'houzez-google-map-api',
 		'wpascript',
 		'wc-square',
+		'wp-private-apis',
 	);
 
 	/**
@@ -87,6 +92,8 @@ class Front_End_Optimization {
 	public function __construct() {
 		// Set the assets dir path.
 		$this->set_assets_directory_path();
+		// Sets the assets URL.
+		$this->set_assets_directory_url();
 
 		self::$instance = $this;
 		$this->blacklisted_async_scripts = array_merge(
@@ -153,7 +160,7 @@ class Front_End_Optimization {
 		// Bail if cannot create temp dir.
 		if ( false === $is_directory_created ) {
 			// translators: `$directory` is the name of directory that should be created.
-			error_log( sprintf( 'Cannot create directory: %s.', $directory ) );
+			error_log( sprintf( 'Cannot create directory: %s.', $directory ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Needed for operational visibility when cache asset directory creation fails.
 		}
 
 		return $is_directory_created;
@@ -216,7 +223,7 @@ class Front_End_Optimization {
 		$scripts = wp_clone( $wp_scripts );
 		$scripts->all_deps( $scripts->queue );
 
-		$excluded_scripts = apply_filters( 'sgo_js_async_exclude', $this->blacklisted_async_scripts );
+		$excluded_scripts = apply_filters( 'sgo_js_async_exclude', $this->blacklisted_async_scripts ); // phpcs:ignore
 
 		// Remove excluded script handles using regex.
 		foreach( $this->blacklisted_async_regex as $regex ) {
@@ -309,7 +316,7 @@ class Front_End_Optimization {
 			return $src;
 		}
 
-		$exclude_list = apply_filters( 'sgo_rqs_exclude', array() );
+		$exclude_list = apply_filters( 'sgo_rqs_exclude', array() ); // phpcs:ignore
 
 		if (
 			! empty( $exclude_list ) &&
@@ -357,13 +364,13 @@ class Front_End_Optimization {
 		}
 
 		// Remove the jet popup action to prevent fatal errros.
-		remove_all_actions( 'elementor/editor/after_enqueue_styles', 10 );
+		remove_all_actions( 'elementor/editor/after_enqueue_styles', 10 ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Third-party hook cleared intentionally for asset discovery.
 
 		ob_start();
 		// Call the action to load the assets.
-		do_action( 'wp', $wp );
-		do_action( 'wp_enqueue_scripts' );
-		do_action( 'elementor/editor/after_enqueue_styles' );
+		do_action( 'wp', $wp );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core hook.
+		do_action( 'wp_enqueue_scripts' );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core hook.
+		do_action( 'elementor/editor/after_enqueue_styles' );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Third-party hook invoked intentionally for asset discovery.
 		ob_get_clean();
 
 		// Build the assets data.
@@ -445,7 +452,7 @@ class Front_End_Optimization {
 		$data = array(
 			'value'       => $item->handle, // The handle.
 			'title'       => ! empty( $matches[1] ) ? $matches[1] : $item->src, // The assets src.
-			'group'       => ! empty( $matches[2] ) ? substr( $matches[2], 0, -1 ) : __( 'others', 'siteground-optimizer' ), // Get the group name.
+			'group'       => ! empty( $matches[2] ) ? substr( $matches[2], 0, -1 ) : __( 'others', 'sg-cachepress' ), // Get the group name.
 			'name'        => ! empty( $matches[3] ) ? $this->get_plugin_info( $matches[3] ) : false, // The name of the parent( plugin or theme name ).
 		);
 
@@ -543,4 +550,24 @@ class Front_End_Optimization {
 		return $size;
 	}
 
+	/**
+	 * Builds the URL that loads the assets.
+	 *
+	 * @return void
+	 */
+	public function set_assets_directory_url() {
+		// Bail if the assets URL has been set.
+		if ( null !== $this->assets_url ) {
+			return;
+		}
+
+		// Get the base assets URL.
+		$baseurl = Helper_Service::get_assets_url();
+
+		// Assign the assets URL only if the assets directory exists.
+		if ( is_dir( $this->assets_dir ) ) {
+			// Build the SGO assets URL.
+			$this->assets_url = $baseurl . '/siteground-optimizer-assets/';
+		}
+	}
 }

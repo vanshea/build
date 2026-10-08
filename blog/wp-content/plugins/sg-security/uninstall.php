@@ -33,17 +33,3 @@ foreach ( $user_2fa_meta as $meta ) {
 
 // Delete encryption file.
 wp_delete_file( defined( 'SGS_ENCRYPTION_KEY_FILE_PATH' ) ? SGS_ENCRYPTION_KEY_FILE_PATH : WP_CONTENT_DIR . '/sgs_encrypt_key.php' );
-
-// Stop uninstall service if SG Optimizer plugin exists.
-if ( file_exists( WP_PLUGIN_DIR . '/sg-cachepress/sg-cachepress.php' ) ) {
-	return;
-}
-
-// Stop collecting data.
-require_once dirname( __FILE__ ) . '/vendor/siteground/siteground-data/src/Settings.php';
-
-use SiteGround_Data\Settings;
-
-$settings = new Settings();
-
-$settings->stop_collecting_data();

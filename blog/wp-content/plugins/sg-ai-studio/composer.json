@@ -2,23 +2,67 @@
 	"name": "siteground/sg-ai-studio",
 	"type": "wordpress-plugin",
 	"autoload": {
-		"psr-4": {"SG_AI_Studio\\": "core/"}
+		"psr-4": {"SG_AI_Studio\\": "core/"},
+		"classmap": ["vendor/sepia/po-parser/src/"]
+	},
+	"require-dev": {
+		"brianhenryie/strauss": "^0.27"
+	},
+	"scripts": {
+		"strauss": [
+			"vendor/bin/strauss",
+			"@composer dump-autoload"
+		],
+		"post-install-cmd": ["@strauss"],
+		"post-update-cmd": ["@strauss"]
+	},
+	"extra": {
+		"strauss": {
+			"target_directory": "vendor",
+			"namespace_prefix": "SG_AI_Studio\\Vendor\\",
+			"classmap_prefix": "SG_AI_Studio_",
+			"constant_prefix": "SG_AI_STUDIO_",
+			"packages": [
+				"guzzlehttp/guzzle",
+				"guzzlehttp/promises",
+				"guzzlehttp/psr7",
+				"psr/http-client",
+				"psr/http-factory",
+				"psr/http-message",
+				"firebase/php-jwt",
+				"symfony/deprecation-contracts",
+				"ralouphie/getallheaders",
+				"sepia/po-parser",
+				"charles-rumley/php-po-to-json",
+				"siteground/siteground-helper",
+				"siteground/siteground-i18n"
+			]
+		}
 	},
 	"config": {
 		"platform": {
 			"php": "7.4"
+		},
+		"allow-plugins": {
+			"php-http/discovery": true
 		}
-	}, 
+	},
 	"repositories": [
+		{
+			"type": "vcs",
+			"url":  "git@gitlab.siteground.com:wordpress/siteground-helper.git"
+		},
 		{
 			"type": "vcs",
 			"url":  "git@gitlab.siteground.com:wordpress/siteground-i18n.git"
 		}
 	],
+	"minimum-stability": "dev",
+	"prefer-stable": true,
 	"require": {
-		"firebase/php-jwt": "^6.0",
+		"firebase/php-jwt": "^6.10",
 		"charles-rumley/php-po-to-json": "master@dev",
-		"guzzlehttp/guzzle": "^7.0",
+		"siteground/siteground-helper": "master@dev",
 		"siteground/siteground-i18n": "master@dev"
 	}
 }

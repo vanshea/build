@@ -209,7 +209,7 @@ class Images_Optimizer extends Abstract_Images_Optimizer {
 	 */
 	public function resize( $image_data ) {
 		// Getting the option value from the db and applying additional filters, if any.
-		$image_resize_option = apply_filters( 'sgo_set_max_image_width', get_option( 'siteground_optimizer_resize_images', 2560 ) );
+		$image_resize_option = apply_filters( 'sgo_set_max_image_width', get_option( 'siteground_optimizer_resize_images', 2560 ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Backward-compatible public filter.
 
 		// Disable resize, if it's set so in the DB and no filters are found.
 		if ( 0 === intval ( $image_resize_option ) ) {

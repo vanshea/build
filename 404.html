@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en" data-theme="theme4">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page not found | Van Shea Creative</title>
+<meta name="description" content="This page isn't here. Find your way back to Human Agency Design, the work, case studies, and the AI Design Lab.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#fffcf3">
+<link rel="icon" type="image/png" sizes="32x32" href="/fav-icon/fav-icon-32X32.png" media="(prefers-color-scheme: light)" data-theme-favicon="light">
+<link rel="icon" type="image/png" sizes="48x48" href="/fav-icon/fav-icon-48X48-white.png" media="(prefers-color-scheme: dark)" data-theme-favicon="dark">
+<link rel="icon" href="/fav-icon/favicon.ico" sizes="any">
+
+
+
+<link id="apple-touch-icon" rel="apple-touch-icon" sizes="180x180" href="/fav-icon/apple-touch-icon.png">
+  <link rel="manifest" href="/fav-icon/site.webmanifest">
+<script>(function(){var i=document.getElementById("apple-touch-icon"),q=window.matchMedia("(prefers-color-scheme: dark)");function s(){i.href=q.matches?"/fav-icon/apple-touch-icon-dk.png":"/fav-icon/apple-touch-icon.png"}s();q.addEventListener?q.addEventListener("change",s):q.addListener(s)})();</script>
+<script>
+  (() => {
+    const themes = ['theme1', 'theme3', 'theme4', 'theme5'];
+    let theme = 'theme4';
+    try {
+      theme = [localStorage.getItem('vsc-site-theme-v2'), localStorage.getItem('vsc-site-theme')]
+        .find(value => themes.includes(value)) || theme;
+    } catch (e) {}
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.classList.add('js');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap">
+<style>
+  /* Tokens mirror vanshea.com (agency-home.css) so the page follows the visitor's saved theme. */
+  :root {
+    color-scheme: light;
+    --bg: #fffcf3; --ink: #0b0710; --muted: #514b51; --panel: #e8e0d0; --line: #cfc7b8;
+    --accent: #d2ff00; --button: #efff91; --button-edge: #ffc097; --button-ink: #0b0710;
+    --focus: #0057b8; --fail: #f36070; --fail-ink: #0b0710;
+    --serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+    --sans: 'DM Sans', 'Open Sans', Arial, sans-serif;
+  }
+  :root[data-theme="theme1"] { --bg:#eef7ff; --ink:#122033; --muted:#43596e; --panel:#d2e2f0; --line:#b7cede; --accent:#0a84ff; --button:#cceaff; --button-edge:#64d2ff; --button-ink:#122033; }
+  :root[data-theme="theme3"] { color-scheme:dark; --bg:#090909; --ink:#fff; --muted:#d6d6d6; --panel:#202020; --line:#686868; --accent:#ffd400; --button:#ffd400; --button-edge:#00e5ff; --button-ink:#090909; --focus:#00e5ff; --fail:#ff6b6b; --fail-ink:#090909; }
+  :root[data-theme="theme5"] { --bg:#fff7eb; --ink:#171222; --muted:#493b50; --panel:#fbe0eb; --line:#2b2332; --accent:#d2ff00; --button:#39b8e8; --button-edge:#ee3e91; --button-ink:#171222; --focus:#144dff; --fail:#ee3e91; --fail-ink:#171222; }
+  @media (prefers-color-scheme: dark) {
+    :root[data-theme="theme1"] { color-scheme:dark; --bg:#0e1b29; --ink:#edf7ff; --muted:#bacddd; --panel:#20384f; --line:#47617a; --focus:#64d2ff; --button:#20384f; --button-ink:#edf7ff; }
+    :root[data-theme="theme1"] .home-brand img { filter:invert(1); }
+  }
+  :root[data-theme="theme3"] .home-brand img { filter:invert(1); }
+  :root[data-theme="theme5"] body {
+    background-image: linear-gradient(90deg, rgba(23,18,34,.07) 1px, transparent 1px), linear-gradient(rgba(23,18,34,.07) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; overflow-x: clip; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.72 var(--sans); letter-spacing: -.012em; }
+  a { color: inherit; text-underline-offset: 5px; }
+  img { display: block; max-width: 100%; }
+  h1, h2, h3, p, ol, ul { margin: 0; }
+  ol, ul { padding: 0; list-style: none; }
+  h1, h2, h3 { text-wrap: balance; font-weight: 400; }
+  button { font: inherit; cursor: pointer; }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--focus); outline-offset: 6px; }
+  ::selection { background: var(--button); color: var(--button-ink); }
+  .sr-only { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
+  .skip { position:absolute; top:8px; left:16px; padding:10px 18px; z-index:100; background:var(--button); color:var(--button-ink); transform:translateY(-160%); }
+  .skip:focus { transform:none; }
+  .container { width: calc(100% - 10.55%); max-width: 1288px; margin-inline: auto; }
+
+  /* Header: same structure as vanshea.com */
+  .home-header { position: sticky; top: 0; z-index: 5; border-bottom: 7px solid var(--accent); background: var(--bg); }
+  .header-inner { min-height: 69px; padding-top: 6px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+  .home-brand { display: flex; align-items: center; text-decoration: none; }
+  .home-brand img { width: 215px; height: auto; }
+  .home-nav { display: flex; align-items: center; gap: 32px; padding-right: 8px; }
+  .home-nav a { font-size: 13px; line-height: 1.35; font-weight: 700; text-transform: uppercase; letter-spacing: .075em; text-decoration: none; padding: 20px 0; }
+  .home-nav a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+  .menu-toggle { display: none; padding: 9px 12px; border: 1px solid var(--ink); background: transparent; color: var(--ink); }
+
+  /* Hero */
+  .lost-hero { text-align: center; padding: 86px 24px 64px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .code-mark { display: block; margin: 18px auto 10px; font: 400 clamp(88px, 13vw, 176px)/.9 var(--serif); letter-spacing: -.04em; }
+  .code-mark .zero { position: relative; display: inline-block; color: transparent; -webkit-text-stroke: 2px var(--ink); }
+  .code-mark .zero::after {
+    content: ""; position: absolute; left: 50%; top: 52%; width: .2em; height: .2em; border-radius: 50%;
+    background: var(--fail); transform: translate(-50%, -50%);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 50% { transform: translate(-50%, -50%) scale(1.35); opacity: .7; } }
+  .lost-hero h1 { font: 400 clamp(38px, 4.31vw, 62px)/1.1355 var(--serif); letter-spacing: -.025em; max-width: 16ch; margin-inline: auto; }
+  .hero-lead { width: fit-content; max-width: 100%; border-inline: 8px solid var(--accent); padding: 0 28px; margin: 26px auto 0; font-size: 22px; font-weight: 600; line-height: 1.35; }
+  .requested { margin-top: 26px; font-size: 14px; color: var(--muted); }
+  .requested code { font: 600 14px/1.4 ui-monospace, 'SF Mono', Menlo, Consolas, monospace; padding: 3px 8px; background: var(--panel); color: var(--ink); word-break: break-all; }
+
+  /* Service blueprint */
+  .blueprint-section { padding: 72px 0 84px; border-top: 1px solid var(--line); }
+  .section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: end; margin-bottom: 44px; }
+  .section-head h2 { font: 400 clamp(32px, 3.6vw, 52px)/1.12 var(--serif); letter-spacing: -.025em; }
+  .section-head p { color: var(--muted); max-width: 52ch; }
+  .blueprint {
+    display: grid; grid-template-columns: 150px repeat(4, minmax(0, 1fr));
+    grid-template-rows: auto auto auto 14px auto; column-gap: 14px; row-gap: 10px;
+  }
+  .lane-label { grid-column: 1; align-self: center; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .lane-label.l-you { grid-row: 2; } .lane-label.l-see { grid-row: 3; } .lane-label.l-behind { grid-row: 5; }
+  .visibility { grid-column: 1 / -1; grid-row: 4; position: relative; border-top: 2px dashed var(--line); align-self: center; }
+  .visibility span { position: absolute; right: 0; top: -11px; padding-left: 10px; background: var(--bg); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .step { display: contents; }
+  .step h3 { grid-row: 1; grid-column: var(--c); font: 400 22px/1.2 var(--serif); padding-bottom: 10px; border-bottom: 3px solid var(--ink); }
+  .step h3 small { display: block; font: 700 12px/1.6 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .cell { grid-column: var(--c); position: relative; padding: 16px 18px; background: var(--bg); border: 1px solid var(--line); font-size: 15px; line-height: 1.55; }
+  .cell.you { grid-row: 2; background: var(--panel); border-color: transparent; }
+  .cell.see { grid-row: 3; }
+  .cell.behind { grid-row: 5; color: var(--muted); }
+  .cell.you:not(.last)::after {
+    content: "→"; position: absolute; right: -14px; top: 50%; width: 14px; text-align: center;
+    transform: translateY(-50%); font-weight: 700; color: var(--ink); z-index: 1;
+  }
+  .cell.fail { border: 2px solid var(--fail); color: var(--ink); background: color-mix(in srgb, var(--fail) 10%, var(--bg)); }
+  .fail-badge {
+    display: inline-grid; place-items: center; width: 28px; height: 28px; margin: 0 8px 6px 0; float: left;
+    border-radius: 50%; background: var(--fail); color: var(--fail-ink); font: 700 14px/1 var(--sans);
+  }
+  .cell.fix { border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--accent); color: var(--ink); }
+  :root[data-theme="theme5"] .cell.fix { box-shadow: 6px 6px 0 #ee3e91; }
+  .cell code { font: 600 13px/1.4 ui-monospace, 'SF Mono', Menlo, Consolas, monospace; word-break: break-all; }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 26px; font-size: 13px; color: var(--muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend i { display: inline-block; width: 14px; height: 14px; border-radius: 50%; background: var(--fail); }
+  .legend i.dash { width: 28px; height: 0; border-radius: 0; border-top: 2px dashed var(--muted); background: none; }
+
+  /* Next steps */
+  .next { padding: 80px 0 40px; background: #514b51; color: #fffcf3; --line-dark: #817b81; }
+  :root[data-theme="theme3"] .next { background: #202020; }
+  :root[data-theme="theme1"] .next { background: #122033; }
+  :root[data-theme="theme5"] .next { background: #171222; }
+  .next .section-head p { color: #e9e3da; }
+  .next .eyebrow { color: #d2ff00; }
+  .route-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line-dark); }
+  .route-list li { border-bottom: 1px solid var(--line-dark); }
+  .route-list li:nth-child(3n + 2), .route-list li:nth-child(3n + 3) { border-left: 1px solid var(--line-dark); }
+  .route-list a { display: grid; gap: 6px; height: 100%; padding: 28px 28px 30px; text-decoration: none; transition: background .18s ease, color .18s ease; }
+  .route-list a strong { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font: 400 clamp(26px, 2.4vw, 34px)/1.15 var(--serif); letter-spacing: -.02em; }
+  .route-list a strong span { font: 700 18px/1 var(--sans); transition: transform .18s ease; }
+  .route-list a > span { color: #d8d2c9; font-size: 15px; line-height: 1.55; }
+  .route-list a:hover, .route-list a:focus-visible { background: #d2ff00; color: #171222; }
+  .route-list a:hover > span, .route-list a:focus-visible > span { color: #171222; }
+  .route-list a:hover strong span { transform: translateX(5px); }
+  .route-list a:focus-visible { outline-color: #d2ff00; outline-offset: -3px; }
+  .talk { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px; margin-top: 56px; }
+  .talk p { max-width: 46ch; font: 400 clamp(24px, 2.4vw, 32px)/1.25 var(--serif); }
+  .conversation-link {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 77px; padding: 17px 30px;
+    background: var(--button); border-inline: 8px solid var(--button-edge); color: var(--button-ink);
+    text-decoration: none; font-size: 16px; font-weight: 700; line-height: 1.3; letter-spacing: .045em;
+    transition: background .18s, transform .18s;
+  }
+  .conversation-link:hover { background: #d2ff00; color: #171222; transform: translateY(-2px); }
+
+  /* Footer: lime band and wave, as on vanshea.com */
+  .footer-wave { position: relative; height: clamp(104px, 14vw, 230px); overflow: hidden; background: var(--bg); }
+  .next + .footer-wave { background: #514b51; }
+  :root[data-theme="theme3"] .next + .footer-wave { background: #202020; }
+  :root[data-theme="theme1"] .next + .footer-wave { background: #122033; }
+  :root[data-theme="theme5"] .next + .footer-wave { background: #171222; }
+  .footer-wave svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  .footer-wave path { fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; transform-box: fill-box; transform-origin: center; animation: wave 8s ease-in-out infinite alternate; }
+  .footer-wave path:first-child { fill: #d2ff00; stroke: #f36070; }
+  .footer-wave path:nth-child(2) { animation-duration: 10s; animation-delay: -4s; }
+  .footer-wave path:nth-child(3) { animation-duration: 12s; animation-delay: -7s; }
+  .footer-wave path:nth-child(4) { animation-duration: 9s; animation-delay: -3s; }
+  .footer-wave path:nth-child(5) { animation-duration: 11s; animation-delay: -6s; }
+  @keyframes wave { from { transform: translateY(-7px); } to { transform: translateY(7px); } }
+  .home-footer { background: #d2ff00; color: #171222; padding-bottom: 10px; --focus: #0057b8; }
+  .view-controls { display: flex; justify-content: flex-end; padding-block: 19px; font-size: 12px; }
+  .theme-control { display: flex; align-items: center; gap: 8px; margin: 0; padding: 0; border: 0; flex-wrap: wrap; }
+  .theme-control legend { float: left; padding: 0 8px 0 0; font-size: 14px; font-weight: 700; }
+  .theme-control label { display: inline-flex; align-items: center; gap: 5px; min-height: 44px; padding: 4px 8px; cursor: pointer; font-size: 14px; }
+  .theme-control input { accent-color: #171222; width: 24px; height: 24px; margin: 0; }
+  .theme-control label:has(input:checked) { background: #fffcf3; box-shadow: inset 0 -3px #171222; }
+  .theme-control label:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: 3px; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 26px; font-size: 12px; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 22px; }
+  .footer-links a { display: inline-flex; align-items: center; min-height: 44px; }
+
+  @media (max-width: 1000px) {
+    .home-brand img { width: 190px; }
+    .home-nav { gap: 22px; }
+    .blueprint { grid-template-columns: 110px repeat(4, minmax(0, 1fr)); column-gap: 10px; }
+    .cell { padding: 14px; font-size: 14px; }
+    .route-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .route-list li:nth-child(n) { border-left: 0; }
+    .route-list li:nth-child(2n) { border-left: 1px solid var(--line-dark); }
+  }
+  @media (max-width: 820px) {
+    .header-inner { flex-wrap: wrap; gap: 0 20px; }
+    .js .menu-toggle { display: block; }
+    .home-nav { width: 100%; flex-wrap: wrap; gap: 0 24px; padding: 10px 0 18px; }
+    .js .home-nav { display: none; }
+    .js .home-nav.is-open { display: flex; }
+    .home-nav a { font-size: 12px; padding: 10px 0; }
+    .lost-hero { padding: 64px 20px 48px; }
+    .hero-lead { padding-inline: 16px; border-inline-width: 6px; font-size: 18px; }
+    .section-head { grid-template-columns: 1fr; gap: 18px; }
+
+    /* Blueprint becomes a stacked journey, one step at a time */
+    .blueprint { display: block; }
+    .lane-label, .visibility { display: none; }
+    .step { display: block; position: relative; padding: 0 0 26px 26px; border-left: 3px solid var(--ink); }
+    .step:last-of-type { border-left-color: transparent; }
+    .step::before { content: ""; position: absolute; left: -9px; top: 4px; width: 15px; height: 15px; border-radius: 50%; background: var(--accent); border: 2px solid var(--ink); }
+    .step h3 { border-bottom: 0; padding-bottom: 12px; }
+    .cell { margin-bottom: 8px; }
+    .cell::before { content: attr(data-lane); display: block; margin-bottom: 4px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .cell.behind { margin-top: 14px; }
+    .cell.behind::after { content: ""; position: absolute; left: 0; right: 0; top: -10px; border-top: 2px dashed var(--line); }
+    .cell.you::after { display: none; }
+    .route-list { grid-template-columns: 1fr; }
+    .route-list li:nth-child(n) { border-left: 0; }
+    .talk { margin-top: 44px; }
+    .conversation-link { width: 100%; }
+    .view-controls { justify-content: flex-start; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 6px; padding-bottom: 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .footer-wave path, .code-mark .zero::after { animation: none; }
+    .conversation-link:hover { transform: none; }
+  }
+
+  /* Theme-specific footer surfaces: lime is reserved for Wild. */
+  :root { --footer-bg:#514b51; --footer-ink:#fffcf3; }
+  :root[data-theme="theme1"] { --footer-bg:#122033; --footer-ink:#eef7ff; }
+  :root[data-theme="theme3"] { --footer-bg:#202020; --footer-ink:#ffffff; }
+  :root[data-theme="theme4"] { --footer-bg:#514b51; --footer-ink:#fffcf3; }
+  :root[data-theme="theme5"] { --footer-bg:#d2ff00; --footer-ink:#171222; }
+  .home-footer { background:var(--footer-bg)!important; color:var(--footer-ink); --ink:var(--footer-ink); --muted:var(--footer-ink); }
+  .home-footer .footer-inner > p { color:var(--footer-ink)!important; }
+  .footer-wave path:first-child { fill:var(--footer-bg); }
+
+
+/* Wider glass tray; keep the fieldset label available to assistive technology. */
+.theme-control {
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px;
+  width:min(100%,760px); max-width:100%; margin-inline:auto; padding:9px;
+  border:1px solid rgba(255,255,255,.42); border-radius:999px;
+  background:rgba(255,255,255,.17);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.42), 0 8px 24px rgba(0,0,0,.2);
+  -webkit-backdrop-filter:blur(20px) saturate(185%);
+  backdrop-filter:blur(20px) saturate(185%);
+}
+.theme-control legend {
+  position:absolute!important; width:1px!important; height:1px!important; padding:0!important;
+  margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important;
+  white-space:nowrap!important; border:0!important;
+}
+.theme-control label {
+  position:relative; display:inline-flex; flex:1 1 0; align-items:center; justify-content:center;
+  min-width:0; min-height:46px; padding:9px 14px; border:1px solid transparent;
+  border-radius:999px; background:transparent; color:var(--footer-ink,var(--ink));
+  font-size:14px; font-weight:600; line-height:1.2; white-space:nowrap;
+}
+.theme-control label span { position:static; opacity:1; white-space:nowrap; transition:none; pointer-events:none; }
+.theme-control input {
+  position:absolute; inset:0; width:100%; height:100%; min-width:0; min-height:0;
+  margin:0; opacity:0; cursor:pointer;
+}
+.theme-control label:has(input:checked) {
+  min-width:0; border-color:rgba(255,255,255,.58); background:rgba(255,255,255,.28);
+  color:var(--footer-ink,var(--ink));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.52), 0 2px 9px rgba(0,0,0,.2);
+}
+.theme-control label:has(input:focus-visible) { outline:3px solid var(--focus,#64d2ff); outline-offset:2px; }
+@media (max-width:600px) {
+  .theme-control { width:100%; gap:4px; padding:7px; }
+  .theme-control label { padding:9px 8px; font-size:13px; }
+}
+
+
+@media (max-width:600px) {
+  .home-footer .view-controls { width:100%; max-width:none; box-sizing:border-box; justify-content:center; }
+  .home-footer .theme-control { display:grid; width:100%; max-width:none; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; box-sizing:border-box; }
+  .home-footer .theme-control label { min-width:0; width:100%; padding:8px 3px; font-size:clamp(10px,2.8vw,13px); white-space:nowrap; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="home-header">
+  <div class="container header-inner">
+    <a class="home-brand" href="/" aria-label="Van Shea Creative, Human Agency Design home">
+      <img src="/assets/home-2027/large-logo-horizontal.svg" width="215" height="61" alt="Van Shea Creative">
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="home-nav">Menu</button>
+    <nav class="home-nav" id="home-nav" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/work.html">Work</a>
+      <a href="/case-studies/">Case Studies</a>
+      <a href="/aidesign/">AI Design</a>
+      <a href="/experience.html">Experience</a>
+      <a href="https://www.vanshea.com/blog/">Blog</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="lost-hero" aria-labelledby="lost-title">
+    <p class="eyebrow">Error 404 · Page not found</p>
+    <span class="code-mark" aria-hidden="true">4<span class="zero">0</span>4</span>
+    <h1 id="lost-title">Here’s where the journey broke.</h1>
+    <p class="hero-lead">The page isn’t here. Let’s make the next decision clearer.</p>
+    <p class="requested" hidden>You asked for <code id="requested-path"></code></p>
+  </section>
+
+  <section class="container blueprint-section" aria-labelledby="map-title">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Service blueprint / this visit</p>
+        <h2 id="map-title">We make the complex visible, even a missing page.</h2>
+      </div>
+      <p>Every experience has a front stage and a back stage. Here’s yours, mapped the way I’d map any service, so you can see exactly where the handoff failed and what happens next.</p>
+    </div>
+
+    <div class="blueprint" role="list" aria-label="Your visit, step by step">
+      <span class="lane-label l-you" aria-hidden="true">You</span>
+      <span class="lane-label l-see" aria-hidden="true">What you see</span>
+      <div class="visibility" aria-hidden="true"><span>Line of visibility</span></div>
+      <span class="lane-label l-behind" aria-hidden="true">Behind the scenes</span>
+
+      <div class="step" role="listitem" style="--c:2">
+        <h3><small>01</small>Arrive</h3>
+        <p class="cell you" data-lane="You">Follow a link, a bookmark, or a hunch.</p>
+        <p class="cell see" data-lane="What you see">An address that looks right.</p>
+        <p class="cell behind" data-lane="Behind the scenes">The request reaches vanshea.com.</p>
+      </div>
+
+      <div class="step" role="listitem" style="--c:3">
+        <h3><small>02</small>Expect</h3>
+        <p class="cell you" data-lane="You">Wait for the page you had in mind.</p>
+        <p class="cell see" data-lane="What you see">This page, instead.</p>
+        <p class="cell behind" data-lane="Behind the scenes">The server looks for <code class="path-slot">that page</code>.</p>
+      </div>
+
+      <div class="step" role="listitem" style="--c:4">
+        <h3><small>03</small>Handoff</h3>
+        <p class="cell you" data-lane="You">Wonder what went wrong.</p>
+        <p class="cell see" data-lane="What you see">An honest 404, not a dead end.</p>
+        <p class="cell behind fail" data-lane="Behind the scenes · fail point"><span class="fail-badge" aria-hidden="true">F</span><span class="sr-only">Fail point: </span>Nothing answers. The page moved, was renamed, or never existed.</p>
+      </div>
+
+      <div class="step" role="listitem" style="--c:5">
+        <h3><small>04</small>Recover</h3>
+        <p class="cell you last" data-lane="You">Choose where to go next.</p>
+        <p class="cell see fix" data-lane="What you see">Clear paths back to the work, just below.</p>
+        <p class="cell behind" data-lane="Behind the scenes">You leave more informed than you arrived. That’s the point.</p>
+      </div>
+    </div>
+
+    <div class="legend" aria-hidden="true">
+      <span><i></i> Fail point</span>
+      <span><i class="dash"></i> Line of visibility: what you see above it, what the system does below</span>
+    </div>
+  </section>
+
+  <section class="next" aria-labelledby="next-title">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Step 04 · Recover</p>
+          <h2 id="next-title">Pick up the thread.</h2>
+        </div>
+        <p>Six ways back in, from the practice to the prototypes. Each one leaves you a little closer to what you came for.</p>
+      </div>
+
+      <ul class="route-list">
+        <li><a href="/"><strong>Home <span aria-hidden="true">→</span></strong><span>Human Agency Design, from the start.</span></a></li>
+        <li><a href="/work.html"><strong>Work <span aria-hidden="true">→</span></strong><span>The full range of visual and independent work.</span></a></li>
+        <li><a href="/case-studies/"><strong>Case Studies <span aria-hidden="true">→</span></strong><span>M&amp;T Bank, Vanguard, Capital One, and NAMI Delaware.</span></a></li>
+        <li><a href="/aidesign/"><strong>AI Design <span aria-hidden="true">→</span></strong><span>Working prototypes with people at the center.</span></a></li>
+        <li><a href="/experience.html"><strong>Experience <span aria-hidden="true">→</span></strong><span>Where the practice was built, role by role.</span></a></li>
+        <li><a href="https://www.vanshea.com/blog/"><strong>Blog <span aria-hidden="true">→</span></strong><span>Notes on design, AI, and human agency.</span></a></li>
+      </ul>
+
+      <div class="talk">
+        <p>Came here with a mandate, not a link? Tell me where it’s stuck.</p>
+        <a class="conversation-link" href="https://calendly.com/van-shea/30min" target="_blank" rel="noopener noreferrer">Let’s start a conversation<span class="sr-only"> (opens in a new tab)</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-wave" aria-hidden="true">
+    <svg viewBox="0 -50 1440 250" preserveAspectRatio="none" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-80 70 C150 132 330 46 550 82 S925 143 1130 92 S1420 50 1520 88 L1520 250 L-80 250 Z"/>
+      <path stroke="#cfbead" d="M-80 84 C165 145 325 56 550 95 S930 153 1130 105 S1410 64 1520 100"/>
+      <path stroke="#b6d800" d="M-80 98 C150 157 330 68 550 107 S930 164 1130 117 S1420 75 1520 112"/>
+      <path stroke="#55b9d0" d="M-80 112 C160 170 330 81 550 120 S930 175 1130 130 S1420 89 1520 124"/>
+      <path stroke="#b5a0db" d="M-80 126 C155 183 325 94 550 133 S930 187 1130 143 S1410 102 1520 138"/>
+    </svg>
+  </div>
+</main>
+
+<footer class="home-footer">
+  <div class="container view-controls">
+    <fieldset class="theme-control">
+      <legend>Color theme</legend>
+      <label><input type="radio" name="color-theme" value="theme1"><span>Clear</span></label>
+      <label><input type="radio" name="color-theme" value="theme3"><span>Contrast</span></label>
+      <label><input type="radio" name="color-theme" value="theme4"><span>Bold</span></label>
+      <label><input type="radio" name="color-theme" value="theme5"><span>Wild</span></label>
+    </fieldset>
+  </div>
+  <div class="container footer-inner">
+    <p>© <span id="year">2026</span> Van Shea Sedita · Van Shea Creative · Human Agency Design</p>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/experience.html">Experience</a>
+      <a href="/work.html">Work</a>
+      <a href="https://www.vanshea.com/blog/">Blog</a>
+      <a href="https://www.linkedin.com/in/vanshea/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  (() => {
+    const root = document.documentElement;
+    const themes = ['theme1', 'theme3', 'theme4', 'theme5'];
+    const key = 'vsc-site-theme-v2';
+    const radios = document.querySelectorAll('input[name="color-theme"]');
+    const meta = document.querySelector('meta[name="theme-color"]');
+
+    const apply = value => {
+      const theme = themes.includes(value) ? value : 'theme4';
+      root.dataset.theme = theme;
+      radios.forEach(input => { input.checked = input.value === theme; });
+      meta?.setAttribute('content', getComputedStyle(root).getPropertyValue('--bg').trim());
+    };
+    apply(root.dataset.theme);
+
+    document.querySelector('.theme-control')?.addEventListener('change', event => {
+      if (!event.target.matches('input[name="color-theme"]')) return;
+      apply(event.target.value);
+      try { localStorage.setItem(key, root.dataset.theme); } catch (e) {}
+    });
+    addEventListener('storage', event => { if (event.key === key) apply(event.newValue); });
+
+    // Show the address the visitor asked for, as text only.
+    let path = location.pathname + location.search;
+    try { path = decodeURIComponent(path); } catch (e) {}
+    path = path.slice(0, 120);
+    if (path && path !== '/' && !/404(\.html)?$/.test(path)) {
+      document.getElementById('requested-path').textContent = path;
+      document.querySelector('.requested').hidden = false;
+      document.querySelectorAll('.path-slot').forEach(el => { el.textContent = path; });
+    }
+
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('home-nav');
+    toggle?.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>

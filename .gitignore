@@ -1,0 +1,22 @@
+# Local tooling and duplicate snapshots are not part of the static website.
+.DS_Store
+**/._*
+**/_notes/
+.env*
+node_modules/
+__pycache__/
+dist/
+build/
+livesite/
+views/
+.well-known/
+blog/
+**/originals/
+**/backups/
+*.sql
+*.pem
+*.key
+*.log
+php_errorlog
+log42626
+FileZilla.xml

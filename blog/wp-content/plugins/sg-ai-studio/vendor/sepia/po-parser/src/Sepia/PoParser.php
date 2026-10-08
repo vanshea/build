@@ -1,6 +1,6 @@
 <?php
 
-namespace Sepia;
+namespace SG_AI_Studio\Vendor\Sepia;
 
 /**
  *    Copyright (c) 2012 Raúl Ferràs raul.ferras@gmail.com

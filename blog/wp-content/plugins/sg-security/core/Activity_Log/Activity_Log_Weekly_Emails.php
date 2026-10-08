@@ -122,7 +122,6 @@ class Activity_Log_Weekly_Emails extends Activity_Log_Helper {
 			'start_time'           => ( 'en_US' === $locale ) ? $start_date->format( 'F d' ) : $weekly_emails->translate_dates( $start_date, $locale, 'start' ),
 			'end_time'             => ( 'en_US' === $locale ) ? $end_date->format( 'F d, Y' ) : $weekly_emails->translate_dates( $end_date, $locale, 'end' ),
 			'is_siteground'        => Helper_Service::is_siteground(),
-			'agreed_email_consent' => (int) get_option( 'siteground_email_consent', 0 ),
 			'total_human'          => $total_human,
 			'total_bots'           => $total_bots,
 			'total_blocked_login'  => $total_blocked_login,
@@ -230,16 +229,12 @@ class Activity_Log_Weekly_Emails extends Activity_Log_Helper {
 	 */
 	private function get_total_human_stats( $start_date, $end_date ) {
 
-		// Get the translated Human label (Essere umano, Humano, etc).
-		$human_label = __( 'Human', 'sg-security' );
-
 		$query = $this->wpdb->prepare(
 			'SELECT COUNT(*) FROM `' . esc_sql( $this->wpdb->prefix . 'sgs_log_events' ) . "`
 				WHERE `action` = 'visit'
-				AND `visitor_type` = %s
+				AND `visitor_type` = 'Human'
 				AND `type` = 'unknown'
 				AND `ts` BETWEEN %s AND %s",
-			$human_label,
 			$start_date,
 			$end_date
 		);
@@ -259,17 +254,13 @@ class Activity_Log_Weekly_Emails extends Activity_Log_Helper {
 	 */
 	private function get_total_bots_stats( $start_date, $end_date ) {
 
-		// Get the translated Human label (Essere umano, Humano, etc).
-		$human_label = __( 'Human', 'sg-security' );
-
 		$query = $this->wpdb->prepare(
 			'SELECT COUNT(*) FROM `' . esc_sql( $this->wpdb->prefix . 'sgs_log_events' ) . "`
 				WHERE `action` = 'visit'
-				AND `visitor_type` <> %s
+				AND `visitor_type` <> 'Human'
 				AND `visitor_type` <> 'unknown'
 				AND `type` = 'unknown'
 				AND `ts` BETWEEN %s AND %s",
-			$human_label,
 			$start_date,
 			$end_date
 		);

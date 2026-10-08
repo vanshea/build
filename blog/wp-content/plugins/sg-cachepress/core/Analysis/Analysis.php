@@ -457,7 +457,7 @@ class Analysis {
 	public function get_messages( $scores ) {
 		$data = array();
 		$descriptions = array(
-			'score' => __( 'Summarizes the page\'s performance.', 'sg-cachpress' ),
+			'score' => __( 'Summarizes the page\'s performance.', 'sg-cachepress' ),
 			'fcp'   => __( 'Speed Index shows how quickly the contents of a page are visibly populated.', 'sg-cachepress' ),
 		);
 

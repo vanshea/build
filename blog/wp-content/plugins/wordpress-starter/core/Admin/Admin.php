@@ -153,7 +153,7 @@ class Admin {
 				! empty( $status ) &&
 				'completed' === $status['status']
 			) {
-				! \is_multisite() ? wp_safe_redirect( 'admin.php?page=siteground-dashboard.php' ) : wp_safe_redirect( admin_url() );
+				! \is_multisite() ? wp_safe_redirect( 'admin.php?page=siteground-dashboard' ) : wp_safe_redirect( admin_url() );
 				exit;
 			}
 

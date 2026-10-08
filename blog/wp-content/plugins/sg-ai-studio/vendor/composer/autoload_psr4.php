@@ -6,14 +6,10 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'SiteGround_i18n\\' => array($vendorDir . '/siteground/siteground-i18n/src'),
+    'SG_AI_Studio\\Vendor\\SiteGround_i18n\\' => array($vendorDir . '/siteground/siteground-i18n/src'),
+    'SG_AI_Studio\\Vendor\\SiteGround_Helper\\' => array($vendorDir . '/siteground/siteground-helper/src'),
+    'SG_AI_Studio\\Vendor\\Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
+    'SG_AI_Studio\\Vendor\\CharlesRumley\\Tests\\' => array($vendorDir . '/charles-rumley/php-po-to-json/tests'),
+    'SG_AI_Studio\\Vendor\\CharlesRumley\\' => array($vendorDir . '/charles-rumley/php-po-to-json/src'),
     'SG_AI_Studio\\' => array($baseDir . '/core'),
-    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
-    'Psr\\Http\\Client\\' => array($vendorDir . '/psr/http-client/src'),
-    'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
-    'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
-    'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
-    'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
-    'CharlesRumley\\Tests\\' => array($vendorDir . '/charles-rumley/php-po-to-json/tests'),
-    'CharlesRumley\\' => array($vendorDir . '/charles-rumley/php-po-to-json/src'),
 );
