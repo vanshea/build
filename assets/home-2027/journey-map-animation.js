@@ -109,6 +109,7 @@
       this._inView = false;
       this._docVisible = !document.hidden;
       this._reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+      this._zoom = window.matchMedia('(max-width: 1000px)');
       this._lastCaption = '';
       this._nodes = null;
       this._onVisibility = () => {
@@ -116,6 +117,7 @@
         this._syncPlayback();
       };
       this._onReducedMotion = () => this._syncPlayback();
+      this._onViewportChange = () => this._syncViewport();
       this._tick = now => {
         if (!this._running) return;
         this._elapsed = ((now - this._startAt) / 1000) % TOTAL;
@@ -129,6 +131,9 @@
       document.addEventListener('visibilitychange', this._onVisibility);
       if (this._reduced.addEventListener) this._reduced.addEventListener('change', this._onReducedMotion);
       else this._reduced.addListener(this._onReducedMotion);
+      if (this._zoom.addEventListener) this._zoom.addEventListener('change', this._onViewportChange);
+      else this._zoom.addListener(this._onViewportChange);
+      this._syncViewport();
       if ('IntersectionObserver' in window) {
         this._observer = new IntersectionObserver(entries => {
           this._inView = entries.some(entry => entry.isIntersecting && entry.intersectionRatio > 0);
@@ -146,6 +151,8 @@
       document.removeEventListener('visibilitychange', this._onVisibility);
       if (this._reduced.removeEventListener) this._reduced.removeEventListener('change', this._onReducedMotion);
       else this._reduced.removeListener(this._onReducedMotion);
+      if (this._zoom.removeEventListener) this._zoom.removeEventListener('change', this._onViewportChange);
+      else this._zoom.removeListener(this._onViewportChange);
       this._observer?.disconnect();
       this._stopPlayback();
     }
@@ -194,13 +201,17 @@
       this._raf = 0;
     }
 
+    _syncViewport() {
+      if (!this._svg) return;
+      setAttr(this._svg, 'viewBox', this._zoom.matches ? '192 0 1536 864' : '0 0 1920 1080');
+    }
+
     _build() {
       this.shadowRoot.innerHTML = `<style>
         :host{display:block;width:100%;max-width:1920px;margin-inline:auto;aspect-ratio:16/9;contain:layout paint style}
         .frame{position:relative;width:100%;height:100%;aspect-ratio:16/9;overflow:hidden;background:transparent}
         svg{display:block;width:100%;height:100%;aspect-ratio:16/9}
         .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
-        @media(max-width:1000px){.frame svg{position:absolute;left:-12.5%;top:-12.5%;width:125%;height:125%;max-width:none}}
         @media(max-width:640px){svg [data-viewbox-background]{display:none!important}}
       </style><div class="frame"><div class="sr-only" aria-live="polite" aria-atomic="true" data-live></div><div role="img" data-image><svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"></svg></div></div>`;
       const image = this.shadowRoot.querySelector('[data-image]');
