@@ -77,7 +77,8 @@ a:focus-visible,button:focus-visible,select:focus-visible,summary:focus-visible 
 .intro { display:block; text-align:center; padding-top:8px; padding-bottom:64px; }
 
 .intro > div { max-width:680px; margin-inline:auto; }
-.intro h2 { max-width:600px; margin:0 auto; }
+.intro > div:first-child { max-width:1000px; }
+.intro h2 { max-width:1000px; margin:0 auto; }
 .intro-copy { max-width:440px; margin:36px auto 0; font-size:18px; line-height:1.7; }
 .intro-copy p + p { margin-top:18px; }
 .agency-home .eyebrow { display:none; }
