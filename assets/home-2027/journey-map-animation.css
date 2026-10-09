@@ -1,0 +1,8 @@
+/* Spacing belongs to this section only; the component owns its internal layout. */
+.agency-home .journey-section {
+  padding-block: clamp(24px, 4vw, 56px);
+}
+.journey-section > journey-map-animation {
+  display: block;
+  min-width: 0;
+}
