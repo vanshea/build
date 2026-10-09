@@ -221,10 +221,10 @@ assets/vscimage/generated/mt-bank-service-design-role-pdf-fullscreen-3200x1800.w
 assets/vscimage/generated/mt-bank-service-design-role-pdf-large-1900x1600.webp
 assets/vscimage/generated/mt-bank-service-design-role-pdf-logo-240.png
 assets/vscimage/generated/mt-bank-service-design-role-pdf-thumb-760x570.webp
-assets/vscimage/generated/nami-988-campaign-featured-thumb-1200x659.webp
-assets/vscimage/generated/nami-988-campaign-fullscreen-1693x929.webp
-assets/vscimage/generated/nami-988-campaign-large-1693x929.webp
-assets/vscimage/generated/nami-988-campaign-thumb-760x570.webp
+assets/vscimage/generated/nami-988-queen-bus-featured-thumb-1200x659.webp
+assets/vscimage/generated/nami-988-queen-bus-fullscreen-1693x929.webp
+assets/vscimage/generated/nami-988-queen-bus-large-1693x929.webp
+assets/vscimage/generated/nami-988-queen-bus-thumb-760x570.webp
 assets/vscimage/generated/nyu-2000-1-2000x1000-fullscreen-3200x1800.webp
 assets/vscimage/generated/nyu-2000-1-2000x1000-large-1900x1600.webp
 assets/vscimage/generated/nyu-2000-1-2000x1000-logo-240.png
