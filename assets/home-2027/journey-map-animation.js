@@ -203,7 +203,11 @@
 
     _syncViewport() {
       if (!this._svg) return;
-      setAttr(this._svg, 'viewBox', this._zoom.matches ? '192 0 1536 864' : '0 0 1920 1080');
+      const zoomed = this._zoom.matches;
+      setAttr(this._svg, 'viewBox', zoomed ? '192 0 1536 864' : '0 0 1920 1080');
+      setAttr(this._caption, 'x', zoomed ? 208 : 120);
+      setAttr(this._caption, 'width', zoomed ? 1504 : 1680);
+      setAttr(this._closing, 'x', zoomed ? 208 : 120);
     }
 
     _build() {
