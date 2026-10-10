@@ -1,0 +1,3 @@
+<section class="role-scope" aria-label="Role and scope"><h2>Role and scope</h2><dl>
+<% for (const field of ["Role", "Team", "Timeline", "Constraints"]) { %><div><dt><%= field %></dt><dd><%= (caseStudy.roleScope || {})[field] || "TBD" %></dd></div><% } %>
+</dl></section>

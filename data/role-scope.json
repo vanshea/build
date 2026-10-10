@@ -1,0 +1,32 @@
+{
+  "mt-bank-commercial-banking-transformation": {
+    "Role": "Service Design Lead",
+    "Team": "Service and UX designers; product, design, service, and business teams",
+    "Timeline": "TBD",
+    "Constraints": "Fragmented processes, repeated handoffs, and operational waste"
+  },
+  "capital-one-gesture-patent": {
+    "Role": "UX Design Lead",
+    "Team": "Small prototype team; legal team",
+    "Timeline": "2017",
+    "Constraints": "Navigation across too many screens; technical revisions"
+  },
+  "vanguard-innovation-lab-integration": {
+    "Role": "Lead UX Strategist",
+    "Team": "TBD",
+    "Timeline": "2018",
+    "Constraints": "Client trust, security, current systems, and legacy constraints"
+  },
+  "nyu-curriculum-alignment": {
+    "Role": "Adjunct Instructor",
+    "Team": "TBD",
+    "Timeline": "2020",
+    "Constraints": "Connecting academic training to professional UX practice"
+  },
+  "nami-delaware-988-campaign": {
+    "Role": "TBD",
+    "Team": "TBD",
+    "Timeline": "2026",
+    "Constraints": "Making 988 and 911 guidance distinct and understandable across touchpoints"
+  }
+}
