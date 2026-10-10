@@ -1,0 +1,16 @@
+[
+  {
+    "route": "/",
+    "LCP": 4034.8650000000007,
+    "CLS": 0.1061696140208756,
+    "imageBytes": 2063670,
+    "score": 0.77
+  },
+  {
+    "route": "/case-studies/mt-bank-commercial-banking-transformation/",
+    "LCP": 4505.01165,
+    "CLS": 0.16157745120407055,
+    "imageBytes": 47124,
+    "score": 0.69
+  }
+]
