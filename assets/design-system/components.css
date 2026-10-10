@@ -20,3 +20,5 @@ html body.agency-site button, html body.agency-home button { font-size:var(--typ
 .role-scope dt { font-weight:700; margin-bottom:var(--space-2); }
 .role-scope dd { margin:0; line-height:var(--leading-body); }
 @media(max-width:700px) { .role-scope dl { grid-template-columns:1fr; } .agency-home .section-heading { flex-direction:column; } }
+
+.agency-home .faq p,.agency-home .practice p,.case-study-rich-text,.aide-problem-statement p { max-width:68ch; }
