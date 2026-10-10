@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "nyu-curriculum-alignment",
+    "title": "NYU curriculum alignment",
+    "short_headline": "NYU curriculum alignment",
+    "discipline_label": "NYU / Education",
+    "year": "2020",
+    "image": "/assets/vscimage/generated/nyu-2000-1-2000x1000-thumb-760x570.webp",
+    "alt": "NYU information architecture curriculum materials"
+  },
+  {
+    "slug": "capital-one-gesture-patent",
+    "title": "Capital One gesture patent",
+    "short_headline": "Turn a research hunch into a patent",
+    "discipline_label": "Capital One / Interaction design",
+    "year": "2017",
+    "image": "/assets/vscimage/generated/capital-one-patent-figure-pdf-fullscreen-3200x1800.webp",
+    "alt": "Capital One gesture-interface patent figures showing interactions with a phone, television, and car display"
+  },
+  {
+    "slug": "vanguard-innovation-lab-integration",
+    "title": "Vanguard voice and security strategy",
+    "short_headline": "Bring trust into the technology decision",
+    "discipline_label": "Vanguard / Experience strategy",
+    "year": "2018",
+    "image": "/assets/vscimage/generated/vanguard3200x1800-fullscreen-3200x1800.webp",
+    "alt": "Vanguard, where voice-interface research connected client experience, trust, and security strategy"
+  },
+  {
+    "slug": "mt-bank-commercial-banking-transformation",
+    "title": "M&T Bank commercial banking transformation",
+    "short_headline": "Create a shared operating language",
+    "discipline_label": "M&T Bank / Service design",
+    "year": "2019",
+    "image": "/assets/vscimage/generated/mt-bank-future-b2b-lending-board-fullscreen-3200x1800.webp",
+    "alt": "M&T Bank future-state service blueprint showing the commercial lending journey, from discovering a need to planning funding"
+  },
+  {
+    "slug": "nami-delaware-988-campaign",
+    "title": "NAMI Delaware 988 campaign",
+    "short_headline": "Make support easier",
+    "discipline_label": "NAMI Delaware / Social impact",
+    "year": "2026",
+    "image": "/assets/vscimage/generated/nami-988-queen-bus-fullscreen-1693x929.webp",
+    "alt": "NAMI Delaware’s Know What to Say campaign concept on a Wilmington bus, connecting people with 988 support"
+  }
+]
