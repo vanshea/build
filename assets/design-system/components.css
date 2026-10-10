@@ -43,3 +43,8 @@ html body.agency-site button, html body.agency-home button { font-size:var(--typ
 @media(max-width:700px) {
  html body.agency-site main a.link-text { display:inline-flex!important; align-items:center; min-height:44px!important; }
 }
+
+@media(prefers-reduced-motion:reduce) {
+ .footer-wave path { animation:none!important; }
+ .recommendations-track,.recommendations-grid { scroll-behavior:auto!important; }
+}
