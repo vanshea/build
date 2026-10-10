@@ -28,3 +28,18 @@ html body.agency-site button, html body.agency-home button { font-size:var(--typ
  .agency-home .hero-content { min-width:0; }
  .home-nav a:focus-visible,.menu-toggle:focus-visible { outline:3px solid var(--focus)!important; outline-offset:4px; }
 }
+
+@media(max-width:700px) {
+ .theme-control label,.theme-control label span,.footer-links a,.recommendations-arrow,.recommendations-nav,summary,.card-fullscreen { min-width:44px; min-height:44px; box-sizing:border-box; }
+ .theme-control label,.footer-links a { display:inline-flex; align-items:center; justify-content:center; }
+ .theme-control label span { display:inline-flex; align-items:center; justify-content:center; }
+ .footer-links { gap:var(--space-3); flex-wrap:wrap; }
+}
+
+@media(max-width:700px) {
+ html body.agency-site button,html body.agency-home button { min-width:44px!important; min-height:44px!important; }
+ .agency-home .lab-idea-description a,.agency-home .case-caption h3 a,.agency-site .experience-case-link,.agency-site .studio-link a,.case-study-rich-text figcaption a { display:inline-flex; align-items:center; min-height:44px; }
+}
+@media(max-width:700px) {
+ html body.agency-site main a.link-text { display:inline-flex!important; align-items:center; min-height:44px!important; }
+}
