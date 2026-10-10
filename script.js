@@ -57,6 +57,7 @@ const themeButtons = Array.from(document.querySelectorAll(".theme-link[data-them
 const themeSwitchers = Array.from(document.querySelectorAll(".theme-switcher"));
 const themeSliders = [];
 const themeStorageKey = "vsc-site-theme-v2";
+const themeCookieKey = "vsc_site_theme_v2";
 const availableThemes = new Set(["theme1", "theme3", "theme4", "theme5"]);
 const brandLogoLightImage = document.getElementById("brandLogoLightImage");
 const brandLogoDarkSource = document.getElementById("brandLogoDarkSource");
@@ -178,11 +179,31 @@ function applyTheme(theme) {
   syncThemeSliders(resolvedTheme);
 }
 
+function readSharedTheme() {
+  try {
+    const prefix = `${themeCookieKey}=`;
+    const cookie = document.cookie.split("; ").find((value) => value.startsWith(prefix));
+    return cookie ? decodeURIComponent(cookie.slice(prefix.length)) : "";
+  } catch (error) {
+    return "";
+  }
+}
+
 function saveTheme(theme) {
   try {
     localStorage.setItem(themeStorageKey, theme);
   } catch (error) {
     // Ignore storage write errors in restricted browsing contexts.
+  }
+
+  try {
+    const domain = /(^|\.)vanshea\.com$/i.test(window.location.hostname)
+      ? "; Domain=.vanshea.com"
+      : "";
+    const secure = window.location.protocol === "https:" ? "; Secure" : "";
+    document.cookie = `${themeCookieKey}=${encodeURIComponent(theme)}; Path=/; Max-Age=31536000; SameSite=Lax${domain}${secure}`;
+  } catch (error) {
+    // The current page still keeps the selected theme when cookies are unavailable.
   }
 }
 
@@ -267,6 +288,7 @@ function enhanceThemeSwitchers() {
 let initialTheme = "theme1";
 try {
   const savedThemes = [
+    readSharedTheme(),
     localStorage.getItem(themeStorageKey),
     localStorage.getItem("vsc-site-theme")
   ];
@@ -274,7 +296,7 @@ try {
 
   if (savedTheme) {
     initialTheme = savedTheme;
-    localStorage.setItem(themeStorageKey, savedTheme);
+    saveTheme(savedTheme);
   }
 } catch (error) {
   // Ignore storage access errors and fall back to default theme.

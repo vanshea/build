@@ -3,9 +3,27 @@
   const root = document.documentElement;
   const themes = ['theme1', 'theme3', 'theme4', 'theme5'];
   const key = 'vsc-site-theme-v2';
+  const cookieKey = 'vsc_site_theme_v2';
   const dark = matchMedia('(prefers-color-scheme: dark)');
+  const readSharedTheme = () => {
+    try {
+      const prefix = `${cookieKey}=`;
+      const cookie = document.cookie.split('; ').find(value => value.startsWith(prefix));
+      return cookie ? decodeURIComponent(cookie.slice(prefix.length)) : '';
+    } catch {
+      return '';
+    }
+  };
+  const saveTheme = value => {
+    try { localStorage.setItem(key, value); } catch {}
+    try {
+      const domain = /(^|\.)vanshea\.com$/i.test(location.hostname) ? '; Domain=.vanshea.com' : '';
+      const secure = location.protocol === 'https:' ? '; Secure' : '';
+      document.cookie = `${cookieKey}=${encodeURIComponent(value)}; Path=/; Max-Age=31536000; SameSite=Lax${domain}${secure}`;
+    } catch {}
+  };
   let theme = dark.matches ? 'theme1' : 'theme4';
-  try { theme = [localStorage.getItem(key), localStorage.getItem('vsc-site-theme')].find(value => themes.includes(value)) || theme; } catch {}
+  try { theme = [readSharedTheme(), localStorage.getItem(key), localStorage.getItem('vsc-site-theme')].find(value => themes.includes(value)) || theme; } catch {}
   const applyTheme = value => {
     theme = themes.includes(value) ? value : 'theme4';
     root.dataset.theme = theme;
@@ -21,6 +39,7 @@
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', getComputedStyle(root).getPropertyValue('--bg').trim());
   };
   applyTheme(theme);
+  saveTheme(theme);
   dark.addEventListener('change', () => applyTheme(theme));
   addEventListener('storage', event => { if (event.key === key) applyTheme(event.newValue); });
 
@@ -60,7 +79,7 @@
     document.querySelector('.theme-control')?.addEventListener('change', event => {
       if (event.target.matches('input[name="color-theme"],select[name="theme"]')) {
         applyTheme(event.target.value);
-        try { localStorage.setItem(key, theme); } catch {}
+        saveTheme(theme);
       }
     });
     const menu = document.querySelector('.menu-toggle');
