@@ -45,7 +45,7 @@ function resolveAiDesignPrototypePath(src) {
     tab.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "nearest", inline: "nearest" });
 
     if (updateHash && window.history && window.history.replaceState) {
-      window.history.replaceState(null, "", "#" + slug);
+      window.history.replaceState(null, "", "#idea-tab-" + slug);
     }
   }
 
@@ -69,7 +69,7 @@ function resolveAiDesignPrototypePath(src) {
     });
   });
 
-  const initialSlug = window.location.hash.replace(/^#/, "");
+  const initialSlug = window.location.hash.replace(/^#(?:idea-tab-)?/, "").replace(/^contacts$/, "contact");
   const initialTab = tabs.find(
     (tab) => tab.getAttribute("data-aide-idea-tab") === initialSlug
   );
