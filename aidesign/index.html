@@ -65,7 +65,7 @@
 <link rel="stylesheet" href="../assets/case-studies.css?v=20260706-capital-one-logo-1" />
 
 
-<link rel="stylesheet" href="../assets/aidesign.css?v=20260901-uniform-h1-1" />
+<link rel="stylesheet" href="../assets/aidesign.css?v=20261010-mobile-animation" />
 
 
   <link rel="stylesheet" href="../assets/home/agency-home.css?v=20260928-wave-controls"><link rel="stylesheet" href="../assets/home/agency-site.css?v=20261010-top-spacing"><script src="../assets/home/agency-home.js?v=20261010-theme-sync" defer></script>
@@ -176,28 +176,14 @@
               <p class="aide-sample-description">A lock-screen self-care snack bar for quick mood check-ins. Name how you feel, note the small daily factors around you, and log a tiny check-in without opening a full app.</p>
               <iframe
                 class="aide-sample-frame"
-                src="/aidesign/self_care.html"
+                data-src="/aidesign/self_care.html"
                 title="Self Care"
                 loading="eager"
               ></iframe>
-              <button
-                class="aide-sample-preview"
-                type="button"
-                aria-haspopup="dialog"
-                aria-controls="aidePrototypeOverlay"
-                data-aide-prototype-open
-                data-prototype-src="/aidesign/self_care.html"
-                data-prototype-title="Self Care"
-              >
-                <img
-                  src="/assets/aidesign/self-care-mobile-thumbnail.png?v=20260713-2"
-                  alt="Self Care mood check-in and small daily choices on a phone screen"
-                  width="361"
-                  height="678"
-                  loading="eager"
-                />
-                <span class="sr-only">Open the Self Care prototype</span>
-              </button>
+              <div class="aide-sample-preview">
+                <iframe class="aide-mobile-animation" data-src="/assets/aidesign/prototypes/self-care/mobile-animation.html" title="Animated Self Care preview" tabindex="-1" aria-hidden="true" loading="lazy"></iframe>
+                <button class="aide-mobile-animation-open" type="button" aria-haspopup="dialog" aria-controls="aidePrototypeOverlay" data-aide-prototype-open data-prototype-src="/aidesign/self_care.html" data-prototype-title="Self Care" aria-label="Open the Self Care prototype"></button>
+              </div>
               <section class="aide-problem-statement" aria-labelledby="self-care-problem-title">
                 <!-- REVIEW: PO-6 proposed friction and default-design replacement is in FIX-REPORT.md; not applied. -->
 <h3 id="self-care-problem-title">The problem</h3>
@@ -232,24 +218,10 @@
                 title="Meeting Coach"
                 loading="lazy"
               ></iframe>
-              <button
-                class="aide-sample-preview"
-                type="button"
-                aria-haspopup="dialog"
-                aria-controls="aidePrototypeOverlay"
-                data-aide-prototype-open
-                data-prototype-src="/aidesign/meeting_coach.html"
-                data-prototype-title="Meeting Coach"
-              >
-                <img
-                  src="/assets/aidesign/meeting-coach-mobile-thumbnail.png?v=20260713-2"
-                  alt="Meeting Coach preparation and follow-up on a phone screen"
-                  width="360"
-                  height="678"
-                  loading="lazy"
-                />
-                <span class="sr-only">Open the Meeting Coach prototype</span>
-              </button>
+              <div class="aide-sample-preview">
+                <iframe class="aide-mobile-animation" data-src="/assets/aidesign/prototypes/meeting-coach/mobile-animation.html" title="Animated Meeting Coach preview" tabindex="-1" aria-hidden="true" loading="lazy"></iframe>
+                <button class="aide-mobile-animation-open" type="button" aria-haspopup="dialog" aria-controls="aidePrototypeOverlay" data-aide-prototype-open data-prototype-src="/aidesign/meeting_coach.html" data-prototype-title="Meeting Coach" aria-label="Open the Meeting Coach prototype"></button>
+              </div>
               <section class="aide-problem-statement" aria-labelledby="meeting-coach-problem-title">
                 <h3 id="meeting-coach-problem-title">The problem</h3>
                 <p>Knowledge workers spend an average of 18-23 hours a week in meetings, yet studies on "meeting recovery syndrome" show that poorly run meetings leave a residue of fatigue and unresolved tension that follows people into their next task. The core issue isn't meeting <em>quantity</em>, it's the absence of structure around preparation, real-time facilitation, and follow-through. Without a clear thread connecting what was decided, who owns what, and what changed as a result, meetings become isolated events rather than links in a chain of progress. This creates a quiet but corrosive form of organizational memory loss: decisions get re-litigated, action items evaporate, and people leave meetings uncertain whether their time was well spent.</p>
@@ -283,24 +255,10 @@
                 title="Contact"
                 loading="lazy"
               ></iframe>
-              <button
-                class="aide-sample-preview"
-                type="button"
-                aria-haspopup="dialog"
-                aria-controls="aidePrototypeOverlay"
-                data-aide-prototype-open
-                data-prototype-src="/aidesign/Contact%20Prototype%20(standalone).html"
-                data-prototype-title="Contact"
-              >
-                <img
-                  src="/assets/aidesign/contact-mobile-thumbnail.png?v=20260713-2"
-                  alt="Contact relationship-centered message overview on a phone screen"
-                  width="361"
-                  height="678"
-                  loading="lazy"
-                />
-                <span class="sr-only">Open the Contact prototype</span>
-              </button>
+              <div class="aide-sample-preview">
+                <iframe class="aide-mobile-animation" data-src="/assets/aidesign/prototypes/contact/mobile-animation.html" title="Animated Contact preview" tabindex="-1" aria-hidden="true" loading="lazy"></iframe>
+                <button class="aide-mobile-animation-open" type="button" aria-haspopup="dialog" aria-controls="aidePrototypeOverlay" data-aide-prototype-open data-prototype-src="/aidesign/Contact%20Prototype%20(standalone).html" data-prototype-title="Contact" aria-label="Open the Contact prototype"></button>
+              </div>
               <section class="aide-problem-statement" aria-labelledby="contact-problem-title">
                 <h3 id="contact-problem-title">The problem</h3>
                 <p>The average knowledge worker checks 6-10 communication apps daily, Messages, Mail, Slack, WhatsApp, Teams, Phone, each with its own inbox, notification style, and mental model. Every app-switch carries a hidden tax: cognitive psychologists call it <em>task-switching cost</em>, the residual attention left behind each time your brain re-orients to a new context. Multiply that across dozens of daily switches, and the result isn't just lost time, it's cumulative cognitive load, the working-memory strain of holding open threads across fragmented systems.</p>
@@ -330,10 +288,10 @@
               <h2>Partner</h2>
               <p class="aide-sample-description">A consent-first proximity sharing concept that lets two people choose specific Apple system data, approve the connection on both watches, and pause or stop the sync at any time.</p>
               <iframe class="aide-sample-frame" data-src="/aidesign/partner.html" title="Partner" loading="lazy"></iframe>
-              <button class="aide-sample-preview" type="button" aria-haspopup="dialog" aria-controls="aidePrototypeOverlay" data-aide-prototype-open data-prototype-src="/aidesign/partner.html" data-prototype-title="Partner">
-                <img src="/assets/aidesign/partner-mobile-thumbnail.png?v=20260713-2" alt="Partner consent and data-sharing controls on a phone screen" width="361" height="678" loading="lazy" />
-                <span class="sr-only">Open the Partner prototype</span>
-              </button>
+              <div class="aide-sample-preview">
+                <iframe class="aide-mobile-animation" data-src="/assets/aidesign/prototypes/partner/mobile-animation.html" title="Animated Partner preview" tabindex="-1" aria-hidden="true" loading="lazy"></iframe>
+                <button class="aide-mobile-animation-open" type="button" aria-haspopup="dialog" aria-controls="aidePrototypeOverlay" data-aide-prototype-open data-prototype-src="/aidesign/partner.html" data-prototype-title="Partner" aria-label="Open the Partner prototype"></button>
+              </div>
               <button class="button-secondary aide-partner-fullscreen" type="button" data-aide-prototype-open data-aide-request-fullscreen data-prototype-src="/aidesign/partner_fullscreen.html" data-prototype-title="Partner">
                 <span aria-hidden="true">⛶</span>
                 Test full screen
@@ -406,6 +364,6 @@
 
     <script src="/analytics.js"></script>
     <script src="/script.js?v=20261010-theme-sync"></script>
-    <script src="/assets/aidesign.js?v=20260711-partner-fullscreen-1"></script>
+    <script src="/assets/aidesign.js?v=20261010-mobile-animation"></script>
   </body>
 </html>

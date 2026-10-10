@@ -308,6 +308,7 @@
 
 .aide-sample-preview {
   display: none !important;
+  position: relative;
   justify-self: start;
   width: min(100%, 360px);
   margin-top: 8px;
@@ -320,10 +321,24 @@
   overflow: hidden;
 }
 
-.aide-sample-preview img {
+.aide-mobile-animation {
   display: block;
   width: 100%;
-  height: auto;
+  aspect-ratio: 720 / 1356;
+  border: 0;
+  background: #F3EEE6;
+  pointer-events: none;
+}
+
+.aide-mobile-animation-open {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 .aide-sample-preview:hover {
@@ -331,7 +346,7 @@
   box-shadow: none;
 }
 
-.aide-sample-preview:focus-visible {
+.aide-sample-preview:focus-within {
   outline: 3px solid var(--focus-ring);
   outline-offset: 4px;
 }

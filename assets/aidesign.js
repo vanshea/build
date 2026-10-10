@@ -17,6 +17,18 @@ function resolveAiDesignPrototypePath(src) {
   const tabs = Array.from(browser.querySelectorAll("[data-aide-idea-tab]"));
   const panels = Array.from(browser.querySelectorAll("[data-aide-idea-panel]"));
   if (!tabs.length || !panels.length) return;
+  const compactView = window.matchMedia("(max-width: 720px)");
+
+  function loadActivePreview(panel) {
+    if (!panel) return;
+    const selector = compactView.matches
+      ? ".aide-mobile-animation[data-src]"
+      : ".aide-sample-frame[data-src]";
+    const frame = panel.querySelector(selector);
+    if (!frame) return;
+    frame.src = resolveAiDesignPrototypePath(frame.getAttribute("data-src"));
+    frame.removeAttribute("data-src");
+  }
 
   function activateIdea(tab, updateHash = true) {
     const slug = tab.getAttribute("data-aide-idea-tab");
@@ -36,11 +48,7 @@ function resolveAiDesignPrototypePath(src) {
       candidate.hidden = candidate !== panel;
     });
 
-    const frame = panel.querySelector(".aide-sample-frame[data-src]");
-    if (frame && !frame.hasAttribute("src")) {
-      frame.src = resolveAiDesignPrototypePath(frame.getAttribute("data-src"));
-      frame.removeAttribute("data-src");
-    }
+    loadActivePreview(panel);
 
     tab.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "nearest", inline: "nearest" });
 
@@ -75,7 +83,12 @@ function resolveAiDesignPrototypePath(src) {
   );
   if (initialTab) {
     activateIdea(initialTab, false);
+  } else {
+    loadActivePreview(panels.find((panel) => !panel.hidden));
   }
+  compactView.addEventListener("change", () => {
+    loadActivePreview(panels.find((panel) => !panel.hidden));
+  });
 })();
 
 (() => {

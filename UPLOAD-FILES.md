@@ -125,3 +125,17 @@ Upload these paths if the earlier 94-file Build batch is already in place:
 - `case-studies/index.html`
 - `aidesign/index.html`
 - `experience.html`
+
+## AI Design mobile animation follow-up — incremental upload list (7 public files)
+
+Upload these paths into the same Build document root, preserving directories. The four new animation pages reuse the `support.js` and `vendor/` files already present in their respective prototype folders.
+
+- `aidesign/index.html`
+- `assets/aidesign.css`
+- `assets/aidesign.js`
+- `assets/aidesign/prototypes/self-care/mobile-animation.html`
+- `assets/aidesign/prototypes/meeting-coach/mobile-animation.html`
+- `assets/aidesign/prototypes/contact/mobile-animation.html`
+- `assets/aidesign/prototypes/partner/mobile-animation.html`
+
+The four old mobile PNG thumbnails have no remaining references on the AI Design page; hosted deletion is optional after the animation pages work on Build.
