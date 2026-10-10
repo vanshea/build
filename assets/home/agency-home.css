@@ -348,3 +348,6 @@ p { text-wrap: pretty; }
     font-size:clamp(10px,2.8vw,13px); white-space:nowrap;
   }
 }
+
+/* DS-9: presentation casing belongs to the shared eyebrow class. */
+.eyebrow { text-transform:uppercase; letter-spacing:.08em; }
