@@ -7,7 +7,11 @@ body.agency-site::before, body.agency-site::after, body.agency-site .bg-shape { 
 .agency-site .hero { background:transparent!important; box-shadow:none!important; clip-path:none!important; }
 .agency-site .home-header { position:sticky; top:0; z-index:1000; }
 body.agency-site { overflow-x:clip!important; }
-.agency-main { width:calc(100% - 10.55%); max-width:1288px; margin:0 auto; padding:76px 0 100px; }
+.agency-main { width:calc(100% - 10.55%); max-width:1288px; margin:0 auto; padding:var(--space-page-top,76px) 0 100px; }
+/* Listing and lab titles share the same inset below the site header. */
+.agency-site .agency-main > .hero { margin-top:0; padding-top:0; }
+.agency-site .agency-main > .hero h1 { margin-top:0; }
+.agency-site .aide-sample-main { width:calc(100% - 10.55%); max-width:1288px; padding:var(--space-page-top,76px) 0 100px; }
 .agency-main h1,.agency-main h2,.agency-main h3 { color:var(--ink)!important; font-family:var(--serif)!important; text-shadow:none!important; }
 .agency-main h1 { font-size:clamp(40px,4.5vw,62px)!important; line-height:1.15!important; }
 .agency-main h2 { font-size:clamp(34px,3.6vw,52px)!important; line-height:1.12!important; }
@@ -72,7 +76,8 @@ body.agency-site { overflow-x:clip!important; }
   .agency-site *, .agency-home * { animation-duration:0.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; }
 }
 @media(max-width:700px) {
-  .agency-main { width:calc(100% - 40px); padding:52px 0 70px; }
+  .agency-main { width:calc(100% - 40px); padding:var(--space-page-top,52px) 0 70px; }
+  .agency-site .aide-sample-main { width:calc(100% - 40px); padding:var(--space-page-top,52px) 0 70px; }
   .agency-site .agency-content main > section:nth-of-type(even):not(.hero),
   .agency-site .agency-main > section:nth-of-type(even):not(.hero) { margin-block:32px; padding:24px; }
 }

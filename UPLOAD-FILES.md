@@ -113,3 +113,15 @@ After the new paths work on Build, the old `assets/home-2027/` directory can be 
 - `qa/`, `FIX-REPORT.md`, `UPLOAD-FILES.md` — review evidence and manifests.
 
 The separate WordPress blog package is not included in this upload list. Its shared theme-cookie work is preserved in the listed Build JavaScript.
+
+## Top spacing follow-up — incremental upload list (7 public files)
+
+Upload these paths if the earlier 94-file Build batch is already in place:
+
+- `assets/design-system/tokens.css`
+- `assets/home/agency-site.css`
+- `work.html`
+- `studio.html`
+- `case-studies/index.html`
+- `aidesign/index.html`
+- `experience.html`

@@ -514,3 +514,9 @@ Responsive WebP variants are 480, 960 and 1600px. The two dense cards have dedic
 ## Files to upload
 
 See [UPLOAD-FILES.md](UPLOAD-FILES.md) for the complete, exact public-file manifest and upload order. Data, render scripts, server templates and QA evidence are source/maintenance files, not static-host uploads.
+
+## Follow-up: top spacing alignment (10 October 2026)
+
+Work, Case studies, AI Design Lab, Experience, and the matching Studio shell now share a page-top spacing token: 76px below the header at desktop widths and 52px at 375px. Work's inherited theme hero margin and top padding were removed, and AI Design Lab now uses the shared content width. The five affected HTML pages use fresh CSS query versions so cached styles do not obscure the correction.
+
+A subsequent Chrome check covered these five pages in all four themes at 1440px and 375px: all 40 heading positions matched (152px and 127px from the viewport top respectively), and none overflowed horizontally. The earlier `qa/` snapshots predate this follow-up; they remain evidence for the initial fix pass rather than a current spacing comparison. This follow-up is local Build verification, not a live-site check.

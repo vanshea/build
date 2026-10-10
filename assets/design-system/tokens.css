@@ -11,6 +11,8 @@
 }
 
 :root { --space-1:4px; --space-2:8px; --space-3:16px; --space-4:24px; --space-5:32px; --space-6:48px; --space-7:64px; --space-section:clamp(48px,6vw,96px); }
+:root { --space-page-top:76px; }
+@media(max-width:700px) { :root { --space-page-top:52px; } }
 /* VQ-8: legacy and current components share the same accessible color roles. */
 :root[data-theme] { --type-scale:1; --ink-soft:var(--muted); --paper:var(--bg); --theme-tray:var(--footer-bg); --theme-option:var(--footer-bg); --theme-option-selected:var(--footer-bg); }
 :root[data-theme="theme5"] { --muted:#171222; --ink-soft:#171222; }
