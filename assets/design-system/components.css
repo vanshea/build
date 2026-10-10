@@ -22,3 +22,9 @@ html body.agency-site button, html body.agency-home button { font-size:var(--typ
 @media(max-width:700px) { .role-scope dl { grid-template-columns:1fr; } .agency-home .section-heading { flex-direction:column; } }
 
 .agency-home .faq p,.agency-home .practice p,.case-study-rich-text,.aide-problem-statement p { max-width:68ch; }
+
+@media(max-width:700px) {
+ .agency-hero .conversation-link { display:flex; width:100%; justify-content:center; box-sizing:border-box; }
+ .agency-home .hero-content { min-width:0; }
+ .home-nav a:focus-visible,.menu-toggle:focus-visible { outline:3px solid var(--focus)!important; outline-offset:4px; }
+}
