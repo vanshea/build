@@ -1,0 +1,11 @@
+/* Shared components; loaded after page styles. */
+html body.agency-site .agency-content main h1, html body.agency-site .agency-main h1, html body.agency-home main h1 { font-size:var(--type-h1)!important; line-height:var(--leading-heading)!important; font-weight:400!important; }
+html body.agency-site .agency-content main h2, html body.agency-site .agency-main h2, html body.agency-home main h2 { font-size:var(--type-h2)!important; line-height:var(--leading-heading)!important; font-weight:400!important; }
+html body.agency-site .agency-content main h3, html body.agency-site .agency-main h3, html body.agency-home main h3 { font-size:var(--type-h3)!important; line-height:var(--leading-heading)!important; font-weight:400!important; }
+html body.agency-site .agency-content main h4, html body.agency-site .agency-main h4, html body.agency-home main h4 { font-size:var(--type-h4)!important; line-height:var(--leading-heading)!important; font-weight:400!important; }
+html body.agency-site .agency-content main p, html body.agency-site .agency-main p, html body.agency-home main p,
+html body.agency-site .agency-content main li, html body.agency-site .agency-main li, html body.agency-home main li { font-size:var(--type-body); line-height:var(--leading-body); }
+html body.agency-site .agency-content main .eyebrow, html body.agency-site .agency-main .eyebrow, html body.agency-home main .eyebrow,
+html body.agency-site figcaption, html body.agency-home figcaption { font-size:var(--type-caption)!important; line-height:1.5!important; }
+html body.agency-site .eyebrow, html body.agency-home .eyebrow { font-weight:700!important; }
+html body.agency-site button, html body.agency-home button { font-size:var(--type-control); line-height:1.3; }
