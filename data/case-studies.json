@@ -15,7 +15,8 @@
     "discipline_label": "Capital One / Interaction design",
     "year": "2017",
     "image": "/assets/vscimage/generated/capital-one-patent-figure-pdf-fullscreen-3200x1800.webp",
-    "alt": "Capital One gesture-interface patent figures showing interactions with a phone, television, and car display"
+    "alt": "Capital One gesture-interface patent figures showing interactions with a phone, television, and car display",
+    "mobile_image": "/assets/responsive/capital-one-gesture-patent-detail.webp"
   },
   {
     "slug": "vanguard-innovation-lab-integration",
@@ -33,7 +34,8 @@
     "discipline_label": "M&T Bank / Service design",
     "year": "2019",
     "image": "/assets/vscimage/generated/mt-bank-future-b2b-lending-board-fullscreen-3200x1800.webp",
-    "alt": "M&T Bank future-state service blueprint showing the commercial lending journey, from discovering a need to planning funding"
+    "alt": "M&T Bank future-state service blueprint showing the commercial lending journey, from discovering a need to planning funding",
+    "mobile_image": "/assets/responsive/mt-bank-commercial-banking-transformation-detail.webp"
   },
   {
     "slug": "nami-delaware-988-campaign",
