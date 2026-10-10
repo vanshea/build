@@ -78,7 +78,7 @@
   <a class="home-brand" href="/" aria-label="Van Shea Creative, Human Agency Design home"><img src="assets/home/large-logo-horizontal.svg" width="215" height="61" alt="Van Shea Creative"></a>
   <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="home-nav">Menu</button>
   <nav class="home-nav" id="home-nav" aria-label="Main navigation">
-    <a href="/">Home</a><a href="/work.html">Work</a><a href="/case-studies/">Case Studies</a><a href="/aidesign/">AI Design</a><a href="/experience.html">Experience</a>
+    <a href="/" class="link-text">Home</a><a href="/work.html" class="link-text">Work</a><a href="/case-studies/" class="link-text">Case Studies</a><a href="/aidesign/" class="link-text">AI Design</a><a href="/experience.html" class="link-text">Experience</a>
   </nav>
 </div></header>
 
@@ -176,7 +176,7 @@
 <!-- VSCIMAGE_GENERATED_END -->
         </div>
         <div class="work-load-more-wrap">
-          <button class="btn work-load-more" id="workLoadMore" type="button">
+          <button class="button-primary btn work-load-more" id="workLoadMore" type="button">
             Load more
           </button>
         </div>
@@ -254,7 +254,7 @@
               <p class="field-error" id="inquiryBriefError"></p>
 
               <div class="project-inquiry-actions">
-                <button class="btn" id="projectInquirySubmit" type="submit">
+                <button class="button-primary btn" id="projectInquirySubmit" type="submit">
                   Send inquiry
                 </button>
                 <p
@@ -272,7 +272,7 @@
                 href="https://docs.google.com/forms/d/e/1FAIpQLScVOIMpFAFvqvonZWWH-2HJws0vDJyuCAajoaRgLwCDRF_3Aw/viewform"
                 target="_blank"
                 rel="noreferrer"
-              >
+               class="link-text">
                 Open the Google Form
               <span class="sr-only"> (opens in a new tab)</span></a>.
             </p>
@@ -282,7 +282,7 @@
     </main></div>
 
     <div class="footer-wave"><svg viewBox="0 -50 1440 250" preserveAspectRatio="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path stroke="#f36070" d="M-80 70 C150 132 330 46 550 82 S925 143 1130 92 S1420 50 1520 88 L1520 250 L-80 250 Z"/><path stroke="#cfbead" d="M-80 84 C165 145 325 56 550 95 S930 153 1130 105 S1410 64 1520 100"/><path stroke="#b6d800" d="M-80 98 C150 157 330 68 550 107 S930 164 1130 117 S1420 75 1520 112"/><path stroke="#55b9d0" d="M-80 112 C160 170 330 81 550 120 S930 175 1130 130 S1420 89 1520 124"/><path stroke="#b5a0db" d="M-80 126 C155 183 325 94 550 133 S930 187 1130 143 S1410 102 1520 138"/></svg><button class="footer-wave-toggle" type="button" aria-label="Pause footer wave animation" aria-pressed="true">Pause wave</button></div>
-  <footer class="home-footer"><div class="container view-controls"><fieldset class="theme-control"><legend>Color theme</legend><label><input type="radio" name="color-theme" value="theme1"><span>Clear</span></label><label><input type="radio" name="color-theme" value="theme3"><span>Contrast</span></label><label><input type="radio" name="color-theme" value="theme4"><span>Bold</span></label><label><input type="radio" name="color-theme" value="theme5"><span>Wild</span></label></fieldset></div><div class="container footer-inner"><p>© 2026 Van Shea Sedita · Van Shea Creative · Human Agency Design</p><nav class="footer-links" aria-label="Footer"><a href="/studio.html">Studio</a><a href="/experience.html">Experience</a><a href="/work.html">Work</a><a href="/blog/">Writing</a><a href="https://www.linkedin.com/in/vanshea/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></nav></div></footer>
+  <footer class="home-footer"><div class="container view-controls"><fieldset class="theme-control"><legend>Color theme</legend><label><input type="radio" name="color-theme" value="theme1"><span>Clear</span></label><label><input type="radio" name="color-theme" value="theme3"><span>Contrast</span></label><label><input type="radio" name="color-theme" value="theme4"><span>Bold</span></label><label><input type="radio" name="color-theme" value="theme5"><span>Wild</span></label></fieldset></div><div class="container footer-inner"><p>© 2026 Van Shea Sedita · Van Shea Creative · Human Agency Design</p><nav class="footer-links" aria-label="Footer"><a href="/studio.html" class="link-text">Studio</a><a href="/experience.html" class="link-text">Experience</a><a href="/work.html" class="link-text">Work</a><a href="/blog/" class="link-text">Writing</a><a href="https://www.linkedin.com/in/vanshea/" target="_blank" rel="noopener noreferrer" class="link-text">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></nav></div></footer>
 
     <aside
       class="consent-banner"
@@ -296,17 +296,17 @@
         Privacy-first analytics only. No personal tracking.
       </p>
       <div class="consent-actions">
-        <button class="theme-link consent-btn" id="consentDenyBtn" type="button">
+        <button class="button-secondary theme-link consent-btn" id="consentDenyBtn" type="button">
           Deny
         </button>
-        <button class="btn consent-btn consent-allow" id="consentAllowBtn" type="button">
+        <button class="button-primary btn consent-btn consent-allow" id="consentAllowBtn" type="button">
           Allow Analytics
         </button>
       </div>
     </aside>
 
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project image preview" aria-hidden="true" inert>
-      <button class="lightbox-close" id="lightboxClose" type="button" role="button" aria-label="Close image">
+      <button class="button-secondary lightbox-close" id="lightboxClose" type="button" role="button" aria-label="Close image">
         x
       </button>
       <button
@@ -320,14 +320,14 @@
         <span id="lightboxFullscreenIcon" aria-hidden="true">⤢</span>
       </button>
       <button
-        class="lightbox-nav lightbox-prev"
+        class="button-secondary lightbox-nav lightbox-prev"
         id="lightboxPrev"
         aria-label="Previous image"
       >
         <span aria-hidden="true">&lsaquo;</span>
       </button>
       <button
-        class="lightbox-nav lightbox-next"
+        class="button-secondary lightbox-nav lightbox-next"
         id="lightboxNext"
         aria-label="Next image"
       >
