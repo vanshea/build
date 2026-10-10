@@ -26,6 +26,15 @@
 
   const initialize = () => {
     root.classList.add('js');
+    // Keep localhost /build/ review inside its static tree; production stays root-relative.
+    if (location.pathname.startsWith('/build/')) {
+      document.querySelectorAll('a[href^="/"]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!/^\/(?:build|blog|api)(?:\/|$)/.test(href) && !href.startsWith('//')) {
+          link.setAttribute('href', '/build' + href);
+        }
+      });
+    }
     applyTheme(theme);
     const header = document.querySelector('.home-header');
     const syncHeader = () => header?.classList.toggle('is-scrolled', scrollY > 24);
