@@ -9,3 +9,14 @@ html body.agency-site .agency-content main .eyebrow, html body.agency-site .agen
 html body.agency-site figcaption, html body.agency-home figcaption { font-size:var(--type-caption)!important; line-height:1.5!important; }
 html body.agency-site .eyebrow, html body.agency-home .eyebrow { font-weight:700!important; }
 html body.agency-site button, html body.agency-home button { font-size:var(--type-control); line-height:1.3; }
+
+.agency-home main > .section { padding-block:var(--space-section); }
+.agency-home .section-heading, .agency-home .practice-intro, .agency-home .about-copy, .agency-home .case-description { display:flex; flex-direction:column; gap:var(--space-3); }
+.agency-home .section-heading { flex-direction:row; gap:var(--space-5); }
+.agency-home .section-heading h2,.agency-home .practice-intro > *,.agency-home .about-copy > *,.agency-home .case-description > * { margin-block:0; }
+.agency-home .eyebrow { margin-block:0 var(--space-2); }
+.role-scope { margin-block:var(--space-5); }
+.role-scope dl { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--space-4); }
+.role-scope dt { font-weight:700; margin-bottom:var(--space-2); }
+.role-scope dd { margin:0; line-height:var(--leading-body); }
+@media(max-width:700px) { .role-scope dl { grid-template-columns:1fr; } .agency-home .section-heading { flex-direction:column; } }
