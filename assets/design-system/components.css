@@ -57,3 +57,8 @@ html body .button-primary { display:inline-flex; align-items:center; justify-con
 html body .button-secondary { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:var(--space-2) var(--space-3); background:transparent; color:var(--ink); border:1px solid currentColor; font-size:var(--type-control); line-height:1.3; }
 html body .link-text { text-underline-offset:.25em; text-decoration-thickness:1px; }
 html body .link-text:hover { text-decoration-thickness:2px; }
+.theme-control { background:var(--theme-tray); }
+.theme-control label { background:var(--theme-option); }
+.theme-control label:has(input:checked) { background:var(--theme-option-selected); outline:2px solid var(--footer-ink); outline-offset:-3px; }
+.case-study-breadcrumb { color:var(--ink)!important; }
+.aide-problem-statement .aide-problem-sources { opacity:var(--source-opacity); }
