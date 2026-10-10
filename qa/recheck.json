@@ -1,0 +1,557 @@
+[
+  {
+    "route": "/aidesign/experiments/index.html",
+    "errors": [],
+    "overflow": [
+      {
+        "width": 360,
+        "actual": 345,
+        "offenders": [
+          "A.link-text aide-experiment-card-link",
+          "P.",
+          "SPAN.aide-card-action",
+          "A.link-text aide-experiment-card-link",
+          "SPAN.aide-card-action",
+          "A.link-text aide-experiment-card-link",
+          "P.",
+          "SPAN.aide-card-action",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]"
+        ]
+      },
+      {
+        "width": 375,
+        "actual": 360,
+        "offenders": [
+          "A.link-text aide-experiment-card-link",
+          "P.",
+          "SPAN.aide-card-action",
+          "A.link-text aide-experiment-card-link",
+          "SPAN.aide-card-action",
+          "A.link-text aide-experiment-card-link",
+          "P.",
+          "SPAN.aide-card-action",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]"
+        ]
+      },
+      {
+        "width": 414,
+        "actual": 399,
+        "offenders": [
+          "A.link-text aide-experiment-card-link",
+          "P.",
+          "SPAN.aide-card-action",
+          "A.link-text aide-experiment-card-link",
+          "SPAN.aide-card-action",
+          "A.link-text aide-experiment-card-link",
+          "P.",
+          "SPAN.aide-card-action",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]"
+        ]
+      }
+    ],
+    "axe": [
+      {
+        "width": 1440,
+        "theme": "theme1",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme3",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme4",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme5",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme1",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme3",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme4",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme5",
+        "violations": []
+      }
+    ],
+    "tap": []
+  },
+  {
+    "route": "/assets/home/demos/aidesign--self_care.html",
+    "errors": [],
+    "overflow": [
+      {
+        "width": 360,
+        "actual": 360,
+        "offenders": []
+      },
+      {
+        "width": 375,
+        "actual": 375,
+        "offenders": []
+      },
+      {
+        "width": 414,
+        "actual": 414,
+        "offenders": []
+      }
+    ],
+    "axe": [
+      {
+        "width": 1440,
+        "theme": "theme1",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme3",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme4",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme5",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme1",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme3",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme4",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme5",
+        "violations": []
+      }
+    ],
+    "tap": [
+      {
+        "text": "",
+        "class": "scp0",
+        "width": 24.359375,
+        "height": 24.359375
+      },
+      {
+        "text": "🏃 Exercised",
+        "class": "",
+        "width": 80.203125,
+        "height": 25.71875
+      },
+      {
+        "text": "🌙 Slept well",
+        "class": "",
+        "width": 79.109375,
+        "height": 25.71875
+      },
+      {
+        "text": "📵 No scrolling",
+        "class": "",
+        "width": 90.46875,
+        "height": 25.71875
+      },
+      {
+        "text": "Log check-in",
+        "class": "scp1",
+        "width": 257.59375,
+        "height": 31.84375
+      }
+    ]
+  },
+  {
+    "route": "/experience.html",
+    "errors": [],
+    "overflow": [
+      {
+        "width": 360,
+        "actual": 345,
+        "offenders": [
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]"
+        ]
+      },
+      {
+        "width": 375,
+        "actual": 360,
+        "offenders": [
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]"
+        ]
+      },
+      {
+        "width": 414,
+        "actual": 399,
+        "offenders": [
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]"
+        ]
+      }
+    ],
+    "axe": [
+      {
+        "width": 1440,
+        "theme": "theme1",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme3",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme4",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme5",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme1",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme3",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme4",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme5",
+        "violations": []
+      }
+    ],
+    "tap": []
+  },
+  {
+    "route": "/index.html",
+    "errors": [],
+    "overflow": [
+      {
+        "width": 360,
+        "actual": 360,
+        "offenders": [
+          "ARTICLE.recommendation-card",
+          "DIV.recommendation-mark",
+          "BLOCKQUOTE.",
+          "P.",
+          "FOOTER.",
+          "CITE.",
+          "SPAN.",
+          "ARTICLE.recommendation-card",
+          "DIV.recommendation-mark",
+          "BLOCKQUOTE."
+        ]
+      },
+      {
+        "width": 375,
+        "actual": 375,
+        "offenders": [
+          "ARTICLE.recommendation-card",
+          "DIV.recommendation-mark",
+          "BLOCKQUOTE.",
+          "P.",
+          "FOOTER.",
+          "CITE.",
+          "SPAN.",
+          "ARTICLE.recommendation-card",
+          "DIV.recommendation-mark",
+          "BLOCKQUOTE."
+        ]
+      },
+      {
+        "width": 414,
+        "actual": 414,
+        "offenders": [
+          "ARTICLE.recommendation-card",
+          "DIV.recommendation-mark",
+          "BLOCKQUOTE.",
+          "P.",
+          "FOOTER.",
+          "CITE.",
+          "SPAN.",
+          "ARTICLE.recommendation-card",
+          "DIV.recommendation-mark",
+          "BLOCKQUOTE."
+        ]
+      }
+    ],
+    "axe": [
+      {
+        "width": 1440,
+        "theme": "theme1",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme3",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme4",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme5",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme1",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme3",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme4",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme5",
+        "violations": []
+      }
+    ],
+    "tap": [],
+    "menuOpen": "true",
+    "firstFocus": "Home",
+    "menuClosed": "false",
+    "escapeFocus": true,
+    "wave": "none"
+  },
+  {
+    "route": "/studio.html",
+    "errors": [],
+    "overflow": [
+      {
+        "width": 360,
+        "actual": 345,
+        "offenders": [
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]"
+        ]
+      },
+      {
+        "width": 375,
+        "actual": 360,
+        "offenders": [
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]"
+        ]
+      },
+      {
+        "width": 414,
+        "actual": 399,
+        "offenders": [
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]",
+          "path.[object SVGAnimatedString]"
+        ]
+      }
+    ],
+    "axe": [
+      {
+        "width": 1440,
+        "theme": "theme1",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme3",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme4",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme5",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme1",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme3",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme4",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme5",
+        "violations": []
+      }
+    ],
+    "tap": []
+  },
+  {
+    "route": "/work.html",
+    "errors": [],
+    "overflow": [
+      {
+        "width": 360,
+        "actual": 345,
+        "offenders": [
+          "ARTICLE.recommendation-card",
+          "DIV.recommendation-mark",
+          "BLOCKQUOTE.",
+          "P.",
+          "FOOTER.",
+          "CITE.",
+          "SPAN.",
+          "ARTICLE.recommendation-card",
+          "DIV.recommendation-mark",
+          "BLOCKQUOTE."
+        ]
+      },
+      {
+        "width": 375,
+        "actual": 360,
+        "offenders": [
+          "ARTICLE.recommendation-card",
+          "DIV.recommendation-mark",
+          "BLOCKQUOTE.",
+          "P.",
+          "FOOTER.",
+          "CITE.",
+          "SPAN.",
+          "ARTICLE.recommendation-card",
+          "DIV.recommendation-mark",
+          "BLOCKQUOTE."
+        ]
+      },
+      {
+        "width": 414,
+        "actual": 399,
+        "offenders": [
+          "ARTICLE.recommendation-card",
+          "DIV.recommendation-mark",
+          "BLOCKQUOTE.",
+          "P.",
+          "FOOTER.",
+          "CITE.",
+          "SPAN.",
+          "ARTICLE.recommendation-card",
+          "DIV.recommendation-mark",
+          "BLOCKQUOTE."
+        ]
+      }
+    ],
+    "axe": [
+      {
+        "width": 1440,
+        "theme": "theme1",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme3",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme4",
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "theme": "theme5",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme1",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme3",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme4",
+        "violations": []
+      },
+      {
+        "width": 375,
+        "theme": "theme5",
+        "violations": []
+      }
+    ],
+    "tap": []
+  }
+]

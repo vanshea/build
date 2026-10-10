@@ -36,21 +36,10 @@ html body.agency-site button, html body.agency-home button { font-size:var(--typ
  .footer-links { gap:var(--space-3); flex-wrap:wrap; }
 }
 
-@media(max-width:700px) {
- html body.agency-site button,html body.agency-home button { min-width:44px!important; min-height:44px!important; }
- .agency-home .lab-idea-description a,.agency-home .case-caption h3 a,.agency-site .experience-case-link,.agency-site .studio-link a,.case-study-rich-text figcaption a { display:inline-flex; align-items:center; min-height:44px; }
-}
-@media(max-width:700px) {
- html body.agency-site main a.link-text { display:inline-flex!important; align-items:center; min-height:44px!important; }
-}
-
 @media(prefers-reduced-motion:reduce) {
  .footer-wave path { animation:none!important; }
  .recommendations-track,.recommendations-grid { scroll-behavior:auto!important; }
 }
-.case-visual picture,.card-image-shell picture { display:block; width:100%; }
-@media(max-width:700px) { .case-visual picture img { aspect-ratio:4/3; object-fit:contain; } }
-@media(max-width:700px) { .case-pair .case-visual picture img { aspect-ratio:3/4; } }
 
 /* VQ-10: shared action variants; navigation and image controls retain structure. */
 html body .button-primary { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:var(--space-3) var(--space-4); background:var(--button); color:var(--button-ink)!important; border:2px solid var(--button-edge); font-size:var(--type-control); font-weight:700; line-height:1.3; text-decoration:none; box-sizing:border-box; }
@@ -61,4 +50,15 @@ html body .link-text:hover { text-decoration-thickness:2px; }
 .theme-control label { background:var(--theme-option); }
 .theme-control label:has(input:checked) { background:var(--theme-option-selected); outline:2px solid var(--footer-ink); outline-offset:-3px; }
 .case-study-breadcrumb { color:var(--ink)!important; }
+
+@media(max-width:700px) {
+ html body.agency-site button,html body.agency-home button { min-width:44px!important; min-height:44px!important; }
+ .agency-home .lab-idea-description a,.agency-home .case-caption h3 a,.agency-site .experience-case-link,.agency-site .studio-link a,.case-study-rich-text figcaption a { display:inline-flex; align-items:center; min-height:44px; }
+}
+.case-visual picture,.card-image-shell picture { display:block; width:100%; }
+@media(max-width:700px) { .case-visual picture img { aspect-ratio:4/3; object-fit:contain; } }
 .aide-problem-statement .aide-problem-sources { opacity:var(--source-opacity); }
+@media(max-width:700px) { .case-pair .case-visual picture img { aspect-ratio:3/4; } }
+@media(max-width:700px) {
+ html body.agency-site main a.link-text { display:inline-flex!important; align-items:center; min-height:44px!important; }
+}

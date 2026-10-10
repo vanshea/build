@@ -1,0 +1,923 @@
+{
+  "type": [
+    {
+      "route": "/",
+      "width": 1440,
+      "values": {
+        "h1": [
+          "62px",
+          "71.3px",
+          "400"
+        ],
+        "h2": [
+          "52px",
+          "59.8px",
+          "400"
+        ],
+        "h3": [
+          "39.36px",
+          "45.264px",
+          "400"
+        ],
+        "h4": null,
+        "p": [
+          "17px",
+          "28.05px",
+          "600"
+        ],
+        ".eyebrow": [
+          "13.248px",
+          "19.872px",
+          "700"
+        ],
+        "figcaption": [
+          "13.248px",
+          "19.872px",
+          "400"
+        ],
+        "button": [
+          "15.04px",
+          "19.552px",
+          "700"
+        ]
+      }
+    },
+    {
+      "route": "/",
+      "width": 375,
+      "values": {
+        "h1": [
+          "40.05px",
+          "46.0575px",
+          "400"
+        ],
+        "h2": [
+          "32px",
+          "36.8px",
+          "400"
+        ],
+        "h3": [
+          "24.45px",
+          "28.1175px",
+          "400"
+        ],
+        "h4": null,
+        "p": [
+          "16.055px",
+          "26.4907px",
+          "600"
+        ],
+        ".eyebrow": [
+          "12px",
+          "18px",
+          "700"
+        ],
+        "figcaption": [
+          "12px",
+          "18px",
+          "400"
+        ],
+        "button": [
+          "0px",
+          "0px",
+          "400"
+        ]
+      }
+    },
+    {
+      "route": "/work.html",
+      "width": 1440,
+      "values": {
+        "h1": [
+          "62px",
+          "71.3px",
+          "400"
+        ],
+        "h2": [
+          "52px",
+          "59.8px",
+          "400"
+        ],
+        "h3": [
+          "39.36px",
+          "45.264px",
+          "400"
+        ],
+        "h4": null,
+        "p": [
+          "20.88px",
+          "28.8144px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "15.04px",
+          "19.552px",
+          "700"
+        ]
+      }
+    },
+    {
+      "route": "/work.html",
+      "width": 375,
+      "values": {
+        "h1": [
+          "40.05px",
+          "46.0575px",
+          "400"
+        ],
+        "h2": [
+          "32px",
+          "36.8px",
+          "400"
+        ],
+        "h3": [
+          "24.45px",
+          "28.1175px",
+          "400"
+        ],
+        "h4": null,
+        "p": [
+          "15.68px",
+          "22.2656px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "0px",
+          "0px",
+          "400"
+        ]
+      }
+    },
+    {
+      "route": "/studio.html",
+      "width": 1440,
+      "values": {
+        "h1": [
+          "62px",
+          "71.3px",
+          "400"
+        ],
+        "h2": [
+          "52px",
+          "59.8px",
+          "400"
+        ],
+        "h3": [
+          "39.36px",
+          "45.264px",
+          "400"
+        ],
+        "h4": null,
+        "p": [
+          "20.88px",
+          "28.8144px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "15.04px",
+          "19.552px",
+          "400"
+        ]
+      }
+    },
+    {
+      "route": "/studio.html",
+      "width": 375,
+      "values": {
+        "h1": [
+          "40.05px",
+          "46.0575px",
+          "400"
+        ],
+        "h2": [
+          "32px",
+          "36.8px",
+          "400"
+        ],
+        "h3": [
+          "24.45px",
+          "28.1175px",
+          "400"
+        ],
+        "h4": null,
+        "p": [
+          "15.68px",
+          "22.2656px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "0px",
+          "0px",
+          "400"
+        ]
+      }
+    },
+    {
+      "route": "/case-studies/",
+      "width": 1440,
+      "values": {
+        "h1": [
+          "62px",
+          "71.3px",
+          "400"
+        ],
+        "h2": [
+          "52px",
+          "59.8px",
+          "400"
+        ],
+        "h3": null,
+        "h4": null,
+        "p": [
+          "20.88px",
+          "28.8144px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "15.04px",
+          "19.552px",
+          "700"
+        ]
+      }
+    },
+    {
+      "route": "/case-studies/",
+      "width": 375,
+      "values": {
+        "h1": [
+          "40.05px",
+          "46.0575px",
+          "400"
+        ],
+        "h2": [
+          "32px",
+          "36.8px",
+          "400"
+        ],
+        "h3": null,
+        "h4": null,
+        "p": [
+          "15.68px",
+          "22.2656px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "0px",
+          "0px",
+          "400"
+        ]
+      }
+    },
+    {
+      "route": "/experience.html",
+      "width": 1440,
+      "values": {
+        "h1": [
+          "62px",
+          "71.3px",
+          "400"
+        ],
+        "h2": [
+          "52px",
+          "59.8px",
+          "400"
+        ],
+        "h3": [
+          "39.36px",
+          "45.264px",
+          "400"
+        ],
+        "h4": null,
+        "p": [
+          "17px",
+          "28.05px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "15.04px",
+          "19.552px",
+          "700"
+        ]
+      }
+    },
+    {
+      "route": "/experience.html",
+      "width": 375,
+      "values": {
+        "h1": [
+          "40.05px",
+          "46.0575px",
+          "400"
+        ],
+        "h2": [
+          "32px",
+          "36.8px",
+          "400"
+        ],
+        "h3": [
+          "24.45px",
+          "28.1175px",
+          "400"
+        ],
+        "h4": null,
+        "p": [
+          "16.055px",
+          "26.4907px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "0px",
+          "0px",
+          "400"
+        ]
+      }
+    },
+    {
+      "route": "/aidesign/",
+      "width": 1440,
+      "values": {
+        "h1": [
+          "62px",
+          "71.3px",
+          "400"
+        ],
+        "h2": [
+          "52px",
+          "59.8px",
+          "400"
+        ],
+        "h3": [
+          "39.36px",
+          "45.264px",
+          "400"
+        ],
+        "h4": null,
+        "p": [
+          "17px",
+          "28.9px",
+          "400"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "15.04px",
+          "19.552px",
+          "400"
+        ]
+      }
+    },
+    {
+      "route": "/aidesign/",
+      "width": 375,
+      "values": {
+        "h1": [
+          "40.05px",
+          "46.0575px",
+          "400"
+        ],
+        "h2": [
+          "32px",
+          "36.8px",
+          "400"
+        ],
+        "h3": [
+          "24.45px",
+          "28.1175px",
+          "400"
+        ],
+        "h4": null,
+        "p": [
+          "16.055px",
+          "27.2935px",
+          "400"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "0px",
+          "0px",
+          "400"
+        ]
+      }
+    },
+    {
+      "route": "/case-studies/capital-one-gesture-patent/",
+      "width": 1440,
+      "values": {
+        "h1": [
+          "62px",
+          "71.3px",
+          "400"
+        ],
+        "h2": [
+          "52px",
+          "59.8px",
+          "400"
+        ],
+        "h3": null,
+        "h4": null,
+        "p": [
+          "17px",
+          "28.05px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": [
+          "13.248px",
+          "19.872px",
+          "400"
+        ],
+        "button": [
+          "15.04px",
+          "19.552px",
+          "700"
+        ]
+      }
+    },
+    {
+      "route": "/case-studies/capital-one-gesture-patent/",
+      "width": 375,
+      "values": {
+        "h1": [
+          "40.05px",
+          "46.0575px",
+          "400"
+        ],
+        "h2": [
+          "32px",
+          "36.8px",
+          "400"
+        ],
+        "h3": null,
+        "h4": null,
+        "p": [
+          "16.055px",
+          "26.4907px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": [
+          "12px",
+          "18px",
+          "400"
+        ],
+        "button": [
+          "0px",
+          "0px",
+          "400"
+        ]
+      }
+    },
+    {
+      "route": "/case-studies/mt-bank-commercial-banking-transformation/",
+      "width": 1440,
+      "values": {
+        "h1": [
+          "62px",
+          "71.3px",
+          "400"
+        ],
+        "h2": [
+          "52px",
+          "59.8px",
+          "400"
+        ],
+        "h3": null,
+        "h4": null,
+        "p": [
+          "17px",
+          "28.05px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "15.04px",
+          "19.552px",
+          "700"
+        ]
+      }
+    },
+    {
+      "route": "/case-studies/mt-bank-commercial-banking-transformation/",
+      "width": 375,
+      "values": {
+        "h1": [
+          "40.05px",
+          "46.0575px",
+          "400"
+        ],
+        "h2": [
+          "32px",
+          "36.8px",
+          "400"
+        ],
+        "h3": null,
+        "h4": null,
+        "p": [
+          "16.055px",
+          "26.4907px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "0px",
+          "0px",
+          "400"
+        ]
+      }
+    },
+    {
+      "route": "/case-studies/nami-delaware-988-campaign/",
+      "width": 1440,
+      "values": {
+        "h1": [
+          "62px",
+          "71.3px",
+          "400"
+        ],
+        "h2": [
+          "52px",
+          "59.8px",
+          "400"
+        ],
+        "h3": null,
+        "h4": null,
+        "p": [
+          "17px",
+          "28.05px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": [
+          "13.248px",
+          "19.872px",
+          "400"
+        ],
+        "button": [
+          "15.04px",
+          "19.552px",
+          "400"
+        ]
+      }
+    },
+    {
+      "route": "/case-studies/nami-delaware-988-campaign/",
+      "width": 375,
+      "values": {
+        "h1": [
+          "40.05px",
+          "46.0575px",
+          "400"
+        ],
+        "h2": [
+          "32px",
+          "36.8px",
+          "400"
+        ],
+        "h3": null,
+        "h4": null,
+        "p": [
+          "16.055px",
+          "26.4907px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": [
+          "12px",
+          "18px",
+          "400"
+        ],
+        "button": [
+          "0px",
+          "0px",
+          "400"
+        ]
+      }
+    },
+    {
+      "route": "/case-studies/nyu-curriculum-alignment/",
+      "width": 1440,
+      "values": {
+        "h1": [
+          "62px",
+          "71.3px",
+          "400"
+        ],
+        "h2": [
+          "52px",
+          "59.8px",
+          "400"
+        ],
+        "h3": null,
+        "h4": null,
+        "p": [
+          "17px",
+          "28.05px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "15.04px",
+          "19.552px",
+          "700"
+        ]
+      }
+    },
+    {
+      "route": "/case-studies/nyu-curriculum-alignment/",
+      "width": 375,
+      "values": {
+        "h1": [
+          "40.05px",
+          "46.0575px",
+          "400"
+        ],
+        "h2": [
+          "32px",
+          "36.8px",
+          "400"
+        ],
+        "h3": null,
+        "h4": null,
+        "p": [
+          "16.055px",
+          "26.4907px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "0px",
+          "0px",
+          "400"
+        ]
+      }
+    },
+    {
+      "route": "/case-studies/vanguard-innovation-lab-integration/",
+      "width": 1440,
+      "values": {
+        "h1": [
+          "62px",
+          "71.3px",
+          "400"
+        ],
+        "h2": [
+          "52px",
+          "59.8px",
+          "400"
+        ],
+        "h3": null,
+        "h4": null,
+        "p": [
+          "17px",
+          "28.05px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "15.04px",
+          "19.552px",
+          "700"
+        ]
+      }
+    },
+    {
+      "route": "/case-studies/vanguard-innovation-lab-integration/",
+      "width": 375,
+      "values": {
+        "h1": [
+          "40.05px",
+          "46.0575px",
+          "400"
+        ],
+        "h2": [
+          "32px",
+          "36.8px",
+          "400"
+        ],
+        "h3": null,
+        "h4": null,
+        "p": [
+          "16.055px",
+          "26.4907px",
+          "700"
+        ],
+        ".eyebrow": null,
+        "figcaption": null,
+        "button": [
+          "0px",
+          "0px",
+          "400"
+        ]
+      }
+    }
+  ],
+  "spacing": [
+    {
+      "id": "human-agency",
+      "padding": "8px 0px 64px",
+      "margin": "0px 76px",
+      "gap": "normal"
+    },
+    {
+      "id": "journey",
+      "padding": "86.4px 0px",
+      "margin": "0px 76px",
+      "gap": "normal"
+    },
+    {
+      "id": "work",
+      "padding": "86.4px 0px",
+      "margin": "0px 76px",
+      "gap": "normal"
+    },
+    {
+      "id": "approach",
+      "padding": "86.4px 0px",
+      "margin": "0px",
+      "gap": "normal"
+    },
+    {
+      "id": "about",
+      "padding": "86.4px 0px",
+      "margin": "0px 76px",
+      "gap": "normal"
+    },
+    {
+      "id": "ai-design",
+      "padding": "86.4px 24px",
+      "margin": "0px",
+      "gap": "normal"
+    },
+    {
+      "id": "faq",
+      "padding": "86.4px 0px",
+      "margin": "0px",
+      "gap": "normal"
+    },
+    {
+      "id": "contact",
+      "padding": "100px 0px",
+      "margin": "0px 76px",
+      "gap": "normal"
+    }
+  ],
+  "errors": [],
+  "overflow": [
+    {
+      "route": "/",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "innerWidth": 1440
+    },
+    {
+      "route": "/",
+      "width": 375,
+      "scrollWidth": 375,
+      "innerWidth": 375
+    },
+    {
+      "route": "/work.html",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "innerWidth": 1440
+    },
+    {
+      "route": "/work.html",
+      "width": 375,
+      "scrollWidth": 360,
+      "innerWidth": 375
+    },
+    {
+      "route": "/studio.html",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "innerWidth": 1440
+    },
+    {
+      "route": "/studio.html",
+      "width": 375,
+      "scrollWidth": 360,
+      "innerWidth": 375
+    },
+    {
+      "route": "/case-studies/",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "innerWidth": 1440
+    },
+    {
+      "route": "/case-studies/",
+      "width": 375,
+      "scrollWidth": 360,
+      "innerWidth": 375
+    },
+    {
+      "route": "/experience.html",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "innerWidth": 1440
+    },
+    {
+      "route": "/experience.html",
+      "width": 375,
+      "scrollWidth": 360,
+      "innerWidth": 375
+    },
+    {
+      "route": "/aidesign/",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "innerWidth": 1440
+    },
+    {
+      "route": "/aidesign/",
+      "width": 375,
+      "scrollWidth": 360,
+      "innerWidth": 375
+    },
+    {
+      "route": "/case-studies/capital-one-gesture-patent/",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "innerWidth": 1440
+    },
+    {
+      "route": "/case-studies/capital-one-gesture-patent/",
+      "width": 375,
+      "scrollWidth": 360,
+      "innerWidth": 375
+    },
+    {
+      "route": "/case-studies/mt-bank-commercial-banking-transformation/",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "innerWidth": 1440
+    },
+    {
+      "route": "/case-studies/mt-bank-commercial-banking-transformation/",
+      "width": 375,
+      "scrollWidth": 360,
+      "innerWidth": 375
+    },
+    {
+      "route": "/case-studies/nami-delaware-988-campaign/",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "innerWidth": 1440
+    },
+    {
+      "route": "/case-studies/nami-delaware-988-campaign/",
+      "width": 375,
+      "scrollWidth": 360,
+      "innerWidth": 375
+    },
+    {
+      "route": "/case-studies/nyu-curriculum-alignment/",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "innerWidth": 1440
+    },
+    {
+      "route": "/case-studies/nyu-curriculum-alignment/",
+      "width": 375,
+      "scrollWidth": 360,
+      "innerWidth": 375
+    },
+    {
+      "route": "/case-studies/vanguard-innovation-lab-integration/",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "innerWidth": 1440
+    },
+    {
+      "route": "/case-studies/vanguard-innovation-lab-integration/",
+      "width": 375,
+      "scrollWidth": 360,
+      "innerWidth": 375
+    }
+  ],
+  "axe": [],
+  "tap": []
+}

@@ -4,7 +4,7 @@ if (yearEl) {
 }
 
 const rootEl = document.documentElement;
-const themeButtons = document.querySelectorAll(".theme-link");
+const themeButtons = document.querySelectorAll(".theme-link[data-theme]");
 const themeStorageKey = "vsc-site-theme";
 const availableThemes = new Set(["theme1", "theme2", "theme3"]);
 

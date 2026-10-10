@@ -1,0 +1,250 @@
+[
+  {
+    "url": "http://127.0.0.1:3000/build/400.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/work.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/case-studies/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/aidesign/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/experience.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/blog/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/studio.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/401.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/403.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/404.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/500.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/502.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/503.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/Contact%20Prototype%20(standalone).html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/work.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/case-studies/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/experience.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/studio.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/experiments/index.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/self_care.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/meeting_coach.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/experiments/stock-performance-test/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/experiments/stock-performance-test/index.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/experiments/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/index.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/meeting_coach_demo.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/partner.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/partner_fullscreen.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/share/contact.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/share/meeting-coach.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/share/partner.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/aidesign/share/self-care.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/assets/index.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/case-studies",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/case-studies/mt-bank-commercial-banking-transformation",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/case-studies/vanguard-innovation-lab-integration",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/case-studies/capital-one-gesture-patent",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/case-studies/nyu-curriculum-alignment",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/case-studies/capital-one-gesture-patent/index.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/case-studies/nami-delaware-988-campaign/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/case-studies/vanguard-innovation-lab-integration/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/case-studies/index.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/case-studies/nyu-curriculum-alignment/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/case-studies/mt-bank-commercial-banking-transformation/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/case-studies/capital-one-gesture-patent/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/case-studies/mt-bank-commercial-banking-transformation/index.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/case-studies/nami-delaware-988-campaign/index.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/case-studies/nyu-curriculum-alignment/index.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/case-studies/vanguard-innovation-lab-integration/index.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/index.html",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/blog/human-agency-design/",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/assets/vscimage/generated/politico-large-1900x1600.webp",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/assets/vscimage/generated/large-web-portfolio-fluidx3200x1800-large-1900x1600.webp",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/assets/vscimage/generated/exchange-1440-v01-default-large-1900x1600.webp",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/assets/vscimage/generated/large-web-portfolio-greif3200x1800-large-1900x1600.webp",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/assets/vscimage/generated/large-web-portfolio-gore3200x1800-large-1900x1600.webp",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/assets/vscimage/generated/large-web-portfolio-greif-large-1900x1600.webp",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/assets/vscimage/generated/large-web-portfolio-airdolly23200x1800-large-1900x1600.webp",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:3000/build/assets/vscimage/generated/sketches-and-nfts-large-1900x1600.webp",
+    "status": 200
+  }
+]
