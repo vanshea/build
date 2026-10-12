@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="theme4">
+<html lang="en" data-theme="theme5">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -7,7 +7,7 @@
 <meta name="description" content="The site is busy or in maintenance. Try again shortly, or book a conversation with Van Shea Creative.">
 <meta name="robots" content="noindex,follow">
 
-<meta name="theme-color" content="#fffcf3">
+<meta name="theme-color" content="#fff7eb">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -15,7 +15,7 @@
 <script>
   (() => {
     const themes = ['theme1', 'theme3', 'theme4', 'theme5'];
-    let theme = 'theme4';
+    let theme = 'theme5';
     try {
       theme = [localStorage.getItem('vsc-site-theme-v2'), localStorage.getItem('vsc-site-theme')]
         .find(value => themes.includes(value)) || theme;
@@ -439,7 +439,7 @@
     const meta = document.querySelector('meta[name="theme-color"]');
 
     const apply = value => {
-      const theme = themes.includes(value) ? value : 'theme4';
+      const theme = themes.includes(value) ? value : 'theme5';
       root.dataset.theme = theme;
       radios.forEach(input => { input.checked = input.value === theme; });
       meta?.setAttribute('content', getComputedStyle(root).getPropertyValue('--bg').trim());

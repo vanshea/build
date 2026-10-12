@@ -22,10 +22,10 @@
       document.cookie = `${cookieKey}=${encodeURIComponent(value)}; Path=/; Max-Age=31536000; SameSite=Lax${domain}${secure}`;
     } catch {}
   };
-  let theme = dark.matches ? 'theme1' : 'theme4';
+  let theme = 'theme5';
   try { theme = [readSharedTheme(), localStorage.getItem(key), localStorage.getItem('vsc-site-theme')].find(value => themes.includes(value)) || theme; } catch {}
   const applyTheme = value => {
-    theme = themes.includes(value) ? value : 'theme4';
+    theme = themes.includes(value) ? value : 'theme5';
     root.dataset.theme = theme;
     const isDark = theme === 'theme3' || (theme === 'theme1' && dark.matches);
     document.querySelectorAll('[data-theme-favicon]').forEach(link => {

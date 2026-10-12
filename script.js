@@ -165,7 +165,7 @@ function runWithoutThemeTransitions(changeTheme) {
 }
 
 function applyTheme(theme) {
-  const resolvedTheme = availableThemes.has(theme) ? theme : "theme4";
+  const resolvedTheme = availableThemes.has(theme) ? theme : "theme5";
   rootEl.dataset.theme = resolvedTheme;
   setResolvedColorScheme(resolvedTheme);
 
@@ -285,7 +285,7 @@ function enhanceThemeSwitchers() {
   });
 }
 
-let initialTheme = "theme1";
+let initialTheme = "theme5";
 try {
   const savedThemes = [
     readSharedTheme(),
