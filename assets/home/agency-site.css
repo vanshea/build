@@ -81,3 +81,11 @@ body.agency-site { overflow-x:clip!important; }
   .agency-site .agency-content main > section:nth-of-type(even):not(.hero),
   .agency-site .agency-main > section:nth-of-type(even):not(.hero) { margin-block:32px; padding:24px; }
 }
+
+/* Experience impact cards: readable teal surface in Wild only. */
+:root[data-theme="theme5"] #experienceResumeSection .experience-impact-item {
+  --panel: #b9e4df;
+  --ink: #123b38;
+  --ink-soft: #123b38;
+  --line: #427b75;
+}
