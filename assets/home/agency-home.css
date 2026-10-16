@@ -351,3 +351,14 @@ p { text-wrap: pretty; }
 
 /* DS-9: presentation casing belongs to the shared eyebrow class. */
 .eyebrow { text-transform:uppercase; letter-spacing:.08em; }
+
+/* Homepage recommendations: match the Wild Experience teal cards. */
+:root[data-theme="theme5"] .agency-home .recommendations-carousel .recommendation-card {
+  --ink: #123b38;
+  --muted: #123b38;
+  --accent: #123b38;
+  --line: #427b75;
+  background: #b9e4df;
+  color: #123b38;
+  border-color: #427b75;
+}
