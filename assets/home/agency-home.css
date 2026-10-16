@@ -17,7 +17,7 @@
 :root[data-theme="theme1"] { --bg:#eef7ff; --ink:#122033; --muted:#43596e; --panel:#d2e2f0; --line:#b7cede; --accent:#0a84ff; --button:#cceaff; --button-edge:#64d2ff; --button-ink:#122033; }
 :root[data-theme="theme3"] { color-scheme:dark; --bg:#090909; --ink:#fff; --muted:#d6d6d6; --panel:#202020; --line:#686868; --accent:#ffd400; --button:#ffd400; --button-edge:#00e5ff; --button-ink:#090909; --focus:#00e5ff; }
 :root[data-theme="theme4"] { color-scheme:light; --bg:#fffcf3; --ink:#0b0710; --ink-soft:#514b51; --muted:#514b51; --paper:#fffcf3; --panel:#e8e0d0; --line:#cfc7b8; --accent:#d2ff00; --accent-2:#ffc097; --accent-3:#efff91; --button:#efff91; --button-edge:#ffc097; --button-ink:#0b0710; --btn-bg:#0b0710; --btn-text:#fffcf3; --focus:#0057b8; --focus-ring:#0057b8; }
-:root[data-theme="theme5"] { color-scheme:light; --bg:#fff7eb; --ink:#171222; --ink-soft:#493b50; --muted:#493b50; --paper:#fff7eb; --panel:#ee3e91; --line:#2b2332; --accent:#d2ff00; --accent-2:#39b8e8; --accent-3:#fbe0eb; --button:#39b8e8; --button-edge:#ee3e91; --button-ink:#171222; --btn-bg:#171222; --btn-text:#fff7eb; --focus:#144dff; --focus-ring:#144dff; --filter-active-bg:linear-gradient(135deg,#ee3e91,#39b8e8); --filter-active-text:#171222; --input-bg:#fffaf1; --contact-shell-start:#fff6eb; --contact-shell-end:#fbe0eb; --form-slot-bg:#fffaf1; --embed-bg:#fff7eb; }
+:root[data-theme="theme5"] { color-scheme:light; --bg:#fff7eb; --ink:#171222; --ink-soft:#493b50; --muted:#493b50; --paper:#fff7eb; --panel:#D96B96; --line:#2b2332; --accent:#d2ff00; --accent-2:#39b8e8; --accent-3:#fbe0eb; --button:#39b8e8; --button-edge:#D96B96; --button-ink:#171222; --btn-bg:#171222; --btn-text:#fff7eb; --focus:#144dff; --focus-ring:#144dff; --filter-active-bg:linear-gradient(135deg,#D96B96,#39b8e8); --filter-active-text:#171222; --input-bg:#fffaf1; --contact-shell-start:#fff6eb; --contact-shell-end:#fbe0eb; --form-slot-bg:#fffaf1; --embed-bg:#fff7eb; }
 @media (prefers-color-scheme:dark) {
   :root[data-theme="theme1"] { color-scheme:dark; --bg:#0e1b29; --ink:#edf7ff; --muted:#bacddd; --panel:#20384f; --line:#47617a; --focus:#64d2ff; }
   :root[data-theme="theme1"] .home-brand img { filter:invert(1); }
@@ -201,10 +201,10 @@ a:focus-visible,button:focus-visible,select:focus-visible,summary:focus-visible 
 @keyframes footer-wave-float { from { transform:translateY(-7px); } to { transform:translateY(7px); } }
 .hero-content h1 a { display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; }
 :root[data-theme="theme5"] body { background-image:linear-gradient(90deg,rgba(23,18,34,.07) 1px,transparent 1px),linear-gradient(rgba(23,18,34,.07) 1px,transparent 1px); background-size:42px 42px; }
-:root[data-theme="theme5"] .practice { background:#ee3e91; }
+:root[data-theme="theme5"] .practice { background:#D96B96; }
 :root[data-theme="theme5"] .recommendation-card { background:#d2ff00; border:1px solid #171222; }
-:root[data-theme="theme5"] .case-visual { box-shadow:9px 9px 0 #ee3e91; }
-:root[data-theme="theme5"] .conversation-link { background:#39b8e8; border-color:#ee3e91; }
+:root[data-theme="theme5"] .case-visual { box-shadow:9px 9px 0 #D96B96; }
+:root[data-theme="theme5"] .conversation-link { background:#39b8e8; border-color:#D96B96; }
 @media(max-width:1000px) {
   .home-brand img { width:190px; } .home-nav { gap:22px; } .home-nav a { font-size:13px; }
   .home-header.is-scrolled .home-brand img { width:171px; }
