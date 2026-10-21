@@ -46,6 +46,7 @@ function resolveAiDesignPrototypePath(src) {
 
     panels.forEach((candidate) => {
       candidate.hidden = candidate !== panel;
+      if (candidate.hidden) candidate.querySelectorAll("video").forEach((video) => video.pause());
     });
 
     loadActivePreview(panel);
@@ -761,4 +762,45 @@ function resolveAiDesignPrototypePath(src) {
   });
 
   analyzeTicker(input.value || "AAPL");
+})();
+
+// Optional Self Care presentation tabs; the HTML prototype stays the default.
+(() => {
+  const project = document.querySelector('[data-aide-idea-panel="self-care"]');
+  if (!project) return;
+  const tabs = Array.from(project.querySelectorAll('[data-aide-media-tab]'));
+  const panels = Array.from(project.querySelectorAll('[data-aide-media-panel]'));
+  function activate(tab) {
+    tabs.forEach((item) => {
+      const selected = item === tab;
+      item.setAttribute('aria-selected', String(selected));
+      item.tabIndex = selected ? 0 : -1;
+    });
+    panels.forEach((panel) => {
+      panel.hidden = panel.dataset.aideMediaPanel !== tab.dataset.aideMediaTab;
+      const video = panel.querySelector('video');
+      if (!video) return;
+      if (panel.hidden) video.pause();
+      else if (video.dataset.src) {
+        video.src = video.dataset.src;
+        delete video.dataset.src;
+        video.preload = 'metadata';
+        video.load();
+      }
+    });
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activate(tab));
+    tab.addEventListener('keydown', (event) => {
+      let next;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      tabs[next].focus();
+      activate(tabs[next]);
+    });
+  });
 })();

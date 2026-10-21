@@ -65,7 +65,7 @@
 <link rel="stylesheet" href="../assets/case-studies.css?v=20260706-capital-one-logo-1" />
 
 
-<link rel="stylesheet" href="../assets/aidesign.css?v=20261010-mobile-animation" />
+<link rel="stylesheet" href="../assets/aidesign.css?v=20261021-self-care-video" />
 
 
   <link rel="stylesheet" href="../assets/home/agency-home.css?v=20260928-wave-controls"><link rel="stylesheet" href="../assets/home/agency-site.css?v=20261010-top-spacing"><script src="../assets/home/agency-home.js?v=20261010-wild-default" defer></script>
@@ -174,6 +174,11 @@
               
               <h2>Self Care</h2>
               <p class="aide-sample-description">A lock-screen self-care snack bar for quick mood check-ins. Name how you feel, note the small daily factors around you, and log a tiny check-in without opening a full app.</p>
+              <div class="aide-media-tabs" role="tablist" aria-label="Self Care presentation">
+                <button type="button" role="tab" id="self-care-prototype-tab" aria-selected="true" aria-controls="self-care-prototype-panel" data-aide-media-tab="prototype">Interactive prototype</button>
+                <button type="button" role="tab" id="self-care-walkthrough-tab" aria-selected="false" aria-controls="self-care-walkthrough-panel" tabindex="-1" data-aide-media-tab="walkthrough">Walkthrough video</button>
+              </div>
+              <div id="self-care-prototype-panel" class="aide-media-panel" role="tabpanel" aria-labelledby="self-care-prototype-tab" data-aide-media-panel="prototype">
               <iframe
                 class="aide-sample-frame"
                 data-src="/aidesign/self_care.html"
@@ -183,6 +188,13 @@
               <div class="aide-sample-preview">
                 <iframe class="aide-mobile-animation" data-src="/assets/aidesign/prototypes/self-care/mobile-animation.html" title="Animated Self Care preview" tabindex="-1" aria-hidden="true" loading="lazy"></iframe>
                 <button class="aide-mobile-animation-open" type="button" aria-haspopup="dialog" aria-controls="aidePrototypeOverlay" data-aide-prototype-open data-prototype-src="/aidesign/self_care.html" data-prototype-title="Self Care" aria-label="Open the Self Care prototype"></button>
+              </div>
+              </div>
+              <div id="self-care-walkthrough-panel" class="aide-media-panel" role="tabpanel" aria-labelledby="self-care-walkthrough-tab" data-aide-media-panel="walkthrough" tabindex="0" hidden>
+                <video class="aide-walkthrough-video" controls playsinline preload="none" poster="../assets/aidesign/self-care-video/poster.jpg" width="588" height="1280" aria-label="Self Care app walkthrough" data-src="../assets/aidesign/self-care-video/walkthrough.mp4">
+                  Your browser does not support embedded video. <a href="../assets/aidesign/self-care-video/walkthrough.mp4">Open the Self Care walkthrough</a>.
+                </video>
+                <p class="aide-walkthrough-note">Watch the Self Care app walkthrough, or return to the Interactive prototype tab to explore it yourself.</p>
               </div>
               <section class="aide-problem-statement" aria-labelledby="self-care-problem-title">
                 <!-- REVIEW: PO-6 proposed friction and default-design replacement is in FIX-REPORT.md; not applied. -->
@@ -364,6 +376,6 @@
 
     <script src="/analytics.js"></script>
     <script src="/script.js?v=20261010-wild-default"></script>
-    <script src="/assets/aidesign.js?v=20261010-mobile-animation"></script>
+    <script src="../assets/aidesign.js?v=20261021-self-care-video"></script>
   </body>
 </html>

@@ -1460,3 +1460,14 @@
     padding: 14px;
   }
 }
+
+/* Self Care's optional recording shares the existing theme and content width. */
+.aide-media-tabs { display:flex; flex-wrap:wrap; gap:8px; }
+.aide-media-tabs [role="tab"] { font:inherit; font-weight:600; min-height:44px; padding:10px 16px; border:1px solid var(--line); border-radius:999px; color:var(--ink); background:var(--bg); cursor:pointer; }
+.aide-media-tabs [aria-selected="true"] { color:var(--bg); background:var(--ink); }
+.aide-media-tabs [role="tab"]:focus-visible,
+.aide-media-panel:focus-visible { outline:3px solid var(--focus); outline-offset:4px; }
+.aide-media-panel { min-width:0; }
+.aide-media-panel[hidden] { display:none!important; }
+.aide-walkthrough-video { display:block; width:min(100%,420px); height:auto; aspect-ratio:588 / 1280; max-height:80svh; object-fit:contain; background:#000; border:1px solid var(--line); border-radius:8px; }
+.aide-walkthrough-note { max-width:54ch; margin-top:12px; color:var(--ink); font-size:16px; line-height:1.5; }
