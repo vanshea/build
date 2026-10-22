@@ -1,0 +1,866 @@
+/* Mac OS 7.5 presentation layer for Build's OS7 theme (theme4, formerly Bold).
+   Reference: System 7.5 Finder chrome. Teal desktop pattern, striped title bars,
+   ChiKareGo2 (Chicago 12) chrome type, rounded push buttons, lavender accents.
+   Fonts: ChicagoFLF, ChiKareGo2, FindersKeepers via system.css (MIT), see fonts/. */
+
+@font-face { font-family: "VSC Chicago"; src: url("fonts/ChicagoFLF.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "VSC Chicago 12"; src: url("fonts/ChiKareGo2.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "VSC Geneva 9"; src: url("fonts/FindersKeepers.woff2") format("woff2"); font-display: swap; }
+
+:root[data-theme="theme4"] {
+  color-scheme: light;
+  --mac-black: #000;
+  --mac-white: #fff;
+  --mac-gray: #999;
+  --mac-gray-dark: #666;
+  --mac-blue: #526fc7;
+  --mac-lavender: #ccccff;
+  --mac-lavender-pale: #dfddf7;
+  --mac-teal: #55aaaa;
+  --mac-note: #ffffaa;
+  --mac-note-bar: #eeee77;
+  --mac-chrome: "VSC Chicago 12", "Chicago", "Charcoal", "Geneva", sans-serif;
+  --mac-display: "VSC Chicago", "Chicago", "Charcoal", "Geneva", sans-serif;
+  --mac-text: "Geneva", "Verdana", "Tahoma", sans-serif;
+  --mac-small: "VSC Geneva 9", "Geneva", "Verdana", sans-serif;
+
+  --bg: var(--mac-white) !important;
+  --ink: var(--mac-black) !important;
+  --ink-soft: var(--mac-black) !important;
+  --muted: #333 !important;
+  --paper: var(--mac-white) !important;
+  --panel: var(--mac-white) !important;
+  --line: var(--mac-black) !important;
+  --accent: var(--mac-blue) !important;
+  --accent-2: var(--mac-lavender) !important;
+  --accent-3: var(--mac-lavender-pale) !important;
+  --focus: var(--mac-black) !important;
+  --focus-ring: var(--mac-black) !important;
+  --radius: 0 !important;
+  --radius-soft: 0 !important;
+  --shadow: 2px 2px 0 var(--mac-black) !important;
+  --btn-bg: var(--mac-white) !important;
+  --btn-text: var(--mac-black) !important;
+  --button: var(--mac-white) !important;
+  --button-edge: var(--mac-black) !important;
+  --button-ink: var(--mac-black) !important;
+  --footer-bg: var(--mac-white) !important;
+  --footer-ink: var(--mac-black) !important;
+  --footer-text: var(--mac-black) !important;
+  --footer-link: var(--mac-black) !important;
+  --footer-link-hover: var(--mac-black) !important;
+  --theme-tray: var(--mac-white) !important;
+  --serif: "VSC Chicago", "Chicago", "Charcoal", "Geneva", sans-serif !important;
+  --sans: "Geneva", "Verdana", "Tahoma", sans-serif !important;
+  --theme-option: var(--mac-white) !important;
+  --theme-option-selected: var(--mac-white) !important;
+
+  /* Window chrome pieces, reused below. */
+  --mac-titlebar:
+    linear-gradient(var(--mac-white), var(--mac-white)) left 9px center / 11px 11px no-repeat,
+    linear-gradient(var(--mac-black), var(--mac-black)) left 8px center / 13px 13px no-repeat,
+    linear-gradient(var(--mac-white), var(--mac-white)) left 6px center / 17px 100% no-repeat,
+    linear-gradient(var(--mac-white), var(--mac-white)) right 14px top 5px / 5px 5px no-repeat,
+    linear-gradient(var(--mac-black), var(--mac-black)) right 13px top 4px / 7px 7px no-repeat,
+    linear-gradient(var(--mac-white), var(--mac-white)) right 9px center / 11px 11px no-repeat,
+    linear-gradient(var(--mac-black), var(--mac-black)) right 8px center / 13px 13px no-repeat,
+    linear-gradient(var(--mac-white), var(--mac-white)) right 6px center / 17px 100% no-repeat,
+    repeating-linear-gradient(var(--mac-black) 0 1px, var(--mac-white) 1px 2px) left 2px top 4px / calc(100% - 4px) 11px no-repeat,
+    var(--mac-white);
+  --mac-folder: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='26' viewBox='0 0 32 26' shape-rendering='crispEdges'%3E%3Cpath d='M1.5 3.5h10l2 2h17v19h-29z' fill='%23ccccff' stroke='%23000'/%3E%3Cpath d='M2 8.5h28' stroke='%23000'/%3E%3Cpath d='M2 9.5h28' stroke='%23fff'/%3E%3C/svg%3E");
+  --mac-tri-closed: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='12' viewBox='0 0 10 12' shape-rendering='crispEdges'%3E%3Cpath d='M1.5 .5v11l7-5.5z' fill='%23fff' stroke='%23000'/%3E%3C/svg%3E");
+  --mac-tri-open: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='10' viewBox='0 0 12 10' shape-rendering='crispEdges'%3E%3Cpath d='M.5 1.5h11l-5.5 7z' fill='%23ccccff' stroke='%23000'/%3E%3C/svg%3E");
+}
+
+/* ---------- Desktop ---------- */
+:root[data-theme="theme4"] { scrollbar-color: var(--mac-lavender) #bbb; }
+
+:root[data-theme="theme4"] body {
+  background-color: var(--mac-teal) !important;
+  background-image: repeating-conic-gradient(var(--mac-teal) 0 25%, var(--mac-gray) 0 50%) !important;
+  background-size: 4px 4px !important;
+  background-attachment: scroll !important;
+  color: var(--mac-black) !important;
+  font-family: var(--mac-text) !important;
+  letter-spacing: normal !important;
+  animation: none !important;
+}
+
+:root[data-theme="theme4"] body::before,
+:root[data-theme="theme4"] body::after,
+:root[data-theme="theme4"] .bg-shape,
+:root[data-theme="theme4"] .footer-wave { display: none !important; }
+
+:root[data-theme="theme4"] ::selection { background: var(--mac-lavender); color: var(--mac-black); }
+
+:root[data-theme="theme4"] ::-webkit-scrollbar { width: 16px; height: 16px; background: var(--mac-white); }
+:root[data-theme="theme4"] ::-webkit-scrollbar-track {
+  border-left: 1px solid var(--mac-black);
+  background: repeating-conic-gradient(#888 0 25%, var(--mac-white) 0 50%) 0 0 / 2px 2px;
+}
+:root[data-theme="theme4"] ::-webkit-scrollbar-thumb {
+  border: 1px solid var(--mac-black);
+  background: var(--mac-lavender);
+  box-shadow: inset 1px 1px 0 var(--mac-white), inset -1px -1px 0 var(--mac-gray-dark);
+}
+
+/* ---------- Type ---------- */
+:root[data-theme="theme4"] :is(h1, h2) {
+  font-family: var(--mac-display) !important;
+  font-weight: 400 !important;
+  font-synthesis: none;
+  letter-spacing: 0 !important;
+  line-height: 1.12 !important;
+  color: var(--mac-black) !important;
+}
+
+:root[data-theme="theme4"] :is(h3, h4, .brand-name, summary, legend, .eyebrow, button, .btn, .button-primary, .button-secondary, cite, strong, th, dt) {
+  font-family: var(--mac-chrome) !important;
+  font-weight: 400 !important;
+  font-synthesis: none;
+  letter-spacing: 0 !important;
+}
+
+:root[data-theme="theme4"] :is(p, li, dd, blockquote, label, input, textarea, select, figcaption, td) {
+  font-family: var(--mac-text) !important;
+  letter-spacing: normal !important;
+}
+
+:root[data-theme="theme4"] .eyebrow {
+  font-size: 16px !important;
+  line-height: 1.25 !important;
+  text-transform: none !important;
+  color: var(--mac-black) !important;
+}
+
+:root[data-theme="theme4"] :is(h3, h4) { line-height: 1.25 !important; }
+
+/* ---------- Links ---------- */
+:root[data-theme="theme4"] a {
+  color: var(--mac-black) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 3px !important;
+}
+
+:root[data-theme="theme4"] main a:not(.button-primary, .button-secondary):hover {
+  background: var(--mac-lavender) !important;
+  color: var(--mac-black) !important;
+}
+
+:root[data-theme="theme4"] :is(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px dashed var(--mac-black) !important;
+  outline-offset: 2px !important;
+}
+
+/* ---------- Menu bar ---------- */
+:root[data-theme="theme4"] :is(.home-header, .site-header) {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  min-height: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--mac-black) !important;
+  border-radius: 0 !important;
+  background: var(--mac-white) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Rounded screen corners under the menu bar. */
+:root[data-theme="theme4"] :is(.home-header, .site-header)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 6px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 100% 100%, transparent 5px, var(--mac-black) 5.5px) left top / 6px 6px no-repeat,
+    radial-gradient(circle at 0 100%, transparent 5px, var(--mac-black) 5.5px) right top / 6px 6px no-repeat;
+}
+
+:root[data-theme="theme4"] :is(.header-inner, .site-header .container) {
+  min-height: 32px !important;
+  padding: 0 12px !important;
+  max-width: none !important;
+}
+
+:root[data-theme="theme4"] .home-brand::before { content: none !important; }
+
+:root[data-theme="theme4"] :is(.home-brand, .brand) {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 8px !important;
+  text-decoration: none !important;
+}
+
+:root[data-theme="theme4"] :is(.home-brand img, .brand-logo) {
+  width: auto !important;
+  height: 26px !important;
+  max-height: 26px;
+  filter: none !important;
+}
+
+:root[data-theme="theme4"] :is(.home-nav, .nav) { gap: 0 !important; align-items: stretch; }
+
+:root[data-theme="theme4"] :is(.home-nav a, .nav a) {
+  display: inline-flex !important;
+  align-items: center;
+  min-height: 32px !important;
+  padding: 0 10px !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--mac-black) !important;
+  font-family: var(--mac-chrome) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  text-transform: none !important;
+  text-decoration: none !important;
+}
+
+:root[data-theme="theme4"] :is(.home-nav a, .nav a):is(:hover, [aria-current="page"]) {
+  background: var(--mac-black) !important;
+  color: var(--mac-white) !important;
+}
+
+@media (min-width: 701px) {
+  :root[data-theme="theme4"] :is(.menu-toggle, .nav-toggle) { display: none !important; }
+}
+
+/* ---------- Windows ---------- */
+:root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block) {
+  position: relative;
+  box-sizing: border-box !important;
+  width: min(calc(100% - 48px), 1288px) !important;
+  max-width: none !important;
+  margin: 32px auto !important;
+  padding: calc(20px + clamp(24px, 4vw, 48px)) clamp(16px, 4vw, 48px) clamp(24px, 4vw, 48px) !important;
+  border: 1px solid var(--mac-black) !important;
+  border-radius: 0 !important;
+  background: var(--mac-white) !important;
+  box-shadow: 2px 2px 0 var(--mac-black) !important;
+  color: var(--mac-black) !important;
+}
+
+/* Title bar stripes, close box and zoom box. */
+:root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block)::before {
+  position: absolute;
+  inset: 0 0 auto 0;
+  display: block !important;
+  width: auto !important;
+  height: 20px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--mac-black) !important;
+  background: var(--mac-titlebar) !important;
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: none;
+  z-index: 2;
+  content: "";
+}
+
+/* Title text, knocked out of the stripes. */
+:root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block)::after {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 3;
+  display: block !important;
+  max-width: calc(100% - 80px);
+  height: 20px;
+  margin: 0 !important;
+  padding: 0 10px;
+  overflow: hidden;
+  transform: translateX(-50%);
+  background: var(--mac-white);
+  color: var(--mac-black);
+  font: 400 16px/20px var(--mac-chrome);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+:root[data-theme="theme4"] :where(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block)::after { content: "Untitled"; }
+
+:root[data-theme="theme4"]:not(#vsc-x) :is(.agency-hero, .hero)::after { content: "Van Shea Creative"; }
+:root[data-theme="theme4"]:not(#vsc-x) #human-agency::after { content: "Human Agency Design"; }
+:root[data-theme="theme4"]:not(#vsc-x) #journey::after { content: "Customer Journey"; }
+:root[data-theme="theme4"]:not(#vsc-x) #work::after { content: "Work"; }
+:root[data-theme="theme4"]:not(#vsc-x) #approach::after { content: "How We Work"; }
+:root[data-theme="theme4"]:not(#vsc-x) #about::after { content: "About"; }
+:root[data-theme="theme4"]:not(#vsc-x) #ai-design::after { content: "AI Design Lab"; }
+:root[data-theme="theme4"]:not(#vsc-x) #faq::after { content: "Frequently Asked Questions"; }
+:root[data-theme="theme4"]:not(#vsc-x) :is(#contact, .project-inquiry)::after { content: "Contact"; }
+:root[data-theme="theme4"]:not(#vsc-x) .recommendations::after { content: "Recommendations"; }
+:root[data-theme="theme4"]:not(#vsc-x) .experience-page::after { content: "Experience"; }
+:root[data-theme="theme4"]:not(#vsc-x) .case-study-index-hero::after { content: "Case Studies"; }
+:root[data-theme="theme4"]:not(#vsc-x) .case-study-hero::after { content: "Case Study"; }
+:root[data-theme="theme4"]:not(#vsc-x) .case-study-section::after { content: "Project Notes"; }
+:root[data-theme="theme4"]:not(#vsc-x) .case-study-block::after { content: "Projects"; }
+
+/* A window nested inside a window fills its parent. */
+:root[data-theme="theme4"] :is(#work, #about, .experience-page) .recommendations {
+  width: 100% !important;
+  margin: clamp(40px, 6vw, 72px) 0 0 !important;
+}
+
+/* Full-bleed bands become regular windows. */
+:root[data-theme="theme4"] :is(#approach, #ai-design) > * { max-width: none !important; }
+:root[data-theme="theme4"] :is(.lab-showcase) {
+  width: 100% !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* ---------- Hero, as a startup dialog ---------- */
+:root[data-theme="theme4"] .agency-hero { margin-top: 40px !important; text-align: center; }
+:root[data-theme="theme4"] .agency-hero .hero-content { padding-top: 0 !important; }
+
+:root[data-theme="theme4"] .hero-portrait {
+  border: 1px solid var(--mac-black) !important;
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 var(--mac-black) !important;
+  filter: none !important;
+}
+
+:root[data-theme="theme4"] .hero-lead {
+  border: 0 !important;
+  padding: 0 !important;
+  font-size: clamp(17px, 2vw, 20px) !important;
+}
+
+:root[data-theme="theme4"] #hero-title a { text-decoration: none !important; color: var(--mac-black) !important; } /* blue fails contrast on the teal desktop */
+
+/* Hero sits straight on the desktop, no window chrome. */
+:root[data-theme="theme4"]:not(#vsc-x) .agency-hero {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding-top: clamp(24px, 5vw, 56px) !important;
+}
+:root[data-theme="theme4"]:not(#vsc-x) .agency-hero::before,
+:root[data-theme="theme4"]:not(#vsc-x) .agency-hero::after { display: none !important; content: none !important; }
+
+:root[data-theme="theme4"]:not(#vsc-x) .agency-hero .conversation-link { margin-top: clamp(32px, 4vw, 48px) !important; }
+
+/* ---------- Push buttons ---------- */
+:root[data-theme="theme4"] :is(button, .btn, .button-primary, .button-secondary, .filter-btn, .work-type-tab, .recommendations-arrow) {
+  min-height: 32px;
+  padding: 4px 18px !important;
+  border: 1px solid var(--mac-black) !important;
+  border-radius: 0 !important;
+  background: var(--mac-white) !important;
+  color: var(--mac-black) !important;
+  box-shadow: none !important;
+  outline: 0;
+  font-size: 16px !important;
+  line-height: 1.2 !important;
+  text-decoration: none !important;
+  transition: none !important;
+}
+
+:root[data-theme="theme4"] :is(button, .btn, .button-primary, .button-secondary, .filter-btn, .work-type-tab, .recommendations-arrow):is(:active, [aria-pressed="true"], [aria-selected="true"], .active) {
+  background: var(--mac-black) !important;
+  color: var(--mac-white) !important;
+}
+
+:root[data-theme="theme4"] :is(button, .btn, .recommendations-arrow):disabled {
+  border-color: var(--mac-gray) !important;
+  color: var(--mac-gray) !important;
+  background: var(--mac-white) !important;
+}
+
+:root[data-theme="theme4"] .recommendations-arrow svg { stroke: currentColor; }
+
+/* Default button: heavy rounded ring. */
+:root[data-theme="theme4"] :is(.button-primary, .conversation-link) {
+  margin: 5px;
+  border-width: 1px !important;
+  box-shadow: 0 0 0 2px var(--mac-white), 0 0 0 5px var(--mac-black) !important;
+}
+
+:root[data-theme="theme4"] :is(.button-primary, .conversation-link):hover {
+  background: var(--mac-lavender-pale) !important;
+}
+
+:root[data-theme="theme4"] :is(.button-primary, .conversation-link):active {
+  background: var(--mac-black) !important;
+  color: var(--mac-white) !important;
+}
+
+/* ---------- Form fields ---------- */
+:root[data-theme="theme4"] :is(input:not([type="radio"], [type="checkbox"]), textarea, select) {
+  border: 1px solid var(--mac-black) !important;
+  border-radius: 0 !important;
+  background: var(--mac-white) !important;
+  color: var(--mac-black) !important;
+  box-shadow: none !important;
+}
+
+:root[data-theme="theme4"] select { box-shadow: 1px 1px 0 var(--mac-black) !important; }
+
+:root[data-theme="theme4"] input[type="radio"] {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin: 0 6px 0 0;
+  border: 1px solid var(--mac-black);
+  border-radius: 50%;
+  background: var(--mac-white);
+  vertical-align: -1px;
+}
+:root[data-theme="theme4"] input[type="radio"]:checked {
+  background: radial-gradient(circle, var(--mac-black) 0 3px, var(--mac-white) 3.5px);
+}
+
+:root[data-theme="theme4"] input[type="checkbox"] {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin: 0 6px 0 0;
+  border: 1px solid var(--mac-black);
+  border-radius: 0;
+  background: var(--mac-white);
+}
+:root[data-theme="theme4"] input[type="checkbox"]:checked {
+  background:
+    linear-gradient(45deg, transparent 45%, var(--mac-black) 45% 55%, transparent 55%),
+    linear-gradient(-45deg, transparent 45%, var(--mac-black) 45% 55%, transparent 55%),
+    var(--mac-white);
+}
+
+/* ---------- Content inside windows ---------- */
+:root[data-theme="theme4"] :is(.card, .case-study-card, .experience-impact-item, .form-embed-slot, .project-inquiry-form, .featured-viewer-stage) {
+  border: 1px solid var(--mac-black) !important;
+  border-radius: 0 !important;
+  background: var(--mac-white) !important;
+  box-shadow: 1px 1px 0 var(--mac-black) !important;
+}
+
+:root[data-theme="theme4"] :is(img, video, iframe) { border-radius: 0 !important; }
+
+:root[data-theme="theme4"] :is(.case-visual img, .card img, .case-study-card img, .case-study-section-media img, .featured-viewer-stage img, .about-portrait img) {
+  border: 1px solid var(--mac-black) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+:root[data-theme="theme4"] .featured-study::after { display: none !important; }
+
+/* Whole-card links: underline the title only. */
+:root[data-theme="theme4"] .case-study-card-link { text-decoration: none !important; }
+:root[data-theme="theme4"] .case-study-card-link :is(h2, h3) { text-decoration: underline !important; text-decoration-thickness: 2px !important; }
+:root[data-theme="theme4"] .case-study-card-link:hover { background: transparent !important; }
+:root[data-theme="theme4"] .case-study-card-link:hover :is(h2, h3) { background: var(--mac-lavender); }
+
+/* Card padding */
+:root[data-theme="theme4"] .case-study-card { padding-bottom: 12px !important; }
+:root[data-theme="theme4"] .case-study-card-link > :not(.card-image-shell) { padding-inline: 14px !important; }
+:root[data-theme="theme4"] .case-study-card-link .card-image-shell { border-bottom: 1px solid var(--mac-black); }
+:root[data-theme="theme4"] .case-study-card-link .card-image-shell img { border: 0 !important; }
+:root[data-theme="theme4"] .case-study-card :is(h2, h3) { font-size: clamp(22px, 2.4vw, 30px) !important; line-height: 1.15 !important; }
+
+/* Finder-style disclosure lists. */
+:root[data-theme="theme4"] :is(.practice-steps, .faq-list, .lab-ideas) { border-top: 1px solid var(--mac-black) !important; }
+
+:root[data-theme="theme4"] :is(.practice-steps details, .faq-list details, .lab-idea) {
+  border: 0 !important;
+  border-bottom: 1px solid var(--mac-black) !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+:root[data-theme="theme4"] :is(.practice-steps, .faq-list) details > p { margin: 0 0 16px !important; }
+
+:root[data-theme="theme4"] :is(.practice-steps, .faq-list, .lab-ideas) summary {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 6px !important;
+  color: var(--mac-black) !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  list-style: none !important;
+  cursor: pointer;
+}
+
+:root[data-theme="theme4"] :is(.practice-steps, .faq-list, .lab-ideas) summary::-webkit-details-marker { display: none; }
+:root[data-theme="theme4"] :is(.practice-steps, .faq-list, .lab-ideas) summary::marker { content: ""; }
+:root[data-theme="theme4"] :is(.practice-steps, .faq-list, .lab-ideas) summary::after { content: none !important; }
+
+:root[data-theme="theme4"] :is(.practice-steps, .faq-list, .lab-ideas) summary::before {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  margin-top: 4px;
+  background: var(--mac-tri-closed) center / contain no-repeat;
+  content: "";
+}
+
+:root[data-theme="theme4"] :is(.practice-steps, .faq-list, .lab-ideas) details[open] > summary::before { background-image: var(--mac-tri-open); }
+
+:root[data-theme="theme4"] :is(.practice-steps, .faq-list, .lab-ideas) summary:hover { background: var(--mac-lavender-pale) !important; }
+
+:root[data-theme="theme4"] :is(.practice-steps, .faq-list) details > :not(summary) { padding-left: 28px; }
+
+/* AI Design Lab was a dark band; bring its copy back to ink. */
+:root[data-theme="theme4"] :is(.lab-kicker, .lab-kicker span, .lab-copy h2, .lab-intro, .lab-number, .lab-idea summary, .lab-idea[open] summary, .lab-idea-description p, .lab-idea-description a, .lab-all-link) {
+  color: var(--mac-black) !important;
+}
+:root[data-theme="theme4"] .lab-copy h2 { padding-left: .08em !important; } /* ChicagoFLF "T" overhangs; .lab-showcase clips. */
+:root[data-theme="theme4"] .lab-number { font-family: var(--mac-small) !important; font-size: 16px !important; }
+:root[data-theme="theme4"] .lab-visual figcaption {
+  border: 1px solid var(--mac-black) !important;
+  border-radius: 0 !important;
+  background: var(--mac-white) !important;
+  color: var(--mac-black) !important;
+  box-shadow: 1px 1px 0 var(--mac-black) !important;
+  backdrop-filter: none !important;
+}
+:root[data-theme="theme4"] .lab-visual figcaption span { color: var(--mac-black) !important; }
+
+/* Organization names as desktop icons. */
+:root[data-theme="theme4"] .credentials {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px 24px;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+:root[data-theme="theme4"] .credentials > p {
+  align-self: center;
+  margin: 0;
+  padding: 2px 6px;
+  border: 1px solid var(--mac-black);
+  background: var(--mac-white);
+  font-size: 14px !important;
+}
+
+:root[data-theme="theme4"] .client-names { display: flex; flex-wrap: wrap; gap: 16px 28px; }
+
+:root[data-theme="theme4"] .client-names span {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 72px;
+  color: var(--mac-black) !important;
+  font: 400 13px/1.2 var(--mac-text) !important;
+}
+
+:root[data-theme="theme4"] .client-names span::before {
+  width: 32px;
+  height: 26px;
+  background: var(--mac-folder) center / contain no-repeat;
+  content: "";
+}
+
+:root[data-theme="theme4"] .client-names span {
+  /* Label box sits under the icon, like Finder. */
+  text-shadow: none;
+}
+:root[data-theme="theme4"] .client-names span { background: linear-gradient(var(--mac-white), var(--mac-white)) center bottom / 100% 1.35em no-repeat; padding: 0 4px; }
+
+/* Recommendations as Note Pad stickies. */
+:root[data-theme="theme4"] .recommendation-card {
+  position: relative;
+  padding: 30px 18px 18px !important;
+  border: 1px solid var(--mac-black) !important;
+  border-radius: 0 !important;
+  background:
+    linear-gradient(var(--mac-note), var(--mac-note)) 5px 3px / 6px 6px no-repeat,
+    linear-gradient(var(--mac-black), var(--mac-black)) 4px 2px / 8px 8px no-repeat,
+    linear-gradient(var(--mac-black), var(--mac-black)) 0 12px / 100% 1px no-repeat,
+    linear-gradient(var(--mac-note-bar), var(--mac-note-bar)) 0 0 / 100% 12px no-repeat,
+    var(--mac-note) !important;
+  box-shadow: 1px 1px 0 var(--mac-black) !important;
+  color: var(--mac-black) !important;
+}
+
+:root[data-theme="theme4"] .recommendation-mark {
+  color: var(--mac-black) !important;
+  font-family: var(--mac-display) !important;
+}
+
+:root[data-theme="theme4"] .recommendation-card :is(blockquote p) { font-size: 15px !important; line-height: 1.55 !important; }
+:root[data-theme="theme4"] .recommendation-card footer span { font-family: var(--mac-small) !important; font-size: 16px !important; }
+
+/* Carousel: a real System 7 scroll bar you can grab, plus drag and swipe. */
+@media (max-width: 700px) {
+  :root[data-theme="theme4"] .recommendations-carousel .recommendations-grid {
+    padding-bottom: 6px !important;
+    scrollbar-width: auto !important;
+    scrollbar-color: var(--mac-lavender) #c8c8c8;
+    touch-action: pan-x pan-y;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+  }
+  :root[data-theme="theme4"] .recommendations-carousel .recommendations-grid.is-dragging { cursor: grabbing; user-select: none; }
+  :root[data-theme="theme4"] .recommendations-carousel .recommendations-grid::-webkit-scrollbar {
+    display: block !important;
+    height: 16px;
+    border: 1px solid var(--mac-black);
+    background: var(--mac-white);
+  }
+  :root[data-theme="theme4"] .recommendations-carousel .recommendations-grid::-webkit-scrollbar-track {
+    border: 0;
+    background: repeating-conic-gradient(#999 0 25%, var(--mac-white) 0 50%) 0 0 / 2px 2px;
+  }
+  :root[data-theme="theme4"] .recommendations-carousel .recommendations-grid::-webkit-scrollbar-thumb {
+    border: 1px solid var(--mac-black);
+    background: var(--mac-lavender);
+  }
+}
+
+/* With a mouse or trackpad the grabbable scroll bar replaces the progress bar;
+   touch screens use overlay scroll bars, so they keep the progress bar. */
+@media (max-width: 700px) and (hover: hover) and (pointer: fine) {
+  :root[data-theme="theme4"] .recommendations-progress { display: none !important; }
+}
+
+/* Progress bar, as in the startup screen. */
+:root[data-theme="theme4"] .recommendations-progress {
+  height: 12px !important;
+  border: 1px solid var(--mac-black);
+  background: var(--mac-lavender) !important;
+}
+:root[data-theme="theme4"] .recommendations-progress span { background: var(--mac-gray-dark) !important; transition: none !important; }
+
+/* ---------- Footer, as a window info bar ---------- */
+:root[data-theme="theme4"] .home-footer {
+  margin-top: 40px;
+  border-top: 3px double var(--mac-black) !important;
+  background: var(--mac-white) !important;
+  color: var(--mac-black) !important;
+}
+
+:root[data-theme="theme4"] .home-footer :is(p, a) { font-size: 14px !important; }
+
+:root[data-theme="theme4"] .theme-control {
+  border: 1px solid var(--mac-black) !important;
+  border-radius: 0 !important;
+  background: var(--mac-white) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+:root[data-theme="theme4"] .theme-control legend {
+  padding: 0 6px;
+  background: var(--mac-white);
+  font-size: 16px !important;
+}
+
+:root[data-theme="theme4"] .theme-control label,
+:root[data-theme="theme4"] .theme-control label:has(input:checked) {
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--mac-black) !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+:root[data-theme="theme4"] .theme-control label span {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: flex-start !important;
+  gap: 8px;
+  min-height: 32px;
+  padding: 0 4px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--mac-black) !important;
+  box-shadow: none !important;
+  font-family: var(--mac-chrome) !important;
+  font-size: 16px !important;
+}
+
+/* System 7 radio buttons drawn on the label (the native input stays for a11y). */
+:root[data-theme="theme4"] .theme-control label span::before {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  border: 1px solid var(--mac-black);
+  border-radius: 50%;
+  background: var(--mac-white);
+  content: "";
+}
+:root[data-theme="theme4"] .theme-control label:has(input:checked) span::before {
+  background: radial-gradient(circle, var(--mac-black) 0 2.5px, var(--mac-white) 3px);
+}
+:root[data-theme="theme4"] .theme-control label:hover span { background: var(--mac-lavender-pale) !important; }
+:root[data-theme="theme4"] .theme-control label:has(input:focus-visible) span { outline: 2px dashed var(--mac-black); outline-offset: 2px; }
+
+/* Analytics consent, as an alert dialog. */
+:root[data-theme="theme4"] .consent-banner {
+  border: 4px double var(--mac-black) !important;
+  border-radius: 0 !important;
+  background: var(--mac-white) !important;
+  color: var(--mac-black) !important;
+  box-shadow: 2px 2px 0 var(--mac-black) !important;
+  backdrop-filter: none !important;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 700px) {
+  /* Menu bar with a System 7 pull-down menu. */
+  :root[data-theme="theme4"] :is(.header-inner, .site-header .container) {
+    position: relative;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    min-height: 44px !important;
+    padding: 0 4px 0 6px !important;
+  }
+
+  :root[data-theme="theme4"] :is(.home-brand img, .brand-logo) { height: 24px !important; max-height: 24px; }
+
+  :root[data-theme="theme4"] :is(.menu-toggle, .nav-toggle) {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: auto !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    margin: 0 !important;
+    padding: 0 14px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: var(--mac-black) !important;
+    box-shadow: none !important;
+    font: 400 16px/1 var(--mac-chrome) !important;
+  }
+
+  :root[data-theme="theme4"] :is(.menu-toggle, .nav-toggle)::before { display: none !important; }
+
+  :root[data-theme="theme4"] :is(.menu-toggle, .nav-toggle)[aria-expanded="true"] {
+    background: var(--mac-black) !important;
+    color: var(--mac-white) !important;
+  }
+
+  :root[data-theme="theme4"] :is(.home-nav, .nav) {
+    position: absolute !important;
+    top: 100%;
+    right: 4px;
+    z-index: 30;
+    width: auto !important;
+    min-width: 220px;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    margin: 0 !important;
+    padding: 4px 0 !important;
+    border: 1px solid var(--mac-black) !important;
+    background: var(--mac-white) !important;
+    box-shadow: 2px 2px 0 var(--mac-black) !important;
+  }
+
+  :root[data-theme="theme4"] :is(.home-nav a, .nav a) {
+    box-sizing: border-box;
+    width: 100% !important;
+    min-height: 44px !important;
+    padding: 0 20px !important;
+    border: 0 !important;
+  }
+
+  /* Inner pages: let windows use the full width. */
+  :root[data-theme="theme4"] .agency-main { margin-inline: 0 !important; padding-top: 4px !important; }
+  :root[data-theme="theme4"] .case-study-index-copy > * { padding-inline: 0 !important; margin-inline: 0 !important; }
+  :root[data-theme="theme4"] .consent-banner { left: 8px !important; right: 8px !important; bottom: 8px !important; }
+
+  /* Windows sit closer to the screen edge. */
+  :root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block) {
+    width: calc(100% - 16px) !important;
+    margin: 16px auto !important;
+    padding: 40px 16px 24px !important;
+    box-shadow: 1px 1px 0 var(--mac-black) !important;
+  }
+
+  :root[data-theme="theme4"] .agency-hero { margin-top: 20px !important; }
+
+  :root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block)::after {
+    max-width: calc(100% - 72px);
+    padding: 0 6px;
+  }
+
+  :root[data-theme="theme4"] :is(#work, #about, .experience-page) .recommendations {
+    width: calc(100% + 32px) !important;
+    margin: 40px -16px -24px !important;
+    box-shadow: none !important;
+    border-inline: 0 !important;
+    border-bottom: 0 !important;
+  }
+
+  /* Type scale for small screens. */
+  :root[data-theme="theme4"]:not(#vsc-x) main h1 { font-size: clamp(32px, 10.5vw, 44px) !important; line-height: 1.08 !important; }
+  :root[data-theme="theme4"]:not(#vsc-x) main h2 { font-size: clamp(24px, 7.4vw, 32px) !important; line-height: 1.12 !important; }
+  :root[data-theme="theme4"]:not(#vsc-x) main h3 { font-size: clamp(18px, 5.4vw, 22px) !important; }
+  :root[data-theme="theme4"]:not(#vsc-x) main :is(p, li) { font-size: 17px !important; line-height: 1.6 !important; }
+  :root[data-theme="theme4"]:not(#vsc-x) main .eyebrow { font-size: 16px !important; }
+  :root[data-theme="theme4"]:not(#vsc-x) main .recommendation-card blockquote p { font-size: 15px !important; }
+
+  /* Hero. */
+  :root[data-theme="theme4"] .hero-portrait { width: 96px !important; height: 96px !important; }
+  :root[data-theme="theme4"] .hero-lead { font-size: 17px !important; margin-block: 12px 20px !important; }
+  :root[data-theme="theme4"] .agency-hero .hero-content { gap: 12px !important; }
+  :root[data-theme="theme4"] .conversation-link { width: calc(100% - 10px) !important; }
+
+  /* Desktop icons: a tidy three-column grid. */
+  :root[data-theme="theme4"] .credentials { width: calc(100% - 16px) !important; margin-inline: auto !important; padding-inline: 0 !important; }
+  :root[data-theme="theme4"] .credentials > p { width: 100%; text-align: center; box-sizing: border-box; }
+  :root[data-theme="theme4"] .client-names { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 14px 8px !important; width: 100%; }
+  :root[data-theme="theme4"] .intro-copy { margin-top: 20px !important; }
+  :root[data-theme="theme4"] .client-names span { min-width: 0; justify-self: center; }
+
+  /* Push buttons keep a comfortable tap size. */
+  :root[data-theme="theme4"] :is(button, .btn, .button-primary, .button-secondary, .recommendations-arrow) { min-height: 44px; }
+  :root[data-theme="theme4"] .recommendations-arrow { min-width: 44px; padding: 0 !important; }
+
+  /* Stickies fill the carousel frame. */
+  :root[data-theme="theme4"] .recommendation-card { min-height: 0 !important; }
+
+  /* Footer info bar. */
+  :root[data-theme="theme4"] .theme-control { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 8px; padding: 6px 10px 10px !important; }
+  :root[data-theme="theme4"] .theme-control label { justify-content: flex-start !important; min-height: 44px; }
+  :root[data-theme="theme4"] .theme-control label span { min-height: 44px; }
+  :root[data-theme="theme4"] .home-footer .footer-inner { gap: 12px; }
+}
+
+@media (max-width: 380px) {
+  :root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block) { padding-inline: 12px !important; }
+  :root[data-theme="theme4"] :is(.home-brand img, .brand-logo) { height: 20px !important; }
+  :root[data-theme="theme4"] .client-names { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="theme4"] *,
+  :root[data-theme="theme4"] *::before,
+  :root[data-theme="theme4"] *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Journey animation (shadow DOM) reads these hooks. */
+:root[data-theme="theme4"] journey-map-animation {
+  --journey-font: "Geneva", "Verdana", sans-serif;
+  --journey-mono: "VSC Chicago 12", "Chicago", monospace;
+  --journey-radius: 0;
+  --journey-button-radius: 7px;
+}

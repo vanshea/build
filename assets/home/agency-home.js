@@ -138,6 +138,43 @@
         current = destination;
         updateControls();
       };
+      // Mouse drag-to-scroll; touch and trackpads already scroll natively.
+      let drag = null;
+      track.addEventListener('pointerdown', event => {
+        if (event.pointerType !== 'mouse' || event.button !== 0 || !mobile.matches) return;
+        if (track.scrollWidth <= track.clientWidth) return;
+        drag = { x: event.clientX, left: track.scrollLeft, moved: false, id: event.pointerId };
+      });
+      track.addEventListener('pointermove', event => {
+        if (!drag || event.pointerId !== drag.id) return;
+        const dx = event.clientX - drag.x;
+        if (!drag.moved && Math.abs(dx) < 6) return;
+        if (!drag.moved) {
+          drag.moved = true;
+          track.setPointerCapture(drag.id);
+          track.classList.add('is-dragging');
+          track.style.scrollSnapType = 'none';
+        }
+        track.scrollLeft = drag.left - dx;
+      });
+      const endDrag = () => {
+        if (!drag) return;
+        const moved = drag.moved;
+        if (track.hasPointerCapture?.(drag.id)) track.releasePointerCapture(drag.id);
+        drag = null;
+        track.classList.remove('is-dragging');
+        if (!moved) return;
+        track.style.scrollSnapType = '';
+        sync();
+        const left = cards[current].offsetLeft - track.offsetLeft;
+        track.scrollTo({ left, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+        const blockClick = event => { event.preventDefault(); event.stopPropagation(); };
+        track.addEventListener('click', blockClick, { capture: true, once: true });
+        setTimeout(() => track.removeEventListener('click', blockClick, { capture: true }), 0);
+      };
+      track.addEventListener('pointerup', endDrag);
+      track.addEventListener('pointercancel', endDrag);
+      track.addEventListener('dragstart', event => { if (mobile.matches) event.preventDefault(); });
       previous.addEventListener('click', () => move(-1));
       next.addEventListener('click', () => move(1));
       track.addEventListener('scroll', scheduleSync, { passive: true });

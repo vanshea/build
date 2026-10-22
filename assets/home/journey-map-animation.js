@@ -1,8 +1,8 @@
 (() => {
   const W = 200, D = 200, H = 90, G0 = 80, ZT = H + 22, PY = D * 0.62;
   const C30 = 0.8660254, S30 = 0.5, TOTAL = 38.5;
-  const FONT = "'Archivo', system-ui, sans-serif";
-  const MONO = "'IBM Plex Mono', ui-monospace, monospace";
+  const FONT = "var(--journey-font, 'Archivo', system-ui, sans-serif)";
+  const MONO = "var(--journey-mono, 'IBM Plex Mono', ui-monospace, monospace)";
   const SCENES = [
     { name: 'Silos', dur: 7, desc: 'Four department blocks rise, each reporting healthy KPIs' },
     { name: 'Customer', dur: 8, desc: 'A customer path crosses the blocks and drops into every gap between teams' },
@@ -218,7 +218,7 @@
         .stages span{display:block;color:var(--journey-text);font-weight:600}
         .readouts{display:grid;min-width:0}.readout{grid-area:1/1;visibility:hidden;align-self:center;min-width:0}.readout.active{visibility:visible}
         .metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-        .metric{padding:14px 12px;border:1px solid var(--journey-line);border-radius:10px;background:var(--journey-surface)}
+        .metric{padding:14px 12px;border:1px solid var(--journey-line);border-radius:var(--journey-radius,10px);background:var(--journey-surface)}
         dt,.small{font-size:14px;line-height:1.4;color:var(--journey-muted);overflow-wrap:break-word}
         .value{font-size:clamp(26px,3vw,36px);font-weight:600;line-height:1.15;margin:8px 0;color:var(--journey-gain)}
         .metric dd:last-child{font-size:16px}.panel-label{font:400 14px/1.5 ${MONO};color:var(--journey-muted);margin-bottom:14px}
@@ -230,7 +230,7 @@
         .lanes{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;margin-top:16px;color:var(--journey-muted)}
         .controls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;padding-top:12px;border-top:1px solid var(--journey-line)}
         .phase{font-size:14px;color:var(--journey-muted)}
-        button{font:600 14px/1.4 ${FONT};color:var(--journey-text);background:var(--journey-surface);border:1px solid var(--journey-line);border-radius:24px;min-height:44px;padding:10px 16px;cursor:pointer}
+        button{font:600 14px/1.4 ${FONT};color:var(--journey-text);background:var(--journey-surface);border:1px solid var(--journey-line);border-radius:var(--journey-button-radius,24px);min-height:44px;padding:10px 16px;cursor:pointer}
         button:focus-visible{outline:3px solid var(--journey-accent);outline-offset:3px}button:disabled{cursor:default}
         .narrative{display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
         @media(max-width:1000px){.layout{grid-template-columns:minmax(0,1fr);gap:18px}figure{width:min(100%,560px);margin-inline:auto}.readouts{width:100%;max-width:560px;margin-inline:auto}.grid{display:none}.captions{max-width:560px;margin-inline:auto}.kicker{max-width:560px;margin-inline:auto;margin-bottom:12px}}
