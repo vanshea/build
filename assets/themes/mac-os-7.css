@@ -231,7 +231,7 @@
 }
 
 /* ---------- Windows ---------- */
-:root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block) {
+:root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .recommendations-gallery, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block) {
   position: relative;
   box-sizing: border-box !important;
   width: min(calc(100% - 48px), 1288px) !important;
@@ -246,7 +246,7 @@
 }
 
 /* Title bar stripes, close box and zoom box. */
-:root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block)::before {
+:root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .recommendations-gallery, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block)::before {
   position: absolute;
   inset: 0 0 auto 0;
   display: block !important;
@@ -265,7 +265,7 @@
 }
 
 /* Title text, knocked out of the stripes. */
-:root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block)::after {
+:root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .recommendations-gallery, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block)::after {
   position: absolute;
   top: 0;
   left: 50%;
@@ -285,7 +285,7 @@
   pointer-events: none;
 }
 
-:root[data-theme="theme4"] :where(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block)::after { content: "Untitled"; }
+:root[data-theme="theme4"] :where(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .recommendations-gallery, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block)::after { content: "Untitled"; }
 
 :root[data-theme="theme4"]:not(#vsc-x) :is(.agency-hero, .hero)::after { content: "Van Shea Creative"; }
 :root[data-theme="theme4"]:not(#vsc-x) #human-agency::after { content: "Human Agency Design"; }
@@ -297,6 +297,7 @@
 :root[data-theme="theme4"]:not(#vsc-x) #faq::after { content: "Frequently Asked Questions"; }
 :root[data-theme="theme4"]:not(#vsc-x) :is(#contact, .project-inquiry)::after { content: "Contact"; }
 :root[data-theme="theme4"]:not(#vsc-x) .recommendations::after { content: "Recommendations"; }
+:root[data-theme="theme4"]:not(#vsc-x) .recommendations-gallery::after { content: "Recommendations"; }
 :root[data-theme="theme4"]:not(#vsc-x) .experience-page::after { content: "Experience"; }
 :root[data-theme="theme4"]:not(#vsc-x) .case-study-index-hero::after { content: "Case Studies"; }
 :root[data-theme="theme4"]:not(#vsc-x) .case-study-hero::after { content: "Case Study"; }
@@ -809,7 +810,7 @@
   :root[data-theme="theme4"] .consent-banner { left: 8px !important; right: 8px !important; bottom: 8px !important; }
 
   /* Windows sit closer to the screen edge. */
-  :root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block) {
+  :root[data-theme="theme4"] :is(.agency-hero, .hero, #human-agency, #journey, #work, #approach, #about, #ai-design, #faq, #contact, .project-inquiry, .recommendations, .recommendations-gallery, .experience-page, .case-study-index-hero, .case-study-hero, .case-study-section, .case-study-block) {
     width: calc(100% - 16px) !important;
     margin: 16px auto !important;
     padding: 40px 16px 24px !important;
