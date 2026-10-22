@@ -587,6 +587,15 @@
   color: var(--mac-black) !important;
 }
 
+/* The Wild cards carry decorative pseudo-elements. Finder notes do not. */
+:root[data-theme="theme4"] .recommendation-card::before,
+:root[data-theme="theme4"] .recommendation-card::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
 :root[data-theme="theme4"] .recommendation-mark {
   color: var(--mac-black) !important;
   font-family: var(--mac-display) !important;
@@ -594,6 +603,22 @@
 
 :root[data-theme="theme4"] .recommendation-card :is(blockquote p) { font-size: 15px !important; line-height: 1.55 !important; }
 :root[data-theme="theme4"] .recommendation-card footer span { font-family: var(--mac-small) !important; font-size: 16px !important; }
+
+/* Keep the featured Work item useful at first paint. The shared script sizes
+   it from the regular three-column cards, which can leave an oversized blank
+   area in the OS7 window before the title. */
+:root[data-theme="theme4"] #work .grid {
+  align-content: start !important;
+  min-height: 0 !important;
+}
+
+:root[data-theme="theme4"] #work .card.is-featured .card-image {
+  display: block !important;
+  width: 100% !important;
+  height: clamp(180px, 28vw, 420px) !important;
+  aspect-ratio: 16 / 9 !important;
+  object-fit: cover !important;
+}
 
 /* Carousel: a real System 7 scroll bar you can grab, plus drag and swipe. */
 @media (max-width: 700px) {
