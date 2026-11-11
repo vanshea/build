@@ -336,6 +336,7 @@ large_web_portfolio/tfoundy3200x1800.webp
 large_web_portfolio/wl1900x1600.webp
 large_web_portfolio/wl3200x1800.webp
 large_web_portfolio/wl715x57.webp
+portfolio/
 robots.txt
 script.js
 site.webmanifest

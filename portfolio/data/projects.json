@@ -1,0 +1,692 @@
+[
+  {
+    "id": "common-ground",
+    "title": "Common Ground",
+    "client": "Illustrative commission",
+    "sector": "Public services",
+    "role": "Service design lead",
+    "summary": "Make benefits intake easier to finish.",
+    "problem": "Residents had to repeat their story each time their application changed hands.",
+    "approach": "Map the handoffs with residents and caseworkers. Replace duplicate questions with one intake record and a visible next step.",
+    "outcome": "Fewer return visits to finish an application.",
+    "metric": {
+      "value": "−24%",
+      "label": "repeat visits",
+      "placeholder": true
+    },
+    "hero": {
+      "label": "Cover study",
+      "alt": "Common Ground: cover study, a numbered geometric placeholder on a solid field.",
+      "width": 1280,
+      "height": 800,
+      "sources": {
+        "480": {
+          "webp": "shared/images/common-ground/hero-480.webp",
+          "jpg": "shared/images/common-ground/hero-480.jpg"
+        },
+        "800": {
+          "webp": "shared/images/common-ground/hero-800.webp",
+          "jpg": "shared/images/common-ground/hero-800.jpg"
+        },
+        "1280": {
+          "webp": "shared/images/common-ground/hero-1280.webp",
+          "jpg": "shared/images/common-ground/hero-1280.jpg"
+        }
+      }
+    },
+    "images": [
+      {
+        "label": "Intake map",
+        "alt": "Common Ground: intake map, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/common-ground/detail-1-480.webp",
+            "jpg": "shared/images/common-ground/detail-1-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/common-ground/detail-1-800.webp",
+            "jpg": "shared/images/common-ground/detail-1-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/common-ground/detail-1-1280.webp",
+            "jpg": "shared/images/common-ground/detail-1-1280.jpg"
+          }
+        }
+      },
+      {
+        "label": "Shared record",
+        "alt": "Common Ground: shared record, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/common-ground/detail-2-480.webp",
+            "jpg": "shared/images/common-ground/detail-2-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/common-ground/detail-2-800.webp",
+            "jpg": "shared/images/common-ground/detail-2-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/common-ground/detail-2-1280.webp",
+            "jpg": "shared/images/common-ground/detail-2-1280.jpg"
+          }
+        }
+      },
+      {
+        "label": "Next step",
+        "alt": "Common Ground: next step, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/common-ground/detail-3-480.webp",
+            "jpg": "shared/images/common-ground/detail-3-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/common-ground/detail-3-800.webp",
+            "jpg": "shared/images/common-ground/detail-3-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/common-ground/detail-3-1280.webp",
+            "jpg": "shared/images/common-ground/detail-3-1280.jpg"
+          }
+        }
+      }
+    ],
+    "process": {
+      "poster": "v3-process/media/common-ground-poster.jpg",
+      "mobile": {
+        "mp4": "v3-process/media/common-ground-720.mp4",
+        "webm": "v3-process/media/common-ground-720.webm"
+      },
+      "desktop": {
+        "mp4": "v3-process/media/common-ground-1280.mp4",
+        "webm": "v3-process/media/common-ground-1280.webm"
+      },
+      "stages": [
+        "Sketch",
+        "Wireframe",
+        "Iteration",
+        "Final"
+      ]
+    }
+  },
+  {
+    "id": "relay",
+    "title": "Relay",
+    "client": "Illustrative commission",
+    "sector": "Financial services",
+    "role": "Design strategy lead",
+    "summary": "Give lending teams one view of a decision.",
+    "problem": "Applications moved between risk, operations, and relationship teams without a shared view of what was missing.",
+    "approach": "Build a decision map around the evidence each team needs, then prototype a queue that makes ownership explicit.",
+    "outcome": "Less time waiting between reviews.",
+    "metric": {
+      "value": "−30%",
+      "label": "handoff time",
+      "placeholder": true
+    },
+    "hero": {
+      "label": "Cover study",
+      "alt": "Relay: cover study, a numbered geometric placeholder on a solid field.",
+      "width": 1280,
+      "height": 800,
+      "sources": {
+        "480": {
+          "webp": "shared/images/relay/hero-480.webp",
+          "jpg": "shared/images/relay/hero-480.jpg"
+        },
+        "800": {
+          "webp": "shared/images/relay/hero-800.webp",
+          "jpg": "shared/images/relay/hero-800.jpg"
+        },
+        "1280": {
+          "webp": "shared/images/relay/hero-1280.webp",
+          "jpg": "shared/images/relay/hero-1280.jpg"
+        }
+      }
+    },
+    "images": [
+      {
+        "label": "Decision map",
+        "alt": "Relay: decision map, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/relay/detail-1-480.webp",
+            "jpg": "shared/images/relay/detail-1-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/relay/detail-1-800.webp",
+            "jpg": "shared/images/relay/detail-1-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/relay/detail-1-1280.webp",
+            "jpg": "shared/images/relay/detail-1-1280.jpg"
+          }
+        }
+      },
+      {
+        "label": "Review queue",
+        "alt": "Relay: review queue, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/relay/detail-2-480.webp",
+            "jpg": "shared/images/relay/detail-2-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/relay/detail-2-800.webp",
+            "jpg": "shared/images/relay/detail-2-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/relay/detail-2-1280.webp",
+            "jpg": "shared/images/relay/detail-2-1280.jpg"
+          }
+        }
+      },
+      {
+        "label": "Evidence panel",
+        "alt": "Relay: evidence panel, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/relay/detail-3-480.webp",
+            "jpg": "shared/images/relay/detail-3-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/relay/detail-3-800.webp",
+            "jpg": "shared/images/relay/detail-3-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/relay/detail-3-1280.webp",
+            "jpg": "shared/images/relay/detail-3-1280.jpg"
+          }
+        }
+      }
+    ],
+    "process": {
+      "poster": "v3-process/media/relay-poster.jpg",
+      "mobile": {
+        "mp4": "v3-process/media/relay-720.mp4",
+        "webm": "v3-process/media/relay-720.webm"
+      },
+      "desktop": {
+        "mp4": "v3-process/media/relay-1280.mp4",
+        "webm": "v3-process/media/relay-1280.webm"
+      },
+      "stages": [
+        "Sketch",
+        "Wireframe",
+        "Iteration",
+        "Final"
+      ]
+    }
+  },
+  {
+    "id": "daybreak",
+    "title": "Daybreak",
+    "client": "Illustrative commission",
+    "sector": "Community health",
+    "role": "Research lead",
+    "summary": "Help people prepare for their next visit.",
+    "problem": "Appointment reminders told people when to arrive, but rarely what to bring or what to expect.",
+    "approach": "Walk through the week before a visit with patients. Test a short, plain-language checklist at each decision point.",
+    "outcome": "More people arrive with what they need.",
+    "metric": {
+      "value": "+18%",
+      "label": "visit readiness",
+      "placeholder": true
+    },
+    "hero": {
+      "label": "Cover study",
+      "alt": "Daybreak: cover study, a numbered geometric placeholder on a solid field.",
+      "width": 1280,
+      "height": 800,
+      "sources": {
+        "480": {
+          "webp": "shared/images/daybreak/hero-480.webp",
+          "jpg": "shared/images/daybreak/hero-480.jpg"
+        },
+        "800": {
+          "webp": "shared/images/daybreak/hero-800.webp",
+          "jpg": "shared/images/daybreak/hero-800.jpg"
+        },
+        "1280": {
+          "webp": "shared/images/daybreak/hero-1280.webp",
+          "jpg": "shared/images/daybreak/hero-1280.jpg"
+        }
+      }
+    },
+    "images": [
+      {
+        "label": "Visit timeline",
+        "alt": "Daybreak: visit timeline, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/daybreak/detail-1-480.webp",
+            "jpg": "shared/images/daybreak/detail-1-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/daybreak/detail-1-800.webp",
+            "jpg": "shared/images/daybreak/detail-1-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/daybreak/detail-1-1280.webp",
+            "jpg": "shared/images/daybreak/detail-1-1280.jpg"
+          }
+        }
+      },
+      {
+        "label": "Preparation list",
+        "alt": "Daybreak: preparation list, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/daybreak/detail-2-480.webp",
+            "jpg": "shared/images/daybreak/detail-2-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/daybreak/detail-2-800.webp",
+            "jpg": "shared/images/daybreak/detail-2-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/daybreak/detail-2-1280.webp",
+            "jpg": "shared/images/daybreak/detail-2-1280.jpg"
+          }
+        }
+      },
+      {
+        "label": "Visit summary",
+        "alt": "Daybreak: visit summary, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/daybreak/detail-3-480.webp",
+            "jpg": "shared/images/daybreak/detail-3-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/daybreak/detail-3-800.webp",
+            "jpg": "shared/images/daybreak/detail-3-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/daybreak/detail-3-1280.webp",
+            "jpg": "shared/images/daybreak/detail-3-1280.jpg"
+          }
+        }
+      }
+    ],
+    "process": {
+      "poster": "v3-process/media/daybreak-poster.jpg",
+      "mobile": {
+        "mp4": "v3-process/media/daybreak-720.mp4",
+        "webm": "v3-process/media/daybreak-720.webm"
+      },
+      "desktop": {
+        "mp4": "v3-process/media/daybreak-1280.mp4",
+        "webm": "v3-process/media/daybreak-1280.webm"
+      },
+      "stages": [
+        "Sketch",
+        "Wireframe",
+        "Iteration",
+        "Final"
+      ]
+    }
+  },
+  {
+    "id": "field-notes",
+    "title": "Field Notes",
+    "client": "Illustrative commission",
+    "sector": "Education",
+    "role": "Product design lead",
+    "summary": "Turn critique into an everyday teaching tool.",
+    "problem": "Feedback arrived in different formats, making it difficult for students to decide what to revise.",
+    "approach": "Observe studio reviews, group comments by intent, and test a shared feedback sheet with tutors.",
+    "outcome": "More students act on feedback before the next review.",
+    "metric": {
+      "value": "+22%",
+      "label": "feedback uptake",
+      "placeholder": true
+    },
+    "hero": {
+      "label": "Cover study",
+      "alt": "Field Notes: cover study, a numbered geometric placeholder on a solid field.",
+      "width": 1280,
+      "height": 800,
+      "sources": {
+        "480": {
+          "webp": "shared/images/field-notes/hero-480.webp",
+          "jpg": "shared/images/field-notes/hero-480.jpg"
+        },
+        "800": {
+          "webp": "shared/images/field-notes/hero-800.webp",
+          "jpg": "shared/images/field-notes/hero-800.jpg"
+        },
+        "1280": {
+          "webp": "shared/images/field-notes/hero-1280.webp",
+          "jpg": "shared/images/field-notes/hero-1280.jpg"
+        }
+      }
+    },
+    "images": [
+      {
+        "label": "Studio notes",
+        "alt": "Field Notes: studio notes, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/field-notes/detail-1-480.webp",
+            "jpg": "shared/images/field-notes/detail-1-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/field-notes/detail-1-800.webp",
+            "jpg": "shared/images/field-notes/detail-1-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/field-notes/detail-1-1280.webp",
+            "jpg": "shared/images/field-notes/detail-1-1280.jpg"
+          }
+        }
+      },
+      {
+        "label": "Feedback sheet",
+        "alt": "Field Notes: feedback sheet, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/field-notes/detail-2-480.webp",
+            "jpg": "shared/images/field-notes/detail-2-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/field-notes/detail-2-800.webp",
+            "jpg": "shared/images/field-notes/detail-2-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/field-notes/detail-2-1280.webp",
+            "jpg": "shared/images/field-notes/detail-2-1280.jpg"
+          }
+        }
+      },
+      {
+        "label": "Revision log",
+        "alt": "Field Notes: revision log, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/field-notes/detail-3-480.webp",
+            "jpg": "shared/images/field-notes/detail-3-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/field-notes/detail-3-800.webp",
+            "jpg": "shared/images/field-notes/detail-3-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/field-notes/detail-3-1280.webp",
+            "jpg": "shared/images/field-notes/detail-3-1280.jpg"
+          }
+        }
+      }
+    ],
+    "process": {
+      "poster": "v3-process/media/field-notes-poster.jpg",
+      "mobile": {
+        "mp4": "v3-process/media/field-notes-720.mp4",
+        "webm": "v3-process/media/field-notes-720.webm"
+      },
+      "desktop": {
+        "mp4": "v3-process/media/field-notes-1280.mp4",
+        "webm": "v3-process/media/field-notes-1280.webm"
+      },
+      "stages": [
+        "Sketch",
+        "Wireframe",
+        "Iteration",
+        "Final"
+      ]
+    }
+  },
+  {
+    "id": "signal-room",
+    "title": "Signal Room",
+    "client": "Illustrative commission",
+    "sector": "Responsible technology",
+    "role": "Design governance lead",
+    "summary": "Make automated recommendations reviewable.",
+    "problem": "Operators could see a recommendation, but could not easily trace its evidence or challenge its assumptions.",
+    "approach": "Prototype a review screen that pairs a recommendation with evidence, uncertainty, and a recorded human decision.",
+    "outcome": "More exceptions reach a human reviewer.",
+    "metric": {
+      "value": "+28%",
+      "label": "review coverage",
+      "placeholder": true
+    },
+    "hero": {
+      "label": "Cover study",
+      "alt": "Signal Room: cover study, a numbered geometric placeholder on a solid field.",
+      "width": 1280,
+      "height": 800,
+      "sources": {
+        "480": {
+          "webp": "shared/images/signal-room/hero-480.webp",
+          "jpg": "shared/images/signal-room/hero-480.jpg"
+        },
+        "800": {
+          "webp": "shared/images/signal-room/hero-800.webp",
+          "jpg": "shared/images/signal-room/hero-800.jpg"
+        },
+        "1280": {
+          "webp": "shared/images/signal-room/hero-1280.webp",
+          "jpg": "shared/images/signal-room/hero-1280.jpg"
+        }
+      }
+    },
+    "images": [
+      {
+        "label": "Evidence trail",
+        "alt": "Signal Room: evidence trail, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/signal-room/detail-1-480.webp",
+            "jpg": "shared/images/signal-room/detail-1-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/signal-room/detail-1-800.webp",
+            "jpg": "shared/images/signal-room/detail-1-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/signal-room/detail-1-1280.webp",
+            "jpg": "shared/images/signal-room/detail-1-1280.jpg"
+          }
+        }
+      },
+      {
+        "label": "Review desk",
+        "alt": "Signal Room: review desk, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/signal-room/detail-2-480.webp",
+            "jpg": "shared/images/signal-room/detail-2-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/signal-room/detail-2-800.webp",
+            "jpg": "shared/images/signal-room/detail-2-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/signal-room/detail-2-1280.webp",
+            "jpg": "shared/images/signal-room/detail-2-1280.jpg"
+          }
+        }
+      },
+      {
+        "label": "Decision record",
+        "alt": "Signal Room: decision record, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/signal-room/detail-3-480.webp",
+            "jpg": "shared/images/signal-room/detail-3-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/signal-room/detail-3-800.webp",
+            "jpg": "shared/images/signal-room/detail-3-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/signal-room/detail-3-1280.webp",
+            "jpg": "shared/images/signal-room/detail-3-1280.jpg"
+          }
+        }
+      }
+    ],
+    "process": {
+      "poster": "v3-process/media/signal-room-poster.jpg",
+      "mobile": {
+        "mp4": "v3-process/media/signal-room-720.mp4",
+        "webm": "v3-process/media/signal-room-720.webm"
+      },
+      "desktop": {
+        "mp4": "v3-process/media/signal-room-1280.mp4",
+        "webm": "v3-process/media/signal-room-1280.webm"
+      },
+      "stages": [
+        "Sketch",
+        "Wireframe",
+        "Iteration",
+        "Final"
+      ]
+    }
+  },
+  {
+    "id": "waypoint",
+    "title": "Waypoint",
+    "client": "Illustrative commission",
+    "sector": "Mobility",
+    "role": "Experience strategy lead",
+    "summary": "Keep a journey legible when plans change.",
+    "problem": "Disrupted routes left passengers weighing several alternatives with little context.",
+    "approach": "Follow riders during transfers and test a departure board that explains the tradeoffs between routes.",
+    "outcome": "Faster decisions during a disrupted journey.",
+    "metric": {
+      "value": "−20%",
+      "label": "reroute time",
+      "placeholder": true
+    },
+    "hero": {
+      "label": "Cover study",
+      "alt": "Waypoint: cover study, a numbered geometric placeholder on a solid field.",
+      "width": 1280,
+      "height": 800,
+      "sources": {
+        "480": {
+          "webp": "shared/images/waypoint/hero-480.webp",
+          "jpg": "shared/images/waypoint/hero-480.jpg"
+        },
+        "800": {
+          "webp": "shared/images/waypoint/hero-800.webp",
+          "jpg": "shared/images/waypoint/hero-800.jpg"
+        },
+        "1280": {
+          "webp": "shared/images/waypoint/hero-1280.webp",
+          "jpg": "shared/images/waypoint/hero-1280.jpg"
+        }
+      }
+    },
+    "images": [
+      {
+        "label": "Transfer study",
+        "alt": "Waypoint: transfer study, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/waypoint/detail-1-480.webp",
+            "jpg": "shared/images/waypoint/detail-1-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/waypoint/detail-1-800.webp",
+            "jpg": "shared/images/waypoint/detail-1-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/waypoint/detail-1-1280.webp",
+            "jpg": "shared/images/waypoint/detail-1-1280.jpg"
+          }
+        }
+      },
+      {
+        "label": "Route options",
+        "alt": "Waypoint: route options, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/waypoint/detail-2-480.webp",
+            "jpg": "shared/images/waypoint/detail-2-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/waypoint/detail-2-800.webp",
+            "jpg": "shared/images/waypoint/detail-2-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/waypoint/detail-2-1280.webp",
+            "jpg": "shared/images/waypoint/detail-2-1280.jpg"
+          }
+        }
+      },
+      {
+        "label": "Departure board",
+        "alt": "Waypoint: departure board, a numbered geometric placeholder on a solid field.",
+        "width": 1280,
+        "height": 800,
+        "sources": {
+          "480": {
+            "webp": "shared/images/waypoint/detail-3-480.webp",
+            "jpg": "shared/images/waypoint/detail-3-480.jpg"
+          },
+          "800": {
+            "webp": "shared/images/waypoint/detail-3-800.webp",
+            "jpg": "shared/images/waypoint/detail-3-800.jpg"
+          },
+          "1280": {
+            "webp": "shared/images/waypoint/detail-3-1280.webp",
+            "jpg": "shared/images/waypoint/detail-3-1280.jpg"
+          }
+        }
+      }
+    ],
+    "process": {
+      "poster": "v3-process/media/waypoint-poster.jpg",
+      "mobile": {
+        "mp4": "v3-process/media/waypoint-720.mp4",
+        "webm": "v3-process/media/waypoint-720.webm"
+      },
+      "desktop": {
+        "mp4": "v3-process/media/waypoint-1280.mp4",
+        "webm": "v3-process/media/waypoint-1280.webm"
+      },
+      "stages": [
+        "Sketch",
+        "Wireframe",
+        "Iteration",
+        "Final"
+      ]
+    }
+  }
+]
