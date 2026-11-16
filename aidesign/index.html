@@ -65,7 +65,7 @@
 <link rel="stylesheet" href="../assets/case-studies.css?v=20260706-capital-one-logo-1" />
 
 
-<link rel="stylesheet" href="../assets/aidesign.css?v=20261021-self-care-video" />
+<link rel="stylesheet" href="../assets/aidesign.css?v=20261116-self-care-branding" />
 
 
   <link rel="stylesheet" href="../assets/home/agency-home.css?v=20260928-wave-controls"><link rel="stylesheet" href="../assets/home/agency-site.css?v=20261010-top-spacing"><script src="../assets/home/agency-home.js?v=20261022-carousel-drag" defer></script>
@@ -172,11 +172,12 @@
 
             >
               
-              <h2>Self Care</h2>
+              <div class="self-care-brand-title"><img src="../assets/aidesign/self-care-branding/self-care-icon.png" alt="" width="64" height="64" decoding="async"><h2>Self Care</h2></div>
               <p class="aide-sample-description">A lock-screen self-care snack bar for quick mood check-ins. Name how you feel, note the small daily factors around you, and log a tiny check-in without opening a full app.</p>
               <div class="aide-media-tabs" role="tablist" aria-label="Self Care presentation">
                 <button type="button" role="tab" id="self-care-prototype-tab" aria-selected="true" aria-controls="self-care-prototype-panel" data-aide-media-tab="prototype">Interactive prototype</button>
                 <button type="button" role="tab" id="self-care-walkthrough-tab" aria-selected="false" aria-controls="self-care-walkthrough-panel" tabindex="-1" data-aide-media-tab="walkthrough">Walkthrough video</button>
+                <button type="button" role="tab" id="self-care-branding-tab" aria-selected="false" aria-controls="self-care-branding-panel" tabindex="-1" data-aide-media-tab="branding">Branding</button>
               </div>
               <div id="self-care-prototype-panel" class="aide-media-panel" role="tabpanel" aria-labelledby="self-care-prototype-tab" data-aide-media-panel="prototype">
               <iframe
@@ -196,6 +197,12 @@
                 </video>
                 <p class="aide-walkthrough-note">Watch the Self Care app walkthrough, or return to the Interactive prototype tab to explore it yourself.</p>
               </div>
+              <div id="self-care-branding-panel" class="aide-media-panel" role="tabpanel" aria-labelledby="self-care-branding-tab" data-aide-media-panel="branding" tabindex="0" hidden>
+                <div class="self-care-brand-assets">
+                  <figure><img src="../assets/aidesign/self-care-branding/self-care-icon.png" alt="Self Care app icon with a faceted rainbow heart inside a blue, green, and orange ring on a dark radial background" width="1024" height="1024" loading="lazy" decoding="async"><figcaption>App icon</figcaption></figure>
+                  <figure><img src="../assets/aidesign/self-care-branding/iphone-wallpaper.png?v=20261116-diamond" alt="Self Care iPhone wallpaper with a faceted rainbow heart inside a glowing multicolor ring on a navy radial background" width="1206" height="2622" loading="lazy" decoding="async"><figcaption>iPhone wallpaper</figcaption></figure>
+                </div>
+              </div>
               <section class="aide-problem-statement" aria-labelledby="self-care-problem-title">
                 <!-- REVIEW: PO-6 proposed friction and default-design replacement is in FIX-REPORT.md; not applied. -->
 <h3 id="self-care-problem-title">The problem</h3>
@@ -203,8 +210,8 @@
                 <p>Self Care addresses this by lowering the decision cost of caring for yourself: small, well-timed nudges and low-friction choices offered at the moments willpower is already thin, rather than demanding fresh discipline on top of an already-depleted reserve. Less self-negotiation, less guilt, more room for care to actually happen.</p>
                 <p class="aide-problem-sources"><em>Sources: Baumeister, R. F. et al. (1998), "Ego Depletion: Is the Active Self a Limited Resource?", Journal of Personality and Social Psychology; Vohs, K. D. et al. (2005), "Decision Fatigue Exhausts Self-Regulatory Resources"; Tierney, J. (2011), "Do You Suffer From Decision Fatigue?", The New York Times Magazine.</em></p>
                 <div class="aide-problem-share">
-                  <button class="button-secondary aide-linkedin-share" type="button" data-aide-linkedin-share data-share-url="https://vanshea.com/aidesign/share/self-care.html?v=20260711-5" aria-label="Share the Self Care problem on LinkedIn">
-                    <img class="aide-share-app-icon" src="/assets/aidesign/self-care-app-thumbnail.png?v=20260712-2" alt="" width="32" height="32" />
+                  <button class="button-secondary aide-linkedin-share" type="button" data-aide-linkedin-share data-share-url="https://build.vanshea.com/aidesign/share/self-care.html?v=20261116-diamond" aria-label="Share the Self Care problem on LinkedIn">
+                    <img class="aide-share-app-icon" src="../assets/aidesign/self-care-branding/self-care-icon.png" alt="" width="32" height="32" />
                     <span>Share on LinkedIn</span>
                     <svg class="aide-share-linkedin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.3 7.8H1.7V22h3.6V7.8ZM3.5 2A2.1 2.1 0 1 0 3.5 6.2 2.1 2.1 0 0 0 3.5 2ZM22.3 13.9c0-4.3-2.3-6.4-5.4-6.4a4.7 4.7 0 0 0-4.2 2.3v-2h-3.6V22h3.6v-7c0-1.9.4-3.7 2.7-3.7 2.3 0 2.3 2.1 2.3 3.8V22h3.6l1-8.1Z"/></svg>
                   </button>

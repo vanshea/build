@@ -1471,3 +1471,13 @@
 .aide-media-panel[hidden] { display:none!important; }
 .aide-walkthrough-video { display:block; width:min(100%,420px); height:auto; aspect-ratio:588 / 1280; max-height:80svh; object-fit:contain; background:#000; border:1px solid var(--line); border-radius:8px; }
 .aide-walkthrough-note { max-width:54ch; margin-top:12px; color:var(--ink); font-size:16px; line-height:1.5; }
+
+/* Self Care marketing artwork. */
+.self-care-brand-title {display:flex;align-items:center;gap:var(--space-3,16px);margin-bottom:var(--space-3,16px)}
+.self-care-brand-title img {flex:none;border-radius:14px}
+.self-care-brand-title h2 {margin:0}
+.self-care-brand-assets {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:var(--space-5,32px);padding-block:var(--space-4,24px)}
+.self-care-brand-assets figure {margin:0;min-width:0;text-align:center}
+.self-care-brand-assets img {display:block;width:100%;max-width:360px;height:auto;margin-inline:auto}
+.self-care-brand-assets figcaption {margin-top:var(--space-2,8px);color:var(--ink)}
+@media(max-width:600px) {.self-care-brand-assets {grid-template-columns:1fr}.self-care-brand-assets img {max-width:320px}}
