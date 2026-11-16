@@ -1473,11 +1473,85 @@
 .aide-walkthrough-note { max-width:54ch; margin-top:12px; color:var(--ink); font-size:16px; line-height:1.5; }
 
 /* Self Care marketing artwork. */
-.self-care-brand-title {display:flex;align-items:center;gap:var(--space-3,16px);margin-bottom:var(--space-3,16px)}
-.self-care-brand-title img {flex:none;border-radius:14px}
-.self-care-brand-title h2 {margin:0}
-.self-care-brand-assets {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:var(--space-5,32px);padding-block:var(--space-4,24px)}
-.self-care-brand-assets figure {margin:0;min-width:0;text-align:center}
-.self-care-brand-assets img {display:block;width:100%;max-width:360px;height:auto;margin-inline:auto}
-.self-care-brand-assets figcaption {margin-top:var(--space-2,8px);color:var(--ink)}
-@media(max-width:600px) {.self-care-brand-assets {grid-template-columns:1fr}.self-care-brand-assets img {max-width:320px}}
+.self-care-brand-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 16px);
+  margin-bottom: var(--space-3, 16px);
+}
+.self-care-brand-title img { flex: none; border-radius: 14px; }
+.self-care-brand-title h2 { margin: 0; }
+/* A single neutral board gives each format its own space. */
+.self-care-brand-assets {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, .58fr);
+  grid-template-rows: auto auto;
+  grid-template-areas: "icon wallpaper" "social wallpaper";
+  align-items: center;
+  gap: clamp(24px, 4vw, 48px);
+  max-width: 960px;
+  margin: 24px auto 0;
+  padding: clamp(20px, 4vw, 48px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--bg);
+}
+.self-care-brand-assets figure { margin: 0; min-width: 0; }
+.self-care-brand-assets img {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+}
+.self-care-brand-icon { grid-area: icon; }
+.self-care-brand-social { grid-area: social; }
+.self-care-brand-wallpaper { grid-area: wallpaper; }
+.self-care-brand-icon-stage { display: grid; place-items: center; padding: 8px; }
+.self-care-brand-icon-stage img { width: min(100%, 168px); border-radius: 24%; }
+.self-care-brand-social img { border-radius: 8px; }
+.self-care-brand-wallpaper img { border-radius: 20px; }
+.self-care-brand-assets figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0 12px;
+  margin-top: 8px;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.self-care-brand-icon figcaption { justify-content: center; }
+.self-care-brand-assets figcaption > span { font-weight: 600; }
+.self-care-brand-assets figcaption a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  color: var(--ink);
+  text-underline-offset: 4px;
+}
+.self-care-brand-assets a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+@media (max-width: 600px) {
+  .self-care-brand-assets {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "icon" "social" "wallpaper";
+    gap: 28px;
+  }
+  .self-care-brand-icon-stage img { width: 144px; }
+  .self-care-brand-wallpaper { width: min(100%, 240px); justify-self: center; }
+}
+
+
+/* Align the Self Care artwork and problem statement to one content column. */
+[data-aide-idea-panel="self-care"] .self-care-brand-assets,
+[data-aide-idea-panel="self-care"] > .aide-problem-statement {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 960px;
+  margin-inline: auto;
+}
+[data-aide-idea-panel="self-care"] > .aide-problem-statement {
+  margin-top: 14px;
+  padding: clamp(20px, 4vw, 48px);
+}
